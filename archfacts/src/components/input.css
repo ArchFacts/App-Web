@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'poppins_texto';
+    src: url('/assets/fonts/Poppins-Medium.ttf');
+  }
+
+.container2{
+    display: flex;
+    justify-content: center;
+}
+
+.div-input{
+    margin-top: 3%;
+    margin-bottom: 1%;
+    margin-left: 3%;
+}
+
+.div-input label{
+    margin-bottom: 0.5%;
+    display: block;
+}
+
+.div-input input{
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    width: 90%;
+}
+
+.div-input input:focus {
+    border-bottom: 2px solid #05C7F2;
+  }
+
+.container .container-cadastro{
+    border: solid 1px black;
+    border-radius: 1%;
+    display: flex;
+    width: 50%;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.container .container-cadastro .registro{
+    font-family: 'poppins_texto';
+    width: 50%;
+    height: 100%;
+}

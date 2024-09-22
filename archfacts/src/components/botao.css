@@ -1,0 +1,12 @@
+button{
+    color: white;
+    cursor: pointer;
+    background-color: #033E8C;
+    border-radius: 10px;
+}
+
+.botao{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}

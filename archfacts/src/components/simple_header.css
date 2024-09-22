@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'poppins_extrabold';
+    src: url('/assets/fonts/Poppins-ExtraBold.ttf');
+}
+
+.header{
+    background-color: #0E0C19;
+    display: flex;
+}
+
+.header .imagens{
+    margin-left: 5%;
+} 
+
+.header .imagens .imagens-logo{
+    width: 35%;
+    margin-top: 1%;
+    cursor: pointer;
+}
+
+.header .imagens .imagens-af{
+    width: 25%;
+    cursor: pointer;
+    margin-top: 0,5%;
+    margin-bottom: 4%;
+}
+
+.header .label{
+    display: flex;
+    justify-content: space-between;
+    width: 13%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-family: 'poppins_extrabold';
+}
+
+.header .label .labels{
+    color: white;
+    cursor: pointer;
+}
+
+.header .label .labels-login{
+    color: #F95C00;
+    cursor: pointer;
+}
