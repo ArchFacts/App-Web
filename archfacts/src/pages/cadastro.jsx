@@ -7,6 +7,9 @@ import '../components/botao.css';
 import '../components/imagem.css';
 import SimpleHeader from '../components/simple_header.jsx';
 import '../components/simple_header.css';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; 
+import Slider from 'react-slick';
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -17,6 +20,12 @@ function Cadastro() {
     confirmacaoSenha: '',
   });
 
+  const images = [
+    "/assets/imgs/fundo_cadastro.avif",
+    "/assets/imgs/fundo_cadastro2.png",
+    "/assets/imgs/fundo_cadastro3.png"
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,6 +34,13 @@ function Cadastro() {
     });
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
 
   return (
     <div className='container'>
@@ -73,8 +89,15 @@ function Cadastro() {
           <Botao texto="Cadastrar" onClick={console.log('cadastro')} />
         </div>
         <div className='registro-imagem'>
-        <img className='imagem' src="/assets/imgs/fundo_cadastro.avif" alt="" />
+        <Slider {...settings}>
+              {images.map((image, index) => (
+                <div key={index}>
+                  <img className='imagem' src={image} alt={`Imagem ${index + 1}`} />
+                </div>
+              ))}
+            </Slider>
         </div>
+       
       </div>
       </div>
       <div className='div_footer'>

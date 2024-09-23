@@ -15,6 +15,7 @@ body{
 .header{
     background-color: #0E0C19;
     display: flex;
+    height: 56px;
 }
 
 .header .imagens{
@@ -23,15 +24,15 @@ body{
 
 .header .imagens .imagens-logo{
     width: 35%;
-    margin-top: 1%;
+    margin-top: 0.4px;
     cursor: pointer;
 }
 
 .header .imagens .imagens-af{
     width: 25%;
     cursor: pointer;
-    margin-top: 0,5%;
-    margin-bottom: 4%;
+    margin-top: 1px;
+    margin-bottom: 11px;
 }
 
 .header .label{
@@ -39,7 +40,7 @@ body{
     justify-content: space-between;
     width: 13%;
     margin-top: 1%;
-    margin-bottom: 1%;
+    padding-top: 0.3%;
     font-family: 'poppins_extrabold';
 }
 
@@ -54,10 +55,10 @@ body{
 }
 
 footer{
-    margin-top: 0.85%;
-    padding-bottom: 4px;
+    margin-top: 2.82%;
+    padding-bottom: 10px;
     color: white;
-    padding-top: 4px;
+    padding-top: 10px;
  background-color: black;
  font-family: 'poppins_semibold';
  text-align: center;

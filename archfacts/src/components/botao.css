@@ -3,9 +3,9 @@ button{
     cursor: pointer;
     background-color: #033E8C;
     border-radius: 10px;
-    width: 40%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    width: 35%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .botao{
@@ -18,5 +18,5 @@ button{
 
 .botao :hover{
     background-color: #05C7F2;
-    width: 43%;
+    width: 37%;
 }
