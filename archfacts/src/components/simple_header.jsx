@@ -6,14 +6,14 @@ function SimpleHeader() {
     return (
         <div className='header'>
             <div className='imagens'>
-                <img className='imagens-logo' src="/assets/imgs/logo.png" alt="" />
-                <img className='imagens-af' src="/assets/imgs/logo_af.png" alt="" />
+            <a href='/'> <img  className='imagens-logo' src="/assets/imgs/logo.png" alt="" /></a>
+            <a href="/"> <img className='imagens-af' src="/assets/imgs/logo_af.png" alt="" /></a>
             </div>
             <div className='label'>
-                <div className='labels'> Início</div>
-                <div className='labels-login'>
-                    Login
-                </div>
+                <a href="/"><div className='labels'> Início</div></a> 
+            <a href="/"> <div className='labels-login'>
+                    Login 
+                </div> </a>
             </div>
         </div>
     )

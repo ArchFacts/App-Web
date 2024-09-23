@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Input from '../components/input.jsx';
 import Botao from '../components/botao.jsx';
 import '../index.css';
-import '../components/input.css'
-import '../components/botao.css'
-import '../components/imagem.css'
+import '../components/input.css';
+import '../components/botao.css';
+import '../components/imagem.css';
 import SimpleHeader from '../components/simple_header.jsx';
-import '../components/simple_header.css'
+import '../components/simple_header.css';
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ function Cadastro() {
      <div className='container2'>
       <div className='container-cadastro'>
         <div className='registro'>
-          <h1>Registro</h1>
+          <h1 className='h1_registro'>Registro</h1>
 
           <Input
             label="Nome:"
@@ -70,14 +70,20 @@ function Cadastro() {
             onChange={handleChange}
           />
 
-          <Botao texto="Cadastrar" onClick={console.log('cadastro clicado')} />
+          <Botao texto="Cadastrar" onClick={console.log('cadastro')} />
         </div>
         <div className='registro-imagem'>
-        <img className='imagem' src="/assets/imgs/fundo_cadastro.png" alt="" />
+        <img className='imagem' src="/assets/imgs/fundo_cadastro.avif" alt="" />
         </div>
       </div>
       </div>
+      <div className='div_footer'>
+            <footer>
+            © 2024 ArchFacts all rights reserved.
+            </footer>
+        </div>
     </div>
+
   );
 }
 

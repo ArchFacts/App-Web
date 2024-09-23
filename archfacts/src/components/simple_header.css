@@ -3,6 +3,15 @@
     src: url('/assets/fonts/Poppins-ExtraBold.ttf');
 }
 
+@font-face {
+    font-family: 'poppins_semibold';
+    src: url('/assets/fonts/Poppins-SemiBold.ttf');
+}
+
+body{
+    height: 100%;
+  }
+
 .header{
     background-color: #0E0C19;
     display: flex;
@@ -42,4 +51,14 @@
 .header .label .labels-login{
     color: #F95C00;
     cursor: pointer;
+}
+
+footer{
+    margin-top: 0.85%;
+    padding-bottom: 4px;
+    color: white;
+    padding-top: 4px;
+ background-color: black;
+ font-family: 'poppins_semibold';
+ text-align: center;
 }
