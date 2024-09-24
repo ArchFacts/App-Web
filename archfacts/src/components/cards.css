@@ -41,12 +41,17 @@ body{
     font-family: 'poppins_extrabold';
   }
 
-  .footer {
+  .div_footer {
+    background-color: black;
+    font-family: 'poppins_semibold';
     text-align: center;
-    padding: 10px; 
     bottom: 0%; 
-    background-color: #0E0C19; 
     position: fixed;
     width: 100%;
-    font-family: 'poppins_extrabold';
-  }
+    height:5%;
+}
+
+.texto_footer{
+    margin-top: 0.4%;
+    color: white;
+}

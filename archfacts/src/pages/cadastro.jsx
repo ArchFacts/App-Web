@@ -86,7 +86,7 @@ function Cadastro() {
             onChange={handleChange}
           />
 
-          <Botao texto="Cadastrar" onClick={console.log('cadastro')} />
+          <a href="/"><Botao texto="Cadastrar" onClick={console.log('cadastro')} /> </a> 
         </div>
         <div className='registro-imagem'>
         <Slider {...settings}>
@@ -102,7 +102,8 @@ function Cadastro() {
       </div>
       <div className='div_footer'>
             <footer>
-            © 2024 ArchFacts all rights reserved.
+              <p className='texto_footer'>
+            © 2024 ArchFacts all rights reserved.</p>
             </footer>
         </div>
     </div>
