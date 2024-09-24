@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"; 
 import Slider from 'react-slick';
 
-function Cadastro() {
+function CadastroBeneficiario() {
   const [formData, setFormData] = useState({
     nome: '',
     telefone: '',
@@ -86,7 +86,7 @@ function Cadastro() {
             onChange={handleChange}
           />
 
-          <a href="/"><Botao texto="Avançar" onClick={console.log('avançar')} /> </a> 
+          <a href="/"><Botao texto="Cadastro" onClick={console.log('cadastro')} /> </a> 
         </div>
         <div className='registro-imagem'>
         <Slider {...settings}>
@@ -111,4 +111,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default CadastroBeneficiario;

@@ -7,18 +7,21 @@ function NivelUsuario() {
     <div className='container'>
       <SimpleHeader />
       <div className="card-container">
-        <a href="/cadastrar">
+        <a href="/cadastrar-beneficiario">
         <div className="card">
           <button className="btn">SOU UM BENEFICIÁRIO</button>
         </div>
         </a>
+        <a href="/cadastrar">
         <div className="card">
           <button className="btn">SOU UM PRESTADOR DE SERVIÇO</button>
         </div>
-
+        </a>
+        <a href="/cadastrar">
         <div className="card">
           <button className="btn">SOU UM FUNCIONÁRIO</button>
         </div>
+        </a>
       </div>
       <div className='div_footer'>
             <footer>
