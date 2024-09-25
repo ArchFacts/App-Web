@@ -1,6 +1,7 @@
 import React from 'react';
 import '../components/cards.css';
 import SimpleHeader from '../components/simple_header.jsx';
+import SimpleFooter from '../components/simple_footer.jsx';
 
 function NivelUsuario() {
   return (
@@ -26,11 +27,7 @@ function NivelUsuario() {
           </div>
         </a>
       </div>
-      <div className='div_footer'>
-        <footer>
-          <p className='texto_footer'>© 2024 ArchFacts all rights reserved.</p>
-        </footer>
-      </div>
+      <SimpleFooter/>
     </div>
   );
 }

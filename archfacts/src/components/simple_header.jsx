@@ -6,7 +6,7 @@ function SimpleHeader() {
     return (
         <div className='header'>
             <div className='imagens'>
-            <a href='/'> <img  className='imagens-logo' src="/assets/imgs/logo.png" alt="" /></a>
+            <a href='/'> <img  className='imagens-logo' src="/assets/imgs/logo.svg" alt="" /></a>
             <a href="/"> <img className='imagens-af' src="/assets/imgs/logo_af.png" alt="" /></a>
             </div>
             <div className='label'>

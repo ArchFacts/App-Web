@@ -2,21 +2,20 @@ button{
     color: white;
     cursor: pointer;
     background-color: #033E8C;
-    border-radius: 10px;
+    border-radius: 0.5rem;
     width: 35%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    height: 2rem;
+    border: none;
+    transition: 500ms;
 }
 
 .botao{
     width: 100%;
     justify-content: center;
     display: flex;
-    margin-bottom: 6%;
-    margin-top: 6%;
 }
 
 .botao :hover{
     background-color: #05C7F2;
-    width: 37%;
+    width: 40%;
 }

@@ -15,55 +15,50 @@ body {
 .header {
     background-color: #0E0C19;
     display: flex;
-    height: 56px;
+    height: 60px;
+    border: #F95C00 solid 5px ;
 }
 
 .header .imagens {
-    margin-left: 5%;
+    border: solid 5px navajowhite;
+    display: flex;
+    align-items: center;
+    font-family: 'poppins_extrabold';
 }
 
 .header .imagens .imagens-logo {
-    width: 30%;
-    margin-top: 0.8px;
     cursor: pointer;
+    border: solid 5px violet;
+}
+
+.header .imagens a .imagens-logo img{
+    width: 100%;
+    border: #F95C00 solid 5px ;
 }
 
 .header .imagens .imagens-af {
-    width: 20%;
+    border: solid 5px goldenrod;
     cursor: pointer;
-    margin-bottom: 7px;
+
 }
 
 .header .label {
+    border: solid 5px navajowhite;
     display: flex;
-    justify-content: space-between;
-    width: 13%;
-    margin-top: 0.8%;
-    padding-top: 0.3%;
+    justify-content: space-around;
+    align-items: center;
+    width: 15%;
     font-family: 'poppins_extrabold';
 }
 
 .header .label .labels {
+    border: solid 5px brown;
     color: white;
     cursor: pointer;
 }
 
 .header .label .labels-login {
+    border: solid 5px darkorange;
     color: #F95C00;
     cursor: pointer;
-}
-
-.div_footer {
-    background-color: black;
-    font-family: 'poppins_semibold';
-    text-align: center;
-    bottom: 0%; 
-    position: fixed;
-    width: 100%;
-    height:5%;
-}
-
-.texto_footer{
-    margin-top: 0.4%;
-    color: white;
 }

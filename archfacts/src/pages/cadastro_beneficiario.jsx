@@ -10,6 +10,8 @@ import '../components/simple_header.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css"; 
 import Slider from 'react-slick';
+import SimpleFooter from '../components/simple_footer.jsx';
+import '../components/simple_footer.css'
 
 function CadastroBeneficiario() {
   const [formData, setFormData] = useState({
@@ -35,6 +37,7 @@ function CadastroBeneficiario() {
   };
 
   const settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,
@@ -43,9 +46,9 @@ function CadastroBeneficiario() {
   };
 
   return (
-    <div className='container'>
+    <section className='tela'>
       <SimpleHeader/>
-     <div className='container2'>
+     <div className='content-area'>
       <div className='container-cadastro'>
         <div className='registro'>
           <h1 className='h1_registro'>Registro</h1>
@@ -85,7 +88,6 @@ function CadastroBeneficiario() {
             value={formData.confirmacaoSenha}
             onChange={handleChange}
           />
-
           <a href="/"><Botao texto="Cadastro" onClick={console.log('cadastro')} /> </a> 
         </div>
         <div className='registro-imagem'>
@@ -100,13 +102,8 @@ function CadastroBeneficiario() {
        
       </div>
       </div>
-      <div className='div_footer'>
-            <footer>
-              <p className='texto_footer'>
-            © 2024 ArchFacts all rights reserved.</p>
-            </footer>
-        </div>
-    </div>
+     <SimpleFooter/>
+    </section>
 
   );
 }
