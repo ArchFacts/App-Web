@@ -2,6 +2,8 @@ import React from 'react';
 import '../components/cards.css';
 import SimpleHeader from '../components/simple_header.jsx';
 import SimpleFooter from '../components/simple_footer.jsx';
+import '../components/simple_footer.css'
+import '../index.css'
 
 function NivelUsuario() {
   return (

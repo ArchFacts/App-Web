@@ -21,7 +21,7 @@ body {
 
 .header .imagens {
     border: solid 5px navajowhite;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     font-family: 'poppins_extrabold';
 }
