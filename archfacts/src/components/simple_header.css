@@ -21,9 +21,16 @@ body {
 
 .header .imagens {
     border: solid 5px navajowhite;
-    /* display: flex; */
+    display: flex;
+    width: 10%;
     align-items: center;
+    justify-content: center;
     font-family: 'poppins_extrabold';
+}
+
+.header .imagens #logoLetter, #logoImage {
+    display: flex;
+    width: 3rem;
 }
 
 .header .imagens .imagens-logo {
@@ -33,17 +40,17 @@ body {
 
 .header .imagens a .imagens-logo img{
     width: 100%;
-    border: #F95C00 solid 5px ;
+    /* border: #F95C00 solid 5px ; */
 }
 
 .header .imagens .imagens-af {
-    border: solid 5px goldenrod;
+    /* border: solid 5px goldenrod; */
     cursor: pointer;
 
 }
 
 .header .label {
-    border: solid 5px navajowhite;
+    border: solid 5px teal;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -52,13 +59,13 @@ body {
 }
 
 .header .label .labels {
-    border: solid 5px brown;
+    /* border: solid 5px brown; */
     color: white;
     cursor: pointer;
 }
 
 .header .label .labels-login {
-    border: solid 5px darkorange;
+    /* border: solid 5px darkorange; */
     color: #F95C00;
     cursor: pointer;
 }
