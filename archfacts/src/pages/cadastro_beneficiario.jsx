@@ -51,8 +51,11 @@ function CadastroBeneficiario() {
      <div className='content-area'>
       <div className='container-cadastro'>
         <div className='registro'>
-          <h1 className='h1_registro'>Registro</h1>
-
+          <div className='voltar_e_titulo'>
+          <a href="/nivel-usuario"><div className='voltar'>Voltar
+          </div></a>
+          <h1 className='h1_registro'>Cadastro</h1>
+          </div>
           <Input
             label="Nome:"
             type="text"
@@ -88,7 +91,9 @@ function CadastroBeneficiario() {
             value={formData.confirmacaoSenha}
             onChange={handleChange}
           />
-          <a href="/"><Botao texto="Cadastro" onClick={console.log('cadastro')} /> </a> 
+          <div className='botoes'>
+          <a href="/"><Botao texto="Cadastrar" onClick={console.log('cadastro')} /> </a> 
+          </div>
         </div>
         <div className='registro-imagem'>
         <Slider {...settings}>

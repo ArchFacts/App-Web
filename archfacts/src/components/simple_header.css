@@ -15,12 +15,10 @@ body {
 .header {
     background-color: #0E0C19;
     display: flex;
-    height: 60px;
-    border: #F95C00 solid 5px ;
+    height: 60px;   
 }
 
 .header .imagens {
-    border: solid 5px navajowhite;
     display: flex;
     width: 10%;
     align-items: center;
@@ -35,22 +33,18 @@ body {
 
 .header .imagens .imagens-logo {
     cursor: pointer;
-    border: solid 5px violet;
 }
 
 .header .imagens a .imagens-logo img{
     width: 100%;
-    /* border: #F95C00 solid 5px ; */
 }
 
 .header .imagens .imagens-af {
-    /* border: solid 5px goldenrod; */
     cursor: pointer;
 
 }
 
 .header .label {
-    border: solid 5px teal;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -59,13 +53,11 @@ body {
 }
 
 .header .label .labels {
-    /* border: solid 5px brown; */
     color: white;
     cursor: pointer;
 }
 
 .header .label .labels-login {
-    /* border: solid 5px darkorange; */
     color: #F95C00;
     cursor: pointer;
 }

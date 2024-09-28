@@ -2,20 +2,24 @@
   width: 50%;
   height: 100%;
   position: relative;
-  border: solid 5px firebrick;
-  overflow: hidden;
+  /* border: solid 5px firebrick; */
+  /* overflow: hidden; */
 }
 
 .slick-dots {
   background-color: #033E8C;
   z-index: 10;
   position: absolute;
+  height: 2rem;
+  border-radius: 0 0 1rem 1rem;
 }
 
 .registro-imagem .imagem {
-  /* width: 100%; */
+  width: 100%;
   object-fit: cover;
   z-index: 1;
-  /* height: 34rem; */
-  border: solid 5px darkmagenta;
+  height: 33rem;
+  border-radius: 0.5rem;
+  flex: 1;
+  /* border: solid 5px darkmagenta; */
 }

@@ -12,19 +12,19 @@ function NivelUsuario() {
       <div className="card-container">
         <a href="/cadastrar-beneficiario">
           <div className="card">
-            <img src='../public/assets/imgs/beneficiario.png' alt='Beneficiário' className="card-image" />
+            <img src='../assets/imgs/beneficiario.png' alt='Beneficiário' className="card-image" />
             <button className="btn">SOU UM BENEFICIÁRIO</button>
           </div>
         </a>
         <a href="/cadastrar">
           <div className="card">
-            <img src='../public/assets/imgs/prestador.png' alt='Prestador de Serviço' className="card-image" />
+            <img src='../assets/imgs/prestador.png' alt='Prestador de Serviço' className="card-image" />
             <button className="btn">SOU UM PRESTADOR DE SERVIÇO</button>
           </div>
         </a>
         <a href="/cadastrar">
           <div className="card">
-            <img src='../public/assets/imgs/funcionario.png' alt='Funcionário' className="card-image" />
+            <img src='../assets/imgs/funcionario.png' alt='Funcionário' className="card-image" />
             <button className="btn">SOU UM FUNCIONÁRIO</button>
           </div>
         </a>
