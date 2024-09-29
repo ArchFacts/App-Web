@@ -7,9 +7,12 @@ import '../components/botao.css';
 import '../components/imagem.css';
 import SimpleHeader from '../components/simple_header.jsx';
 import '../components/simple_header.css';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css"; 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
+import SimpleFooter from '../components/simple_footer.jsx';
+import '../components/simple_footer.css'
+import { useParams } from 'react-router-dom';
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -26,6 +29,8 @@ function Cadastro() {
     "/assets/imgs/fundo_cadastro3.png"
   ];
 
+  const { tipo } = useParams();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -35,6 +40,7 @@ function Cadastro() {
   };
 
   const settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,
@@ -43,70 +49,75 @@ function Cadastro() {
   };
 
   return (
-    <div className='container'>
-      <SimpleHeader/>
-     <div className='container2'>
-      <div className='container-cadastro'>
-        <div className='registro'>
-          <h1 className='h1_registro'>Registro</h1>
-
-          <Input
-            label="Nome:"
-            type="text"
-            name="nome"
-            value={formData.nome}
-            onChange={handleChange}
-          />
-          <Input
-            label="Telefone:"
-            type="tel"
-            name="telefone"
-            value={formData.telefone}
-            onChange={handleChange}
-          />
-          <Input
-            label="Email:"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <Input
-            label="Senha:"
-            type="password"
-            name="senha"
-            value={formData.senha}
-            onChange={handleChange}
-          />
-          <Input
-            label="Confirmação de Senha:"
-            type="password"
-            name="confirmacaoSenha"
-            value={formData.confirmacaoSenha}
-            onChange={handleChange}
-          />
-
-          <a href="/"><Botao texto="Avançar" onClick={console.log('avançar')} /> </a> 
-        </div>
-        <div className='registro-imagem'>
-        <Slider {...settings}>
+    <section className='tela'>
+      <SimpleHeader />
+      <div className='content-area'>
+        <div className='container-cadastro'>
+          <div className='registro'>
+            <div className='voltar_e_titulo'>
+              <a href="/nivel-usuario"><div className='voltar'>Voltar
+              </div></a>
+              <h1 className='h1_registro'>Cadastro</h1>
+            </div>
+            <Input
+              label="Nome:"
+              type="text"
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
+            />
+            <Input
+              label="Telefone:"
+              type="tel"
+              name="telefone"
+              value={formData.telefone}
+              onChange={handleChange}
+            />
+            <Input
+              label="Email:"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <Input
+              label="Senha:"
+              type="password"
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
+            />
+            <Input
+              label="Confirmação de Senha:"
+              type="password"
+              name="confirmacaoSenha"
+              value={formData.confirmacaoSenha}
+              onChange={handleChange}
+            />
+            <div className='botoes'>
+            <Botao
+                texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log(`${tipo} registrado`);
+                }}
+              />
+            </div>
+          </div>
+          <div className='registro-imagem'>
+            <Slider {...settings}>
               {images.map((image, index) => (
                 <div key={index}>
                   <img className='imagem' src={image} alt={`Imagem ${index + 1}`} />
                 </div>
               ))}
             </Slider>
+          </div>
+
         </div>
-       
       </div>
-      </div>
-      <div className='div_footer'>
-            <footer>
-              <p className='texto_footer'>
-            © 2024 ArchFacts all rights reserved.</p>
-            </footer>
-        </div>
-    </div>
+      <SimpleFooter />
+    </section>
 
   );
 }
