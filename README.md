@@ -1,4 +1,4 @@
-![Logo da ArchFacts](/archfacts/public/assets/imgs/logo.svg)
+![Logo da ArchFacts](/archfacts/src/assets/logo.svg)
 # App-Web
 ## ArchFacts - Frontend 
 
