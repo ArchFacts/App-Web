@@ -1,10 +1,9 @@
 import React from 'react';
-import '../index.css';
-import './botao.css'
+import styles from './botao.module.css';
 
 function Botao({ texto, onClick }) {
   return (
-    <div className='botao'>
+    <div className={styles.botao}>
     <button onClick={onClick}>
       {texto}
     </button></div>

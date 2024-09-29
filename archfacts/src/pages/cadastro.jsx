@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import Input from '../components/input.jsx';
-import Botao from '../components/botao.jsx';
-import '../index.css';
-import '../components/input.css';
-import '../components/botao.css';
-import '../components/imagem.css';
-import SimpleHeader from '../components/simple_header.jsx';
-import '../components/simple_header.css';
+import Input from '../components/Input/input.jsx';
+import Botao from '../components/Botao/botao.jsx';
+import '../utils/global.css';
+import stylesInput from '../components/Input/input.module.css';
+import stylesImagem from '../components/imagem.module.css';
+import SimpleHeader from '../components/Simple_Header/simple_header.jsx';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import SimpleFooter from '../components/simple_footer.jsx';
-import '../components/simple_footer.css'
+import SimpleFooter from '../components/Simple_Footer/simple_footer.jsx';
 import { useParams } from 'react-router-dom';
+import '../../index.html';
+import imagem1 from '../utils/assets/fundo_cadastro.avif';
+import imagem2 from '../utils/assets/fundo_cadastro2.png';
+import imagem3 from '../utils/assets/fundo_cadastro3.png';
 
 function Cadastro() {
   const [formData, setFormData] = useState({
@@ -24,9 +25,9 @@ function Cadastro() {
   });
 
   const images = [
-    "/assets/imgs/fundo_cadastro.avif",
-    "/assets/imgs/fundo_cadastro2.png",
-    "/assets/imgs/fundo_cadastro3.png"
+   imagem1,
+   imagem2,
+   imagem3
   ];
 
   const { tipo } = useParams();
@@ -49,15 +50,15 @@ function Cadastro() {
   };
 
   return (
-    <section className='tela'>
+    <section className={stylesInput.tela}>
       <SimpleHeader />
-      <div className='content-area'>
-        <div className='container-cadastro'>
-          <div className='registro'>
-            <div className='voltar_e_titulo'>
-              <a href="/nivel-usuario"><div className='voltar'>Voltar
+      <div className={stylesInput.content_area}>
+        <div className={stylesInput.container_cadastro}>
+          <div className={stylesInput.registro}>
+            <div className={stylesInput.voltar_e_titulo}>
+              <a href="/nivel-usuario"><div className={stylesInput.voltar}>Voltar
               </div></a>
-              <h1 className='h1_registro'>Cadastro</h1>
+              <h1 className={stylesInput.h1_registro}>Cadastro</h1>
             </div>
             <Input
               label="Nome:"
@@ -94,7 +95,6 @@ function Cadastro() {
               value={formData.confirmacaoSenha}
               onChange={handleChange}
             />
-            <div className='botoes'>
             <Botao
                 texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
                 onClick={(e) => {
@@ -102,13 +102,12 @@ function Cadastro() {
                   console.log(`${tipo} registrado`);
                 }}
               />
-            </div>
           </div>
-          <div className='registro-imagem'>
+          <div className={stylesImagem.registro_imagem}>
             <Slider {...settings}>
               {images.map((image, index) => (
                 <div key={index}>
-                  <img className='imagem' src={image} alt={`Imagem ${index + 1}`} />
+                  <img className={stylesImagem.imagem} src={image} alt={`Imagem ${index + 1}`} />
                 </div>
               ))}
             </Slider>

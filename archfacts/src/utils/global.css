@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'poppins_subtitulo';
-  src: url('/assets/fonts/Poppins-Medium.ttf');
+  src: url('./fonts/Poppins-Medium.ttf');
 }
 
 body,html{

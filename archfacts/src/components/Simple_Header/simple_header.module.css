@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'poppins_extrabold';
-    src: url('/assets/fonts/Poppins-ExtraBold.ttf');
+    src: url('../../utils/fonts/Poppins-ExtraBold.ttf');
 }
 
 @font-face {
     font-family: 'poppins_semibold';
-    src: url('/assets/fonts/Poppins-SemiBold.ttf');
+    src: url('../../utils/fonts/Poppins-SemiBold.ttf');
 }
 
 body {
@@ -31,15 +31,15 @@ body {
     width: 3rem;
 }
 
-.header .imagens .imagens-logo {
+.header .imagens .imagens_logo {
     cursor: pointer;
 }
 
-.header .imagens a .imagens-logo img{
+.header .imagens a .imagens_logo img{
     width: 100%;
 }
 
-.header .imagens .imagens-af {
+.header .imagens .imagens_af {
     cursor: pointer;
 
 }
@@ -57,7 +57,7 @@ body {
     cursor: pointer;
 }
 
-.header .label .labels-login {
+.header .label .labels_login {
     color: #F95C00;
     cursor: pointer;
 }

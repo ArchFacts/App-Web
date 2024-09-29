@@ -5,7 +5,7 @@
   height: 100vh;
 }
 
-.card-container {
+.card_container {
   display: flex;
   font-family: 'poppins_extrabold';
   width: 100%;
@@ -30,7 +30,7 @@ justify-content: space-evenly;
   transform: scale(1.05);
 }
 
-.card-image {
+.card_image {
   width: 100%;
   object-fit: cover;
   border-radius: 8px 8px 0 0;

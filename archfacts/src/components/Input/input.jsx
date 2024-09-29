@@ -1,10 +1,9 @@
 import React from 'react';
-import '../index.css';
-import './input.css'
+import styles from './input.module.css'
 
 function Input({ label, type, name, value, onChange }) {
   return (
-    <div className='div-input'>
+    <div className={styles.div_input}>
       <label>{label}</label>
       <input
         type={type}

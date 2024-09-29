@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'poppins_medium';
-    src: url('/assets/fonts/Poppins-Medium.ttf');
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
   }
 
 .tela{
@@ -10,7 +10,7 @@
     flex-direction: column;
   }
 
-.tela .content-area{
+.tela .content_area{
     display: flex;
     flex: 1;
     justify-content: center;
@@ -18,7 +18,7 @@
     align-items: center;
 }
 
-.tela .content-area .container-cadastro{
+.tela .content_area .container_cadastro{
     border-radius: 1rem;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.8); 
@@ -29,7 +29,7 @@
     height: 35rem;
 }
 
-.tela .content-area .container-cadastro .registro{
+.tela .content_area .container_cadastro .registro{
     font-family: 'poppins_medium';
     width: 50%;
     height: 100%;
@@ -60,7 +60,7 @@
     /* border: solid 5px blue; */
   }
 
-.div-input{
+.div_input{
 flex-direction: column;
 font-size: 16px;
 align-items: center;
@@ -69,12 +69,12 @@ align-items: center;
 
 }
 
-.div-input label{
+.div_input label{
     display: block; 
     width: 90%;
 }
 
-.div-input input{
+.div_input input{
   font-size: 16px;
     justify-content: center;
     display: flex;
@@ -84,6 +84,6 @@ align-items: center;
     width: 90%;
 }
 
-.div-input input:focus {
+.div_input input:focus {
     border-bottom: 2px solid #05C7F2;
   }

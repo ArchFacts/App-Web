@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NivelUsuario from './pages/nivel_usuario.jsx';
 import Cadastro from './pages/cadastro.jsx';
+import '../index.html';
 
 function App() {
   return (
