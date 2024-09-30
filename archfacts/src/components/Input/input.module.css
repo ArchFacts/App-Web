@@ -36,11 +36,9 @@
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-    /* border: solid 5px blueviolet; */
 }
 
 .voltar_e_titulo{
-  /* border: solid 5px saddlebrown; */
   display: flex;
   flex-direction: column;
 }
@@ -57,7 +55,6 @@
 
 .h1_registro{
     font-size: 32px;
-    /* border: solid 5px blue; */
   }
 
 .div_input{

@@ -2,6 +2,11 @@
   width: 50%;
   height: 100%;
   position: relative;
+  border-radius: 0.5rem;
+}
+
+:global(.slick-dots li button::before) {
+  color: white !important; 
 }
 
 :global(.slick-dots) {
