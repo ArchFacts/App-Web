@@ -23,26 +23,16 @@ body {
     width: 10%;
     align-items: center;
     justify-content: center;
-    font-family: 'poppins_extrabold';
 }
 
-.header .imagens #logoLetter, #logoImage {
-    display: flex;
-    width: 3rem;
+.imagens_logo {
+    width: 3.5rem; 
 }
 
-.header .imagens .imagens_logo {
-    cursor: pointer;
-}
+.imagens_af {
+    width: 2.7rem;
+} 
 
-.header .imagens a .imagens_logo img{
-    width: 100%;
-}
-
-.header .imagens .imagens_af {
-    cursor: pointer;
-
-}
 
 .header .label {
     display: flex;
