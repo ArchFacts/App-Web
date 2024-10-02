@@ -15,7 +15,7 @@ import imagem2 from '../../utils/assets/fundo_cadastro2.png';
 import imagem3 from '../../utils/assets/fundo_cadastro3.png';
 
 
-function Cadastro() {
+function CadastroUsuario() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -132,4 +132,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default CadastroUsuario;
