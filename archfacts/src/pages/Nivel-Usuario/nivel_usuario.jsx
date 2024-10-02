@@ -1,7 +1,7 @@
 import React from 'react';
 import stylesCard from '../../components/cards.module.css';
-import SimpleHeader from '../../components/Simple_Header/simple_header.jsx';
-import SimpleFooter from '../../components/Simple_Footer/simple_footer.jsx';
+import SimpleHeader from '../../components/Simple-Header/simple_header.jsx';
+import SimpleFooter from '../../components/Simple-Footer/simple_footer.jsx';
 import '../../utils/global.css';
 import image1 from '../../utils/assets/beneficiario.png';
 import image2 from '../../utils/assets/prestador.png';
