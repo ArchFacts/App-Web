@@ -1,13 +1,11 @@
 import React from 'react';
-import stylesCard from '../components/cards.module.css';
-import SimpleHeader from '../components/Simple_Header/simple_header.jsx';
-import SimpleFooter from '../components/Simple_Footer/simple_footer.jsx';
-import stylesSimpleFooter from '../components/Simple_Footer/simple_footer.module.css';
-import '../utils/global.css';
-import '../../index.html';
-import image1 from '../utils/assets/beneficiario.png';
-import image2 from '../utils/assets/prestador.png';
-import image3 from '../utils/assets/funcionario.png';
+import stylesCard from '../../components/cards.module.css';
+import SimpleHeader from '../../components/Simple_Header/simple_header.jsx';
+import SimpleFooter from '../../components/Simple_Footer/simple_footer.jsx';
+import '../../utils/global.css';
+import image1 from '../../utils/assets/beneficiario.png';
+import image2 from '../../utils/assets/prestador.png';
+import image3 from '../../utils/assets/funcionario.png';
 
 function NivelUsuario() {
   return (

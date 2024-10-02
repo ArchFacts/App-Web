@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import Input from '../components/Input/input.jsx';
-import Botao from '../components/Botao/botao.jsx';
-import '../utils/global.css';
-import stylesInput from '../components/Input/input.module.css';
-import stylesImagem from '../components/imagem.module.css';
-import SimpleHeader from '../components/Simple_Header/simple_header.jsx';
+import Input from '../../components/Input/input.jsx';
+import Botao from '../../components/Botao/botao.jsx';
+import '../../utils/global.css';
+import stylesInput from '../../components/Input/input.module.css';
+import stylesImagem from '../../components/imagem.module.css';
+import SimpleHeader from '../../components/Simple_Header/simple_header.jsx';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import SimpleFooter from '../components/Simple_Footer/simple_footer.jsx';
+import SimpleFooter from '../../components/Simple_Footer/simple_footer.jsx';
 import { useParams } from 'react-router-dom';
-import '../../index.html';
-import imagem1 from '../utils/assets/fundo_cadastro.avif';
-import imagem2 from '../utils/assets/fundo_cadastro2.png';
-import imagem3 from '../utils/assets/fundo_cadastro3.png';
+import imagem1 from '../../utils/assets/fundo_cadastro.avif';
+import imagem2 from '../../utils/assets/fundo_cadastro2.png';
+import imagem3 from '../../utils/assets/fundo_cadastro3.png';
 
 function Cadastro() {
   const [formData, setFormData] = useState({
