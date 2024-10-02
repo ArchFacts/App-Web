@@ -9,12 +9,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import SimpleFooter from '../../components/Simple_Footer/simple_footer.jsx';
-import { useParams } from 'react-router-dom';
-import imagem1 from '../../utils/assets/fundo_cadastro.avif';
-import imagem2 from '../../utils/assets/fundo_cadastro2.png';
-import imagem3 from '../../utils/assets/fundo_cadastro3.png';
+import { useNavigate, useParams } from 'react-router-dom';
+import imagem1 from '../../utils/assets/fundo_cadastro_empresa.jpg';
+import imagem2 from '../../utils/assets/fundo_cadastro_empresa2.jpg';
+import imagem3 from '../../utils/assets/fundo_cadastro_empresa3.jpg';
+import stylesCadastroEmpresa from './cadastro_empresa.module.css';
 
 function CadastroEmpresa() {
+  const navigate = useNavigate();
+  const { tipo } = useParams()
   const [formData, setFormData] = useState({
     nome: '',
     cpf_cnpj: '',
@@ -31,8 +34,6 @@ function CadastroEmpresa() {
    imagem2,
    imagem3
   ];
-
-  const { tipo } = useParams();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,10 +59,10 @@ function CadastroEmpresa() {
         <div className={stylesInput.container_cadastro}>
           <div className={stylesInput.registro}>
             <div className={stylesInput.voltar_e_titulo}>
-              <a href="/nivel-usuario"><div className={stylesInput.voltar}>Voltar
-              </div></a>
-              <h1 className={stylesInput.h1_registro}>Cadastro da empresa</h1>
+            <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
+              <h1 className={stylesInput.h1_registro}>Cadastro da<div className={stylesCadastroEmpresa.h1_company}>empresa</div></h1>
             </div>
+            <div className={stylesCadastroEmpresa.joint_inputs} >
             <Input
               label="Nome:"
               type="text"
@@ -75,7 +76,8 @@ function CadastroEmpresa() {
               name="cpf_cnpj"
               value={formData.cpf_cnpj}
               onChange={handleChange}
-            />
+            /> </div>
+              <div className={stylesCadastroEmpresa.joint_inputs} >
             <Input
               label="CEP:"
               type="text"
@@ -89,7 +91,8 @@ function CadastroEmpresa() {
               name="logradouro"
               value={formData.logradouro}
               onChange={handleChange}
-            />
+            />  </div>
+              <div className={stylesCadastroEmpresa.joint_inputs} >
             <Input
               label="Número:"
               type="number"
@@ -103,6 +106,14 @@ function CadastroEmpresa() {
               name="bairro"
               value={formData.bairro}
               onChange={handleChange}
+            /> </div>
+            <div className={stylesCadastroEmpresa.joint_inputs} >
+            <Input
+              label="Cidade:"
+              type="text"
+              name="cidade"
+              value={formData.cidade}
+              onChange={handleChange}
             />
                <Input
               label="Estado:"
@@ -111,6 +122,7 @@ function CadastroEmpresa() {
               value={formData.estado}
               onChange={handleChange}
             />
+            </div>
             <Botao
                 texto="Cadastrar"
                 onClick={(e) => {

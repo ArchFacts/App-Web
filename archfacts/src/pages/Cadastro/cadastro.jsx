@@ -9,12 +9,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import SimpleFooter from '../../components/Simple_Footer/simple_footer.jsx';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import imagem1 from '../../utils/assets/fundo_cadastro.avif';
 import imagem2 from '../../utils/assets/fundo_cadastro2.png';
 import imagem3 from '../../utils/assets/fundo_cadastro3.png';
 
+
 function Cadastro() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     nome: '',
     telefone: '',
@@ -24,9 +27,9 @@ function Cadastro() {
   });
 
   const images = [
-   imagem1,
-   imagem2,
-   imagem3
+    imagem1,
+    imagem2,
+    imagem3
   ];
 
   const { tipo } = useParams();
@@ -95,12 +98,21 @@ function Cadastro() {
               onChange={handleChange}
             />
             <Botao
-                texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log(`${tipo} registrado`);
-                }}
-              />
+              texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
+              onClick={(e) => {
+                e.preventDefault();
+                console.log(`${tipo} registrado`);
+
+                if (tipo === 'beneficiario') {
+                  navigate('/'); 
+                } else if(tipo == 'prestador'){
+                  navigate('/cadastrar-empresa')
+                }
+                 else {
+                  navigate('/'); 
+                }
+              }}
+            />
           </div>
           <div className={stylesImagem.registro_imagem}>
             <Slider {...settings}>
