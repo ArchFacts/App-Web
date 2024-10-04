@@ -62,6 +62,7 @@ function CadastroUsuario() {
               </div></a>
               <h1 className={stylesInput.h1_registro}>Cadastro</h1>
             </div>
+            <div className={stylesInput.all_inputs}>
             <Input
               label="Nome:"
               type="text"
@@ -96,7 +97,7 @@ function CadastroUsuario() {
               name="confirmacaoSenha"
               value={formData.confirmacaoSenha}
               onChange={handleChange}
-            /> </div>
+            /> </div> </div>
             <Botao
               texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
               onClick={(e) => {

@@ -13,7 +13,7 @@ button{
 .botao{
     justify-content: center;
     display: flex;
-    height: 2.5rem;
+    height: 3rem;
 }
 
 .botao :hover{
