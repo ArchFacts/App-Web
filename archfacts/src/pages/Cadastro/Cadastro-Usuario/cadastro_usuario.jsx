@@ -10,9 +10,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import SimpleFooter from '../../../components/Simple-Footer/simple_footer.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import imagem1 from '../../../utils/assets/fundo_cadastro.avif';
-import imagem2 from '../../../utils/assets/fundo_cadastro2.png';
-import imagem3 from '../../../utils/assets/fundo_cadastro3.png';
+import imagem1 from '../../../utils/assets/fundo_cadastro_usuario.avif';
+import imagem2 from '../../../utils/assets/fundo_cadastro_usuario2.png';
+import imagem3 from '../../../utils/assets/fundo_cadastro_usuario3.png';
 
 function CadastroUsuario() {
   const navigate = useNavigate();
@@ -108,7 +108,7 @@ function CadastroUsuario() {
                   navigate('/cadastrar-empresa')
                 }
                  else {
-                  navigate('/'); 
+                  navigate('/cadastrar-funcionario'); 
                 }
               }}
             />
