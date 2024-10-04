@@ -15,19 +15,19 @@ function NivelUsuario() {
         <div className={stylesCard.card_absoluto}>
           <a href="/cadastrar/beneficiario" className={stylesCard.card}>
             <img src={image1} alt='Beneficiário' className={stylesCard.card_image} />
-            <div className={stylesCard.card_text}>O beneficiário é para alguém que busca contratar serviços</div>
+            <div className={stylesCard.card_text}>Interessado em um dos nossos parceiros? Clique aqui!</div>
             <div className={stylesCard}></div>
-            <button className={stylesCard.btn}>SOU UM BENEFICIÁRIO</button>
+            <button className={stylesCard.btn}>Sou um beneficiário</button>
           </a>
           <a href="/cadastrar/prestador" className={stylesCard.card}>
             <img src={image2} alt='Prestador de Serviço' className={stylesCard.card_image} />
-            <div className={stylesCard.card_text}>O prestador de serviço é para alguém que irá cadastrar e administrar uma empresa</div>
-            <button className={stylesCard.btn}>SOU UM PRESTADOR DE SERVIÇO</button>
+            <div className={stylesCard.card_text}>Quer administrar seu negócio com a gente? Clique aqui!</div>
+            <button className={stylesCard.btn}>Sou um prestador de serviços</button>
           </a>
           <a href="/cadastrar/funcionario" className={stylesCard.card}>
             <img src={image3} alt='Funcionário' className={stylesCard.card_image} />
-            <div className={stylesCard.card_text}>O funcionário é para alguém que irá se vincular a uma empresa</div>
-            <button className={stylesCard.btn}>SOU UM FUNCIONÁRIO</button>
+            <div className={stylesCard.card_text}>Trabalha com um de nossos parceiros? Clique aqui!</div>
+            <button className={stylesCard.btn}>Sou um funcionário</button>
           </a>
         </div>
       </div>
