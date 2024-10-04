@@ -58,6 +58,7 @@ function CadastroEmpresa() {
       <div className={stylesInput.content_area}>
         <div className={stylesInput.container_cadastro}>
           <div className={stylesInput.registro}>
+          <div className={stylesInput.registro_area}>
             <div className={stylesInput.voltar_e_titulo}>
             <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
               <h1 className={stylesInput.h1_registro}>Cadastro da<div className={stylesCadastroEmpresa.h1_company}>empresa</div></h1>
@@ -122,6 +123,7 @@ function CadastroEmpresa() {
               value={formData.estado}
               onChange={handleChange}
             />
+            </div>
             </div>
             <Botao
                 texto="Cadastrar"

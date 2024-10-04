@@ -51,6 +51,7 @@ function CadastroFuncionario() {
       <div className={stylesInput.content_area}>
         <div className={stylesInput.container_cadastro}>
           <div className={stylesInput.registro}>
+          <div className={stylesInput.registro_area}>
             <div className={stylesInput.voltar_e_titulo}>
             <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
               <h1 className={stylesInput.h1_registro}>Se torne um<div className={stylesCadastroEmpresa.h1_company}>colaborador!</div></h1>
@@ -65,7 +66,7 @@ function CadastroFuncionario() {
               value={formData.codigoNegocio}
               onChange={handleChange}
             />
-        
+        </div>
             <Botao
                 texto="Filiar-se"
                 onClick={(e) => {

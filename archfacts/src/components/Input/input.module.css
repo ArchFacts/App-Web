@@ -32,10 +32,18 @@
 .tela .content_area .container_cadastro .registro{
     font-family: 'poppins_medium';
     width: 50%;
-    height: 100%;
+    height: 100%; 
     flex-direction: column;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.registro_area{
+  height: 85%; 
+  font-family: 'poppins_medium';
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
 }
 
 .voltar_e_titulo{

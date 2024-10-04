@@ -56,6 +56,7 @@ function CadastroUsuario() {
       <div className={stylesInput.content_area}>
         <div className={stylesInput.container_cadastro}>
           <div className={stylesInput.registro}>
+            <div className={stylesInput.registro_area}>
             <div className={stylesInput.voltar_e_titulo}>
               <a href="/nivel-usuario"><div className={stylesInput.voltar}>Voltar
               </div></a>
@@ -95,7 +96,7 @@ function CadastroUsuario() {
               name="confirmacaoSenha"
               value={formData.confirmacaoSenha}
               onChange={handleChange}
-            />
+            /> </div>
             <Botao
               texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
               onClick={(e) => {
