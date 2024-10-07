@@ -17,7 +17,7 @@ import stylesCadastroEmpresa from './cadastro_empresa.module.css';
 
 function CadastroEmpresa() {
   const navigate = useNavigate();
-  const { tipo } = useParams()
+  const { tipo } = useParams();
   const [formData, setFormData] = useState({
     nome: '',
     cpf_cnpj: '',
@@ -56,13 +56,14 @@ function CadastroEmpresa() {
     <section className={stylesInput.tela}>
       <SimpleHeader />
       <div className={stylesInput.content_area}>
-        <div className={stylesInput.container_cadastro}>
-          <div className={stylesInput.registro}>
-          <div className={stylesInput.registro_area}>
+        <div className={stylesCadastroEmpresa.container_cadastro_empresa}>
+          <div className={stylesCadastroEmpresa.registro_empresa}>
+          <div className={stylesCadastroEmpresa.registro_area_empresa}>
             <div className={stylesInput.voltar_e_titulo}>
             <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
               <h1 className={stylesInput.h1_registro}>Cadastro da<div className={stylesCadastroEmpresa.h1_company}>empresa</div></h1>
             </div>
+            <div className={stylesCadastroEmpresa.all_inputs}>
             <div className={stylesCadastroEmpresa.joint_inputs} >
             <Input
               label="Nome:"
@@ -77,7 +78,8 @@ function CadastroEmpresa() {
               name="cpf_cnpj"
               value={formData.cpf_cnpj}
               onChange={handleChange}
-            /> </div>
+            /> 
+            </div>
               <div className={stylesCadastroEmpresa.joint_inputs} >
             <Input
               label="CEP:"
@@ -123,6 +125,7 @@ function CadastroEmpresa() {
               value={formData.estado}
               onChange={handleChange}
             />
+            </div>
             </div>
             </div>
             <Botao
