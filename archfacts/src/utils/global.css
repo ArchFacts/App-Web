@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'poppins_subtitulo';
+  font-family: 'poppins_medium';
   src: url('./fonts/Poppins-Medium.ttf');
 }
 
@@ -19,7 +19,7 @@ color: #033E8C;
 }
 
 h1{
-  font-family: 'poppins_subtitulo';
+  font-family: 'poppins_medium';
   font-size: 40px;
   text-align: center;
 }
