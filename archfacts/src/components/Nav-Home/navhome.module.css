@@ -1,0 +1,43 @@
+.navbar {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.navbar .logo_area {
+    display: flex;
+    width: 14rem;
+    justify-content: center;
+}
+
+.navbar .logo_image {
+    scale: 1.2;
+}
+
+.navbar .logo_text {
+    scale: 0.8
+}
+
+.navbar .nav_itens {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-weight: bolder;
+}
+
+.navbar .nav_itens a {
+    display: flex;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    font-family: Poppins-Black;
+
+}
+
+.navbar .nav_itens a:nth-child(5) {
+    color: #F95C00;
+}
