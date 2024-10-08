@@ -1,0 +1,61 @@
+.hero_info {
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+}
+
+.hero_info .title_div {
+    margin: 4rem;
+    width: 65rem;
+    height: 22rem;
+    background: rgba(14, 12, 25, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    padding: 1rem;
+}
+
+
+.hero_info .title_div p {
+    color: white;
+}
+
+.hero_info .title_div p:nth-child(1) {
+    font-family: Poppins-Light;
+    font-size: 1rem;
+}
+
+.hero_info .title_div p:nth-child(2) {
+    font-family: Poppins-Bold;
+    font-size: 3.5rem;
+}
+
+.hero_info .title_div p:nth-child(3) {
+    font-family: Poppins-Regular;
+    font-size: 2.5rem;
+}
+
+.hero_info .button_area {
+    width: 65rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+}
+
+.hero_info .button_area button {
+    width: 20rem;
+    height: 4rem;
+    font-size: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.hero_info .button_area button:nth-child(2) {
+    background-color: #F95C00;
+}

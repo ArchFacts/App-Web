@@ -23,9 +23,9 @@ function CadastroFuncionario() {
   });
 
   const images = [
-   imagem1,
-   imagem2,
-   imagem3
+    imagem1,
+    imagem2,
+    imagem3
   ];
 
   const handleChange = (e) => {
@@ -51,29 +51,29 @@ function CadastroFuncionario() {
       <div className={stylesInput.content_area}>
         <div className={stylesInput.container_cadastro}>
           <div className={stylesInput.registro}>
-          <div className={stylesInput.registro_area}>
-            <div className={stylesInput.voltar_e_titulo}>
-            <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
-              <h1 className={stylesInput.h1_registro}>Se torne um<div className={stylesCadastroEmpresa.h1_company}>colaborador!</div></h1>
-            </div>
-            <div className={stylesCadastroFuncionario.frase}>
-            Basta colocar o código de negócio e você está pronto para começar
-            </div>
-            <Input
-              label="Código de negócio:"
-              type="text"
-              name="codigo_negocio"
-              value={formData.codigoNegocio}
-              onChange={handleChange}
-            />
-        </div>
-            <Botao
-                texto="Filiar-se"
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log(`${tipo} registrado`);
-                }}
+            <div className={stylesInput.registro_area}>
+              <div className={stylesInput.voltar_e_titulo}>
+                <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
+                <h1 className={stylesInput.h1_registro}>Se torne um<div className={stylesCadastroEmpresa.h1_company}>colaborador!</div></h1>
+              </div>
+              <div className={stylesCadastroFuncionario.frase}>
+                Basta colocar o código de negócio e você está pronto para começar
+              </div>
+              <Input
+                label="Código de negócio:"
+                type="text"
+                name="codigo_negocio"
+                value={formData.codigoNegocio}
+                onChange={handleChange}
               />
+            </div>
+            <Botao
+              texto="Filiar-se"
+              onClick={(e) => {
+                e.preventDefault();
+                console.log(`${tipo} registrado`);
+              }}
+            />
           </div>
           <div className={stylesImagem.registro_imagem}>
             <Slider {...settings}>
