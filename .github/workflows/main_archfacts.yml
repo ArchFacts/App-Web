@@ -22,11 +22,11 @@ jobs:
         run: |
           npm install
           npm run dev
-        working-directory: ./archfacts  # Ajuste o caminho do diretório corretamente
+        working-directory: ../archfacts  # Ajuste o caminho do diretório corretamente
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
-        working-directory: ./archfacts  # Ajuste o caminho do diretório corretamente
+        working-directory: ../archfacts  # Ajuste o caminho do diretório corretamente
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
