@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Input from '../../../components/Input/input.jsx';
+import Input from '../../../components/Input/Input-Usuario/input.jsx';
 import Botao from '../../../components/Botao/botao.jsx';
 import '../../../utils/global.css';
-import stylesInput from '../../../components/Input/input.module.css';
+import stylesInput from '../../../components/Input/Input-Usuario/input.module.css';
 import stylesImagem from '../../../components/imagem.module.css';
 import SimpleHeader from '../../../components/Simple-Header/simple_header.jsx';
 import "slick-carousel/slick/slick.css";

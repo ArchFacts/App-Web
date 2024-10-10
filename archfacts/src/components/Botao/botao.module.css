@@ -6,17 +6,18 @@ button{
     height: 2rem;
     border: none;
     transition: 500ms;
-    width: 35%;
+    width: 10rem;
     font-size: 16px;
 }
 
-.botao{
+.botao {
     justify-content: center;
     display: flex;
-    height: 3rem;
+    height: 10rem;
+    align-items: center; 
 }
 
 .botao :hover{
     background-color: #05C7F2;
-    width: 40%;
-}
+    width: 11rem;
+}   

@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'poppins_medium';
-    src: url('../../utils/fonts/Poppins-Medium.ttf');
-  }
+  font-family: 'Poppins-Medium';
+  src: url('../../../utils/fonts/Poppins-Medium.ttf');
+}
 
 .tela{
     width: 100dvw;
@@ -25,57 +25,46 @@
     display: flex;
     flex-direction: row;
     width: 50%;
-    align-items: center;
     height: 35rem;
-    /* border: solid 2px darkblue; */
 }
 
 .tela .content_area .container_cadastro .registro{
-    font-family: 'poppins_medium';
     width: 50%;
-    height: 100%; 
+    height: 99%; 
     flex-direction: column;
     display: flex;
-    justify-content: space-around;
-    /* border: solid 2px navy; */
-}
+    justify-content: space-between;
+} 
 
 .registro_area{
-  height: 100%; 
-  font-family: 'poppins_medium';
   flex-direction: column;
   display: flex;
-  /* border: solid 2px magenta; */
 }
 
 .voltar_e_titulo{
   display: flex;
   flex-direction: column;
-  /* border: solid 2px saddlebrown; */
 }
 
 .voltar{
   cursor: pointer;
   color: white;
   background-color: #F95C00;
-  width: 20%;
+  width: 6rem;
   border-radius: 0.5rem;
   border-bottom-left-radius: 0;
   text-align: center;
-  /* border: solid 2px saddlebrown; */
 }
 
 .h1_registro{
     font-size: 32px;
-    /* border: solid 2px hotpink; */
+    font-family: Poppins-Medium;
   }
 
 .all_inputs{
-  /* border: solid 5px indianred; */
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
-  height: 100%;
+  gap: 2.5rem;
 }
 
 .div_input{
@@ -84,7 +73,6 @@ font-size: 16px;
 align-items: center;
  display: flex;
  justify-content: center;
- /* border: solid 2px firebrick; */
 }
 
 .div_input label{

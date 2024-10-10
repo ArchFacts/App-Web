@@ -1,6 +1,55 @@
+.container_cadastro_funcionario{
+    border-radius: 1rem;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.8); 
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 70%;
+    height: 35rem;
+    /* border: solid 4px blue; */
+}
+
+.registro_funcionario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    /* border: solid 4px lawngreen; */
+}
+
+.registro_area_funcionario{
+    height: 22rem; 
+    font-family: Poppins-Medium;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    /* border: solid 4px olive; */
+    width: 100%;
+}
+
+.voltar_e_titulo{
+    display: flex;
+    flex-direction: column;
+    /* border: solid 4px darkmagenta; */
+    height: 13rem;
+    justify-content: space-between;
+  }
+
+  .titulo_e_frase{
+    border: solid 4px wheat;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    height: 10rem;
+  }
+
 .frase{
     color: black;
-    border: solid 2px firebrick;
-    width: 90%;
+    /* border: solid 2px firebrick; */
+    width: 70%;
     align-self: center;
+    text-align: center;
+    font-size: 24px;
 }
