@@ -3,8 +3,12 @@
     height: 70px;
     width: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     background-color: transparent;
+}
+
+.navbar_solid {
+    background-color: rebeccapurple;
 }
 
 .navbar .logo_area {

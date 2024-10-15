@@ -1,0 +1,35 @@
+.div_input_box {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem;
+    height: auto;
+    width: 100%;
+}
+
+.div_input_box .div_input {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 1rem;
+}
+
+.div_input_box label {
+    width: 75%;
+}
+
+.div_input_box input {
+    font-size: 16px;
+    justify-content: center;
+    display: flex;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    width: 100%;
+}
+
+.div_input_box input:focus {
+    border-bottom: 2px solid #05C7F2;
+}

@@ -20,3 +20,7 @@ button{
     background-color: #05C7F2;
     width: 40%;
 }
+
+.interest_info .botao button {
+    width: 5rem;
+}
