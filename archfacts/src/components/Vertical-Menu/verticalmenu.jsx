@@ -12,22 +12,22 @@ const VerticalMenu = ({ setInfoBoxData }) => {
         {
             icon: icon1,
             title: "Desorganização",
-            description: "xxx"
+            description: "Um estudo conduzido pela Sebrae aponta que cerca de 79% das empresas brasileiras enfrentam sérios problemas de gestão, o que impactam no seu crescimento e sustentabilidade, portanto afetando o negócio a longo prazo."
         },
         {
             icon: icon2,
             title: "Comunicação com clientes",
-            description: "xxx"
+            description: "Falhas na comunicação com o cliente se tornam um empecilho no seu negócio, gerando desgaste na relação, atraso na entrega do produto e no pior dos casos, erros pela má comunicação. No fim gerando uma perda para o negócio."
         },
         {
             icon: icon3,
             title: "Prorização de atividades",
-            description: "xxx"
+            description: "Uma pesquisa realizada pela consultoria Falconi revelou a fragilidade na gestão das médias empresas no Brasil. Somente 10% das médias empresas tem planejamentos de longo prazo, a falta de planejamento gera queda na atividade econômica."
         },
         {
             icon: icon4,
             title: "Controle do fluxo de caixa",
-            description: "xxx"
+            description: "Sem o controle do fluxo de caixa a sua empresa fica suscetível e imprevistos financeiros podem ser fatais. Um estudo realizado pelo IBGE em 2022 revela que 48% das empresas brasileiras fecham em até 3 anos por conta da má gestão financeira."            
         },
     ];
 

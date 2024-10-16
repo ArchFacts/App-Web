@@ -20,7 +20,7 @@
     background-position: center;
     background-size: 15rem;
     filter: opacity(0.2) blur(2px);
-    z-index: 0;
+    z-index: -1;
 }
 
 .footer_area .rights{

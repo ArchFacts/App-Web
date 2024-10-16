@@ -15,10 +15,11 @@ import BigCarousel from '../../components/Big-Carousel/bigcarousel';
 import Profile from '../../components/profile/profile';
 import Contact from '../../components/Contact/contact';
 import MainFooter from '../../components/Main-Footer/mainfooter';
+import { Link } from 'react-scroll';
 
 const Home = () => {
 
-    const [infoBoxData, setInfoBoxData] = useState ({
+    const [infoBoxData, setInfoBoxData] = useState({
         title: "Selecione uma opção à esquerda!",
         text: "",
         icon: icone_seta,
@@ -36,11 +37,11 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                <section className={styles.solved_problems} logo_image={logoImage} logo_text={logoText}>
+                <section id='problemSection' className={styles.solved_problems} logo_image={logoImage} logo_text={logoText}>
                     <h1 className={styles.main_title}>PROBLEMAS RESOLVIDOS PELA ARCHFACTS</h1>
                     <div className={styles.content_area}>
                         <div className={styles.problems_box_div}>
-                            <VerticalMenu setInfoBoxData={setInfoBoxData}/>
+                            <VerticalMenu setInfoBoxData={setInfoBoxData} />
                         </div>
                         <div className={styles.info_box_div}>
                             <InfoBox icon={infoBoxData.icon}
@@ -50,12 +51,14 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                <section className={styles.benefits}>
+                <section id='solutionSection' className={styles.benefits}>
                     <h1 className={styles.main_title}>POR QUÊ USAR A NOSSA SOLUÇÃO?</h1>
                     <div className={styles.content_area}>
                         <div className={styles.benefit_div}>
                             <InterestBox title="Tenha uma organização interativa"
-                                text="Através de nossa plataforma de gerenciamento, torne a construção do projeto do seu serviço oferecido mais flexível e mais adequada ao seu cliente trabalhando diretamente com ele para atender a sua necessidade!">
+                                text="Somos uma plataforma de gerenciamento empresarial!
+                                Nela centralizamos todos os serviços necessários para o seu negócio.
+                                Uma de nossas exclusividades é a abertura de chamados por parte do cliente para solicitar um serviço, assim é possível construir um projeto juntamente com ele para atender a sua necessidade! Além disso é possível gerenciar suas tarefas e há o controle do fluxo de caixa para o controle financeiro e conta também alertas de eventos próximos para você não perder nenhuma demanda!">
                             </InterestBox>
                         </div>
                         <div className={styles.slider_div}>
@@ -63,38 +66,38 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                <section className={styles.plataform_profiles}>
-                    <h1 className={styles.main_title}>CONEHÇA OS PERFIS DE NOSSA PLATAFORMA</h1>
+                <section id='profileSection' className={styles.plataform_profiles}>
+                    <h1 className={styles.main_title}>CONHEÇA OS PERFIS DE NOSSA PLATAFORMA</h1>
                     <div className={styles.content_area}>
                         <div className={styles.profiles}>
                             <Profile
                                 title="PRESTADOR DE SERVIÇO"
-                                subtitle="Acesso ao serviço de gestão de negócio"
-                                benefit1="Gerenciamento do negócio"
-                                benefit2="Página exclusiva para seus clientes"
-                                benefit3="Trabalho em conjunto com funcionário"
-                                benefit4="Insights sobre o seu negócio">
+                                subtitle="Acesso ao serviço de gestão de negócio como administrador"
+                                benefit1="Gerenciamento do negócio;"
+                                benefit2="Página exclusiva para seus clientes;"
+                                benefit3="Trabalho em conjunto com seu empregado;"
+                                benefit4="Insights sobre o seu negócio.">
                             </Profile>
                             <Profile
                                 title="EMPREGADO"
-                                subtitle="Acesso em conjunto ao serviço de gestão de negócio"
-                                benefit1="Colaboração no gerenciamento"
-                                benefit2=""
-                                benefit3=""
-                                benefit4="">
+                                subtitle="Acesso em conjunto ao serviço de gestão de negócio como empregado"
+                                benefit1="Colaboração no gerenciamento;"
+                                benefit2="Acompanhe processos com eficiência;"
+                                benefit3="Gerencie e organize tarefas e chamados;"
+                                benefit4="Acompanhe detalhes sobre o projeto.">
                             </Profile>
                             <Profile
                                 title="CLIENTE"
                                 subtitle="Acesso a página de empresas"
-                                benefit1="Solicitar um serviço de uma empresa"
-                                benefit2="Contato com prestador por chamado"
-                                benefit3="Acompanhamento do serviço"
-                                benefit4="Acesso a X4">
+                                benefit1="Solicitar um serviço de uma empresa;"
+                                benefit2="Contato com prestador através de chamados;"
+                                benefit3="Acompanhamento do serviço;"
+                                benefit4="Problema solucionado facilmente.">
                             </Profile>
                         </div>
                     </div>
                 </section>
-                <section className={styles.contact_div}>
+                <section id='contactSection' className={styles.contact_div}>
                     <h1 className={styles.main_title}>ENTRE EM CONTATO</h1>
                     <h1 className={styles.main_title}>Caso tenha dúvidas, preencha o formulário e entre em contato conosco!</h1>
                     <div className={styles.content_area}>

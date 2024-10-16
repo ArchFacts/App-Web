@@ -22,6 +22,26 @@
     width: 100%;
 }
 
+.contact_div .all_inputs .contact_area .button_area {
+    display: flex;
+    justify-content: center;
+}
+
+.contact_div .all_inputs .contact_area .button_area button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    font-size: 2rem;
+    transition: 200ms linear;
+    border-radius: 25px;
+}
+
+.contact_div .all_inputs .contact_area .button_area button:hover {
+    scale: 1.1;
+    background-color: #05C7F2;
+}
+
 .contact_div .slider_div {
     display: flex;
     justify-content: center;

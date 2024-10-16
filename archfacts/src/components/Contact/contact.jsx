@@ -49,6 +49,9 @@ const Contact = () => {
                         value={formData.mensagem}
                         onChange={handleChange}>
                     </Message>
+                    <div className={styles.button_area}>
+                        <button>Enviar</button>
+                    </div>
                 </div>
             </div>
             <div className={styles.slider_div}>

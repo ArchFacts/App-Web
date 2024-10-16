@@ -26,6 +26,16 @@
     justify-content: space-around;
     width: 100%;
     font-weight: bolder;
+    list-style: none;
+}
+
+.navbar .nav_itens li {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav_itens li:nth-child(5) a {
+    color: #F95C00;
 }
 
 .navbar .nav_itens a {
@@ -36,9 +46,10 @@
     align-items: center;
     font-family: Poppins-Black;
     transition: 200ms linear;
+    cursor: pointer;
 }
 
-.navbar .nav_itens a:nth-child(5) {
+.navbar .nav_itens li a:nth-child(4) {
     color: #F95C00;
 }
 
@@ -46,4 +57,3 @@
     font-size: 1.3rem;
     color: #F95C00;
 }
-
