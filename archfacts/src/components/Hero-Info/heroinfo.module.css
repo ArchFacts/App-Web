@@ -1,3 +1,25 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../utils/fonts/Poppins-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../utils/fonts/Poppins-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
 .hero_info {
     z-index: 0;
     display: flex;

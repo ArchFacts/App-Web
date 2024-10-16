@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Input from '../../../components/Input/input.jsx';
+import Input from '../../../components/Input/Input-Usuario/input.jsx';
 import Botao from '../../../components/Botao/botao.jsx';
 import '../../../utils/global.css';
-import stylesInput from '../../../components/Input/input.module.css';
-import stylesImagem from '../../../components/imagem.module.css';
+import stylesInput from '../../../components/Input/Input-Usuario/input.module.css';
 import SimpleHeader from '../../../components/Simple-Header/simple_header.jsx';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -49,15 +48,18 @@ function CadastroFuncionario() {
     <section className={stylesInput.tela}>
       <SimpleHeader />
       <div className={stylesInput.content_area}>
-        <div className={stylesInput.container_cadastro}>
-          <div className={stylesInput.registro}>
-            <div className={stylesInput.registro_area}>
-              <div className={stylesInput.voltar_e_titulo}>
-                <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
-                <h1 className={stylesInput.h1_registro}>Se torne um<div className={stylesCadastroEmpresa.h1_company}>colaborador!</div></h1>
+      <div className={stylesCadastroFuncionario.container_cadastro_funcionario}>
+      <div className={stylesCadastroFuncionario.registro_funcionario}>
+      <div className={stylesCadastroFuncionario.registro_area_funcionario}>
+              <div className={stylesCadastroFuncionario.voltar_e_titulo}>
+                <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/funcionario')}>Voltar</div>
+                <div className={stylesCadastroFuncionario.titulo_e_frase}>
+                <h1 className={stylesInput.h1_registro}>Se torne um
+                <span className={stylesCadastroEmpresa.h1_company}> Colaborador!</span></h1>
+                <div className={stylesCadastroFuncionario.frase}>
+                Basta digitar o código de negócio e você estará pronto para começar!
               </div>
-              <div className={stylesCadastroFuncionario.frase}>
-                Basta colocar o código de negócio e você está pronto para começar
+              </div>
               </div>
               <Input
                 label="Código de negócio:"
@@ -75,11 +77,11 @@ function CadastroFuncionario() {
               }}
             />
           </div>
-          <div className={stylesImagem.registro_imagem}>
+          <div className={stylesCadastroEmpresa.registro_imagem}>
             <Slider {...settings}>
               {images.map((image, index) => (
                 <div key={index}>
-                  <img className={stylesImagem.imagem} src={image} alt={`Imagem ${index + 1}`} />
+                  <img className={stylesCadastroEmpresa.imagem_empresa} src={image} alt={`Imagem ${index + 1}`} />
                 </div>
               ))}
             </Slider>

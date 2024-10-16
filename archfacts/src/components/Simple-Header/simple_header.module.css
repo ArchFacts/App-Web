@@ -1,11 +1,6 @@
 @font-face {
-    font-family: 'poppins_extrabold';
+    font-family: 'Poppins-Extrabold';
     src: url('../../utils/fonts/Poppins-ExtraBold.ttf');
-}
-
-@font-face {
-    font-family: 'poppins_semibold';
-    src: url('../../utils/fonts/Poppins-SemiBold.ttf');
 }
 
 body {
@@ -26,7 +21,7 @@ body {
 }
 
 .imagens_logo {
-    width: 3.5rem; 
+    width: 3.7rem; 
 }
 
 .imagens_af {
@@ -39,15 +34,16 @@ body {
     justify-content: space-around;
     align-items: center;
     width: 15%;
-    font-family: 'poppins_extrabold';
 }
 
 .header .label .labels {
+    font-family: Poppins-Extrabold;
     color: white;
     cursor: pointer;
 }
 
 .header .label .labels_login {
+    font-family: Poppins-Extrabold;
     color: #F95C00;
     cursor: pointer;
 }
