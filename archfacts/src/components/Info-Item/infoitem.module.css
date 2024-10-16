@@ -1,0 +1,22 @@
+.problem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40rem;
+    height: 4.5rem;
+    background-color: #F95C00;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    font-size: 2.5rem;
+    transition: 200ms linear;
+}
+
+p {
+    color: white;
+}
+
+.problem:hover {
+    scale: 1.2;
+    cursor: pointer;
+}

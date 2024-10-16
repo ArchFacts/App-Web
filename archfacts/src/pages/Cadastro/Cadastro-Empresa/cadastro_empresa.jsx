@@ -29,9 +29,9 @@ function CadastroEmpresa() {
   });
 
   const images = [
-   imagem1,
-   imagem2,
-   imagem3
+    imagem1,
+    imagem2,
+    imagem3
   ];
 
   const handleChange = (e) => {
@@ -46,8 +46,8 @@ function CadastroEmpresa() {
     arrows: false,
     dots: true,
     infinite: true,
-    speed: 500,
     autoplay: true,
+    speed: 500,
     autoplaySpeed: 5000,
   };
 
@@ -135,7 +135,6 @@ function CadastroEmpresa() {
                 }}
               />
             </div>
-          
           </div>
           <div className={stylesCadastroEmpresa.registro_imagem}>
             <Slider {...settings}>
