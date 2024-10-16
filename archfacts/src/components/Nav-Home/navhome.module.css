@@ -4,11 +4,7 @@
     width: 100%;
     position: fixed;
     z-index: 999;
-    background-color: transparent;
-}
-
-.navbar_solid {
-    background-color: rebeccapurple;
+    background-color: rgb(14, 12, 25, 0.8);
 }
 
 .navbar .logo_area {
@@ -39,9 +35,15 @@
     font-weight: bold;
     align-items: center;
     font-family: Poppins-Black;
-
+    transition: 200ms linear;
 }
 
 .navbar .nav_itens a:nth-child(5) {
     color: #F95C00;
 }
+
+.navbar .nav_itens a:hover {
+    font-size: 1.3rem;
+    color: #F95C00;
+}
+

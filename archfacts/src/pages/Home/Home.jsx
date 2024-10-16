@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../utils/global.css';
 import NavHome from '../../components/Nav-Home/navhome';
 import styles from './Home.module.css';
@@ -7,8 +7,9 @@ import logoText from '../../utils/assets/logo_af.png';
 import HeroInfo from '../../components/Hero-Info/heroinfo';
 import HeroFooter from '../../components/Hero-Footer/herofooter';
 import VerticalMenu from '../../components/Vertical-Menu/verticalmenu';
-import InfoBox from '../../components/Info-box/infobox';
+import InfoBox from '../../components/Info-Box/infobox';
 import icone_gestao from '../../utils/assets/gestao.svg';
+import icone_seta from '../../utils/assets/left_arrow.svg'
 import InterestBox from '../../components/Interest-Box/interestbox';
 import BigCarousel from '../../components/Big-Carousel/bigcarousel';
 import Profile from '../../components/profile/profile';
@@ -16,6 +17,13 @@ import Contact from '../../components/Contact/contact';
 import MainFooter from '../../components/Main-Footer/mainfooter';
 
 const Home = () => {
+
+    const [infoBoxData, setInfoBoxData] = useState ({
+        title: "Selecione uma opção à esquerda!",
+        text: "",
+        icon: icone_seta,
+    });
+
     return (
         <>
             <main>
@@ -32,12 +40,12 @@ const Home = () => {
                     <h1 className={styles.main_title}>PROBLEMAS RESOLVIDOS PELA ARCHFACTS</h1>
                     <div className={styles.content_area}>
                         <div className={styles.problems_box_div}>
-                            <VerticalMenu />
+                            <VerticalMenu setInfoBoxData={setInfoBoxData}/>
                         </div>
                         <div className={styles.info_box_div}>
-                            <InfoBox icon={icone_gestao}
-                                title="Desorganização"
-                                text="Um estudo conduzido pela Sebrae aponta que cerca de 79% das empresas brasileiras enfrentam sérios problemas de gestão, o que impactam no seu crescimento e sustentabilidade, portanto afetando o negócio a longo prazo.">
+                            <InfoBox icon={infoBoxData.icon}
+                                title={infoBoxData.title}
+                                text={infoBoxData.text}>
                             </InfoBox>
                         </div>
                     </div>
@@ -61,26 +69,26 @@ const Home = () => {
                         <div className={styles.profiles}>
                             <Profile
                                 title="PRESTADOR DE SERVIÇO"
-                                subtitle="Acesso a ERP"
-                                benefit1="Acesso a X1"
-                                benefit2="Acesso a X2"
-                                benefit3="Acesso a X3"
-                                benefit4="Acesso a X4">
+                                subtitle="Acesso ao serviço de gestão de negócio"
+                                benefit1="Gerenciamento do negócio"
+                                benefit2="Página exclusiva para seus clientes"
+                                benefit3="Trabalho em conjunto com funcionário"
+                                benefit4="Insights sobre o seu negócio">
                             </Profile>
                             <Profile
-                                title="PRESTADOR DE SERVIÇO"
-                                subtitle="Acesso a ERP"
-                                benefit1="Acesso a X1"
-                                benefit2="Acesso a X2"
-                                benefit3="Acesso a X3"
-                                benefit4="Acesso a X4">
+                                title="EMPREGADO"
+                                subtitle="Acesso em conjunto ao serviço de gestão de negócio"
+                                benefit1="Colaboração no gerenciamento"
+                                benefit2=""
+                                benefit3=""
+                                benefit4="">
                             </Profile>
                             <Profile
-                                title="PRESTADOR DE SERVIÇO"
-                                subtitle="Acesso a ERP"
-                                benefit1="Acesso a X1"
-                                benefit2="Acesso a X2"
-                                benefit3="Acesso a X3"
+                                title="CLIENTE"
+                                subtitle="Acesso a página de empresas"
+                                benefit1="Solicitar um serviço de uma empresa"
+                                benefit2="Contato com prestador por chamado"
+                                benefit3="Acompanhamento do serviço"
                                 benefit4="Acesso a X4">
                             </Profile>
                         </div>

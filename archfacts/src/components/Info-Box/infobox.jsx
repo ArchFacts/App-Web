@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './infobox.module.css';
 
-
 const InfoBox = ({ icon, title, text }) => {
     return (
         <div className={styles.info_box}>

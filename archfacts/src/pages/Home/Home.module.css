@@ -81,8 +81,9 @@
     font-family: Poppins-Regular;
 }
 
+
 body {
-    overflow-y: auto
+    overflow-y: auto;
 }
 
 .hero_div {

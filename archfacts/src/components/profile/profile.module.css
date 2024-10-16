@@ -26,6 +26,7 @@
     justify-content: space-evenly;
     background-color: black;
     border-radius: 25px;
+    padding: 1rem;
 }
 
 .profile .content .title {
