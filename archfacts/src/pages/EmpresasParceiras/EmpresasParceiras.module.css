@@ -24,7 +24,7 @@
 }
 
 .empresasContainer {
-    background-color: white;
+    background-color: rgb(238, 237, 237);
     height: 30rem;
     width: 45rem;
     border-radius: 20px;
@@ -38,8 +38,9 @@
     flex-grow: 1;
     background-color: #f4f4f4;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    flex-direction: column;
 }
 .barraSuperior{
     border-radius: 20px 20px 0 0;
@@ -60,4 +61,23 @@
     width: 100%;
     align-items: center;
     height: 100%;
+}
+
+.welcome{
+    background-color: black;
+    height: 2px;
+    flex-grow: 1;
+}
+
+.capsula{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    white-space: nowrap; 
+    margin-right: 5rem; 
+    margin-left: 8rem;
+    font-size: 25px;
 }
