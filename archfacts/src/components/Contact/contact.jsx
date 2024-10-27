@@ -3,20 +3,23 @@ import styles from './contact.module.css'
 import InputHome from "../Input/Input-Home/inputhome";
 import Message from "../Message/message";
 import MediumCarousel from "../Medium-Carousel/mediumcarousel";
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-        ...formData,
-        [name]: value,
-    });
-};
 
 const Contact = () => {
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+    
     const [formData, setFormData] = useState({
         email: '',
         nome: '',
-        telefone: ''
-    });
+        telefone: '',
+        mensagem: ''
+      });
 
     return (
         <div className={styles.contact_div}>

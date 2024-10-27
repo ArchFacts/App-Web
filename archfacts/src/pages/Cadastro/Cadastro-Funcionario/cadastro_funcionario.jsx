@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Input from '../../../components/Input/Input-Usuario/input.jsx';
 import Botao from '../../../components/Botao/botao.jsx';
 import '../../../utils/global.css';
 import stylesInput from '../../../components/Input/Input-Usuario/input.module.css';
@@ -14,6 +13,7 @@ import imagem2 from '../../../utils/assets/fundo_cadastro_funcionario2.jpg';
 import imagem3 from '../../../utils/assets/fundo_cadastro_funcionario3.jpg';
 import stylesCadastroEmpresa from '../Cadastro-Empresa/cadastro_empresa.module.css';
 import stylesCadastroFuncionario from './cadastro_funcionario.module.css'
+import InputFuncionario from '../../../components/Input/Input-Funcionario/input_funcionario.jsx';
 
 function CadastroFuncionario() {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function CadastroFuncionario() {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5000
   };
 
   return (
@@ -61,7 +61,7 @@ function CadastroFuncionario() {
               </div>
               </div>
               </div>
-              <Input
+              <InputFuncionario
                 label="Código de negócio:"
                 type="text"
                 name="codigo_negocio"

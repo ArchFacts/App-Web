@@ -16,4 +16,4 @@ function InputFuncionario({ label, type, name, value, onChange}) {
   );
 }
 
-export default Input;
+export default InputFuncionario;

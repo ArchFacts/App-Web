@@ -47,7 +47,7 @@ function CadastroUsuario() {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5000
   };
 
   return (
