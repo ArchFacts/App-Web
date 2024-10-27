@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import SimpleFooter from '../../../components/Simple-Footer/simple_footer.jsx';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import imagem1 from '../../../utils/assets/fundo_cadastro_funcionario.jpg';
 import imagem2 from '../../../utils/assets/fundo_cadastro_funcionario2.jpg';
 import imagem3 from '../../../utils/assets/fundo_cadastro_funcionario3.jpg';
@@ -44,6 +44,10 @@ function CadastroFuncionario() {
     autoplaySpeed: 5000
   };
 
+  const handleFuncionario = () => {
+    navigate('/login?tipo=funcionario');
+  };
+
   return (
     <section className={stylesInput.tela}>
       <SimpleHeader />
@@ -64,17 +68,14 @@ function CadastroFuncionario() {
               <InputFuncionario
                 label="Código de negócio:"
                 type="text"
-                name="codigo_negocio"
+                name="codigoNegocio"
                 value={formData.codigoNegocio}
                 onChange={handleChange}
               />
             </div>
             <Botao
               texto="Filiar-se"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log(`${tipo} registrado`);
-              }}
+              onClick={handleFuncionario}
             />
           </div>
           <div className={stylesCadastroEmpresa.registro_imagem}>

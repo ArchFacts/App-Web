@@ -50,6 +50,11 @@ function CadastroUsuario() {
     autoplaySpeed: 5000
   };
 
+  const handleCadastro = () => {
+    localStorage.setItem('beneficiarioData', JSON.stringify(formData));
+    console.log(`Beneficiário registrado: ${JSON.stringify(formData)}`);
+    navigate('/login?tipo=beneficiario');
+  };
   return (
     <section className={stylesInput.tela}>
       <SimpleHeader />
@@ -58,8 +63,8 @@ function CadastroUsuario() {
           <div className={stylesInput.registro}>
             <div className={stylesInput.registro_area}>
             <div className={stylesInput.voltar_e_titulo}>
-              <a href="/nivel-usuario"><div className={stylesInput.voltar}>Voltar
-              </div></a>
+              <a href="/nivel-usuario" className={stylesInput.voltar}>Voltar
+          </a>
               <h1 className={stylesInput.h1_registro}>Cadastro</h1>
             </div>
             <div className={stylesInput.all_inputs}>
@@ -105,7 +110,7 @@ function CadastroUsuario() {
                 console.log(`${tipo} registrado`);
 
                 if (tipo === 'beneficiario') {
-                  navigate('/'); 
+                  handleCadastro();
                 } else if(tipo == 'prestador'){
                   navigate('/cadastrar-empresa')
                 }

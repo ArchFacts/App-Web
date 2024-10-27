@@ -51,6 +51,10 @@ function CadastroEmpresa() {
     autoplaySpeed: 5000
   };
 
+  const handleCadastro = () => {
+    navigate('/login?tipo=prestador');
+  };
+
   return (
     <section className={stylesInput.tela}>
       <SimpleHeader />
@@ -129,10 +133,7 @@ function CadastroEmpresa() {
             </div>
             <Botao
                 texto="Cadastrar"
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log(`${tipo} registrado`);
-                }}
+                onClick={handleCadastro}
               />
             </div>
           </div>
