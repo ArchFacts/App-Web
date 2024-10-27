@@ -8,17 +8,17 @@ import HeroInfo from '../../components/Hero-Info/heroinfo';
 import HeroFooter from '../../components/Hero-Footer/herofooter';
 import VerticalMenu from '../../components/Vertical-Menu/verticalmenu';
 import InfoBox from '../../components/Info-Box/infobox';
-import icone_gestao from '../../utils/assets/gestao.svg';
 import icone_seta from '../../utils/assets/left_arrow.svg'
 import InterestBox from '../../components/Interest-Box/interestbox';
 import BigCarousel from '../../components/Big-Carousel/bigcarousel';
 import Profile from '../../components/profile/profile';
 import Contact from '../../components/Contact/contact';
 import MainFooter from '../../components/Main-Footer/mainfooter';
-import { Link } from 'react-scroll';
+import imagem1 from "../../utils/assets/empregado_home.jpg";
+import imagem2 from "../../utils/assets/cliente_home.jpg";
+import imagem3 from "../../utils/assets/prestador_home.jpg";
 
 const Home = () => {
-
     const [infoBoxData, setInfoBoxData] = useState({
         title: "Selecione uma opção à esquerda!",
         text: "",
@@ -28,7 +28,7 @@ const Home = () => {
     return (
         <>
             <main>
-                <section>
+                <section id='hero'>
                     <NavHome logo_image={logoImage} logo_text={logoText} />
                     <div className={styles.hero_div}>
                         <div className={styles.content}>
@@ -52,13 +52,11 @@ const Home = () => {
                     </div>
                 </section>
                 <section id='solutionSection' className={styles.benefits}>
-                    <h1 className={styles.main_title}>POR QUÊ USAR A NOSSA SOLUÇÃO?</h1>
+                    <h1 className={styles.main_title}>POR QUE USAR A NOSSA SOLUÇÃO?</h1>
                     <div className={styles.content_area}>
                         <div className={styles.benefit_div}>
                             <InterestBox title="Tenha uma organização interativa"
-                                text="Somos uma plataforma de gerenciamento empresarial!
-                                Nela centralizamos todos os serviços necessários para o seu negócio.
-                                Uma de nossas exclusividades é a abertura de chamados por parte do cliente para solicitar um serviço, assim é possível construir um projeto juntamente com ele para atender a sua necessidade! Além disso é possível gerenciar suas tarefas e há o controle do fluxo de caixa para o controle financeiro e conta também alertas de eventos próximos para você não perder nenhuma demanda!">
+                                text="Centralize serviços, controle financeiro e gerencie tarefas de forma simples e eficiente. Nossa plataforma oferece a abertura de chamados e alertas personalizados para você não perder nenhuma demanda.">
                             </InterestBox>
                         </div>
                         <div className={styles.slider_div}>
@@ -76,7 +74,8 @@ const Home = () => {
                                 benefit1="Gerenciamento do negócio;"
                                 benefit2="Página exclusiva para seus clientes;"
                                 benefit3="Trabalho em conjunto com seu empregado;"
-                                benefit4="Insights sobre o seu negócio.">
+                                benefit4="Insights sobre o seu negócio."
+                                image={imagem3}>
                             </Profile>
                             <Profile
                                 title="EMPREGADO"
@@ -84,7 +83,9 @@ const Home = () => {
                                 benefit1="Colaboração no gerenciamento;"
                                 benefit2="Acompanhe processos com eficiência;"
                                 benefit3="Gerencie e organize tarefas e chamados;"
-                                benefit4="Acompanhe detalhes sobre o projeto.">
+                                benefit4="Acompanhe detalhes sobre o projeto."
+                                image={imagem1}
+                                >
                             </Profile>
                             <Profile
                                 title="CLIENTE"
@@ -92,7 +93,8 @@ const Home = () => {
                                 benefit1="Solicitar um serviço de uma empresa;"
                                 benefit2="Contato com prestador através de chamados;"
                                 benefit3="Acompanhamento do serviço;"
-                                benefit4="Problema solucionado facilmente.">
+                                benefit4="Problema solucionado facilmente."
+                                image={imagem2}>
                             </Profile>
                         </div>
                     </div>
@@ -113,4 +115,4 @@ const Home = () => {
 }
 
 
-export default Home
+export default Home;

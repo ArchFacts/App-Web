@@ -6,7 +6,7 @@
 body {
     height: 100%;
 }
-
+    
 .header {
     background-color: #0E0C19;
     display: flex;
@@ -21,7 +21,7 @@ body {
 }
 
 .imagens_logo {
-    width: 3.7rem; 
+    width: 3.5rem; 
 }
 
 .imagens_af {

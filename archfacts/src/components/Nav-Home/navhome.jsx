@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./navhome.module.css";
-import { Link } from 'react-scroll'
 
 const NavHome = ({ logo_image, logo_text }) => {
-
     return (
         <nav className={styles.navbar}>
+          
             <div className={styles.logo_area}>
+          <a href="#hero">
                 <img src={logo_image} className={styles.logo_text} alt="Logo de Início" />
                 <img src={logo_text} className={styles.logo_image} alt="Logo de Início" />
-            </div>
+            </a>
+            </div> 
             <ul className={styles.nav_itens}>
                 <li>
-                    <Link to="problemSection">Problemas resolvidos</Link>
+                <a href="#problemSection">Problemas resolvidos</a>
                 </li>
                 <li>
-                    <a>Por quê usar nossa solução?</a>
+                    <a href="#solutionSection">Por que usar nossa solução?</a>
                 </li>
                 <li>
-                    <a>Valores</a>
+                    <a href="#profileSection">Valores</a>
                 </li>
                 <li>
-                    <a>Contatos</a>
+                    <a href="#contactSection">Contatos</a>
                 </li>
                 <li>
-                    <a>Login</a>
-                </li>
+                <a href="/login">Login</a>                </li>
             </ul>
 
         </nav>
