@@ -5,6 +5,7 @@ import logoaf from '../../utils/assets/logo_af.png';
 import { useLocation } from 'react-router-dom';
 
 function SimpleHeader() {
+    
     const location = useLocation();
     return (
         <div className={styles.header}>
