@@ -48,7 +48,11 @@ function CadastroEmpresa() {
     infinite: true,
     autoplay: true,
     speed: 500,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5000
+  };
+
+  const handleCadastro = () => {
+    navigate('/login?tipo=prestador');
   };
 
   return (
@@ -129,10 +133,7 @@ function CadastroEmpresa() {
             </div>
             <Botao
                 texto="Cadastrar"
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log(`${tipo} registrado`);
-                }}
+                onClick={handleCadastro}
               />
             </div>
           </div>

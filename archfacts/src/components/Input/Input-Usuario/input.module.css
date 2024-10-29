@@ -56,6 +56,11 @@
   text-align: center;
 }
 
+.voltar:hover{
+  background-color: #033E8C;
+  transition: 700ms;
+}
+
 .h1_registro{
     font-size: 32px;
     font-family: Poppins-Medium;

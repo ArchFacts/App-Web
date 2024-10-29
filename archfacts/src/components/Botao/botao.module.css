@@ -13,15 +13,13 @@ button{
 .botao {
     justify-content: center;
     display: flex;
+       cursor: pointer;
     height: 10rem;
     align-items: center; 
 }
 
-.botao:hover{
+button:hover{
     background-color: #05C7F2;
-    width: 40%;
-}
-
-.interest_info .botao button {
-    width: 11rem;
+    width: 12rem;
+    color: black;
 }

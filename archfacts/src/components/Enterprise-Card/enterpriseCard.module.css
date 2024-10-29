@@ -16,7 +16,6 @@
     font-size: 0.55rem;
 }
 
-
 .cardButton {
     width: 8rem;
     height: 1.5rem;
@@ -26,11 +25,9 @@
     transition: 200ms linear;
     cursor: pointer;
 }
-
 .cardButton:hover{
     scale: 1.1;
 }
-
 
 .leftCard {
     width: 50%;
@@ -41,7 +38,6 @@
     align-items: center;
     padding-left: 40px;
 }
-
 .rightCard {
     width: 50%;
     height: 100%;

@@ -15,9 +15,5 @@ const EnterpriseCard = () => {
                 </div>
                 
             </div>
-
-    )
-
-
 }
 export default EnterpriseCard;

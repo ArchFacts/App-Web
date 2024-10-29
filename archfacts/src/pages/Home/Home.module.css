@@ -81,7 +81,6 @@
     font-family: Poppins-Regular;
 }
 
-
 body {
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -270,4 +269,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+section {
+    scroll-margin-top: 16px; 
 }

@@ -5,7 +5,9 @@ import CadastroEmpresa from "./pages/Cadastro/Cadastro-Empresa/cadastro_empresa"
 import CadastroFuncionario from "./pages/Cadastro/Cadastro-Funcionario/cadastro_funcionario";
 import CadastroUsuario from "./pages/Cadastro/Cadastro-Usuario/cadastro_usuario";
 import NivelUsuario from "./pages/Nivel-Usuario/nivel_usuario";
-import EmpresasParceiras from "./pages/EmpresasParceiras/EmpresasParceiras";
+import Login from "./pages/Login/login";
+import Hub from "./pages/Hub/hub";
+import EmpresasParceiras from "./pages/Empresas-Parceiras/empresasParceiras";
 
 function Rotas() {
     return (
@@ -17,7 +19,9 @@ function Rotas() {
                     <Route path="/nivel-usuario" element={<NivelUsuario />} />
                     <Route path='/cadastrar-empresa' element={<CadastroEmpresa />} />
                     <Route path='/cadastrar-funcionario' element={<CadastroFuncionario />} />
-                    <Route path='/empresas-parceiras' element={<EmpresasParceiras /> }/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/hub" element={<Hub /> }/>
+                    <Route path ="/empresas-parceiras" element={<EmpresasParceiras/>}/>
                 </Routes>
             </BrowserRouter>
         </>
