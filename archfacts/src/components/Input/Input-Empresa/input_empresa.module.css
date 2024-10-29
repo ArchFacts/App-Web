@@ -16,10 +16,12 @@
   .div_input label{
       display: block; 
       width: 90%;
+      color: #033E8C;
   }
   
   .div_input input{
     font-size: 16px;
+    color: #033E8C;
       justify-content: center;
       display: flex;
       border: none;

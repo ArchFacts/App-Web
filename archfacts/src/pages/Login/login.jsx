@@ -23,11 +23,8 @@ const Login = () => {
     const tipo = searchParams.get('tipo');  
 
     const [formData, setFormData] = useState({
-      nome: '',
-      telefone: '',
       email: '',
       senha: '',
-      confirmacaoSenha: '',
     });
     
     const images = [
@@ -43,10 +40,6 @@ const Login = () => {
         [name]: value,
       });
     };
-
-    // const handleNavigationBeneficiario = () => {
-    //   navigate('/hub');
-    // };
 
     const handleNavigation = () => {
         if (tipo === 'funcionario') {

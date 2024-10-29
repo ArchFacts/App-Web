@@ -8,12 +8,12 @@ button{
     transition: 500ms;
     width: 10rem;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .botao {
     justify-content: center;
     display: flex;
-       cursor: pointer;
     height: 10rem;
     align-items: center; 
 }
