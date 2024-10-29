@@ -3,6 +3,7 @@
     font-family: 'Poppins-Semibold';
     src: url('../utils/fonts/Poppins-SemiBold.ttf');
 }
+
 .card {
     background-color: white;
     width: 25rem;
@@ -14,6 +15,7 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     font-size: 0.55rem;
 }
+
 .cardButton {
     width: 8rem;
     height: 1.5rem;
@@ -26,6 +28,7 @@
 .cardButton:hover{
     scale: 1.1;
 }
+
 .leftCard {
     width: 50%;
     height: 100%;
@@ -47,6 +50,7 @@
     color: black;
     padding-right: 40px;
 }
+
 .imagemEmpresa {
     background-color: black;
     height: 4.5rem;
