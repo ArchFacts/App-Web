@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "./enterpriseCard.module.css"
 
-const EnterpriseCard = () => {
+const EnterpriseCard = ({ img, title, buttonText, ticketQuantity, rating }) => {
     return (
             <div className={styles.card}>
                 <div className={styles.leftCard}>
-                    <div className={styles.imagemEmpresa}></div>
+                    <img className={styles.imagemEmpresa} src={img} alt="" />
                 </div>
                 <div className={styles.rightCard}>
-                    <h2>ECORP</h2>
-                    <h3>Chamados com a empresa: 5</h3>
+                    <h2>{title}</h2>
+                    <h3>Avaliação: <span style={{color: '#F95C00'}}>{rating}</span></h3>
+                    <h3>Chamados com a empresa: {ticketQuantity}</h3>
 
-                <button className={styles.cardButton}>Meus chamados</button>
+                <button className={styles.cardButton}>{buttonText}</button>
                 </div>
                 
             </div>
