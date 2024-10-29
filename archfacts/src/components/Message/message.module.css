@@ -27,10 +27,13 @@
     resize: none;
     border: none;
     outline: none;
+    color: #033E8C;
 }
-
-
 
 .message_area textarea:focus {
     border: 2px solid #05C7F2;
+}
+
+label{
+    color: #033E8C;
 }

@@ -17,10 +17,12 @@
 }
 
 .div_input_box label {
+    color: #033E8C;
     width: 75%;
 }
 
 .div_input_box input {
+    color: #033E8C;
     font-size: 1.5rem;
     justify-content: center;
     display: flex;
