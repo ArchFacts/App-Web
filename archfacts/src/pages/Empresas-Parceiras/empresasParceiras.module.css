@@ -46,16 +46,59 @@ input::placeholder {
     transform: translateY(3px);
 }
 
-.lateralDireita{
+.lateralDireita {
     width: 35%;
-    background-color: rgb(107, 106, 106);
-    height: 100rem;
+    height: 40rem;
     right: 0;
     position: absolute;
     top: 0;
+    display: flex;
+    background-image: url('../../utils/assets/imgEmpresasParceiras.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
-.logo{
+
+.logo {
     width: 60px;
     height: 70px;
     padding-right: 1rem;
+}
+
+.textoDireita {
+    font-size: Poppins-Light;
+    color: white;
+    height: 3rem;
+    width: 7rem;
+}
+
+.divInterior {
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    align-items: center;
+}
+
+.button {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 23rem;
+    background-color: #F95C00;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+    bottom: 4rem;
+    position: absolute;
+}
+
+.button:hover {
+    transform: scale(1.05);
+
 }
