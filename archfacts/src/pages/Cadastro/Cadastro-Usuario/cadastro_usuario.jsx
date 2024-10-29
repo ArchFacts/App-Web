@@ -13,6 +13,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import imagem1 from '../../../utils/assets/fundo_cadastro_usuario.avif';
 import imagem2 from '../../../utils/assets/fundo_cadastro_usuario2.png';
 import imagem3 from '../../../utils/assets/fundo_cadastro_usuario3.png';
+import api, { registroUsuario } from '../../../api.jsx';
+import { toast } from 'react-toastify';
 
 function CadastroUsuario() {
   const navigate = useNavigate();
@@ -50,11 +52,22 @@ function CadastroUsuario() {
     autoplaySpeed: 5000
   };
 
-  const handleCadastro = () => {
-    localStorage.setItem('beneficiarioData', JSON.stringify(formData));
-    console.log(`Beneficiário registrado: ${JSON.stringify(formData)}`);
-    navigate('/login?tipo=beneficiario');
+  const handleCadastro = async () => {
+    try {
+      await registroUsuario(formData);
+
+      localStorage.setItem('beneficiarioData', JSON.stringify(formData));
+      console.log(`Beneficiário registrado: ${JSON.stringify(formData)}`);
+      toast.success("Seu usuário foi criado com sucesso!");
+
+      navigate('/login?tipo=beneficiario');
+
+    } catch (error) {
+      toast.error("Houve um erro ao cadastrar o usuário, por favor tente novamente!")
+      console.log("Erro no cadastro", error)
+    }
   };
+
   return (
     <section className={stylesInput.tela}>
       <SimpleHeader />
@@ -62,47 +75,47 @@ function CadastroUsuario() {
         <div className={stylesInput.container_cadastro}>
           <div className={stylesInput.registro}>
             <div className={stylesInput.registro_area}>
-            <div className={stylesInput.voltar_e_titulo}>
-              <a href="/nivel-usuario" className={stylesInput.voltar}>Voltar
-          </a>
-              <h1 className={stylesInput.h1_registro}>Cadastro</h1>
-            </div>
-            <div className={stylesInput.all_inputs}>
-            <Input
-              label="Nome:"
-              type="text"
-              name="nome"
-              value={formData.nome}
-              onChange={handleChange}
-            />
-            <Input
-              label="Telefone:"
-              type="tel"
-              name="telefone"
-              value={formData.telefone}
-              onChange={handleChange}
-            />
-            <Input
-              label="Email:"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <Input
-              label="Senha:"
-              type="password"
-              name="senha"
-              value={formData.senha}
-              onChange={handleChange}
-            />
-            <Input
-              label="Confirmação de Senha:"
-              type="password"
-              name="confirmacaoSenha"
-              value={formData.confirmacaoSenha}
-              onChange={handleChange}
-            /> </div> </div>
+              <div className={stylesInput.voltar_e_titulo}>
+                <a href="/nivel-usuario" className={stylesInput.voltar}>Voltar
+                </a>
+                <h1 className={stylesInput.h1_registro}>Cadastro</h1>
+              </div>
+              <div className={stylesInput.all_inputs}>
+                <Input
+                  label="Nome:"
+                  type="text"
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                />
+                <Input
+                  label="Telefone:"
+                  type="tel"
+                  name="telefone"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                />
+                <Input
+                  label="Email:"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                <Input
+                  label="Senha:"
+                  type="password"
+                  name="senha"
+                  value={formData.senha}
+                  onChange={handleChange}
+                />
+                <Input
+                  label="Confirmação de Senha:"
+                  type="password"
+                  name="confirmacaoSenha"
+                  value={formData.confirmacaoSenha}
+                  onChange={handleChange}
+                /> </div> </div>
             <Botao
               texto={tipo === 'beneficiario' ? "Cadastrar" : "Avançar"}
               onClick={(e) => {
@@ -111,11 +124,11 @@ function CadastroUsuario() {
 
                 if (tipo === 'beneficiario') {
                   handleCadastro();
-                } else if(tipo == 'prestador'){
+                } else if (tipo == 'prestador') {
                   navigate('/cadastrar-empresa')
                 }
-                 else {
-                  navigate('/cadastrar-funcionario'); 
+                else {
+                  navigate('/cadastrar-funcionario');
                 }
               }}
             />
@@ -129,12 +142,10 @@ function CadastroUsuario() {
               ))}
             </Slider>
           </div>
-
         </div>
       </div>
       <SimpleFooter />
     </section>
-
   );
 }
 
