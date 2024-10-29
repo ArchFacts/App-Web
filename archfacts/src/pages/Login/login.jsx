@@ -44,10 +44,6 @@ const Login = () => {
     });
   };
 
-  // const handleNavigationBeneficiario = () => {
-  //   navigate('/hub');
-  // };
-
   const handleNavigation = () => {
     if (tipo === 'funcionario') {
       navigate('/cadastrar-funcionario');
