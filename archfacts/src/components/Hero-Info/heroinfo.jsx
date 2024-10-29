@@ -1,7 +1,14 @@
 import React from "react";
-import styles from "./heroinfo.module.css"
+import styles from "./heroinfo.module.css";
+import { useNavigate } from "react-router-dom";
 
 const HeroInfo = () => {
+    const navigate = useNavigate();
+
+    const handleCadastro = () => {
+        navigate("/nivel-usuario");
+    };
+
     return (
         <div className={styles.hero_info}>
             <div className={styles.title_div}>
@@ -11,7 +18,7 @@ const HeroInfo = () => {
             </div>
             <div className={styles.button_area}>
                 <button>Saiba mais</button>
-                <button>Cadastre-se</button>
+                <button onClick={handleCadastro}>Cadastre-se</button>
             </div>
         </div>
     );

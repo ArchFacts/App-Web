@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./profile.module.css"
-import imagem from "../../utils/assets/pedreiro_teste.png"
 
-const Profile = ({ title, subtitle, benefit1, benefit2, benefit3, benefit4 }) => {
+const Profile = ({ title, subtitle, benefit1, benefit2, benefit3, benefit4, image}) => {
     return (
         <div className={styles.profile}>
             <div className={styles.layer_background}>
-                <img src={imagem} alt="" />
+                <img src={image} alt="" />
             </div>
             <div className={styles.content}>
                 <h1 className={styles.title}>{title}</h1>

@@ -1,15 +1,33 @@
 @font-face {
-    font-family: 'Poppins-Medium';
-    src: url('../../../utils/fonts/Poppins-Medium.ttf');
-  }
+  font-family: 'Poppins-Medium';
+  src: url('../../../utils/fonts/Poppins-Medium.ttf');
+}
 
-.div_input{
-    font-family: Poppins-Medium;
+.div_input {
+  font-family: Poppins-Medium;
   flex-direction: column;
   font-size: 16px;
   align-items: center;
-   display: flex;
-   justify-content: center;
-   width: 40%;
-   
-  }
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.div_input label {
+  display: block;
+  width: 67%;
+}
+
+.div_input input {
+  font-size: 16px;
+  justify-content: center;
+  display: flex;
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  width: 67%;
+}
+
+.div_input input:focus {
+  border-bottom: 2px solid #05C7F2;
+}

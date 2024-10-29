@@ -18,4 +18,4 @@ const InputHome = ({ label, type, name, value, onChange }) => {
     );
 }
 
-export default InputHome
+export default InputHome;

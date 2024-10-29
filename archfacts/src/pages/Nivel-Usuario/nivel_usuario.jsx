@@ -17,17 +17,17 @@ function NivelUsuario() {
             <img src={image1} alt='Beneficiário' className={stylesCard.card_image} />
             <div className={stylesCard.card_text}>Interessado em um dos nossos parceiros? Clique aqui!</div>
             <div className={stylesCard}></div>
-            <button className={stylesCard.btn}>Sou um beneficiário</button>
+            <a className={stylesCard.btn}>Sou um beneficiário</a>
           </a>
           <a href="/cadastrar/prestador" className={stylesCard.card}>
             <img src={image2} alt='Prestador de Serviço' className={stylesCard.card_image} />
             <div className={stylesCard.card_text}>Quer administrar seu negócio com a gente? Clique aqui!</div>
-            <button className={stylesCard.btn}>Sou um prestador de serviços</button>
+            <a className={stylesCard.btn}>Sou um prestador de serviços</a>
           </a>
           <a href="/cadastrar/funcionario" className={stylesCard.card}>
             <img src={image3} alt='Funcionário' className={stylesCard.card_image} />
             <div className={stylesCard.card_text}>Trabalha com um de nossos parceiros? Clique aqui!</div>
-            <button className={stylesCard.btn}>Sou um funcionário</button>
+            <a className={stylesCard.btn}>Sou um funcionário</a>
           </a>
         </div>
       </div>

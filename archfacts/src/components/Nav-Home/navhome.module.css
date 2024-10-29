@@ -5,6 +5,11 @@
     font-style: normal;
   }
 
+  body{
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
 .navbar {
     display: flex;
     height: 70px;
@@ -14,10 +19,17 @@
     background-color: rgb(14, 12, 25, 0.8);
 }
 
+a{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;    
+}
+
 .navbar .logo_area {
     display: flex;
     width: 14rem;
     justify-content: center;
+    cursor: pointer;
 }
 
 .navbar .logo_image {

@@ -11,7 +11,7 @@ const MainFooter = () => {
             <FooterItems title={"Navegue:"}
                 item1={"Home"}
                 item2={"Problemas resolvidos"}
-                item3={"Por quê usar nossa solução?"}
+                item3={"Por que usar nossa solução?"}
                 item4={"Conheça os perfis"}>
             </FooterItems>
 

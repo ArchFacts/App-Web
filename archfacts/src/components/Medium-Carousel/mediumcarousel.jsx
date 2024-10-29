@@ -2,16 +2,14 @@ import React from "react";
 import styles from "./mediumcarousel.module.css"
 import Slider from 'react-slick';
 
-import imagem1 from '../../utils/assets/aperto_mao.jpg'
-import imagem2 from '../../utils/assets/aperto_mao.jpg'
-import imagem3 from '../../utils/assets/aperto_mao.jpg'
-import imagem4 from '../../utils/assets/aperto_mao.jpg'
+import imagem1 from '../../utils/assets/medium_carousel1.jpg';
+import imagem2 from '../../utils/assets/aperto_mao2.jpg';
+import imagem3 from '../../utils/assets/medium_carousel2.jpg';
 
 const images = [
     imagem1,
     imagem2,
-    imagem3,
-    imagem4
+    imagem3
 ];
 
 const settings = {
@@ -20,7 +18,7 @@ const settings = {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5000
 };
 
 const MediumCarousel = () => {
