@@ -16,7 +16,6 @@ import stylesLogin from '../Login/login.module.css';
 import api, { loginUsuario } from '../../api.jsx';
 import { toast } from 'react-toastify';
 
-
 const Login = () => {
 
   const navigate = useNavigate();
