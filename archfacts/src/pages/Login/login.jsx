@@ -44,6 +44,10 @@ const Login = () => {
       });
     };
 
+    // const handleNavigationBeneficiario = () => {
+    //   navigate('/hub');
+    // };
+
     const handleNavigation = () => {
         if (tipo === 'funcionario') {
             navigate('/cadastrar-funcionario'); 
@@ -94,10 +98,10 @@ const Login = () => {
           /> </div> </div> 
           <div className={stylesLogin.button}>
           <Botao
-            texto='Continuar'
+            texto='Entrar'
             onClick={(e) => {
               e.preventDefault();
-              console.log(`Continuar`);
+              console.log(`Entrar`);
             }}
           /> </div>
         </div>
