@@ -52,6 +52,11 @@ function CadastroUsuario() {
     autoplaySpeed: 5000
   };
 
+  // if(!formData.nome.trim()){
+  //     toast.error("Por favor, insira o seu nome.");
+  //     return; 
+  // }
+
   const handleCadastro = async () => {
     try {
       await registroUsuario(formData);

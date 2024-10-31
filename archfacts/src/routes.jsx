@@ -8,6 +8,8 @@ import NivelUsuario from "./pages/Nivel-Usuario/nivel_usuario";
 import Login from "./pages/Login/login";
 import Hub from "./pages/Hub/hub";
 import EmpresasParceiras from "./pages/Empresas-Parceiras/empresasParceiras";
+import PerfilBeneficiario from "./pages/Perfil-Usuario/Beneficiario/perfil_beneficiario";
+import EnviarProposta1 from "./pages/Enviar-Proposta/Enviar-Proposta-Tela1/enviar_proposta1";
 
 function Rotas() {
     return (
@@ -22,6 +24,8 @@ function Rotas() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/hub" element={<Hub /> }/>
                     <Route path ="/empresas-parceiras" element={<EmpresasParceiras/>}/>
+                    <Route path="/perfil-beneficiario" element={<PerfilBeneficiario/>}></Route>
+                    <Route path="/enviar-proposta1" element={<EnviarProposta1/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>
