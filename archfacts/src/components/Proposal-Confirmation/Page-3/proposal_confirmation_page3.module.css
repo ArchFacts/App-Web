@@ -1,0 +1,21 @@
+.enterprise_area{
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    justify-content: space-evenly;
+    /* border: solid khaki; */
+    height: 14rem;
+}
+
+.inputs3{
+    /* border: solid violet; */
+    align-items: center;
+    /* justify-content: center; */
+    height: 14rem;
+    display: flex;
+}
+/* 
+.message{
+    border: solid darkblue;
+    width: 65.5%;
+} */

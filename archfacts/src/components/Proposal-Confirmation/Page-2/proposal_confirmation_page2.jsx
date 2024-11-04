@@ -9,9 +9,13 @@ const ProposalConfirmationPage2 = () =>{
 
     const navigate = useNavigate();
 
-    const handleProposta2 = () => {
+    const handleProposta1 = () => {
         navigate('/enviar-proposta1');
     };
+
+    const handleProposta3 = () => {
+        navigate('/enviar-proposta3')
+    }
 
     return(
         <>
@@ -31,12 +35,12 @@ const ProposalConfirmationPage2 = () =>{
                         <div className={styles.buttons}>
                             <BotaoLaranja
                                 texto="Voltar"
-                                onClick={handleProposta2}
+                                onClick={handleProposta1}
                                 cor="#F95C00"
                             />
                             <BotaoLaranja
                                 texto="Continuar"
-                                onClick={handleProposta2}
+                                onClick={handleProposta3}
                                 cor=" #033E8C"
                             /></div>
                         <div className={styles.progress_bar}>
