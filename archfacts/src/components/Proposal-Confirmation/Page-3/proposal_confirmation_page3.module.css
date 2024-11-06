@@ -3,12 +3,12 @@
     justify-content: center;
     display: flex;
     justify-content: space-evenly;
-    /* border: solid khaki; */
+    border: solid khaki;
     height: 14rem;
 }
 
 .inputs3{
-    /* border: solid violet; */
+    border: solid violet;
     align-items: center;
     /* justify-content: center; */
     height: 14rem;
