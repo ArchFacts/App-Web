@@ -25,6 +25,7 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: 200ms linear;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .cardButton:hover{
     scale: 1.1;

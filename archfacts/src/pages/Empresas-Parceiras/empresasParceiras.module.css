@@ -29,8 +29,8 @@
 .input {
     border: none;
     border-bottom: 2px solid gray;
-    font-size: 0.7rem;
-    width: 25vw;
+    font-size: 1rem;
+    width: 37vw;
     font-family: Poppins-Regular;
     height: 2rem;
     display: flex;
@@ -48,7 +48,7 @@ input::placeholder {
 
 .lateralDireita {
     width: 35%;
-    height: 40rem;
+    height: 47rem;
     right: 0;
     position: absolute;
     top: 0;
@@ -63,8 +63,8 @@ input::placeholder {
 }
 
 .logo {
-    width: 60px;
-    height: 70px;
+    width: 80px;
+    height: 90px;
     padding-right: 1rem;
 }
 
@@ -91,11 +91,12 @@ input::placeholder {
     height: 2rem;
     width: 23rem;
     background-color: #F95C00;
-    border-radius: 8px;
+    border-radius: 9px;
     cursor: pointer;
     transition: 200ms ease-in-out;
     bottom: 4rem;
     position: absolute;
+    font-size: 1.3rem;
 }
 
 .button:hover {
