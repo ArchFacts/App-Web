@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Criação de uma instância do Axios com configuração comum
 const api = axios.create({
-  baseURL: 'http://127.0.01:8080', // URL base da API
+  baseURL: 'http://localhost:8080', // URL base da API
   headers: {
     'Content-Type': 'application/json', // Cabeçalhos comuns para todas as requisições
   },
