@@ -12,7 +12,7 @@ const EmpresasParceiras = () => {
         <>
             <div className={styles.upperBar}>
                 <img className={styles.logo} src={logo} alt="" />
-                <h2 className={styles.empresasText} style={{ color: '#033E8C' }}>Empresas parceiras</h2>
+                <h2 className={styles.empresasText} style={{ color: '#033E8C', fontSize: '2rem' }}>Empresas parceiras</h2>
             </div>
             <div className={styles.principal}>
                 <input type="text" placeholder='Pesquisar...' className={styles.input} />
@@ -41,8 +41,8 @@ const EmpresasParceiras = () => {
             <div className={styles.lateralDireita}>
                 <div className={styles.divInterior}>
                     <div>
-                        <h1 style={{ color: '#F95C00' }}>Conheça</h1>
-                        <h2 style={{ color: 'white' }}>nossas parcerias.</h2>
+                        <h1 style={{ color: '#F95C00', fontSize: '3rem' }}>Conheça</h1>
+                        <h2 style={{ color: 'white', fontSize: '2rem' }}>nossas parcerias.</h2>
                     </div>
 
                     <div className={styles.button}>Seguir para o meu perfil</div>
