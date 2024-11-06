@@ -8,6 +8,7 @@ import NivelUsuario from "./pages/Nivel-Usuario/nivel_usuario";
 import Login from "./pages/Login/login";
 import Hub from "./pages/Hub/hub";
 import EmpresasParceiras from "./pages/Empresas-Parceiras/empresasParceiras";
+import PerfilEmpresa from "./pages/Perfil-Empresa/perfil_empresa";
 
 function Rotas() {
     return (
@@ -22,6 +23,7 @@ function Rotas() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/hub" element={<Hub /> }/>
                     <Route path ="/empresas-parceiras" element={<EmpresasParceiras/>}/>
+                    <Route path ="/perfil-empresa" element={<PerfilEmpresa/>}/>
                 </Routes>
             </BrowserRouter>
         </>
