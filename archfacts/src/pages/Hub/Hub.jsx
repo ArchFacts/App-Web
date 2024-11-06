@@ -26,20 +26,20 @@ const Hub = () => {
                 rating={"3.5/5"}
                 ticketQuantity={"5"}
                 img={ECorp}
-                buttonText={"Saber mais"}/>
+                buttonText={"Meus chamados"}/>
                 <EnterpriseCard 
                 title={"MC Donalds"} 
                 rating={"4.1/5"}
                 ticketQuantity={"10"}
                 img={MCDonalds}
-                buttonText={"Saber mais"}/>
+                buttonText={"Meus chamados"}/>
 
                 <EnterpriseCard 
                 title={"VolksWagen"} 
                 rating={"3.7/5"}
                 ticketQuantity={"7"}
                 img={Volks}
-                buttonText={"Saber mais"}/>
+                buttonText={"Meus chamados"}/>
                         </div>
                     </div>
                 </div>

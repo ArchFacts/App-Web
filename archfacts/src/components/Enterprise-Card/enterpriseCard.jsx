@@ -10,7 +10,7 @@ const EnterpriseCard = ({ img, title, buttonText, ticketQuantity, rating }) => {
                 <div className={styles.rightCard}>
                     <h2>{title}</h2>
                     <h3>Avaliação: <span style={{color: '#F95C00'}}>{rating}</span></h3>
-                    <h3>Chamados com a empresa: {ticketQuantity}</h3>
+                    <h3>Chamados com o prestador: {ticketQuantity}</h3>
 
                 <button className={styles.cardButton}>{buttonText}</button>
                 </div>
