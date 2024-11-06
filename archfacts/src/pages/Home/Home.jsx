@@ -24,7 +24,6 @@ const Home = () => {
         text: "",
         icon: icone_seta,
     });
-
     return (
         <>
             <main>
