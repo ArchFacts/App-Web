@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.capsula {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 2.5%;
+    margin-left: 5%;
+}
+
+.welcome {
+    background-color: #0E0C19;
+    height: 2px;
+    flex-grow: 1;
+}
+
+.formContainer {
+    background-color: rgb(238, 237, 237);
+    width: 100%;
+    height: auto;
+    max-width: 45%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.barraSuperior {
+    font-size: 1rem;
+    background-color: #0E0C19;
+    color: white;
+    width: 100%;
+    padding: 1%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+}
+
+.form {
+    width: 95%;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    color: #033E8C;
+    margin-top: 0.5%;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 1.5%;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    border-radius: 7px;
+    background-color: white;
+    border: 1px solid #033E8C;
+    font-size: 14px;
+    font-family: 'Poppins-Medium';
+    src: url('../utils/fonts/Poppins-Medium.ttf');
+}
+
+textarea {
+    resize: none;
+    height: auto;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #004085;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 50%;
+    margin-top: 3.5%;
+}
