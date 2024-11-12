@@ -14,6 +14,7 @@ import EnviarProposta1 from "./pages/Enviar-Proposta/enviar_proposta1";
 import EnviarProposta2 from "./pages/Enviar-Proposta/enviar_proposta2";
 import EnviarProposta3 from "./pages/Enviar-Proposta/enviar_proposta3";
 import AberturaChamados from "./pages/Abertura-Chamados/abertura_chamados";
+import Teste from './pages/Aaa/Aaa';
 
 function Rotas() {
     return (
@@ -34,6 +35,7 @@ function Rotas() {
                     <Route path="/enviar-proposta2" element={<EnviarProposta2/>}></Route>
                     <Route path="/enviar-proposta3" element={<EnviarProposta3/>}></Route>
                     <Route path="/abertura-chamados" element={<AberturaChamados/>}></Route>
+                    <Route path="/teste" element={<Teste/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>
