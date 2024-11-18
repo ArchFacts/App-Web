@@ -10,6 +10,7 @@ const Eventos = () => {
         <>
         
             <SideBarColaborador/>
+            
             <div className={styles.content}>    
                 <div className={styles.capsula}>
                     <span className={styles.text}> Eventos</span>
