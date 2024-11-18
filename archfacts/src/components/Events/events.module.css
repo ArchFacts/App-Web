@@ -1,0 +1,65 @@
+*{
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+}
+
+.card{
+    background-color: #F5F5F5;
+    border-radius: 25px;
+    height: fit-content;
+    width: 45%;
+    font-size: 0.7rem;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.253);
+    flex-grow: 1;
+    flex-wrap: 200;
+    margin: 20px;
+}
+
+
+.header{
+    display: flex;
+    background-color: black;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    align-items: center;
+    justify-content: center;
+    grid-row: auto;
+}
+.header h1{
+    color: white;
+    font-size: 1.2rem;
+    height: fit-content;
+    padding: 10px;
+}
+
+.conteudo{
+    flex-direction: column;
+    display: flex;
+    background-color: #F5F5F5;
+    align-items:center;
+    padding: 20px 40px;
+    border-radius: 0 0 25px 25px;
+}
+
+.texto{
+    height: 40px;
+    width: 100%;
+    font-size: 1rem;
+    color: black;
+
+}
+.previsao{
+    width: 100%;
+    font-size: 1rem;
+
+}
+
+.status{
+    margin: 15px 0;
+    border-radius: 10px;
+    padding: 4px 50px;
+    background-color:aquamarine;
+    
+
+}
