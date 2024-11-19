@@ -55,7 +55,11 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      await loginUsuario(formData);
+      const response = await loginUsuario(formData);
+      
+      const token = response.data.token
+      localStorage.setItem("jwtToken", token);
+
       toast.success("Usuário logado com sucesso!");
       handleNavigation();
     } catch (error) {

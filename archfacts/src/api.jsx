@@ -1,22 +1,31 @@
 import axios from 'axios';
 
-const jwtToken = localStorage.getItem("jwtToken");
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080', 
+  baseURL: 'http://localhost:8080',
   headers: {
-    'Content-Type': 'application/json', 
-    Authorization: `Bearer ${jwtToken}`,
+    'Content-Type': 'application/json',
   },
-  withCredentials: true, 
+  withCredentials: true,
 });
 
+api.interceptors.request.use((config) => { // Configurando token para cada requisição
+  const jwtToken = localStorage.getItem("jwtToken"); // Criando token para login
+  if (jwtToken) {
+    config.headers.Authorization = `Bearer ${jwtToken}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+
 export const registroUsuario = (data) => {
-  return api.post('/auth/registro', data); 
+  return api.post('/auth/registro', data);
 };
 
 export const loginUsuario = (data) => {
-  return api.post('/auth/login', data); 
+  return api.post('/auth/login', data);
 };
 
 export const registroEmpresa = (data) => {
