@@ -48,8 +48,7 @@ const Login = () => {
       navigate('/cadastrar-funcionario');
     } else if (tipo == 'prestador') {
       navigate('/cadastrar-empresa')
-    }
-    else {
+    } else {
       navigate('/cadastrar/beneficiario');
     }
   };
@@ -58,7 +57,7 @@ const Login = () => {
     try {
       await loginUsuario(formData);
       toast.success("Usuário logado com sucesso!");
-      navigate('/empresas-parceiras');
+      handleNavigation();
     } catch (error) {
       toast.error("Houve um erro ao fazer login na sua conta");
       console.log("Erro", error)
