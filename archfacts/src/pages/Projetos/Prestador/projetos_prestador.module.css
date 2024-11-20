@@ -51,7 +51,7 @@
     flex-grow: 1;
     overflow-x: auto;
     width: 100%;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .screen .content_area .project_box .content_area::-webkit-scrollbar {

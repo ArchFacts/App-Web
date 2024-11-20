@@ -5,23 +5,17 @@
     font-style: normal;
 }
 
-.chamados {
+.contagem {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 16rem;
-    height: 2.5rem;
-    border-radius: 25px;
-    background-color: #033E8C;
-    transition: all 0.2s ease-in;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: #F95C00;
+    border-radius: 50%;
 }
 
-.chamados:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-.chamados p {
+.contagem p {
     font-family: 'Poppins-Regular';
     font-size: 1.5rem;
 }

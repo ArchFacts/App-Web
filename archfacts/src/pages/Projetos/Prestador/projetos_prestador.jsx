@@ -16,7 +16,21 @@ const ProjetosPrestador = () => {
                 <div className={styles.project_box}>
                     <div className={styles.detail_bar}></div>
                     <div className={styles.content_area}>
-                        <ProjetoComponentePrestador></ProjetoComponentePrestador>
+                        <ProjetoComponentePrestador
+                            projectName={'Projeto de abelhas'}
+                            solicitanteName={'Júlia Campioto'}>
+                        </ProjetoComponentePrestador>
+
+                        <ProjetoComponentePrestador
+                            projectName={'Projeto de abelhas'}
+                            solicitanteName={'Júlia Campioto'}>
+                        </ProjetoComponentePrestador>
+
+                        <ProjetoComponentePrestador
+                            projectName={'Projeto de abelhas'}
+                            solicitanteName={'Júlia Campioto'}>
+                        </ProjetoComponentePrestador>
+
                     </div>
                 </div>
             </div>
