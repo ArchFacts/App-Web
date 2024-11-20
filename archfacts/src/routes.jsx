@@ -16,6 +16,7 @@ import EnviarProposta3 from "./pages/Enviar-Proposta/enviar_proposta3";
 import AberturaChamados from "./pages/Abertura-Chamados/abertura_chamados";
 import Teste from './pages/Aaa/Aaa';
 import Eventos from './pages/Eventos/eventos';
+import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_beneficiario";
 
 
 function Rotas() {
@@ -39,6 +40,7 @@ function Rotas() {
                     <Route path="/abertura-chamados" element={<AberturaChamados/>}></Route>
                     <Route path="/teste" element={<Teste/>}></Route>
                     <Route path="/eventos" element={<Eventos/>}></Route>
+                    <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
                 </Routes>
             </BrowserRouter>
         </>

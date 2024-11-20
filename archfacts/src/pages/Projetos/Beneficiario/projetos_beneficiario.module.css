@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../utils/fonts/Poppins-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../utils/fonts/Poppins-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-ExtraBold';
+    src: url('../../utils/fonts/Poppins-ExtraBold.ttf');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Black';
+    src: url('../../utils/fonts/Poppins-Black.ttf');
+    font-weight: 900;
+    font-style: normal;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    border: 5px solid red;
+    display: flex;
+}
+
+.screen .project_name {
+    font-size: 44px;
+    font-family: Poppins-Regular;
+    width: 100%;
+    border: 5px solid rebeccapurple;
+}

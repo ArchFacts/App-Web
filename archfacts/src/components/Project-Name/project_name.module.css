@@ -1,0 +1,12 @@
+.title_area {
+    display: flex;
+    gap: 1rem;
+}
+
+.title_area .generic_project_title {
+    color: #0E0C19
+}
+
+.title_area .project_title {
+    color: #033E8C
+}
