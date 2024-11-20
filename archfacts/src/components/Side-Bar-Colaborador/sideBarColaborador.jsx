@@ -10,12 +10,12 @@ import sign from '../../utils/assets/sign.png'
 const SideBarColaborador = () => {
     return (
         <div className={styles.sideBar}>
-        <img className={styles.img} style={{width: '60px', height: '60px'}} src={house} alt="" />
-        <img className={styles.img} style={{width: '60px', height: '60px'}} src={folder} alt="" />
-        <img className={styles.img} style={{width: '60px', height: '60px'}} src={calendar} alt="" />
-        <img className={styles.img} style={{width: '60px', height: '60px'}} src={clipboard} alt="" />
-        <img className={styles.img} style={{width: '60px', height: '60px'}} src={sign} alt="" />
-        <img className={styles.img} style={{width: '60px', height: '60px'}} src={person} alt="" />
+        <img className={styles.img} style={{width: '35px', height: '35px'}} src={house} alt="" />
+        <img className={styles.img} style={{width: '35px', height: '35px'}} src={folder} alt="" />
+        <img className={styles.img} style={{width: '35px', height: '35px'}} src={calendar} alt="" />
+        <img className={styles.img} style={{width: '35px', height: '35px'}} src={clipboard} alt="" />
+        <img className={styles.img} style={{width: '35px', height: '35px'}} src={sign} alt="" />
+        <img className={styles.img} style={{width: '35px', height: '35px'}} src={person} alt="" />
         </div>
     )
 }

@@ -6,15 +6,14 @@
 
 .sideBar {
     background-color: #0E0C19;
-    height: 100vh;
-    width: 6rem;
+    max-height: 100vh;
+    width: 3.5rem;
     left: 0%;
     order: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    position: absolute;
 }
 
 .img{

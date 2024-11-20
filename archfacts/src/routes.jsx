@@ -17,6 +17,7 @@ import AberturaChamados from "./pages/Abertura-Chamados/abertura_chamados";
 import Teste from './pages/Aaa/Aaa';
 import Eventos from './pages/Eventos/eventos';
 import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_beneficiario";
+import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
 
 
 function Rotas() {
@@ -41,6 +42,7 @@ function Rotas() {
                     <Route path="/teste" element={<Teste/>}></Route>
                     <Route path="/eventos" element={<Eventos/>}></Route>
                     <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
+                    <Route path="/projetos-prestador" element={<ProjetosPrestador/>} />
                 </Routes>
             </BrowserRouter>
         </>
