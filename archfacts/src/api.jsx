@@ -1,23 +1,36 @@
 import axios from 'axios';
 
-// Criação de uma instância do Axios com configuração comum
+
 const api = axios.create({
-  baseURL: 'http://localhost:8080', // URL base da API
+  baseURL: 'http://localhost:8080',
   headers: {
-    'Content-Type': 'application/json', // Cabeçalhos comuns para todas as requisições
+    'Content-Type': 'application/json',
   },
-  withCredentials: true, // Se você precisa enviar cookies ou credenciais
+  withCredentials: true,
 });
 
-// Função para registro de usuário
+api.interceptors.request.use((config) => { // Configurando token para cada requisição
+  const jwtToken = localStorage.getItem("jwtToken"); // Criando token para login
+  if (jwtToken) {
+    config.headers.Authorization = `Bearer ${jwtToken}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+
 export const registroUsuario = (data) => {
-  return api.post('/auth/registro', data); // Envia os dados de cadastro para o backend
+  return api.post('/auth/registro', data);
 };
 
-// Função para login de usuário
 export const loginUsuario = (data) => {
-  return api.post('/auth/login', data); // Envia os dados de login para o backend
+  return api.post('/auth/login', data);
 };
 
-// Exportação da instância do axios para caso você precise usar outras requisições diretamente
+export const registroEmpresa = (data) => {
+  return api.post('/negocios', data);
+}
+
+
 export default api;
