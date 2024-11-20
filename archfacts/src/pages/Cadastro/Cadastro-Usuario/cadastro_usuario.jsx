@@ -64,7 +64,15 @@ function CadastroUsuario() {
       localStorage.setItem('beneficiarioData', JSON.stringify(formData));
       console.log(`Beneficiário registrado: ${JSON.stringify(formData)}`);
 
-      toast.success("Seu usuário foi criado com sucesso!"); 1
+      toast.success("Seu usuário foi criado com sucesso!", {
+        position: "top-center", // Use uma posição válida
+        autoClose: 5000,       // Fecha automaticamente após 5 segundos
+        hideProgressBar: false, // Exibe a barra de progresso
+        closeOnClick: true,    // Fecha ao clicar
+        pauseOnHover: true,    // Pausa ao passar o mouse
+        draggable: true,       // Permite arrastar o toast
+        theme: "colored",      // Tema do toast 
+      });
 
       if (tipo === 'beneficiario') {
         navigate('/login?tipo=beneficiario');
@@ -79,7 +87,22 @@ function CadastroUsuario() {
 
 
     } catch (error) {
-      toast.error("Houve um erro ao cadastrar o usuário, por favor tente novamente!")
+      toast.error("Houve um erro ao cadastrar o usuário, por favor tente novamente!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark", 
+        style: { 
+          background: "white",  
+          color: "white",        
+          fontSize: "15px",
+          fontWeight: "regular",
+        },
+        progressStyle: { background: "#F95C00" }, 
+      });
       console.log("Erro no cadastro", error)
     }
   };
