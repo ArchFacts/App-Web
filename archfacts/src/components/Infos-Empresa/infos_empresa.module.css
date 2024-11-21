@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Poppins-Medium';
     src: url('../utils/fonts/Poppins-Medium.ttf');
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
   }
 
 .infosEmpresa {
@@ -31,13 +32,14 @@
 }
 
 .descricao h2 {
-    font-size: 20px;
+    font-size: 22px;
     color: #000000;
+    font-family: Poppins-SemiBold;
     margin-bottom: 1%;
 }
 
 .descricao p {
-    font-size: 15px;
+    font-size: 18px;
     color: #000000;
     font-family: Poppins-Medium;
 }
@@ -50,7 +52,8 @@
 }
 
 .servicos h2 {
-    font-size: 20px;
+    font-size: 22px;
     color: #000000;
+    font-family: Poppins-SemiBold;
     margin-bottom: 1%;
 }

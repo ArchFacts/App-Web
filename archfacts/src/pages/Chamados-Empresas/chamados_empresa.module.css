@@ -1,0 +1,148 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.capsula {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 2.5%;
+    margin-left: 5%;
+}
+
+.welcome {
+    background-color: #0E0C19;
+    height: 2px;
+    flex-grow: 1;
+}
+
+.formContainer {
+    background-color: rgb(238, 237, 237);
+    width: 100%;
+    height: 81%;
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+}
+
+.barraSuperior {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    background-color: #0E0C19;
+    color: white;
+    width: 100%;
+    padding: 1%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 1%;
+    height: auto;
+}
+
+.form p {
+    color: black;
+}
+
+.infos {
+    display: flex;
+    font-size: 15px;
+    flex-direction: row;
+    padding: 2.5%;
+    border: #0E0C19;
+}
+
+.statusCell {
+    display: flex;
+    justify-content: center;
+    width: 15%;
+}
+
+.titleCell {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.parcelaCell {
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    width: 14%;
+    margin-top: -0.3%;
+    align-items: center;
+}
+
+.parcelaCell:hover {
+    width: 14%;
+}
+
+.aberturaCell {
+    display: flex;
+    justify-content: center;
+    width: 19%;
+}
+
+.fechamentoCell {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.finalizarCell {
+    display: flex;
+    justify-content: center;
+    width: 4%;
+    cursor: pointer;
+    margin-left: 5.5%;
+    margin-top: -1%;
+}
+
+.headerStatus {
+    width: 13%;
+}
+
+.headerTitle {
+    width: 15%;
+}
+
+.headerParcela {
+    width: 10%;
+}
+
+.headerAbertura {
+    width: 15%;
+}
+
+.headerFechamento {
+    width: 15%;
+}
+
+.headerFinalizar {
+    width: 10%;
+}

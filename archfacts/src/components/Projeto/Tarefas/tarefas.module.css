@@ -1,0 +1,21 @@
+.tarefas {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 16rem;
+    height: 2.5rem;
+    border-radius: 25px;
+    background-color: #F95C00;
+    border: 5px solid red;
+    transition: all 0.2s ease-in;
+}
+
+.tarefas:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.tarefas p {
+    font-family: 'Poppins-Regular';
+    font-size: 1.5rem;
+}
