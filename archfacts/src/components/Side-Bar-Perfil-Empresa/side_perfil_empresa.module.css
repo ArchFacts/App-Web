@@ -42,27 +42,35 @@
   
   .contatoEmpresa {
     color: white;
-    cursor: pointer;
     background-color: #F95C00;
     border-radius: 0.5rem;
     height: 2rem;
     border: none;
-    transition: 500ms;
-    width: 18rem;
+    transition: background-color 500ms, transform 700ms ease;
+    width: 15rem;
     font-size: 20px;
-    cursor: pointer;
     margin-bottom: 5%;
   }
   
   .voltarEmpresa {
     color: white;
-    cursor: pointer;
     background-color: #033E8C;
     border-radius: 0.5rem;
     height: 2rem;
     border: none;
-    transition: 500ms;
-    width: 18rem;
+    transition: background-color 500ms ease, transform 700ms ease;
+    width: 15rem;
     font-size: 20px;
-    cursor: pointer;
   }
+  
+  button:hover {
+    background-color: #05C7F2;
+    transform: scale(1.15);
+    color: black;
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(0, 122, 255, 0.5);
+  }
+  
