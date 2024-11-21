@@ -48,17 +48,20 @@ const Login = () => {
       navigate('/cadastrar-funcionario');
     } else if (tipo == 'prestador') {
       navigate('/cadastrar-empresa')
-    }
-    else {
+    } else {
       navigate('/cadastrar/beneficiario');
     }
   };
 
   const handleLogin = async () => {
     try {
-      await loginUsuario(formData);
+      const response = await loginUsuario(formData);
+      
+      const token = response.data.token
+      localStorage.setItem("jwtToken", token);
+
       toast.success("Usuário logado com sucesso!");
-      navigate('/empresas-parceiras');
+      handleNavigation();
     } catch (error) {
       toast.error("Houve um erro ao fazer login na sua conta");
       console.log("Erro", error)

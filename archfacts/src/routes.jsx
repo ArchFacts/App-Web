@@ -15,8 +15,11 @@ import EnviarProposta2 from "./pages/Enviar-Proposta/enviar_proposta2";
 import EnviarProposta3 from "./pages/Enviar-Proposta/enviar_proposta3";
 import AberturaChamados from "./pages/Abertura-Chamados/abertura_chamados";
 import Teste from './pages/Aaa/Aaa';
+
+import ChamadosEmpresa from "./pages/Chamados-Empresas/chamados_empresas";
 import Eventos from './pages/Eventos/eventos';
 import HomePrestador from './pages/Home-Prestador/homePrestador';
+
 
 
 function Rotas() {
@@ -39,6 +42,9 @@ function Rotas() {
                     <Route path="/enviar-proposta3" element={<EnviarProposta3/>}></Route>
                     <Route path="/abertura-chamados" element={<AberturaChamados/>}></Route>
                     <Route path="/teste" element={<Teste/>}></Route>
+
+                    <Route path="/chamados-empresa" element={<ChamadosEmpresa/>}></Route>
+
                     <Route path="/eventos" element={<Eventos/>}></Route>
                     <Route path="/home-prestador" element={<HomePrestador/>}></Route>
                 </Routes>
