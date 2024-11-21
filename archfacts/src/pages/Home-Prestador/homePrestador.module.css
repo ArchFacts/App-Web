@@ -1,0 +1,82 @@
+* {
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+}
+.barraSuperior{
+    border-radius: 20px 20px 0 0;
+    background-color: #0E0C19;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+}
+.welcome{
+    background-color: black;
+    height: 2px;
+    flex-grow: 1;
+}
+.capsula{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 30px 0 0 30px;
+}
+.text {
+    white-space: nowrap; 
+    margin-right: 5rem; 
+    margin-left: 8rem;
+    font-size: 35px;
+}
+.conteudo{
+    margin: 2rem 0 0 10rem;
+    width: 85%;
+    height: 38rem;
+    display: flex;
+    padding: 50px;
+    justify-content: space-between;
+}
+
+.conteudo div, .conteudo span{
+    flex-wrap: wrap;
+}
+
+.propostas{
+    overflow: scroll;
+    overflow-x: hidden ;
+    width: 65%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.24);
+
+}
+.titulo {
+    background-color: black;
+    border-radius: 15px 15px 0 0;
+}
+
+.titulo h1{
+    display: flex;
+    color: white;
+    font-size: 28px;
+    align-items: center;
+    justify-content: center;
+}
+.titulosColunas{
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #033e8cc5;
+    display: flex;
+    justify-content: space-around;
+}
+.titulosColunas > span{
+    text-align: center;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #033e8c;
+}

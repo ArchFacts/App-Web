@@ -18,6 +18,7 @@ import Teste from './pages/Aaa/Aaa';
 
 import ChamadosEmpresa from "./pages/Chamados-Empresas/chamados_empresas";
 import Eventos from './pages/Eventos/eventos';
+import HomePrestador from './pages/Home-Prestador/homePrestador';
 
 
 
@@ -45,7 +46,7 @@ function Rotas() {
                     <Route path="/chamados-empresa" element={<ChamadosEmpresa/>}></Route>
 
                     <Route path="/eventos" element={<Eventos/>}></Route>
-
+                    <Route path="/home-prestador" element={<HomePrestador/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>

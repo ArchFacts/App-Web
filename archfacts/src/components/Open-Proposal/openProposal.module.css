@@ -1,0 +1,28 @@
+* {
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+}
+.content{
+    width: 100%;
+    border-bottom: 2px solid #033e8cc5;
+    display: flex;
+    justify-content: space-around;
+    min-height:50px;
+}
+.content > span{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    word-break: break-all;
+}
+.img{
+    width: 40px;
+    height: 40px;
+}
+.aceitarRecusar img{
+    margin: 0 20px;
+}
