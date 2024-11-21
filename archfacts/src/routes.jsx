@@ -18,8 +18,12 @@ import Teste from './pages/Aaa/Aaa';
 
 import ChamadosEmpresa from "./pages/Chamados-Empresas/chamados_empresas";
 import Eventos from './pages/Eventos/eventos';
+
 import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_beneficiario";
 import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
+
+import HomePrestador from './pages/Home-Prestador/homePrestador';
+
 
 
 
@@ -48,8 +52,12 @@ function Rotas() {
 
                     <Route path="/eventos" element={<Eventos/>}></Route>
 
+
                     <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
                     <Route path="/projetos-prestador" element={<ProjetosPrestador/>} />
+
+                    <Route path="/home-prestador" element={<HomePrestador/>}></Route>
+
                 </Routes>
             </BrowserRouter>
         </>
