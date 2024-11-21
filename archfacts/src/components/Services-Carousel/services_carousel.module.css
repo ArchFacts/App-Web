@@ -1,0 +1,36 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-button {
+  transform: translateY(-50%) !important;
+  z-index: 2!important;
+  background: black !important;
+ border: none !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  cursor: pointer !important;
+}
+
+.cards {
+  gap: 2.7%;
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+}

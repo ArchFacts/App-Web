@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url(../../utils/fonts/Poppins-Medium.ttf);
+}
+
+.card_container {
+    border: 1px solid #ddd;
+    border-radius: 3px; 
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 67%;
+    height: 16rem;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.1s ease, border-width 0.1s ease;
+    align-items: center;
+    cursor: pointer;  /* Adiciona um cursor de mão para indicar que o card é clicável */
+}
+
+.card_container:hover {
+    border-color: #007bff;
+    border-width: 3px;
+}
+
+.card_container.selected {
+    border-color: #007bff;
+    border-width: 3px;  /* Quando o card for selecionado, a borda ficará azul */
+}
+
+.card_container .card_image {
+    width: 95%;
+    height: 50%;
+}
+
+.card_container .card_title {
+    color: black;
+    font-size: 24px;
+    text-align: center;
+}
+
+.card_container .card_text {
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+}

@@ -1,0 +1,12 @@
+.alert-message {
+    background-color: #f8d7da; /* Fundo vermelho claro para alerta */
+    color: #721c24; /* Cor do texto, um tom mais escuro para contraste */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb; /* Borda mais clara para o alerta */
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombrinha suave */
+}
