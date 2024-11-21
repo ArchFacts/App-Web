@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.calendar_area {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 25px;
+    background-color: #00F91D;
+    width: 13rem;
+    height: 2.5rem;
+}
+
+.calendar_area p{
+    font-size: 1.5rem;
+    font-family: 'Poppins-Regular';
+    color: black;
+}

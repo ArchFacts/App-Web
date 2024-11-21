@@ -8,14 +8,11 @@ import aperto from '../../utils/assets/aperto.png'
 const SideBar = () => {
     return (
         <div className={styles.sideBar}>
-        <img className={styles.img} style={{width: '50px', height: '50px'}} src={house} alt="" />
-        <img className={styles.img} style={{width: '50px', height: '50px'}} src={aperto} alt="" />
-        <img className={styles.img} style={{width: '50px', height: '50px'}} src={clipboard} alt="" />
-        <img className={styles.img} style={{width: '50px', height: '50px'}} src={person} alt="" />
-        
-
+            <img className={styles.img} style={{ width: '35px', height: '35px' }} src={house} alt="" />
+            <img className={styles.img} style={{width: '35px', height: '35px'}} src={aperto} alt="" />
+            <img className={styles.img} style={{ width: '35px', height: '35px' }} src={clipboard} alt="" />
+            <img className={styles.img} style={{ width: '35px', height: '35px' }} src={person} alt="" />
         </div>
-
     )
 
 

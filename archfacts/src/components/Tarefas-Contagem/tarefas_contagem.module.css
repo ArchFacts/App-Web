@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.contagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: #F95C00;
+    border-radius: 50%;
+}
+
+.contagem p {
+    font-family: 'Poppins-Regular';
+    font-size: 1.5rem;
+}
