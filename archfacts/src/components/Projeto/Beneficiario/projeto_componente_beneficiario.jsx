@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from '../Beneficiario/projeto_componente_beneficiario.module.css'
 import Calendar from "../Calendar/calendar";
 import Status from "../Status/status";
 import Chamados from "../Chamados/chamados";
 import ChamadosContagem from "../Chamados-Contagem/chamados_contagem";
 import Finalizar from "../Finalizar/finalizar";
+import Modal from 'react-modal';
 
 
-const ProjetoComponenteBeneficiario = ({ name }) => {
+const ProjetoComponenteBeneficiario = ({ name, onFinalizarClick }) => {
+    
     return (
         <div className={styles.project_box}>
             <div className={styles.detail_bar_top}>
@@ -23,7 +25,9 @@ const ProjetoComponenteBeneficiario = ({ name }) => {
                     <ChamadosContagem number={25}></ChamadosContagem>
                 </div>
                 <div className={styles.group}>
-                    <Finalizar></Finalizar>
+                    <div onClick={() => onFinalizarClick(name)}>
+                        <Finalizar></Finalizar>
+                    </div>
                 </div>
             </div>
             <div className={styles.detail_bar_bottom}></div>
