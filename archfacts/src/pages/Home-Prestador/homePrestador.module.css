@@ -1,19 +1,28 @@
 * {
     color: black;
     font-family: 'Poppins-Semibold';
-    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+    src: url('../../utils/fonts/Poppins-SemiBold.ttf');
 }
-.barraSuperior{
-    border-radius: 20px 20px 0 0;
-    background-color: #0E0C19;
-    width: 100%;
-    height: 2.5rem;
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+section {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1rem;
+    flex-direction: row;
 }
+
+section .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
 .welcome{
     background-color: black;
     height: 2px;
@@ -23,21 +32,21 @@
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 30px 0 0 30px;
+    padding: 15px 0 0 15px;
 }
 .text {
     white-space: nowrap; 
     margin-right: 5rem; 
     margin-left: 8rem;
     font-size: 35px;
+    font-family: 'Poppins-SemiBold';
 }
 .conteudo{
-    margin: 2rem 0 0 10rem;
-    width: 85%;
+    width: 100%;
     height: 38rem;
     display: flex;
-    padding: 50px;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .conteudo div, .conteudo span{
@@ -56,6 +65,8 @@
 .titulo {
     background-color: black;
     border-radius: 15px 15px 0 0;
+    font-family: 'Poppins-SemiBold';
+    
 }
 
 .titulo h1{
@@ -67,16 +78,25 @@
 }
 .titulosColunas{
     width: 100%;
-    height: 50px;
     border-bottom: 2px solid #033e8cc5;
     display: flex;
     justify-content: space-around;
+    font-family: 'Poppins-SemiBold';
+    padding: 1rem;
 }
 .titulosColunas > span{
     text-align: center;
-    width: 20%;
+    width: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #033e8c;
+    word-wrap: break-word;
+}
+
+.titulosColunas > span > p {
+    font-family: 'Poppins-SemiBold';
+    color: black;
+    font-size: 1.5rem;
+    color: #033E8C;
 }

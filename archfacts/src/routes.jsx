@@ -47,17 +47,11 @@ function Rotas() {
                     <Route path="/enviar-proposta3" element={<EnviarProposta3/>}></Route>
                     <Route path="/abertura-chamados" element={<AberturaChamados/>}></Route>
                     <Route path="/teste" element={<Teste/>}></Route>
-
                     <Route path="/chamados-empresa" element={<ChamadosEmpresa/>}></Route>
-
                     <Route path="/eventos" element={<Eventos/>}></Route>
-
-
                     <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
                     <Route path="/projetos-prestador" element={<ProjetosPrestador/>} />
-
                     <Route path="/home-prestador" element={<HomePrestador/>}></Route>
-
                 </Routes>
             </BrowserRouter>
         </>
