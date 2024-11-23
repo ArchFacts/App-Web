@@ -3,15 +3,16 @@ import '../../../utils/global.css';
 import styles from '../../Hub/Hub.module.css'
 import stylesPerfil from '../perfil.module.css'
 import ProfileData from "../../../components/Profile-Data/profileData";
-import ECorp from "../../../utils/assets/ECorp.webp";
+import Volks from "../../../utils/assets/volks.png";
 import React, { useState } from "react";
+import SideBarColaborador from '../../../components/Side-Bar-Colaborador/sideBarColaborador';
 
 
-const perfilBeneficiario = () => {
+const PerfilFuncionario = () => {
     return (
 
         <div className={styles.container}>
-            <SideBar />
+            <SideBarColaborador />
             <div className={styles.content}>
                 <div className={styles.capsula}>
                     <span className={styles.text}>Perfil</span>
@@ -20,7 +21,7 @@ const perfilBeneficiario = () => {
                 </div>
                 <div className={stylesPerfil.perfilContainer}>
                     <div className={stylesPerfil.esquerda}>
-                        <img className={stylesPerfil.imagemPerfil} src={ECorp} alt="" />
+                        <img className={stylesPerfil.imagemPerfil} src={Volks} alt="" />
                         <h2>Luis Gustavo</h2>
                         <button className={stylesPerfil.botao}>Sair da conta</button>
                     </div>
@@ -35,4 +36,4 @@ const perfilBeneficiario = () => {
     )
 }
 
-export default perfilBeneficiario;
+export default PerfilFuncionario;
