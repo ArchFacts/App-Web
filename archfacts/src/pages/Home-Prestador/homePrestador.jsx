@@ -74,10 +74,14 @@ const HomePrestador = () => {
                                 overlayClassName={styles.modal_overlay}>
 
                                 <div className={styles.modal_header}>
-                                    <h2>Proposta de {propostaSelecionada.solicitante}</h2>
-                                    <img src={fechar_icon}
-                                        alt="Fechar"
-                                        onClick={fecharModal} />
+                                    {propostaSelecionada && (
+                                        <>
+                                            <h2>Proposta de {propostaSelecionada.solicitante}</h2>
+                                            <img src={fechar_icon}
+                                                alt="Fechar"
+                                                onClick={fecharModal} />
+                                        </>
+                                    )}
                                 </div>
 
                                 {propostaSelecionada && ( // Estrutura condicional, ele só carregará o que está abaixo se tiver algo (previne erros)
@@ -96,7 +100,7 @@ const HomePrestador = () => {
                                         </div>
                                         <div className={styles.button_area}>
                                             <div className={styles.button}><p>Recusar proposta</p></div>
-                                            <div className={styles.button}><p>Aceitar Proposta/</p></div>
+                                            <div className={styles.button}><p>Aceitar Proposta</p></div>
                                         </div>
                                     </div>
                                 )}
