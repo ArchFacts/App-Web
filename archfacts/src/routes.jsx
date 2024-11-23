@@ -23,6 +23,7 @@ import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_benefic
 import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
 
 import HomePrestador from './pages/Home-Prestador/homePrestador';
+import PerfilFuncionario from "./pages/Perfil-Usuario/Funcionario/perfil_funcionario";
 
 
 
@@ -52,6 +53,7 @@ function Rotas() {
                     <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
                     <Route path="/projetos-prestador" element={<ProjetosPrestador/>} />
                     <Route path="/home-prestador" element={<HomePrestador/>}></Route>
+                    <Route path="/perfil-funcionario" element={<PerfilFuncionario/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>
