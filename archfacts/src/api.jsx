@@ -36,4 +36,8 @@ export const dadosUsuarioLogado = (data) => {
   return api.get('/perfis', data);
 }
 
+export const buscarPropostas = (data) => {
+  return api.get('/propostas');
+}
+
 export default api;

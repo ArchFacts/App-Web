@@ -14,6 +14,7 @@ const HomePrestador = () => {
     const [propostaSelecionada, setPropostaSelecionada] = useState(null);
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(true)
+    const [propostas, setPropostas] = useState([]);
 
     const abrirModal = (propostaDaVez) => {
         setPropostaSelecionada(propostaDaVez);
@@ -25,21 +26,36 @@ const HomePrestador = () => {
         setPropostaSelecionada(null);
     }
 
-    const propostas = [
-        {
-            solicitante: "Julia Campioto",
-            servicos: "Carros estéticos, Carros esportivos",
-            email: "julia.campioto@exemplo.com",
-            descricao: "Serviço de manutenção de carros"
-        }
-    ]
+    // MOCADO
+
+    // const propostas = [
+    //     {
+    //         solicitante: "Julia Campioto",
+    //         servicos: "Carros estéticos, Carros esportivos",
+    //         email: "julia.campioto@exemplo.com",
+    //         descricao: "Serviço de manutenção de carros"
+    //     }
+    // ]
+
     const buscarDadosUsuario = async () => {
         try {
-            const response = await api.get('/perfis')
+            const response = await api.get('/perfis');
             setUsuario(response.data);
             console.log(response.data);
         } catch (error) {
-            console.error("Não foi possível buscar os dados desse usuário logado", error)
+            console.error("Não foi possível buscar os dados desse usuário logado", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const buscarPropostas = async () => {
+        try {
+            const response = await api.get('/propostas');
+            setPropostas(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Não foi possível buscar as propostas desse negócio", error);
         } finally {
             setLoading(false);
         }
@@ -47,7 +63,9 @@ const HomePrestador = () => {
 
     useEffect(() => {
         buscarDadosUsuario();
-        console.log("user" + usuario)
+        buscarPropostas();
+        console.log("user" + usuario);
+        console.log("propostas" + propostas);
     }, []);
 
 
@@ -79,15 +97,19 @@ const HomePrestador = () => {
                                 <span><p>Download</p></span>
                                 <span><p>Aceitar Recusar</p></span>
                             </div>
-                            {propostas.map((proposta, index) => (
-                                <OpenProposal
-                                    key={index}
-                                    email={proposta.email}
-                                    solicitante={proposta.solicitante}
-                                    servicos={proposta.servicos}
-                                    onClick={() => abrirModal(proposta)}
-                                />
-                            ))}
+                            {propostas.length > 0 ? (
+                                propostas.map((proposta, index) => (
+                                    <OpenProposal
+                                        key={index}
+                                        email={proposta.email}
+                                        solicitante={proposta.solicitante}
+                                        servicos={proposta.servicos}
+                                        onClick={() => abrirModal(proposta)}
+                                    />
+                                ))
+                            ) : (
+                                <p>Não há propostas disponíveis.</p>
+                            )}
 
                             <Modal
                                 isOpen={modalIsOpen}
