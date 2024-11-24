@@ -32,5 +32,8 @@ export const registroEmpresa = (data) => {
   return api.post('/negocios', data);
 }
 
+export const dadosUsuarioLogado = (data) => {
+  return api.get('/perfis', data);
+}
 
 export default api;

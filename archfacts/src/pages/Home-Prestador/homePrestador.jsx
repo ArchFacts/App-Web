@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import styles from './homePrestador.module.css'
 import SideBarColaborador from '../../components/Side-Bar-Colaborador/sideBarColaborador';
 import EnterpriseScore from '../../components/Enterprise-Score/enterpriseScore';
 import OpenProposal from '../../components/Open-Proposal/openProposal';
 import fechar_icon from "../../utils/assets/modal-x.svg"
+import axios from 'axios';
+import api from '../../api';
+import Spinner from '../../components/Spinner/spinner';
 
 const HomePrestador = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [propostaSelecionada, setPropostaSelecionada] = useState(null);
+    const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     const abrirModal = (propostaDaVez) => {
         setPropostaSelecionada(propostaDaVez);
@@ -28,6 +33,22 @@ const HomePrestador = () => {
             descricao: "Serviço de manutenção de carros"
         }
     ]
+    const buscarDadosUsuario = async () => {
+        try {
+            const response = await api.get('/perfis')
+            setUsuario(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Não foi possível buscar os dados desse usuário logado", error)
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        buscarDadosUsuario();
+        console.log("user" + usuario)
+    }, []);
 
 
     return (
@@ -42,10 +63,12 @@ const HomePrestador = () => {
                     <div className={styles.card}>
                     </div>
                     <div className={styles.conteudo}>
-                        <EnterpriseScore
-                            empresa={"Stefanini"}
-                            avaliacao={"4"}
-                        />
+                        {loading ? (<Spinner />) : (
+                            <EnterpriseScore
+                                empresa={usuario && usuario.negocio ? usuario.negocio.nome : "Indisponível"}
+                                avaliacao={usuario && usuario.negocio ? usuario.negocio.avaliacao : 0}
+                            />
+                        )}
                         <div className={styles.propostas}>
                             <div className={styles.titulo}>
                                 <h1>Propostas abertas</h1>
