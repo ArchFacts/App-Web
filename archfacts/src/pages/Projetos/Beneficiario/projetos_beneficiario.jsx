@@ -52,14 +52,14 @@ const ProjetosBeneficiario = () => {
                 onRequestClose={fecharModal}
                 contentLabel="Modal para finalizar o projeto"
                 className={styles.modal}
-                overlayClassName={styles.modalOverlay}>
+                overlayClassName={styles.modal_overlay}>
 
-                <div className={styles.modalHeader}>
+                <div className={styles.modal_header}>
                     <h2>Finalizar projeto</h2>
                     <img src={fechar_icon} alt="" 
                     onClick={fecharModal}/>
                 </div>
-                <div className={styles.modalContent}>
+                <div className={styles.modal_content}>
                     <p>Deseja confirmar o encerramento deste projeto?</p>
                     <button>Confirmar</button>
                 </div>
