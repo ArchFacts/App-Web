@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-SemiBold.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
 .container {
     display: flex;
     height: 100vh;
@@ -14,7 +29,19 @@
 .capsula {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 1rem;
+}
+
+.capsula .abrir_chamado {
+    display: flex;
+    width: 100%;
+}
+
+.capsula .chamados {
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .text {
@@ -22,6 +49,7 @@
     font-weight: bold;
     margin: 2.5%;
     margin-left: 5%;
+
 }
 
 .welcome {
@@ -145,4 +173,257 @@
 
 .headerFinalizar {
     width: 10%;
+}
+
+.infos img {
+    transition: all 0.1s ease-in;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 40%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 25%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+}
+
+.modal .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal .modal_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.modal .modal_content p {
+    font-size: 2rem;
+    width: 75%;
+    text-align: center;
+    color: black;
+}
+
+.modal .modal_content button {
+    height: 3rem;
+    font-size: 2rem;
+    border-radius: 15px;
+}
+
+.modalParcela {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 40%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modalParcela .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 25%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modalParcela .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 45%;
+}
+
+.modalParcela .modal_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.modalParcela .modal_content .parcelas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    width: 50%;
+}
+
+.modalParcela .modal_content .parcelas h2 {
+    color: #033E8C;
+    font-size: 3rem;
+}
+
+.modalParcela .modal_content .price_field {
+    width: 60%;
+    font-size: 2.5rem;
+    background: #FFFFFF;
+    border: 4px solid #033E8C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.modalParcela .modal_content .price_field p:nth-child(1) {
+    color: black;
+}
+
+.modalParcela .modal_content .price_field p:nth-child(2) {
+    color: #F95C00;
+}
+
+.modalParcela .modal_content .total {
+    width: 60%;
+    font-size: 1.8rem;
+    text-align: center;
+    font-family: 'Poppins-Regular';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal_chamado {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 85%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal_chamado .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal_chamado .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+}
+
+.modal_chamado .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal_chamado .modal_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.modal_chamado .modal_content .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.modal_chamado .modal_content .field label {
+    width: 75%;
+    font-size: 1.5rem;
+}
+
+.modal_chamado .modal_content .field input {
+    width: 75%;
+    border: 3px solid #033E8C;
+}
+
+.modal_chamado .modal_content .field:nth-child(4) input {
+    height: 7.5rem;
+}
+
+
+
+.modal_chamado .modal_content .field .title {
+    font-family: 'Poppins-SemiBold';
+    color: #033E8C;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.modal_chamado .modal_content .button_area {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Poppins-Medium';
+    font-size: 1.5rem;
+    height: 4rem;
+    color: white;
+}
+
+.modal_chamado .modal_content .button_area .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 35%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.modal_chamado .modal_content .button_area .button:hover {
+    width: 50%;
+}
+
+
+.modal_chamado .modal_content .button_area button {
+    width: 25%;
+    background-color: #033E8C;
 }

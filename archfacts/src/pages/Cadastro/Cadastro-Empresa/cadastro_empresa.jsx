@@ -69,9 +69,10 @@ function CadastroEmpresa() {
       localStorage.setItem('negocioData', JSON.stringify(formData));
       console.log(`Negócio cadastrado: ${JSON.stringify(formData)}`);
 
-      navigate('/login?tipo=prestador');
-
       toast.success("Cadastro realizado com sucesso!")
+
+      navigate('/home-prestador');
+
 
     } catch (error) {
       console.log("Houve um erro ao fazer o cadastro", error);

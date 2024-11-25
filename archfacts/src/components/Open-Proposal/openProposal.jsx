@@ -5,9 +5,9 @@ import wrong_icon from '../../utils/assets/wrong_check.svg'
 import download_icon from '../../utils/assets/download.svg'
 
 
-const OpenProposal = ({ solicitante, servicos }) => {
+const OpenProposal = ({ solicitante, servicos, onClick }) => {
     return (
-        <div className={styles.content}>
+        <div className={styles.content} onClick={onClick}>
             <span>{solicitante}</span>
             <span>{servicos}</span>
             <span><img className={styles.img} src={download_icon} alt="" 
