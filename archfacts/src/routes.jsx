@@ -15,17 +15,12 @@ import EnviarProposta2 from "./pages/Enviar-Proposta/enviar_proposta2";
 import EnviarProposta3 from "./pages/Enviar-Proposta/enviar_proposta3";
 import AberturaChamados from "./pages/Abertura-Chamados/abertura_chamados";
 import Teste from './pages/Aaa/Aaa';
-
 import ChamadosEmpresa from "./pages/Chamados-Empresas/chamados_empresas";
 import Eventos from './pages/Eventos/eventos';
-
 import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_beneficiario";
 import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
-
 import HomePrestador from './pages/Home-Prestador/homePrestador';
-
-
-
+import EnviarProposta4 from "./pages/Enviar-Proposta/enviar_proposta4";
 
 function Rotas() {
     return (
@@ -52,6 +47,7 @@ function Rotas() {
                     <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
                     <Route path="/projetos-prestador" element={<ProjetosPrestador/>} />
                     <Route path="/home-prestador" element={<HomePrestador/>}></Route>
+                    <Route path="/enviar-proposta4" element={<EnviarProposta4/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>

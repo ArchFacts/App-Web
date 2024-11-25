@@ -89,6 +89,7 @@ align-items: center;
 
 .div_input input{
   color: #033E8C;
+  border-radius: 0;
   font-size: 16px;
     justify-content: center;
     display: flex;

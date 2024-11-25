@@ -24,8 +24,8 @@ const ProposalConfirmationPage1 = () => {
                     <div className={styles.container_itens}>
                         <h1>Envio de proposta</h1>
                         <div className={styles.paragrafo}>
-                            <p className={styles.text}>Você está prestes a enviar uma solicitação para Ecorp.</p>
-                            <p className={styles.text}> Confirme se essa é a empresa para a qual deseja enviar a proposta.</p>
+                            <p className={styles.text}>Você está prestes a enviar uma solicitação para Ecorp</p>
+                            <p className={styles.text}> Confirme se essa é a empresa para a qual deseja enviar a proposta</p>
                         </div>
                         <div className={styles.enterprise_area}>
                             <div className={styles.name_logo}>
