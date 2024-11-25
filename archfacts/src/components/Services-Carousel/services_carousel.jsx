@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./services_carousel.module.css";
 import ServiceCard from "../Service-Card/service_card";
 import service1 from '../../utils/assets/service1.webp';
@@ -10,12 +10,12 @@ import service6 from '../../utils/assets/service6.webp';
 
 const ServicesCarousel = ({ onSelectionChange }) => {
     const cards = [
-        { id: 1, img: service1, title: "Carros econômicos", text: "Possui os carros mais econômicos do mercado." },
-        { id: 2, img: service2, title: "Carros clássicos", text: "Possui os carros mais memoráveis do mercado." },
-        { id: 3, img: service3, title: "Carros estéticos", text: "Possui carros referência em estética do mercado." },
-        { id: 4, img: service4, title: "Carros esportivos", text: "Possui carros referência em potência no mercado." },
-        { id: 5, img: service5, title: "Carros elétricos", text: "Possui carros com foco em sustentabilidade." },
-        { id: 6, img: service6, title: "Carros conversíveis", text: "Possui carros com teto retrátil, voltados para estilo." },
+        { id: 1, img: service1, title: "Carros econômicos", text: "Possui os carros mais econômicos do mercado" },
+        { id: 2, img: service2, title: "Carros clássicos", text: "Possui os carros mais memoráveis do mercado" },
+        { id: 3, img: service3, title: "Carros estéticos", text: "Possui carros referência em estética do mercado" },
+        { id: 4, img: service4, title: "Carros esportivos", text: "Possui carros referência em potência no mercado" },
+        { id: 5, img: service5, title: "Carros elétricos", text: "Possui carros com foco em sustentabilidade" },
+        { id: 6, img: service6, title: "Carros conversíveis", text: "Possui carros com teto retrátil e estilosos" },
     ];
 
     const [selectedCards, setSelectedCards] = useState([]); 
@@ -23,14 +23,16 @@ const ServicesCarousel = ({ onSelectionChange }) => {
     const visibleCards = 4;
 
     const handleCardClick = (id) => {
-        setSelectedCards(prevSelectedCards => {
+        setSelectedCards((prevSelectedCards) => {
             const updatedSelection = prevSelectedCards.includes(id)
                 ? prevSelectedCards.filter(cardId => cardId !== id)
                 : [...prevSelectedCards, id];
-            onSelectionChange(updatedSelection); 
             return updatedSelection;
         });
     };
+    useEffect(() => {
+        onSelectionChange(selectedCards);
+    }, [selectedCards, onSelectionChange]);
 
     const handlePrev = () => {
         const isFirstCard = currentIndex === 0;
