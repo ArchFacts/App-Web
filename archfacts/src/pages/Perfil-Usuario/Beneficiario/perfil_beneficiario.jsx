@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import SideBar from "../../../components/Side-Bar/sideBar";
-import Modal from 'react-modal';
 import '../../../utils/global.css';
 import styles from '../../Hub/Hub.module.css';
 import stylesPerfil from '../Beneficiario/perfil.module.css';
 import ProfileData from "../../../components/Profile-Data/profileData";
 import fechar_icon from "../../../utils/assets/modal-x.svg";
 import ECorp from "../../../utils/assets/ECorp.webp";
+import Modal from 'react-modal';
 
-const perfilBeneficiario = () => {
+const PerfilBeneficiario = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
 
@@ -29,20 +29,16 @@ const perfilBeneficiario = () => {
                 <div className={styles.capsula}>
                     <span className={styles.text}>Perfil</span>
                     <div className={styles.welcome}></div>
-
-                    <div className={stylesPerfil.perfilContainer}>
-                        <div className={stylesPerfil.esquerda}>
-                            <div className={stylesPerfil.imagemPerfil}>
-                                <img src={ECorp} alt="Imagem de perfil" />
-                            </div>
-                            <h2>Luis Gustavo</h2>
-                            <button className={stylesPerfil.botao} onClick={() => abrirModal('sairConta')}>Sair da conta</button>
-                        </div>
-                        <div className={stylesPerfil.direita}>
-                            <ProfileData />
-                        </div>
+                </div>
+                <div className={stylesPerfil.perfilContainer}>
+                    <div className={stylesPerfil.esquerda}>
+                        <img className={stylesPerfil.imagemPerfil} src={ECorp} alt="Imagem de perfil" />
+                        <h2>Luis Gustavo</h2>
+                        <button className={stylesPerfil.botao} onClick={() => abrirModal('sairConta')}>Sair da conta</button>
                     </div>
-
+                    <div className={stylesPerfil.direita}>
+                        <ProfileData />
+                    </div>
                 </div>
             </div>
             <Modal
@@ -64,4 +60,4 @@ const perfilBeneficiario = () => {
     );
 };
 
-export default perfilBeneficiario;
+export default PerfilBeneficiario;
