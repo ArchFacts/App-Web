@@ -18,19 +18,24 @@ html {
 }
 
 .carousel-button {
-  transform: translateY(-50%) !important;
-  z-index: 2!important;
-  background: black !important;
- border: none !important;
-  border-radius: 50% !important;
-  width: 40px !important;
-  height: 40px !important;
-  cursor: pointer !important;
+  transform: translateY(-50%) ;
+  z-index: 2;
+  background: black ;
+ border: none ;
+  border-radius: 50% ;
+  width:  3%;
+  height: 5vh;
+  color:  white;
+  cursor: pointer ;
+}
+
+.carousel-button:hover {
+  width: 3.5%;
 }
 
 .cards {
-  gap: 2.7%;
+  justify-content: space-around;
   flex-direction: row;
   display: flex;
-  width: 100%;
+  width: 90%;
 }
