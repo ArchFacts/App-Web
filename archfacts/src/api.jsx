@@ -40,4 +40,16 @@ export const buscarPropostas = (data) => {
   return api.get('/propostas');
 }
 
+export const buscarEmpresas = (data) => {
+  return api.get('/negocios');
+}
+
+export const imagemGenerica = (texto) => {
+  return `https://placehold.co/600x400/black/white?text=${encodeURIComponent(texto)}`;
+}
+
+export const encontrarEmpresaProposta = (codEmpresa) => {
+  return api.get(`/propostas/buscarNegocioProposta/${codEmpresa}`);
+}
+
 export default api;

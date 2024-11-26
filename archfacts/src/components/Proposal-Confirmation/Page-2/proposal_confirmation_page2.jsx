@@ -8,6 +8,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ServicesCarousel from "../../Services-Carousel/services_carousel.jsx";
 
 const ProposalConfirmationPage2 = () => {
+
+    const [error, setError] = useState(false);
     const [selectedServices, setSelectedServices] = useState([]); 
     const navigate = useNavigate();
     const location = useLocation();

@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './empresasParceiras.module.css'
 import EnterpriseCard from '../../components/Enterprise-Card/enterpriseCard';
 import logo from '../../utils/assets/logo_af.png'
 import ECorp from '../../utils/assets/ECorp.webp'
 import MCDonalds from '../../utils/assets/mcdonalds.png'
 import Volks from '../../utils/assets/volks.png'
+import Spinner from '../../components/Spinner/spinner';
+import { imagemGenerica } from '../../api';
+import api from '../../api';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 const EmpresasParceiras = () => {
+
+    const [loading, setLoading] = useState(true)
+    const [negocios, setNegocios] = useState([]);
+    const navigate = useNavigate();
+
+
+    const buscarEmpresasParceiras = async () => {
+        try {
+            const response = await api.get('/negocios');
+            setNegocios(response.data);
+
+        } catch (error) {
+            console.error("Não foi possível buscar as empresas parceiras", error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const handleCardClick = (index) => {
+        const negocioEscolhido = negocios[index];
+        console.log(`navegando para a pág da empresa ${negocioEscolhido.nome}`);
+        navigate(`/enviar-proposta1/${negocioEscolhido.codigo}/${negocioEscolhido.nome}`, { state: { negocio: negocioEscolhido } });
+    }
+
+    useEffect(() => {
+        buscarEmpresasParceiras();
+        console.log("negocios" + negocios);
+    }, []);
+
 
     return (
 
@@ -16,27 +50,26 @@ const EmpresasParceiras = () => {
             </div>
             <div className={styles.principal}>
                 <input type="text" placeholder='Pesquisar...' className={styles.input} />
-                <EnterpriseCard
-                title={"Ecorp"} 
-                rating={"3.5/5"}
-                ticketQuantity={"5"}
-                img={ECorp}
-                buttonText={"Saber mais"}/>
-                <EnterpriseCard 
-                title={"MC Donalds"} 
-                rating={"4.1/5"}
-                ticketQuantity={"10"}
-                img={MCDonalds}
-                buttonText={"Saber mais"}/>
 
-                <EnterpriseCard 
-                title={"VolksWagen"} 
-                rating={"3.7/5"}
-                ticketQuantity={"7"}
-                img={Volks}
-                buttonText={"Saber mais"}/>
-
-
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    negocios.length > 0 ? (
+                        negocios.map((negocio, index) => (
+                            <EnterpriseCard
+                                key={negocio.idNegocio}
+                                title={negocio.nome}
+                                rating={negocio.avaliacao}
+                                ticketQuantity={"7"}
+                                img={imagemGenerica(negocio.nome)}
+                                buttonText={"Saber mais"}
+                                onClickEmpresa={() => handleCardClick(index)}
+                            />
+                        ))
+                    ) : (
+                        <p>Não há empresas parceiras disponíveis</p>
+                    )
+                )}
             </div>
             <div className={styles.lateralDireita}>
                 <div className={styles.divInterior}>
