@@ -18,7 +18,7 @@ const ServicesCarousel = ({ onSelectionChange }) => {
         { id: 6, img: service6, title: "Carros conversíveis", text: "Possui carros com teto retrátil, voltados para estilo." },
     ];
 
-    const [selectedCards, setSelectedCards] = useState([]); 
+    const [selectedCards, setSelectedCards] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const visibleCards = 4;
 
@@ -27,7 +27,7 @@ const ServicesCarousel = ({ onSelectionChange }) => {
             const updatedSelection = prevSelectedCards.includes(id)
                 ? prevSelectedCards.filter(cardId => cardId !== id)
                 : [...prevSelectedCards, id];
-            onSelectionChange(updatedSelection); 
+            onSelectionChange(updatedSelection);
             return updatedSelection;
         });
     };
@@ -59,7 +59,7 @@ const ServicesCarousel = ({ onSelectionChange }) => {
                             title={card.title}
                             text={card.text}
                             isSelected={selectedCards.includes(card.id)}
-                            onClick={() => handleCardClick(card.id)} 
+                            onClick={() => handleCardClick(card.id)}
                         />
                     ))}
                 </div>

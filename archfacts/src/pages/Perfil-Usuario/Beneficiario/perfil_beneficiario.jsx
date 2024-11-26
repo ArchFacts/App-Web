@@ -5,10 +5,8 @@ import '../../../utils/global.css';
 import styles from '../../Hub/Hub.module.css'
 import stylesPerfil from '../Beneficiario/perfil.module.css'
 import ProfileData from "../../../components/Profile-Data/profileData";
-
 import fechar_icon from "../../../utils/assets/modal-x.svg"
 import ECorp from "../../../utils/assets/ECorp.webp";
-import React, { useState } from "react";
 
 
 const perfilBeneficiario = () => {
@@ -33,22 +31,18 @@ const perfilBeneficiario = () => {
             <div className={styles.content}>
                 <div className={styles.capsula}>
                     <span className={styles.text}>Perfil</span>
-                    <div className={styles.welcome}>
-                    </div>
+                    <div className={styles.welcome}></div>
 
                     <div className={stylesPerfil.perfilContainer}>
                         <div className={stylesPerfil.esquerda}>
-                            <div className={stylesPerfil.imagemPerfil} src ={ECorp} alt= "" />
-                            </div>
+                            <img className={stylesPerfil.imagemPerfil} src={ECorp} alt="" />
                             <h2>Luis Gustavo</h2>
                             <button className={stylesPerfil.botao} onClick={() => abrirModal('sairConta')}>Sair da conta</button>
                         </div>
                         <div className={stylesPerfil.direita}>
                             <ProfileData />
                         </div>
-                        <ProfileData />
                     </div>
-
                 </div>
             </div>
             <Modal
@@ -60,7 +54,7 @@ const perfilBeneficiario = () => {
 
                 <div className={stylesPerfil.modal_header}>
                     <h2>Encerrar Sessão</h2>
-                    <img src={fechar_icon} alt=""
+                    <img src={fechar_icon} alt="fechar"
                         onClick={fecharModal} />
                 </div>
                 <div className={stylesPerfil.modal_content}>
@@ -68,9 +62,8 @@ const perfilBeneficiario = () => {
                     <button>Confirmar</button>
                 </div>
             </Modal>
-        </>
-        </div>
-    )
+        </div >
+    );
 }
 
 export default perfilBeneficiario;
