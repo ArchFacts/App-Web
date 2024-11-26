@@ -31,6 +31,7 @@ const ServicesCarousel = ({ onSelectionChange }) => {
             return updatedSelection;
         });
     };
+
     useEffect(() => {
         onSelectionChange(selectedCards);
     }, [selectedCards, onSelectionChange]);
@@ -50,7 +51,7 @@ const ServicesCarousel = ({ onSelectionChange }) => {
     return (
         <div className={styles['main-carousel']}>
             <div className={styles['carousel-container']}>
-                <button className={`${styles['carousel-button']} ${styles.prev}`} onClick={handlePrev}>
+                <button className={`${styles['carousel-button']} ${styles['prev']}`} onClick={handlePrev}>
                     ‹
                 </button>
 
@@ -61,13 +62,14 @@ const ServicesCarousel = ({ onSelectionChange }) => {
                             img={card.img}
                             title={card.title}
                             text={card.text}
+                            
                             isSelected={selectedCards.includes(card.id)}
                             onClick={() => handleCardClick(card.id)}
                         />
                     ))}
                 </div>
 
-                <button className={`${styles['carousel-button']} ${styles.next}`} onClick={handleNext}>
+                <button className={`${styles['carousel-button']} ${styles['next']}`} onClick={handleNext}>
                     ›
                 </button>
             </div>
