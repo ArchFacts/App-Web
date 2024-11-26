@@ -50,7 +50,7 @@ const ProposalConfirmationPage4 = () => {
                         <h1>Confirmação dos dados</h1>
                         <div className={stylesPage3.paragrafo}>
                             <p className={styles.text}>
-                                Confirme os dados antes de enviar a solicitação para Volkswagen.
+                                Confirme os dados antes de enviar a solicitação para Volkswagen
                             </p>
                         </div>
                         <div className={stylesPage4.dados}>

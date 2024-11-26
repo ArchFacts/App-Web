@@ -154,7 +154,7 @@ function ChamadosEmpresa() {
             <div className={styles.content}>
                 <div className={styles.capsula}>
                     <div className={styles.abrir_chamado}>
-                        <AbrirChamado onAbrirChamadoClick={() => abrirModal(tiposModal.abrir_chamado)}></AbrirChamado>
+                        <AbrirChamado h1="Abrir Chamado" onAbrirChamadoClick={() => abrirModal(tiposModal.abrir_chamado)}></AbrirChamado>
                     </div>
                     <div className={styles.chamados}>
                         <ChamadosName title={'ECORP'}></ChamadosName>
