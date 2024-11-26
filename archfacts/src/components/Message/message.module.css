@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../utils/fonts/Poppins-Light.ttf   ');
+}
+
 .message_area {
     display: flex;
     flex-direction: column;
@@ -28,10 +33,17 @@
     border: none;
     outline: none;
     color: #033E8C;
+    font-family: 'Poppins-Light';
+    font-size: 24px;
 }
 
 .message_area textarea:focus {
     border: 2px solid #05C7F2;
+}
+
+.div_input label{
+    font-family: 'Poppins-Light';
+    font-size: 24px;
 }
 
 label{

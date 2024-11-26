@@ -27,6 +27,7 @@
       border: none;
       border-bottom: 1px solid #000;
       outline: none;
+      border-radius: 0;
       width: 90%;
   }
   
