@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ServicesCarousel from "../../Services-Carousel/services_carousel.jsx";
 
 const ProposalConfirmationPage2 = () => {
-    const [error, setError] = useState(false); 
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
 
     const handleProposta1 = () => {
@@ -14,12 +14,12 @@ const ProposalConfirmationPage2 = () => {
     };
 
     const handleProposta3 = () => {
-        const selectedServices = document.querySelectorAll('.selected'); 
+        const selectedServices = document.querySelectorAll('.selected');
         selecionados
         if (selectedServices.length === 0) {
-            setError(true); 
+            setError(true);
         } else {
-            setError(false); 
+            setError(false);
             navigate('/enviar-proposta3');
         }
     };
@@ -36,7 +36,7 @@ const ProposalConfirmationPage2 = () => {
                     </div>
 
                     <div className={styles.enterprise_area}>
-                          <ServicesCarousel />
+                        <ServicesCarousel />
                     </div>
                     {error && (
                         <div className={styles['alert-message']}>
