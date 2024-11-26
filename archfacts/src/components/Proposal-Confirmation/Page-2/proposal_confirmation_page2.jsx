@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 import '../../../utils/global.css';
 import styles from '../Page-1/proposal_confirmation_page1.module.css';
 import BotaoLaranja from "../../Botao/botao_laranja_proposta.jsx";
@@ -8,12 +8,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ServicesCarousel from "../../Services-Carousel/services_carousel.jsx";
 
 const ProposalConfirmationPage2 = () => {
-    const [selectedServices, setSelectedServices] = useState([]); 
+
+    const [error, setError] = useState(false);
+    const [selectedServices, setSelectedServices] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const { negocio } = location.state || {};
 
     useEffect(() => {
-        setSelectedServices(location.state?.selectedServices || []); 
+        setSelectedServices(location.state?.selectedServices || []);
     }, [location.state?.selectedServices]);
 
     const updateSelectedServices = (newServices) => {
@@ -21,7 +24,7 @@ const ProposalConfirmationPage2 = () => {
     };
 
     const handleProposta1 = () => {
-        navigate('/enviar-proposta1');
+        navigate(`/enviar-proposta1/${negocio.codigo}/${negocio.nome}`, { state: { negocio } });
     };
 
     const handleProposta3 = () => {
@@ -33,10 +36,10 @@ const ProposalConfirmationPage2 = () => {
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-                theme: "colored", 
+                theme: "colored",
             });
         } else {
-            navigate('/enviar-proposta3', { state: { selectedServices } });
+            navigate(`/enviar-proposta3/${negocio.codigo}/${negocio.nome}`, { state: { selectedServices, negocio } });
         }
     };
 
