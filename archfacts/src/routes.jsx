@@ -22,6 +22,7 @@ import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
 import HomePrestador from './pages/Home-Prestador/homePrestador';
 import EnviarProposta4 from "./pages/Enviar-Proposta/enviar_proposta4";
 import PerfilFuncionario from "./pages/Perfil-Usuario/Funcionario/perfil_funcionario";
+import TarefasPrestador from "./pages/Tarefas-Prestador/tarefas_prestador";
 
 function Rotas() {
     return (
@@ -50,6 +51,7 @@ function Rotas() {
                     <Route path="/home-prestador" element={<HomePrestador/>}></Route>
                     <Route path="/enviar-proposta4" element={<EnviarProposta4/>}></Route>
                     <Route path="/perfil-funcionario" element={<PerfilFuncionario/>}></Route>
+                    <Route path="/tarefas-prestador" element={<TarefasPrestador/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>
