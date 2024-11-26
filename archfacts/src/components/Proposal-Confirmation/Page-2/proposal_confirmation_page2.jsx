@@ -8,13 +8,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ServicesCarousel from "../../Services-Carousel/services_carousel.jsx";
 
 const ProposalConfirmationPage2 = () => {
-<<<<<<< HEAD
-    const [error, setError] = useState(false);
-=======
 
     const [error, setError] = useState(false);
     const [selectedServices, setSelectedServices] = useState([]); 
->>>>>>> ff4dcd3442dae0f3728ae3577fd520f7661bed34
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -31,15 +27,6 @@ const ProposalConfirmationPage2 = () => {
     };
 
     const handleProposta3 = () => {
-<<<<<<< HEAD
-        const selectedServices = document.querySelectorAll('.selected');
-        selecionados
-        if (selectedServices.length === 0) {
-            setError(true);
-        } else {
-            setError(false);
-            navigate('/enviar-proposta3');
-=======
         if (selectedServices.length === 0) {
             toast.error("Selecione ao menos um serviço antes de prosseguir!", {
                 position: "top-right",
@@ -52,7 +39,6 @@ const ProposalConfirmationPage2 = () => {
             });
         } else {
             navigate('/enviar-proposta3', { state: { selectedServices } });
->>>>>>> ff4dcd3442dae0f3728ae3577fd520f7661bed34
         }
     };
 
@@ -68,11 +54,7 @@ const ProposalConfirmationPage2 = () => {
                     </div>
 
                     <div className={styles.enterprise_area}>
-<<<<<<< HEAD
-                        <ServicesCarousel />
-=======
                         <ServicesCarousel onSelectionChange={updateSelectedServices} />
->>>>>>> ff4dcd3442dae0f3728ae3577fd520f7661bed34
                     </div>
 
                     <div className={styles.buttons}>

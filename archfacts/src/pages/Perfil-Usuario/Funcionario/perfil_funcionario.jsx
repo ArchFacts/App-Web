@@ -1,11 +1,7 @@
 import SideBar from "../../../components/Side-Bar/sideBar";
 import '../../../utils/global.css';
 import styles from '../../Hub/Hub.module.css'
-<<<<<<< HEAD
-import stylesPerfil from '../../Perfil-Usuario/Beneficiario/perfil.module.css'
-=======
 import stylesPerfil from '../Funcionario/perfil.module.css'
->>>>>>> ff4dcd3442dae0f3728ae3577fd520f7661bed34
 import ProfileData from "../../../components/Profile-Data/profileData";
 import Volks from "../../../utils/assets/volks.png";
 import React, { useState } from "react";
