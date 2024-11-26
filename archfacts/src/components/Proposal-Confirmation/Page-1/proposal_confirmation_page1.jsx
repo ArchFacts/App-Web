@@ -14,11 +14,11 @@ const ProposalConfirmationPage1 = () => {
     const { negocio } = location.state || {};
 
     const handleEmpresasParceiras = () => {
-        navigate(`/empresas-parceiras1/${negocio.codigo}/${negocio.nome}`);
+        navigate(`/empresas-parceiras1/${negocio.codigo}/${negocio.nome}`, { state: { negocio } });
     };
 
     const handleProposta2 = () => {
-        navigate(`/enviar-proposta2/${negocio.codigo}/${negocio.nome}`);
+        navigate(`/enviar-proposta2/${negocio.codigo}/${negocio.nome}`, { state: { negocio } });
     };
 
     if (!negocio) {

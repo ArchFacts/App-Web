@@ -3,14 +3,17 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../utils/global.css";
 import styles from "../Page-1/proposal_confirmation_page1.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ProposalMessage from "../../Message/proposal_message.jsx";
 import stylesPage3 from "../Page-3/proposal_confirmation_page3.module.css";
 import InputProposta from "../../Input/Input-Proposta/input_proposta.jsx";
 import BotaoProposta from '../../Botao/botao_proposta_3.jsx';
+import api, { registroEmpresa, registroProposta } from "../../../api.jsx";
 
 const ProposalConfirmationPage3 = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { negocio } = location.state || {};
 
     const [formData, setFormData] = useState({
         titulo: "",
@@ -28,23 +31,73 @@ const ProposalConfirmationPage3 = () => {
             ...formData,
             [name]: value,
         });
+
+        if (name === "cep") {
+            buscaCepData(value);
+        }
+    };
+
+    const buscaCepData = async (cep) => {
+        try {
+            const cepFiltrado = cep.replace(/\D/g, ''); // Remove caracteres que não são numéricos
+
+            if (cepFiltrado.length === 8) {
+                const resposta = await fetch(`https://viacep.com.br/ws/${cepFiltrado}/json/`);
+                const data = await resposta.json();
+
+                if (data.erro) {
+                    console.log("CEP não encontrado");
+                    return;
+                }
+
+                setFormData((prevState) => ({
+                    ...prevState,
+                    endereco: data.logradouro || '',
+                }));
+            } else {
+                console.log("Cep Inválido");
+            }
+        } catch (error) {
+            console.log("Erro ao buscar o CEP", error);
+        }
     };
 
     const handleVoltar = () => {
-        navigate("/enviar-proposta2", { state: formData }); 
+        console.log("clicou")
+        navigate(`/enviar-proposta2/${negocio.codigo}/${negocio.nome}`, { state: { formData, negocio } });
     };
 
-    const handleContinuar = () => {
-        const selectedServices = location.state?.selectedServices || []; 
-        console.log("selectedServices:", selectedServices); 
+    const handleContinuar = async () => {
+        const selectedServices = location.state?.selectedServices || [];
+        console.log("selectedServices:", selectedServices);
         if (validateForm()) {
-            navigate("/enviar-proposta4", { 
-                state: { ...formData, selectedServices: selectedServices }
-            });
+            const cadastroSucesso = await handleCadastro();
+
+            if (cadastroSucesso) {
+                navigate("/enviar-proposta4/", {
+                    state: { ...formData, selectedServices: selectedServices }
+                });
+            }
         }
     };
-    
-    
+
+    const handleCadastro = async () => {
+
+        if (!negocio || !negocio.codigo || !negocio.nome) {
+            throw new Error("Código de empresa ou nome do negócio não definidos.");
+        }
+
+        try {
+            await registroProposta(formData, negocio.codigo, negocio.nome);
+            console.log(`Proposta cadastrada: ${JSON.stringify(formData)}`);
+            toast.success("Proposta cadastrada com sucesso!")
+            return true;
+        } catch (error) {
+            console.log("Houve um erro ao fazer o cadastro", error);
+            toast.error("Houve erro ao fazer o cadastro.");
+            return false;
+        }
+    }
 
     const validateForm = () => {
         const { titulo, cep, endereco, numero, data, descricao } = formData;
@@ -75,7 +128,7 @@ const ProposalConfirmationPage3 = () => {
             return false;
         }
 
-        const cepRegex = /^[0-9]{8}$/; 
+        const cepRegex = /^[0-9]{8}$/;
         if (!cepRegex.test(cep)) {
             toast.error("O CEP informado é inválido!", {
                 position: "top-right",

@@ -52,4 +52,11 @@ export const encontrarEmpresaProposta = (codEmpresa) => {
   return api.get(`/propostas/buscarNegocioProposta/${codEmpresa}`);
 }
 
+export const registroProposta = (data, codEmpresa, nomeNegocio) => {
+  return api.post (`propostas/${codEmpresa}/${nomeNegocio}`, data);
+}
+
+export const dadosConfirmacaoProposta = (data, codEmpresa, nomeNegocio) => {
+  return api.get (`propostas/${codEmpresa}/${nomeNegocio}`, data);
+}
 export default api;
