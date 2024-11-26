@@ -22,6 +22,7 @@ import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_benefic
 import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
 import HomePrestador from './pages/Home-Prestador/homePrestador';
 import PerfilFuncionario from "./pages/Perfil-Usuario/Funcionario/perfil_funcionario";
+import TarefasPrestador from "./pages/Tarefas-Prestador/tarefas_prestador";
 import PerfilPrestador from "./pages/Perfil-Prestador/perfil_prestador";
 
 function Rotas() {
@@ -34,6 +35,24 @@ function Rotas() {
                     <Route path="/nivel-usuario" element={<NivelUsuario />} />
                     <Route path='/cadastrar-empresa' element={<CadastroEmpresa />} />
                     <Route path='/cadastrar-funcionario' element={<CadastroFuncionario />} />
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/hub" element={<Hub /> }/>
+                    <Route path ="/empresas-parceiras" element={<EmpresasParceiras/>}/>
+                    <Route path ="/perfil-empresa" element={<PerfilEmpresa/>}/>
+                    <Route path="/perfil-beneficiario" element={<PerfilBeneficiario/>}></Route>
+                    <Route path="/enviar-proposta1" element={<EnviarProposta1/>}></Route>
+                    <Route path="/enviar-proposta2" element={<EnviarProposta2/>}></Route>
+                    <Route path="/enviar-proposta3" element={<EnviarProposta3/>}></Route>
+                    <Route path="/abertura-chamados" element={<AberturaChamados/>}></Route>
+                    <Route path="/teste" element={<Teste/>}></Route>
+                    <Route path="/chamados-empresa" element={<ChamadosEmpresa/>}></Route>
+                    <Route path="/eventos" element={<Eventos/>}></Route>
+                    <Route path="/projetos-beneficiario" element={<ProjetosBeneficiario/>} />
+                    <Route path="/projetos-prestador" element={<ProjetosPrestador/>} />
+                    <Route path="/home-prestador" element={<HomePrestador/>}></Route>
+                    <Route path="/enviar-proposta4" element={<EnviarProposta4/>}></Route>
+                    <Route path="/perfil-funcionario" element={<PerfilFuncionario/>}></Route>
+                    <Route path="/tarefas-prestador" element={<TarefasPrestador/>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/hub" element={<Hub />} />
                     <Route path="/empresas-parceiras" element={<EmpresasParceiras />} />
@@ -52,6 +71,7 @@ function Rotas() {
                     <Route path="/home-prestador" element={<HomePrestador />}></Route>
                     <Route path="/perfil-funcionario" element={<PerfilFuncionario />}></Route>
                     <Route path="/perfil-prestador" element={<PerfilPrestador />} />
+
 
                 </Routes>
             </BrowserRouter>
