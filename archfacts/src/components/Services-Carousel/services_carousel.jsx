@@ -27,10 +27,7 @@ const ServicesCarousel = ({ onSelectionChange }) => {
             const updatedSelection = prevSelectedCards.includes(id)
                 ? prevSelectedCards.filter(cardId => cardId !== id)
                 : [...prevSelectedCards, id];
-<<<<<<< HEAD
             onSelectionChange(updatedSelection);
-=======
->>>>>>> ff4dcd3442dae0f3728ae3577fd520f7661bed34
             return updatedSelection;
         });
     };
