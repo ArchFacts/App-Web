@@ -7,14 +7,14 @@
     border: 1px solid #ddd;
     border-radius: 3px; 
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); 
-    width: 67%;
+    width: 20%;
     height: 16rem;
     justify-content: space-around;
     display: flex;
     flex-direction: column;
     transition: border-color 0.1s ease, border-width 0.1s ease;
     align-items: center;
-    cursor: pointer;  /* Adiciona um cursor de mão para indicar que o card é clicável */
+    cursor: pointer; 
 }
 
 .card_container:hover {
@@ -24,7 +24,7 @@
 
 .card_container.selected {
     border-color: #007bff;
-    border-width: 3px;  /* Quando o card for selecionado, a borda ficará azul */
+    border-width: 3px;  
 }
 
 .card_container .card_image {

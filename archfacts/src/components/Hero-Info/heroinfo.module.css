@@ -86,3 +86,14 @@
 .hero_info .button_area button:hover {
     scale: 1.2;
 }
+
+.button{
+    border: none;
+    cursor: pointer;
+}
+
+.button_azul{
+    background-color: #033E8C;
+    border: none;
+    cursor: pointer;
+}

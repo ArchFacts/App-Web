@@ -20,8 +20,8 @@ import Eventos from './pages/Eventos/eventos';
 import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_beneficiario";
 import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
 import HomePrestador from './pages/Home-Prestador/homePrestador';
+import EnviarProposta4 from "./pages/Enviar-Proposta/enviar_proposta4";
 import PerfilFuncionario from "./pages/Perfil-Usuario/Funcionario/perfil_funcionario";
-
 
 function Rotas() {
     return (
@@ -41,6 +41,7 @@ function Rotas() {
                     <Route path="/enviar-proposta1/:cod/:nome" element={<EnviarProposta1 />}></Route>
                     <Route path="/enviar-proposta2/:id/:nome" element={<EnviarProposta2 />}></Route>
                     <Route path="/enviar-proposta3/:id/:nome" element={<EnviarProposta3 />}></Route>
+                    <Route path="/enviar-proposta4/:id/:nome" element={<EnviarProposta4/>}></Route>
                     <Route path="/abertura-chamados" element={<AberturaChamados />}></Route>
                     <Route path="/teste" element={<Teste />}></Route>
                     <Route path="/chamados-empresa" element={<ChamadosEmpresa />}></Route>
