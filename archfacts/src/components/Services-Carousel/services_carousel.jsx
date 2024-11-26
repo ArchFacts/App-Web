@@ -25,14 +25,9 @@ const ServicesCarousel = ({ onSelectionChange }) => {
     const handleCardClick = (id) => {
         setSelectedCards((prevSelectedCards) => {
             const updatedSelection = prevSelectedCards.includes(id)
-<<<<<<< HEAD
-                ? prevSelectedCards.filter(cardId => cardId !== id) 
-                : [...prevSelectedCards, id]; 
-=======
                 ? prevSelectedCards.filter(cardId => cardId !== id)
                 : [...prevSelectedCards, id];
             onSelectionChange(updatedSelection);
->>>>>>> bbad73b868d3292274441dda093dcb974140aeb1
             return updatedSelection;
         });
     };
@@ -67,13 +62,9 @@ const ServicesCarousel = ({ onSelectionChange }) => {
                             img={card.img}
                             title={card.title}
                             text={card.text}
-<<<<<<< HEAD
-                            isSelected={selectedCards.includes(card.id)} 
-                            onClick={() => handleCardClick(card.id)} 
-=======
+                            
                             isSelected={selectedCards.includes(card.id)}
                             onClick={() => handleCardClick(card.id)}
->>>>>>> bbad73b868d3292274441dda093dcb974140aeb1
                         />
                     ))}
                 </div>
