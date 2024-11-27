@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import SideBarColaborador from '../../components/Side-Bar-Colaborador/sideBarColaborador';
 import styles from './chamados_prestador.module.css';
 import ChamadosNamePrestador from '../../components/Chamados-Name-Prestador/chamados_name_prestador';
 import lixeira from '../../utils/assets/lixeira.png';
+import Modal from 'react-modal';
+import fechar_icon from "../../utils/assets/modal-x.svg";
+import division_icon from '../../utils/assets/division.svg'
 
 function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarClick, onDefinirParcelaClick }) {
     const getStatusStyle = (status) => {
@@ -24,6 +27,7 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
                     src={lixeira}
                     alt="Excluir"
                     className={styles.icon}
+                    onClick={onFinalizarClick}
                 />
             </div>
         </div>
@@ -55,6 +59,19 @@ function ChamadosPrestador() {
         },
     ];
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [tipoModal, setTipoModal] = useState(null);
+
+    const abrirModal = (tipo) => {
+        setTipoModal(tipo);
+        setModalIsOpen(true);
+    };
+
+    const fecharModal = () => {
+        setModalIsOpen(false);
+        setTipoModal(null);
+    };
+
     return (
         <div className={styles.container}>
             <SideBarColaborador />
@@ -81,12 +98,38 @@ function ChamadosPrestador() {
                                 key={index}
                                 {...chamadoPrestador}
                                 onFinalizarClick={() => console.log('Finalizar chamadoPrestador', index)}
-                                onDefinirParcelaClick={() => console.log('Definir parcela', index)}
+                                onDefinirParcelaClick={() => abrirModal('definirCusto')}
                             />
                         ))}
                     </div>
                 </div>
             </div>
+
+            <Modal
+                isOpen={modalIsOpen && tipoModal === 'definirCusto'}
+                onRequestClose={fecharModal}
+                contentLabel="Modal para definir o custo"
+                className={styles.modalParcela}
+                overlayClassName={styles.modal_overlay}
+            >
+                <div className={styles.modal_header}>
+                    <img src={division_icon} alt="" width={60} height={60} />
+                    <h2>Definir custo</h2>
+                    <img className={styles.fechar} src={fechar_icon} alt="Fechar" onClick={fecharModal} />
+                </div>
+
+                <div className={styles.modal_content}>
+                    <div className={styles.parcelas}>
+                        Projeto de abelhas
+                    </div>
+                    <div className={styles.price_field}>
+                        <p> R$</p>
+                        <input type="number"/>
+                    </div>
+                    <button className={styles.botao}>Confirmar</button>
+                </div>
+            </Modal>
+
         </div>
     );
 }
