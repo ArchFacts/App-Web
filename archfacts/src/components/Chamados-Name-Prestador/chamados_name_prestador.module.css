@@ -3,14 +3,19 @@
     align-items: center;
     gap: 1rem;
     margin-left: 8%;
+    margin-top: 1%;
 }
 
-.title_area .generic_tarefas_title {
+h1 {
+    font-size: 32px;
+}
+
+.title_area .generic_chamados_prestador_title {
     color: #0E0C19;
 }
 
-.title_area .tarefas_title {
-    color: #F95C00;
+.title_area .chamados_prestador_title {
+    color: #033E8C;
 }
 
 .title_area .line {

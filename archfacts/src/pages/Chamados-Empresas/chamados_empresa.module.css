@@ -61,7 +61,7 @@
 .formContainer {
     background-color: rgb(238, 237, 237);
     width: 100%;
-    height: 81%;
+    height: 76%;
     max-width: 90%;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -99,6 +99,7 @@
 
 .infos {
     display: flex;
+    align-items: center;
     font-size: 15px;
     flex-direction: row;
     padding: 2.5%;
@@ -118,11 +119,16 @@
 }
 
 .parcelaCell {
+    height: 2.5rem;
+    background-color: #033E8C;
+    font-family: 'Poppins-Medium';
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
     display: flex;
     font-size: 14px;
     justify-content: center;
     width: 14%;
-    margin-top: -0.3%;
     align-items: center;
 }
 
@@ -148,7 +154,6 @@
     width: 4%;
     cursor: pointer;
     margin-left: 5.5%;
-    margin-top: -1%;
 }
 
 .headerStatus {
