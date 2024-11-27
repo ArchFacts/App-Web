@@ -9,7 +9,7 @@ const AbrirChamado = ({ onAbrirChamadoClick, h1 }) => {
             <img src={adicionar_icon}
                 alt="icone de adicionar"
                 width={60}
-                height={60} />
+                height={50} />
         </div>
     );
 }

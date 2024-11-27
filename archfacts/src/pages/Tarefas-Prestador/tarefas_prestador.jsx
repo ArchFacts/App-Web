@@ -3,7 +3,7 @@ import SideBarColaborador from '../../components/Side-Bar-Colaborador/sideBarCol
 import styles from './tarefas_prestador.module.css';
 import TarefasName from '../../components/Tarefas-Name/tarefas_name';
 import AbrirTarefa from '../../components/Abrir-Tarefa/abrir_tarefa';
-import checkTarefa from '../../utils/assets/checkTarefa.png';
+import check from '../../utils/assets/check.png';
 import editar from '../../utils/assets/editar.png';
 import lixeira from '../../utils/assets/lixeira.png';
 
@@ -36,7 +36,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
                     onClick={() => console.log('Excluir tarefa')}
                 />
                 <img
-                    src={checkTarefa}
+                    src={check}
                     alt="Finalizar"
                     className={styles.icon}
                     onClick={onFinalizarClick}
