@@ -9,6 +9,7 @@ import Spinner from '../../components/Spinner/spinner';
 import { imagemGenerica } from '../../api';
 import api from '../../api';
 import { Navigate, useNavigate } from 'react-router-dom';
+import SideBar from '../../components/Side-Bar/sideBar';
 
 const EmpresasParceiras = () => {
 
@@ -42,8 +43,10 @@ const EmpresasParceiras = () => {
 
 
     return (
-
         <>
+         <div className={styles.container}>
+        <SideBar/>
+        <div className={styles.main_content}>
             <div className={styles.upperBar}>
                 <img className={styles.logo} src={logo} alt="" />
                 <h2 className={styles.empresasText} style={{ color: '#033E8C', fontSize: '2rem' }}>Empresas parceiras</h2>
@@ -71,18 +74,17 @@ const EmpresasParceiras = () => {
                     )
                 )}
             </div>
+            </div>
             <div className={styles.lateralDireita}>
                 <div className={styles.divInterior}>
                     <div>
                         <h1 style={{ color: '#F95C00', fontSize: '3rem' }}>Conheça</h1>
                         <h2 style={{ color: 'white', fontSize: '2rem' }}>nossas parcerias.</h2>
                     </div>
-
-                    <div className={styles.button}>Seguir para o meu perfil</div>
                 </div>
 
             </div>
-
+            </div>
         </>
 
     )
