@@ -86,6 +86,7 @@
     flex-direction: column;
     align-items: center;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 .barraSuperior {
@@ -167,6 +168,7 @@
 
 .finalizarCell {
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 9%;
     cursor: pointer;
@@ -174,8 +176,8 @@
 }
 
 .infos img {
-    width: 85%;
-    height: 85%;
+    height: 35%;
+    width: 35%;
     transition: all 0.1s ease-in;
 }
 
