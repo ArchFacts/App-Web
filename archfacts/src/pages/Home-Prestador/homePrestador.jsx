@@ -8,6 +8,7 @@ import fechar_icon from "../../utils/assets/modal-x.svg"
 import axios from 'axios';
 import api from '../../api';
 import Spinner from '../../components/Spinner/spinner';
+import { useNavigate } from 'react-router-dom';
 
 const HomePrestador = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -15,6 +16,7 @@ const HomePrestador = () => {
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(true)
     const [propostas, setPropostas] = useState([]);
+    const navigate = useNavigate();
 
     const abrirModal = (propostaDaVez) => {
         setPropostaSelecionada(propostaDaVez);
@@ -24,6 +26,10 @@ const HomePrestador = () => {
     const fecharModal = () => {
         setModalIsOpen(false);
         setPropostaSelecionada(null);
+    }
+
+    const redirecionarPerfil = () => {
+        navigate('/perfil-prestador');
     }
 
     // MOCADO
@@ -72,7 +78,7 @@ const HomePrestador = () => {
     return (
         <>
             <section>
-                <SideBarColaborador />
+                <SideBarColaborador redirecionarPerfil={redirecionarPerfil} />
                 <div className={styles.content}>
                     <div className={styles.capsula}>
                         <span className={styles.text}> Seja bem vindo!</span>

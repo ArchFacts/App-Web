@@ -37,15 +37,19 @@ export const dadosUsuarioLogado = (data) => {
 }
 
 export const buscarPropostas = (data) => {
-  return api.get('/propostas');
+  return api.get('/propostas', data);
 }
 
 export const buscarEmpresas = (data) => {
-  return api.get('/negocios');
+  return api.get('/negocios', data);
 }
 
 export const imagemGenerica = (texto) => {
   return `https://placehold.co/600x400/black/white?text=${encodeURIComponent(texto)}`;
+}
+
+export const imagemServicoGenerica = () => {
+  return `https://picsum.photos/300/300`;
 }
 
 export const encontrarEmpresaProposta = (codEmpresa) => {
@@ -53,10 +57,27 @@ export const encontrarEmpresaProposta = (codEmpresa) => {
 }
 
 export const registroProposta = (data, codEmpresa, nomeNegocio) => {
-  return api.post (`propostas/${codEmpresa}/${nomeNegocio}`, data);
+  return api.post(`propostas/${codEmpresa}/${nomeNegocio}`, data);
 }
 
 export const dadosConfirmacaoProposta = (data, codEmpresa, nomeNegocio) => {
-  return api.get (`propostas/${codEmpresa}/${nomeNegocio}`, data);
+  return api.get(`propostas/${codEmpresa}/${nomeNegocio}`, data);
 }
+
+export const registroServico = (data) => {
+  return api.post(`/servicos`, data);
+}
+
+export const obterServicosEmpresa = (codEmpresa) => {
+  return api.get(`/servicos/${codEmpresa}`);
+}
+
+export const obterDonoNegocio = (codEmpresa) => {
+  return api.get(`/negocios/${codEmpresa}`);
+}
+
+export const cadastrarPropostaServico = (data) => {
+  return api.post(`/propostaServicos`, data);
+}
+
 export default api;
