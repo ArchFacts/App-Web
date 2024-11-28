@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideBarColaborador from '../../components/Side-Bar-Colaborador/sideBarColaborador';
 import styles from './chamados_prestador.module.css';
 import ChamadosNamePrestador from '../../components/Chamados-Name-Prestador/chamados_name_prestador';
@@ -24,7 +24,7 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
             <p className={styles.fechamentoCell}>{fechamento}</p>
             {/* <div className={styles.finalizarCell}> */}
             <div className={styles.div_botao}>
-            <button className={styles.chamadoCell} onClick={onVerChamadoClick}>Ver descrição</button>
+                <button className={styles.chamadoCell} onClick={onVerChamadoClick}>Ver descrição</button>
             </div>
             {/* </div> */}
         </div>
@@ -140,7 +140,7 @@ function ChamadosPrestador() {
                     </div>
                     <div className={styles.price_field}>
                         <p> R$</p>
-                        <input  onChange={(e) => setValorInput(e.target.value)} type="number"/>
+                        <input onChange={(e) => setValorInput(e.target.value)} type="number" />
                     </div>
                     <button className={styles.botao} onClick={confirmarCusto}>Confirmar</button>
                 </div>
@@ -163,20 +163,17 @@ function ChamadosPrestador() {
                 <div className={styles.modal_content}>
                     <div className={styles.field}>
                         <label htmlFor="nome">Nome do solicitante:</label>
-                       
+                        <div className={styles.dado_beneficiario}>Luis Gustavo de Almeida</div>
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="titulo">Título do chamado:</label>
-                      
+                        <div className={styles.dado_beneficiario}>Compra dos produtos de limpeza pela internet.</div>
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="desc">Descrição:</label>
-                     
+                        <div className={styles.description}>Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknow n printer took a galley of   including versions of Lorem Ipsum.
+                        </div>
                     </div>
-                    <div className={styles.button_area}>
-                        <button type="submit">Enviar</button>
-                    </div>
-                    {/* </form> */}
                 </div>
             </Modal>
             <ToastContainer />
