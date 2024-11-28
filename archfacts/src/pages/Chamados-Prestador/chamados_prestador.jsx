@@ -5,7 +5,8 @@ import ChamadosNamePrestador from '../../components/Chamados-Name-Prestador/cham
 import lixeira from '../../utils/assets/lixeira.png';
 import Modal from 'react-modal';
 import fechar_icon from "../../utils/assets/modal-x.svg";
-import division_icon from '../../utils/assets/division.svg'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarClick, onDefinirParcelaClick }) {
     const getStatusStyle = (status) => {
@@ -61,6 +62,7 @@ function ChamadosPrestador() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
+    const [valorInput, setValorInput] = useState('');
 
     const abrirModal = (tipo) => {
         setTipoModal(tipo);
@@ -70,6 +72,18 @@ function ChamadosPrestador() {
     const fecharModal = () => {
         setModalIsOpen(false);
         setTipoModal(null);
+    };
+
+    const confirmarCusto = () => {
+        if (!valorInput || valorInput <= 0) {
+            toast.error('Por favor, insira um valor válido!');
+            return;
+        }
+
+        toast.success('Custo definido com sucesso!');
+        setTimeout(() => {
+            fecharModal();
+        }, 1000);
     };
 
     return (
@@ -113,7 +127,7 @@ function ChamadosPrestador() {
                 overlayClassName={styles.modal_overlay}
             >
                 <div className={styles.modal_header}>
-                    <img src={division_icon} alt="" width={60} height={60} />
+                    <span className={styles.nimbus_money}></span>
                     <h2>Definir custo</h2>
                     <img className={styles.fechar} src={fechar_icon} alt="Fechar" onClick={fecharModal} />
                 </div>
@@ -124,12 +138,12 @@ function ChamadosPrestador() {
                     </div>
                     <div className={styles.price_field}>
                         <p> R$</p>
-                        <input type="number"/>
+                        <input  onChange={(e) => setValorInput(e.target.value)} type="number"/>
                     </div>
-                    <button className={styles.botao}>Confirmar</button>
+                    <button className={styles.botao} onClick={confirmarCusto}>Confirmar</button>
                 </div>
             </Modal>
-
+            <ToastContainer />
         </div>
     );
 }
