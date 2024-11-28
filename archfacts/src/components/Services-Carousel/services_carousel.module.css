@@ -18,24 +18,32 @@ html {
 }
 
 .carousel-button {
-  transform: translateY(-50%) ;
+  transform: translateY(-50%);
   z-index: 2;
-  background: black ;
- border: none ;
-  border-radius: 50% ;
-  width:  3%;
-  height: 5vh;
-  color:  white;
-  cursor: pointer ;
+  background: black;
+  border: none;
+  border-radius: 50%;
+  min-width: 2rem;
+  min-height: 2rem;
+  color: white;
+  cursor: pointer;
+  transition: all ease-in 0.3s;
 }
 
 .carousel-button:hover {
-  width: 3.5%;
+  transform: scale(1.1);
 }
 
 .cards {
   justify-content: space-around;
   flex-direction: row;
   display: flex;
-  width: 90%;
+  width: 100%;
+}
+
+.cards img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 5px solid rebeccapurple;
 }

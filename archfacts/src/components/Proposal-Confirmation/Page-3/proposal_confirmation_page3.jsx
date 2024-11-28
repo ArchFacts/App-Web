@@ -13,7 +13,7 @@ import api, { registroEmpresa, registroProposta } from "../../../api.jsx";
 const ProposalConfirmationPage3 = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { negocio } = location.state || {};
+    const { negocio, selectedServices } = location.state || {};
 
     const [formData, setFormData] = useState({
         titulo: "",
@@ -21,7 +21,7 @@ const ProposalConfirmationPage3 = () => {
         endereco: "",
         numero: "",
         complemento: "",
-        data: "",
+        dataEntrega: "",
         descricao: ""
     });
 
@@ -64,43 +64,26 @@ const ProposalConfirmationPage3 = () => {
 
     const handleVoltar = () => {
         console.log("clicou")
-        navigate(`/enviar-proposta2/${negocio.codigo}/${negocio.nome}`, { state: { formData, negocio } });
+        navigate(`/enviar-proposta2/${negocio.codigo}/${negocio.nome}`, { state: { formData, negocio, selectedServices } });
     };
 
-    const handleContinuar = async () => {
+    const handleContinuar = () => {
         const selectedServices = location.state?.selectedServices || [];
         console.log("selectedServices:", selectedServices);
         if (validateForm()) {
-            const cadastroSucesso = await handleCadastro();
-
-            if (cadastroSucesso) {
-                navigate("/enviar-proposta4/", {
-                    state: { ...formData, selectedServices: selectedServices }
-                });
-            }
+            navigate(`/enviar-proposta4/${negocio.codigo}/${negocio.nome}`, {
+                state: {
+                    ...formData,
+                    selectedServices: selectedServices,
+                    negocio: negocio // Inclua o negocio também
+                }
+            });
         }
     };
 
-    const handleCadastro = async () => {
-
-        if (!negocio || !negocio.codigo || !negocio.nome) {
-            throw new Error("Código de empresa ou nome do negócio não definidos.");
-        }
-
-        try {
-            await registroProposta(formData, negocio.codigo, negocio.nome);
-            console.log(`Proposta cadastrada: ${JSON.stringify(formData)}`);
-            toast.success("Proposta cadastrada com sucesso!")
-            return true;
-        } catch (error) {
-            console.log("Houve um erro ao fazer o cadastro", error);
-            toast.error("Houve erro ao fazer o cadastro.");
-            return false;
-        }
-    }
 
     const validateForm = () => {
-        const { titulo, cep, endereco, numero, data, descricao } = formData;
+        const { titulo, cep, endereco, numero, dataEntrega, descricao } = formData;
 
         if (!titulo) {
             toast.error("O campo 'Título' é obrigatório!", {
@@ -168,7 +151,7 @@ const ProposalConfirmationPage3 = () => {
             return false;
         }
 
-        if (!data) {
+        if (!dataEntrega) {
             toast.error("O campo 'Data' é obrigatório!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -182,7 +165,7 @@ const ProposalConfirmationPage3 = () => {
         }
 
         const today = new Date();
-        const selectedDate = new Date(data);
+        const selectedDate = new Date(dataEntrega);
         if (selectedDate <= today) {
             toast.error("A data deve ser posterior à data de hoje!", {
                 position: "top-right",
@@ -217,7 +200,7 @@ const ProposalConfirmationPage3 = () => {
             <div className={styles.container}>
                 <div className={styles.container_proposta}>
                     <div className={styles.container_itens}>
-                        <h1>Formulário de Proposta para Volkswagen</h1>
+                        <h1>Formulário de Proposta para {negocio.nome}</h1>
                         <div className={stylesPage3.paragrafo}>
                             <p className={styles.text}>
                                 Preencha os dados para que sua proposta seja analisada com agilidade
@@ -267,8 +250,8 @@ const ProposalConfirmationPage3 = () => {
                                     <input
                                         className={stylesPage3.inputDate}
                                         type="date"
-                                        name="data"
-                                        value={formData.data}
+                                        name="dataEntrega"
+                                        value={formData.dataEntrega}
                                         onChange={handleChange}
                                     />
                                 </div>

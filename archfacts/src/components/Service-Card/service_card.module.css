@@ -7,7 +7,7 @@
     border: 1px solid #ddd;
     border-radius: 3px; 
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); 
-    width: 20%;
+    min-width: 14rem;
     height: 16rem;
     justify-content: space-around;
     display: flex;
@@ -15,6 +15,8 @@
     transition: border-color 0.1s ease, border-width 0.1s ease;
     align-items: center;
     cursor: pointer; 
+    border: 5px solid pink;
+
 }
 
 .card_container:hover {

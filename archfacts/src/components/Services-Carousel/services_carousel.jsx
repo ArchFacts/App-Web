@@ -1,75 +1,116 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./services_carousel.module.css";
 import ServiceCard from "../Service-Card/service_card";
-import service1 from '../../utils/assets/service1.webp';
-import service2 from '../../utils/assets/service2.jpg';
-import service3 from '../../utils/assets/service3.jpg';
-import service4 from '../../utils/assets/service4.jpg';
-import service5 from '../../utils/assets/service5.webp';
-import service6 from '../../utils/assets/service6.webp';
+import { obterServicosEmpresa, imagemServicoGenerica } from "../../api";
+import Spinner from "../Spinner/spinner";
 
-const ServicesCarousel = ({ onSelectionChange }) => {
-    const cards = [
-        { id: 1, img: service1, title: "Carros econômicos", text: "Possui os carros mais econômicos do mercado" },
-        { id: 2, img: service2, title: "Carros clássicos", text: "Possui os carros mais memoráveis do mercado" },
-        { id: 3, img: service3, title: "Carros estéticos", text: "Possui carros referência em estética do mercado" },
-        { id: 4, img: service4, title: "Carros esportivos", text: "Possui carros referência em potência no mercado" },
-        { id: 5, img: service5, title: "Carros elétricos", text: "Possui carros com foco em sustentabilidade" },
-        { id: 6, img: service6, title: "Carros conversíveis", text: "Possui carros com teto retrátil e estilosos" },
-    ];
-
-    const [selectedCards, setSelectedCards] = useState([]);
+const ServicesCarousel = ({ onSelectionChange, codEmpresa, initialSelectedServices = [] }) => {
+    const [services, setServices] = useState([]);
+    const [selectedCards, setSelectedCards] = useState(initialSelectedServices); // Estado de seleção agora armazena o objeto completo
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
     const visibleCards = 4;
 
-    const handleCardClick = (id) => {
-        setSelectedCards((prevSelectedCards) => {
-            const updatedSelection = prevSelectedCards.includes(id)
-                ? prevSelectedCards.filter(cardId => cardId !== id)
-                : [...prevSelectedCards, id];
-            onSelectionChange(updatedSelection);
-            return updatedSelection;
-        });
-    };
+    // Função para obter os serviços
+    const obterServicos = useCallback(async (codEmpresa) => {
+        try {
+            setLoading(true);
+            const response = await obterServicosEmpresa(codEmpresa);
+            if (response && response.data) {
+                setServices(response.data);
+            } else {
+                setServices([]);
+            }
+        } catch (error) {
+            console.log("Não foi possível buscar os serviços dessa empresa", error);
+            setServices([]); // Garantir que services seja um array vazio em caso de erro
+        } finally {
+            setLoading(false);
+        }
+    }, []);
 
     useEffect(() => {
-        onSelectionChange(selectedCards);
-    }, [selectedCards, onSelectionChange]);
+        if (codEmpresa) {
+            obterServicos(codEmpresa);
+        }
+    }, [codEmpresa, obterServicos]);
 
-    const handlePrev = () => {
-        const isFirstCard = currentIndex === 0;
-        const newIndex = isFirstCard ? cards.length - visibleCards : currentIndex - 1;
-        setCurrentIndex(newIndex);
+    // Função de clique nos serviços
+    const handleCardClick = (service) => {
+        const updatedServices = [...selectedCards];
+
+        const serviceIndex = updatedServices.findIndex((s) => s.idServico === service.idServico);
+
+        if (serviceIndex !== -1) {
+            updatedServices.splice(serviceIndex, 1); // Remove o serviço da seleção
+        } else {
+            updatedServices.push(service); // Adiciona o objeto completo do serviço
+        }
+
+        setSelectedCards(updatedServices);  // Atualiza o estado de selecionados
+        onSelectionChange(updatedServices); // Passa a seleção para o componente pai
     };
 
-    const handleNext = () => {
-        const isLastCard = currentIndex >= cards.length - visibleCards;
+    // Navegação anterior
+    const handlePrev = useCallback(() => {
+        if (services.length <= visibleCards) return;
+        const isFirstCard = currentIndex === 0;
+        const newIndex = isFirstCard ? services.length - visibleCards : currentIndex - 1;
+        setCurrentIndex(newIndex);
+    }, [currentIndex, services.length, visibleCards]);
+
+    // Navegação próxima
+    const handleNext = useCallback(() => {
+        if (services.length <= visibleCards) return;
+        const isLastCard = currentIndex >= services.length - visibleCards;
         const newIndex = isLastCard ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
+    }, [currentIndex, services.length, visibleCards]);
+
+    // Atualiza os serviços exibidos
+    const getDisplayedServices = () => {
+        const displayedServices = services.slice(currentIndex, currentIndex + visibleCards);
+        return displayedServices.map(service => ({
+            ...service,
+            isSelected: selectedCards.some(selected => selected.idServico === service.idServico) // Verifica se o serviço está selecionado
+        }));
     };
 
     return (
         <div className={styles['main-carousel']}>
             <div className={styles['carousel-container']}>
-                <button className={`${styles['carousel-button']} ${styles['prev']}`} onClick={handlePrev}>
+                <button
+                    className={`${styles['carousel-button']} ${styles['prev']}`}
+                    onClick={handlePrev}
+                    disabled={services.length <= visibleCards}
+                >
                     ‹
                 </button>
-
-                <div className={styles['cards']}>
-                    {cards.slice(currentIndex, currentIndex + visibleCards).map((card) => (
-                        <ServiceCard
-                            key={card.id}
-                            img={card.img}
-                            title={card.title}
-                            text={card.text}
-                            
-                            isSelected={selectedCards.includes(card.id)}
-                            onClick={() => handleCardClick(card.id)}
-                        />
-                    ))}
-                </div>
-
-                <button className={`${styles['carousel-button']} ${styles['next']}`} onClick={handleNext}>
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    <div className={styles['cards']}>
+                        {services.length === 0 ? (
+                            <p>Não há serviços disponíveis</p>
+                        ) : (
+                            getDisplayedServices().map((service) => (
+                                <ServiceCard
+                                    key={`${service.idServico}`} // Chave única com base no idServico
+                                    img={imagemServicoGenerica(service.idServico)}
+                                    title={service.nome || "Indisponível"}
+                                    text={service.descricao || "Indisponível"}
+                                    isSelected={service.isSelected} // Passa o estado de seleção
+                                    onClick={() => handleCardClick(service)} // Passa o objeto completo do serviço
+                                />
+                            ))
+                        )}
+                    </div>
+                )}
+                <button
+                    className={`${styles['carousel-button']} ${styles['next']}`}
+                    onClick={handleNext}
+                    disabled={services.length <= visibleCards}
+                >
                     ›
                 </button>
             </div>
