@@ -82,8 +82,9 @@ function ChamadosEmpresa() {
             descricao,
             abertura: dataAbertura,
             fechamento: dataFechamento,
+            status: 'Aberto', 
         };
-
+    
         const chamadosExistentes = JSON.parse(localStorage.getItem('chamados')) || [];
         chamadosExistentes.push(chamado);
         localStorage.setItem('chamados', JSON.stringify(chamadosExistentes));
@@ -125,14 +126,21 @@ function ChamadosEmpresa() {
         const novaData = e.target.value;
         setDataFechamento(novaData);
     };
-
+    
     const salvarFechamento = (chamadoId) => {
-        const novosChamados = chamadosState.filter(chamado => chamado.id !== chamadoId);
+        const novosChamados = chamadosState.map(chamado => {
+            if (chamado.id === chamadoId) {
+                return { ...chamado, status: 'Fechado' };
+            }
+            return chamado; // Mantém o status atual dos outros chamados
+        });
+        
         setChamados(novosChamados);
         localStorage.setItem('chamados', JSON.stringify(novosChamados));
+        
         fecharModal();
     };
-
+    
     return (
         <div className={styles.container}>
             <SideBar />
