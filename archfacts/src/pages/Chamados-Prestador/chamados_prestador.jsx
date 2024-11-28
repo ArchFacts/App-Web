@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import SideBarColaborador from '../../components/Side-Bar-Colaborador/sideBarColaborador';
 import styles from './chamados_prestador.module.css';
 import ChamadosNamePrestador from '../../components/Chamados-Name-Prestador/chamados_name_prestador';
-import lixeira from '../../utils/assets/lixeira.png';
 import Modal from 'react-modal';
 import fechar_icon from "../../utils/assets/modal-x.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarClick, onDefinirParcelaClick }) {
+function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onVerChamadoClick, onDefinirCustoClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -20,17 +19,14 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
         <div className={styles.infos}>
             <p className={styles.statusCell} style={getStatusStyle(status)}>{status}</p>
             <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>{parcelaLabel}</button>
+            <button className={styles.parcelaCell} onClick={onDefinirCustoClick}>{parcelaLabel}</button>
             <p className={styles.aberturaCell}>{abertura}</p>
             <p className={styles.fechamentoCell}>{fechamento}</p>
-            <div className={styles.finalizarCell}>
-                <img
-                    src={lixeira}
-                    alt="Excluir"
-                    className={styles.icon}
-                    onClick={onFinalizarClick}
-                />
+            {/* <div className={styles.finalizarCell}> */}
+            <div className={styles.div_botao}>
+            <button className={styles.chamadoCell} onClick={onVerChamadoClick}>Ver descrição</button>
             </div>
+            {/* </div> */}
         </div>
     );
 }
@@ -74,6 +70,11 @@ function ChamadosPrestador() {
         setTipoModal(null);
     };
 
+    const tiposModal = {
+        verChamado: 'verChamado',
+        definirCusto: 'definirCusto'
+    }
+
     const confirmarCusto = () => {
         if (!valorInput || valorInput <= 0) {
             toast.error('Por favor, insira um valor válido!');
@@ -104,7 +105,7 @@ function ChamadosPrestador() {
                         <p className={styles.headerParcela}>Lucro</p>
                         <p className={styles.headerAbertura}>Data de abertura</p>
                         <p className={styles.headerFechamento}>Data de fechamento</p>
-                        <p className={styles.headerFinalizar}>Excluir</p>
+                        <p className={styles.headerFinalizar}>Descrição</p>
                     </div>
                     <div className={styles.form}>
                         {chamadosPrestador.map((chamadoPrestador, index) => (
@@ -112,7 +113,8 @@ function ChamadosPrestador() {
                                 key={index}
                                 {...chamadoPrestador}
                                 onFinalizarClick={() => console.log('Finalizar chamadoPrestador', index)}
-                                onDefinirParcelaClick={() => abrirModal('definirCusto')}
+                                onDefinirCustoClick={() => abrirModal(tiposModal.definirCusto)}
+                                onVerChamadoClick={() => abrirModal(tiposModal.verChamado)}
                             />
                         ))}
                     </div>
@@ -141,6 +143,40 @@ function ChamadosPrestador() {
                         <input  onChange={(e) => setValorInput(e.target.value)} type="number"/>
                     </div>
                     <button className={styles.botao} onClick={confirmarCusto}>Confirmar</button>
+                </div>
+            </Modal>
+
+            <Modal
+                isOpen={modalIsOpen && tipoModal === 'verChamado'}
+                onRequestClose={fecharModal}
+                contentLabel="Modal para abrir um chamado"
+                className={styles.modal_chamado}
+                overlayClassName={styles.modal_overlay}>
+
+                <div className={styles.modal_header}>
+                    <h2>Chamado</h2>
+                    <img src={fechar_icon}
+                        alt="Fechar"
+                        onClick={fecharModal} />
+                </div>
+
+                <div className={styles.modal_content}>
+                    <div className={styles.field}>
+                        <label htmlFor="nome">Nome do solicitante:</label>
+                       
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="titulo">Título do chamado:</label>
+                      
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="desc">Descrição:</label>
+                     
+                    </div>
+                    <div className={styles.button_area}>
+                        <button type="submit">Enviar</button>
+                    </div>
+                    {/* </form> */}
                 </div>
             </Modal>
             <ToastContainer />

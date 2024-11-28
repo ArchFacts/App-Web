@@ -84,7 +84,9 @@
     font-size: 15px;
     flex-direction: row;
     padding: 2.5%;
+    cursor: pointer;
     border: #0E0C19;
+    transition: background-color 0.3s ease;
 }
 
 .statusCell {
@@ -111,10 +113,7 @@
     justify-content: center;
     width: 14%;
     align-items: center;
-}
-
-.parcelaCell:hover {
-    width: 14%;
+    border: none;
 }
 
 .aberturaCell {
@@ -315,3 +314,131 @@
     background-size: 100% 100%;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%230fa901' d='M12.32 8a3 3 0 0 0-2-.7H5.63A1.59 1.59 0 0 1 4 5.69a2 2 0 0 1 0-.25a1.59 1.59 0 0 1 1.63-1.33h4.62a1.59 1.59 0 0 1 1.57 1.33h1.5a3.08 3.08 0 0 0-3.07-2.83H8.67V.31H7.42v2.3H5.63a3.08 3.08 0 0 0-3.07 2.83a2 2 0 0 0 0 .25a3.07 3.07 0 0 0 3.07 3.07h4.74A1.59 1.59 0 0 1 12 10.35a2 2 0 0 1 0 .34a1.59 1.59 0 0 1-1.55 1.24h-4.7a1.59 1.59 0 0 1-1.55-1.24H2.69a3.08 3.08 0 0 0 3.06 2.73h1.67v2.27h1.25v-2.27h1.7a3.08 3.08 0 0 0 3.06-2.73v-.34A3.06 3.06 0 0 0 12.32 8'/%3E%3C/svg%3E");
   }
+
+  .modal_chamado {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 85%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal_chamado .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal_chamado .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 85%;
+    padding-left: 8%;
+}
+
+.modal_chamado .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal_chamado .modal_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.modal_chamado .modal_content .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.modal_chamado .modal_content .field label {
+    width: 75%;
+    font-size: 1.5rem;
+}
+
+.modal_chamado .modal_content .field input {
+    width: 75%;
+    border: 3px solid #033E8C;
+}
+
+.modal_chamado .modal_content .field:nth-child(4) input {
+    height: 7.5rem;
+}
+
+
+
+.modal_chamado .modal_content .field .title {
+    font-family: 'Poppins-SemiBold';
+    color: #033E8C;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.modal_chamado .modal_content .button_area {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Poppins-Medium';
+    font-size: 1.5rem;
+    height: 4rem;
+    color: white;
+}
+
+.modal_chamado .modal_content .button_area .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 35%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.modal_chamado .modal_content .button_area .button:hover {
+    width: 50%;
+}
+
+
+.modal_chamado .modal_content .button_area button {
+    width: 25%;
+    background-color: #033E8C;
+}
+
+.chamadoCell {
+    height: 2.5rem;
+    background-color: #033E8C;
+    font-family: 'Poppins-Medium';
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    width: 80%;
+    align-items: center;
+    border: none;
+}
+
+.div_botao{
+    width: 11%;
+    display: flex;
+    margin-left: 1%;
+    justify-content: end;
+}
