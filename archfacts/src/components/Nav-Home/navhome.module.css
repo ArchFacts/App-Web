@@ -1,16 +1,35 @@
+@font-face {
+    font-family: 'Poppins-Black';
+    src: url('../../utils/fonts/Poppins-Black.ttf');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  body{
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
 .navbar {
     display: flex;
     height: 70px;
     width: 100%;
     position: fixed;
-    z-index: 1;
-    background-color: transparent;
+    z-index: 999;
+    background-color: rgb(14, 12, 25, 0.8);
+}
+
+a{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;    
 }
 
 .navbar .logo_area {
     display: flex;
     width: 14rem;
     justify-content: center;
+    cursor: pointer;
 }
 
 .navbar .logo_image {
@@ -26,6 +45,16 @@
     justify-content: space-around;
     width: 100%;
     font-weight: bolder;
+    list-style: none;
+}
+
+.navbar .nav_itens li {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav_itens li:nth-child(5) a {
+    color: #F95C00;
 }
 
 .navbar .nav_itens a {
@@ -35,9 +64,15 @@
     font-weight: bold;
     align-items: center;
     font-family: Poppins-Black;
-
+    transition: 200ms linear;
+    cursor: pointer;
 }
 
-.navbar .nav_itens a:nth-child(5) {
+.navbar .nav_itens li a:nth-child(4) {
+    color: #F95C00;
+}
+
+.navbar .nav_itens a:hover {
+    font-size: 1.3rem;
     color: #F95C00;
 }

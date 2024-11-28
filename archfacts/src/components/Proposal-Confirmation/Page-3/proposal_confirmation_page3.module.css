@@ -1,0 +1,45 @@
+.paragrafo{
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.enterprise_area{
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    justify-content: space-evenly;
+    height: 14rem;
+}
+
+.inputs3{
+    align-items: center;
+    height: 14rem;
+    display: flex;
+}
+
+.label_input{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vh;
+}
+
+.label_input label{
+    color: black;
+}
+
+.inputDate {
+    border-radius: 0;
+    width: 37vh; 
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+}

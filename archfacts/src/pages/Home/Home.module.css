@@ -33,16 +33,66 @@
     font-style: normal;
 }
 
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    25% {
+        background-position: 50% 50%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    75% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 * {
     font-family: Poppins-Regular;
 }
 
+body {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
 .hero_div {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     z-index: 0;
     overflow: hidden;
+    position: relative; 
 }
 
 .hero_div::before {
@@ -55,22 +105,174 @@
     background: linear-gradient(180deg, rgba(14, 12, 25, 0.2) 77.3%, rgba(3, 62, 140, 0.9) 100%),
         url('../../utils/assets/hero-background.jpeg') bottom/cover no-repeat;
     filter: blur(3px) brightness(0.75);
-    z-index: 0;
+    z-index: -1; 
+    animation: moveBackground 20s linear infinite;
 }
 
 .hero_div .content {
     margin-top: 70px;
-    /* margin-bottom: 90px; Para ficar abaixo da Nav */
     width: 100%;
     display: flex;
     flex-direction: column;
-    z-index: 0;
+    z-index: 1; 
+    position: relative;
 }
 
 .solved_problems {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 1920px;
-    background-color: red;
-    z-index: 0;
+    height: 100vh;
+    background-color: #0E0C19;
+    position: relative;
+}
+
+.solved_problems::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../../utils/assets/logo.svg') no-repeat;
+    background-size: 30rem;
+    filter: blur(3px);
+    opacity: 0.2;
+    background-position: center;
+    z-index: 0; 
+    animation: pulse 15s linear infinite;
+}
+
+.solved_problems .main_title {
+    color: white;
+    margin-top: 3.125rem;
+    font-family: Poppins-Bold;
+}
+
+.solved_problems .content_area {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.solved_problems .content_area .problems_box_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+}
+
+.solved_problems .content_area .info_box_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.benefits {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.benefits .main_title {
+    color: black;
+    margin-top: 3.125rem;
+    font-family: Poppins-Bold;
+}
+
+.benefits .content_area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.benefits .content_area .benefit_div {
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+    width: 50%;
+    height: 50rem;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.benefits .content_area .slider_div {
+    display: flex;
+    justify-content: center;
+    width: 45%;
+    height: 50rem;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.plataform_profiles {
+    width: 100%;
+    height: 100vh;
+    background-color: #0E0C19;
+    display: flex;
+    flex-direction: column;
+}
+
+.plataform_profiles .main_title {
+    color: white;
+    margin-top: 3.125rem;
+    font-family: Poppins-Bold;
+}
+
+.plataform_profiles .content_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.plataform_profiles .content_area .profiles {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.contact_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+}
+
+.contact_div .main_title {
+    color: black;
+    margin-top: 3.125rem;
+    font-family: Poppins-Bold;
+}
+
+.contact_div .main_title:nth-child(2) {
+    font-family: Poppins-Regular;
+    margin-top: 0;
+    font-size: 2.5rem;
+}
+
+.contact_div .content_area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    scroll-margin-top: 16px; 
 }

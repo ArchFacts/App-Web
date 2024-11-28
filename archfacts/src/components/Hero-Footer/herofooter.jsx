@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./herofooter.module.css"
-import { Icon } from '@iconify/react';
 import icone_gestao from '../../utils/assets/gestao.svg'
 import icone_parceria from '../../utils/assets/parceria.svg'
 import icone_cliente from '../../utils/assets/cliente.svg'

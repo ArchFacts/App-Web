@@ -1,17 +1,12 @@
 @font-face {
-    font-family: 'poppins_extrabold';
+    font-family: 'Poppins-Extrabold';
     src: url('../../utils/fonts/Poppins-ExtraBold.ttf');
-}
-
-@font-face {
-    font-family: 'poppins_semibold';
-    src: url('../../utils/fonts/Poppins-SemiBold.ttf');
 }
 
 body {
     height: 100%;
 }
-
+    
 .header {
     background-color: #0E0C19;
     display: flex;
@@ -39,15 +34,16 @@ body {
     justify-content: space-around;
     align-items: center;
     width: 15%;
-    font-family: 'poppins_extrabold';
 }
 
 .header .label .labels {
+    font-family: Poppins-Extrabold;
     color: white;
     cursor: pointer;
 }
 
 .header .label .labels_login {
+    font-family: Poppins-Extrabold;
     color: #F95C00;
     cursor: pointer;
 }

@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'Poppins-Medium';
+  src: url('../../../utils/fonts/Poppins-Medium.ttf');
+}
+
+.tela{
+    width: 100dvw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+.tela .content_area{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.tela .content_area .container_cadastro{
+    border-radius: 1rem;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.8); 
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 35rem;
+}
+
+.tela .content_area .container_cadastro .registro{
+    width: 50%;
+    height: 99%; 
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+} 
+
+.registro_area{
+  flex-direction: column;
+  display: flex;
+}
+
+.voltar_e_titulo{
+  display: flex;
+  flex-direction: column;
+}
+
+.voltar{
+  cursor: pointer;
+  color: white;
+  background-color: #F95C00;
+  width: 6rem;
+  border-radius: 0.5rem;
+  border-bottom-left-radius: 0;
+  text-align: center;
+}
+
+.voltar:hover{
+  background-color: #033E8C;
+  transition: 700ms;
+}
+
+.h1_registro{
+    font-size: 32px;
+    font-family: Poppins-Medium;
+    color: #033E8C;
+  }
+
+.all_inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.div_input{
+  /* border: solid firebrick; */
+flex-direction: column;
+font-size: 16px;
+align-items: center;
+ display: flex;
+ justify-content: center;
+}
+
+.div_input label{
+  color: #033E8C;
+    display: block; 
+    width: 90%;
+}
+
+.div_input input{
+  color: #033E8C;
+  border-radius: 0;
+  font-size: 16px;
+    justify-content: center;
+    display: flex;
+    border: none;
+    border-bottom: 1px solid #033E8C;
+    outline: none;
+    width: 90%;
+}
+
+.div_input input:focus {
+    border-bottom: 2px solid #05C7F2;
+  }

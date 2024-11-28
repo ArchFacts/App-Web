@@ -1,3 +1,25 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../utils/fonts/Poppins-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../utils/fonts/Poppins-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
 .hero_info {
     z-index: 0;
     display: flex;
@@ -54,8 +76,20 @@
     font-size: 2rem;
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: 200ms linear;
 }
 
 .hero_info .button_area button:nth-child(2) {
     background-color: #F95C00;
+}
+
+.hero_info .button_area button:hover {
+    scale: 1.2;
+}
+
+.button_area .button{
+    border: none;
+    cursor: pointer;
+    background-color: #033E8C;
+    color: white;
 }

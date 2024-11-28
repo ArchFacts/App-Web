@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import Input from '../../../components/Input/input.jsx';
 import Botao from '../../../components/Botao/botao.jsx';
 import '../../../utils/global.css';
-import stylesInput from '../../../components/Input/input.module.css';
-import stylesImagem from '../../../components/imagem.module.css';
+import stylesInput from '../../../components/Input/Input-Usuario/input.module.css';
 import SimpleHeader from '../../../components/Simple-Header/simple_header.jsx';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import SimpleFooter from '../../../components/Simple-Footer/simple_footer.jsx';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import imagem1 from '../../../utils/assets/fundo_cadastro_funcionario.jpg';
 import imagem2 from '../../../utils/assets/fundo_cadastro_funcionario2.jpg';
 import imagem3 from '../../../utils/assets/fundo_cadastro_funcionario3.jpg';
 import stylesCadastroEmpresa from '../Cadastro-Empresa/cadastro_empresa.module.css';
 import stylesCadastroFuncionario from './cadastro_funcionario.module.css'
+import InputFuncionario from '../../../components/Input/Input-Funcionario/input_funcionario.jsx';
 
 function CadastroFuncionario() {
   const navigate = useNavigate();
@@ -42,44 +41,48 @@ function CadastroFuncionario() {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5000
+  };
+
+  const handleFuncionario = () => {
+    navigate('/login?tipo=funcionario');
   };
 
   return (
     <section className={stylesInput.tela}>
       <SimpleHeader />
       <div className={stylesInput.content_area}>
-        <div className={stylesInput.container_cadastro}>
-          <div className={stylesInput.registro}>
-            <div className={stylesInput.registro_area}>
-              <div className={stylesInput.voltar_e_titulo}>
-                <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/prestador')}>Voltar</div>
-                <h1 className={stylesInput.h1_registro}>Se torne um<div className={stylesCadastroEmpresa.h1_company}>colaborador!</div></h1>
+      <div className={stylesCadastroFuncionario.container_cadastro_funcionario}>
+      <div className={stylesCadastroFuncionario.registro_funcionario}>
+      <div className={stylesCadastroFuncionario.registro_area_funcionario}>
+              <div className={stylesCadastroFuncionario.voltar_e_titulo}>
+                <div className={stylesInput.voltar} onClick={() => navigate('/cadastrar/funcionario')}>Voltar</div>
+                <div className={stylesCadastroFuncionario.titulo_e_frase}>
+                <h1 className={stylesInput.h1_registro}>Se torne um
+                <span className={stylesCadastroEmpresa.h1_company}> Colaborador!</span></h1>
+                <div className={stylesCadastroFuncionario.frase}>
+                Basta digitar o código de negócio e você estará pronto para começar!
               </div>
-              <div className={stylesCadastroFuncionario.frase}>
-                Basta colocar o código de negócio e você está pronto para começar
               </div>
-              <Input
+              </div>
+              <InputFuncionario
                 label="Código de negócio:"
                 type="text"
-                name="codigo_negocio"
+                name="codigoNegocio"
                 value={formData.codigoNegocio}
                 onChange={handleChange}
               />
             </div>
             <Botao
               texto="Filiar-se"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log(`${tipo} registrado`);
-              }}
+              onClick={handleFuncionario}
             />
           </div>
-          <div className={stylesImagem.registro_imagem}>
+          <div className={stylesCadastroEmpresa.registro_imagem}>
             <Slider {...settings}>
               {images.map((image, index) => (
                 <div key={index}>
-                  <img className={stylesImagem.imagem} src={image} alt={`Imagem ${index + 1}`} />
+                  <img className={stylesCadastroEmpresa.imagem_empresa} src={image} alt={`Imagem ${index + 1}`} />
                 </div>
               ))}
             </Slider>

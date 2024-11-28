@@ -1,6 +1,5 @@
-// import { StrictMode } from 'react';
-// import { createRoot } from 'react-dom/client';
 import React from 'react';
+import Modal from 'react-modal' // import para criar modais com React
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './utils/global.css';

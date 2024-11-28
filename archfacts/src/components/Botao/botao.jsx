@@ -4,7 +4,7 @@ import styles from './botao.module.css';
 function Botao({ texto, onClick }) {
   return (
     <div className={styles.botao}>
-    <button onClick={onClick}>
+    <button className={styles.button} onClick={onClick}>
       {texto}
     </button></div>
   );

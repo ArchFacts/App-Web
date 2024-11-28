@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.chamados {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 16rem;
+    height: 2.5rem;
+    border-radius: 25px;
+    background-color: #033E8C;
+    transition: all 0.2s ease-in;
+}
+
+.chamados:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.chamados p {
+    font-family: 'Poppins-Regular';
+    font-size: 1.5rem;
+}

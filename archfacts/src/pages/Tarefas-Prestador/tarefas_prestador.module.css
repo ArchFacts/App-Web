@@ -1,0 +1,237 @@
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.capsula {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.capsula .abrir_tarefa {
+    display: flex;
+    width: 100%;
+}
+
+.capsula .tarefas {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.modal_tarefa {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 85%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal_tarefa .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 2.5%;
+    margin-left: 5%;
+
+}
+
+.formContainer {
+    background-color: rgb(238, 237, 237);
+    width: 100%;
+    height: 76%;
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.barraSuperior {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    background-color: #0E0C19;
+    color: white;
+    width: 100%;
+    padding: 1%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 1%;
+    height: auto;
+}
+
+.form p {
+    color: black;
+}
+
+.infos {
+    display: flex;
+    font-size: 15px;
+    flex-direction: row;
+    padding: 2.5%;
+    border: #0E0C19;
+    align-items: center;
+}
+
+.statusCell {
+    display: flex;
+    justify-content: center;
+    width: 15%;
+}
+
+.titleCell {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.parcelaCell {
+    background-color: #F95C00;
+    font-family: 'Poppins-Medium';
+    height: 2.5rem;
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    width: 14%;
+    align-items: center;
+}
+
+.parcelaCell:hover {
+    width: 14%;
+}
+
+.aberturaCell {
+    display: flex;
+    justify-content: center;
+    width: 19.5%;
+}
+
+.fechamentoCell {
+    display: flex;
+    justify-content: center;
+    width: 19%;
+}
+
+.finalizarCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9%;
+    cursor: pointer;
+    margin-left: 3.5%;
+}
+
+.infos img {
+    height: 35%;
+    width: 35%;
+    transition: all 0.1s ease-in;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
+
+.headerStatus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13%;
+}
+
+.headerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.headerParcela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+
+.headerAbertura {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.headerFechamento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.headerFinalizar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    font-size: 12px;
+}
+
+.infos img {
+    transition: all 0.1s ease-in;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
