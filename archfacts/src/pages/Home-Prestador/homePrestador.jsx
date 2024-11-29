@@ -9,7 +9,7 @@ import axios from 'axios';
 import api from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 import { useNavigate } from 'react-router-dom';
-import { recusarProposta } from '../../api';
+import { recusarProposta, aceitarProposta, imagemGenerica } from '../../api';
 import { toast } from 'react-toastify';
 
 const HomePrestador = () => {
@@ -86,11 +86,23 @@ const HomePrestador = () => {
         }
     };
 
+    const aceitarPropostaSelecionada = async () => {
+        if (!propostaSelecionada || !idPropostaSelecionada) {
+            console.error("Proposta inválida ou sem ID.");
+            return; // Retorna caso não tenha os dados
+        }
+        try {
+            console.log("ID DA PROPOSTA: ", idPropostaSelecionada)
+            const response = await aceitarProposta(idPropostaSelecionada);
+        } catch (error) {
+            toast.error("Não foi possível aceitar essa proposta, tente novamente em breve");
+            console.log("Erro ao deletar proposta", error);
+        }
+    };
+
     useEffect(() => {
         buscarDadosUsuario();
         buscarPropostas();
-        console.log("user" + usuario);
-        console.log("propostas" + propostas);
     }, []);
 
 
@@ -100,7 +112,7 @@ const HomePrestador = () => {
                 <SideBarColaborador redirecionarPerfil={redirecionarPerfil} />
                 <div className={styles.content}>
                     <div className={styles.capsula}>
-                        <span className={styles.text}> Seja bem vindo!</span>
+                        <span className={styles.text}>{`Seja bem vindo!` || `Seja bem vindo!`}</span>
                         <div className={styles.welcome}></div>
                     </div>
                     <div className={styles.card}>
@@ -110,6 +122,7 @@ const HomePrestador = () => {
                             <EnterpriseScore
                                 empresa={usuario && usuario.negocio ? usuario.negocio.nome : "Indisponível"}
                                 avaliacao={usuario && usuario.negocio ? usuario.negocio.avaliacao : 0}
+                                imagem={imagemGenerica(usuario.negocio.nome)}
                             />
                         )}
                         <div className={styles.propostas}>
@@ -173,7 +186,8 @@ const HomePrestador = () => {
                                                 onClick={() => recusarPropostaSelecionada()}>
                                                 <p>Recusar proposta</p>
                                             </div>
-                                            <div className={styles.button}><p>Aceitar Proposta</p></div>
+                                            <div className={styles.button}
+                                            onClick={() => aceitarPropostaSelecionada()}><p>Aceitar Proposta</p></div>
                                         </div>
                                     </div>
                                 )}

@@ -36,13 +36,20 @@ const ProposalConfirmationPage4 = () => {
 
     useEffect(() => {
         if (location.state) {
+
+            let novaDataEntrega = location.state.dataEntrega || "";
+
+            if (novaDataEntrega) {
+                novaDataEntrega = `${novaDataEntrega}T23:59:00`;  // Adicionando a hora para poder inserir no banco
+            }
+
             setFormData({
                 titulo: titulo || "",
                 cep: cep || "",
                 endereco: endereco || "",
                 numero: numero || "",
                 complemento: complemento || "",
-                dataEntrega: dataEntrega || "",
+                dataEntrega: novaDataEntrega || "",
                 descricao: descricao || "",
                 negocio: negocio || ""
             });
