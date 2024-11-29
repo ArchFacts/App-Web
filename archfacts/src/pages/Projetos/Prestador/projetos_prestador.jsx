@@ -47,7 +47,8 @@ const ProjetosPrestador = () => {
 
     const handleProjetoClick = (projeto) => {
         console.log("clicou", projeto);
-        navigate(`/tarefas-prestador/${projeto.idProjeto}`);
+        console.log("ID DO PROJETO", projeto.idProjeto);
+        navigate(`/tarefas-prestador/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
     };
 
     useEffect(() => {
@@ -83,7 +84,7 @@ const ProjetosPrestador = () => {
                                     solicitanteName={projeto.destinatario.nome || "Indisponível"}
                                     data={projeto.dataEntrega}
                                     status={projeto.status}
-                                    onClick = {() => handleProjetoClick(projeto)}
+                                    onClick={() => handleProjetoClick(projeto)}
                                 />
                             ))
                         ) : (

@@ -9,6 +9,8 @@ import lixeira from '../../utils/assets/lixeira.png';
 import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
+import { buscarTarefasNegocio, dadosUsuarioLogado } from '../../api';
+import { useLocation } from 'react-router-dom';
 
 function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefinirParcelaClick, onFinalizarTarefaClick }) {
     const getStatusStyle = (status) => {
@@ -17,6 +19,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefi
         if (status === 'Fechado') return { color: 'red' };
         return {};
     };
+
 
     return (
         <div className={styles.infos}>
@@ -55,22 +58,22 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefi
 
 function TarefasPrestador() {
     const [tarefas, setTarefas] = useState([
-        {
-            id: '1',
-            status: 'Em progresso',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir despesa',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-        },
-        {
-            id: '2',
-            status: 'Aberto',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir despesa',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-        },
+        // {
+        //     id: '1',
+        //     status: 'Em progresso',
+        //     titulo: 'Projeto de abelhas',
+        //     parcelaLabel: 'Definir despesa',
+        //     abertura: '28 de março, 15:35',
+        //     fechamento: '07 de abril, 21:02',
+        // },
+        // {
+        //     id: '2',
+        //     status: 'Aberto',
+        //     titulo: 'Projeto de abelhas',
+        //     parcelaLabel: 'Definir despesa',
+        //     abertura: '28 de março, 15:35',
+        //     fechamento: '07 de abril, 21:02',
+        // },
     ]);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -85,6 +88,15 @@ function TarefasPrestador() {
     const [status, setStatus] = useState('');
     const [desc, setDescricao] = useState('');
     const [dataEntrega, setDataEntrega] = useState('');
+
+
+    const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true)
+
+    const location = useLocation();
+    const idProjeto = location.state?.idProjeto;
+
+    console.log("ID DO PROJETOProjeto recebido", idProjeto);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -127,6 +139,43 @@ function TarefasPrestador() {
     const handleDataFechamentoChange = (e) => {
         setDataFechamento(e.target.value);
     };
+
+    const buscarDadosUsuarioLogado = async () => {
+        try {
+            const response = await dadosUsuarioLogado();
+            setUsuario(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar os dados do usuário", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const buscarTarefas = async (idProjeto) => {
+        if (!usuario) {
+            console.error("Usuário não encontrado");
+            return;
+        }
+
+        try {
+            const response = await buscarTarefasNegocio(idProjeto);
+            setTarefas(response.data);
+            console.log("BUSCANDO TAREFA", response.data);
+        } catch (error) {
+            console.error("Erro ao buscar os projetos do negócio", error);
+        }
+    }
+
+    useEffect(() => {
+        buscarDadosUsuarioLogado();
+    }, []);
+
+    useEffect(() => {
+        if (usuario) {
+            buscarTarefas(idProjeto);
+        }
+    }, [usuario]);
 
     return (
         <div className={styles.container}>
