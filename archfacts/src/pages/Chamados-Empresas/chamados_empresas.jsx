@@ -132,7 +132,7 @@ function ChamadosEmpresa() {
             if (chamado.id === chamadoId) {
                 return { ...chamado, status: 'Fechado' };
             }
-            return chamado; // Mantém o status atual dos outros chamados
+            return chamado; 
         });
         
         setChamados(novosChamados);
