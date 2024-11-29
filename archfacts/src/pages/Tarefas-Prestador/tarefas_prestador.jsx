@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
 
-function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefinirParcelaClick, onFinalizarTarefaClick, onEditarTarefaClick }) {
+function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefinirParcelaClick, onFinalizarTarefaClick, onEditarTarefaClick, onEncerrarTarefaClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -40,7 +40,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefi
                     src={lixeira}
                     alt="Excluir"
                     className={styles.icon}
-                    onClick={() => console.log('Excluir tarefa')}
+                    onClick={() => onEncerrarTarefaClick()}
                 />
                 <img
                     src={check}
@@ -168,6 +168,7 @@ function TarefasPrestador() {
                                 onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
                                 onDefinirParcelaClick={() => console.log('abrirTarefa', index)}
                                 onEditarTarefaClick={() => abrirModal('editarTarefa', tarefa.id)}
+                                onEncerrarTarefaClick={() => abrirModal('excluirTarefa', tarefa.id)}
                             />
                         ))}
                     </div>
@@ -184,7 +185,7 @@ function TarefasPrestador() {
                     <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
                 </div>
                 <div className={styles.modal_content}>
-                    <p>Deseja confirmar o encerramento desta tarefa?</p>
+                    <p>Deseja confirmar a finalização desta tarefa?</p>
                     <button
                         className={stylesPrestador.botao}
                         onClick={() => salvarFechamento(idChamado)}>
@@ -350,6 +351,25 @@ function TarefasPrestador() {
                             Confirmar
                         </button>
                     </div>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={modalIsOpen && tipoModal === 'excluirTarefa'}
+                onRequestClose={fecharModal}
+                contentLabel="Modal para excluir a tarefa"
+                className={styles.modal}
+                overlayClassName={styles.modal_overlay}>
+                <div className={styles.modal_header}>
+                    <h2>Excluir tarefa</h2>
+                    <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
+                </div>
+                <div className={styles.modal_content}>
+                    <p>Deseja confirmar o encerramento desta tarefa?</p>
+                    <button
+                        className={stylesPrestador.botao}
+                        onClick={() => salvarFechamento(idChamado)}>
+                        Confirmar
+                    </button>
                 </div>
             </Modal>
         </div>
