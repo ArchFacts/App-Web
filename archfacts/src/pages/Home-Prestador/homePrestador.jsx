@@ -146,7 +146,7 @@ const HomePrestador = () => {
                                     />
                                 ))
                             ) : (
-                                <p>Não há propostas disponíveis.</p>
+                                <p className={styles.paragrafo}>Não há propostas disponíveis.</p>
                             )}
 
                             <Modal

@@ -112,5 +112,8 @@ input::placeholder {
 
 .button:hover {
     transform: scale(1.05);
+}
 
+.paragrafo{
+    color: black;
 }

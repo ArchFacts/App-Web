@@ -14,6 +14,10 @@
     height: 100%;
 }
 
+.screen .content_area .paragrafo{
+    color: black;
+}
+
 .screen .content_area .project_name {
     font-size: 44px;
     font-family: Poppins-Regular;

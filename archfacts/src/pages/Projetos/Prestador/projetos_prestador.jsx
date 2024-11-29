@@ -79,7 +79,7 @@ const ProjetosPrestador = () => {
                                 />
                             ))
                         ) : (
-                            <p>Não há projetos disponíveis.</p>
+                            <p className={styles.paragrafo}>Não há projetos disponíveis.</p>
                         )}
 
                         {/* <ProjetoComponentePrestador
