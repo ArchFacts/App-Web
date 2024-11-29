@@ -80,4 +80,16 @@ export const cadastrarPropostaServico = (data) => {
   return api.post(`/propostaServicos`, data);
 }
 
+export const recusarProposta = (data) => {
+  return api.post(`/propostas/recusar`, data);
+}
+
+export const aceitarProposta = (data) => {
+  return api.post(`/projetos/aceitar`, data);
+}
+
+export const buscarProjetosNegocio = (data) => {
+  return api.get(`/projetos`, data);
+}
+
 export default api;
