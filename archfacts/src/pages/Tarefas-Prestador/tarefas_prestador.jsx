@@ -84,7 +84,17 @@ function TarefasPrestador() {
     const [prioridade, setPrioridade] = useState('');
     const [status, setStatus] = useState('');
     const [desc, setDescricao] = useState('');
+    const [dataEntrega, setDataEntrega] = useState('');
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === "titulo") setTitulo(value);
+        if (name === "despesa") setDespesa(value);
+        if (name === "prioridade") setPrioridade(value);
+        if (name === "status") setStatus(value);
+        if (name === "desc") setDescricao(value);
+        if (name === "dataEntrega") setDataEntrega(value);
+    };
 
     const abrirModal = (tipo, idChamado) => {
         setTipoModal(tipo);
@@ -101,12 +111,13 @@ function TarefasPrestador() {
         console.log(`Finalizando chamado com id: ${idChamado}`);
         fecharModal();
     };
+
     const salvarChamado = () => {
         console.log('Chamado salvo com:', {
             nome,
             titulo,
             dataFechamento,
-            descricao,
+            descricao: desc,
             prioridade,
             status,
         });
@@ -139,12 +150,12 @@ function TarefasPrestador() {
                         <p className={styles.headerFinalizar}>Editar/Excluir/Finalizar</p>
                     </div>
                     <div className={styles.form}>
-                        {tarefas.map((tarefa, index) => (
+                        {tarefas.map((tarefa) => (
                             <TarefaInfo
                                 key={tarefa.id}
                                 {...tarefa}
                                 onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
-                                onDefinirParcelaClick={() => console.log('abrirTarefa', index)}
+                                onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
                             />
                         ))}
                     </div>
@@ -183,23 +194,25 @@ function TarefasPrestador() {
                     <div className={styles.field}>
                         <label htmlFor="titulo">Título da tarefa:</label>
                         <input
+                            name='titulo'
                             type="text"
                             id="titulo"
                             placeholder="Digite o título"
                             required
                             value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="despesa">Despesa:</label>
                         <input
+                            name='despesa'
                             type="text"
                             id="despesa"
                             placeholder="Digite a despesa"
                             required
                             value={despesa}
-                            onChange={(e) => setDespesa(e.target.value)}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className={styles.fields}>
@@ -207,8 +220,9 @@ function TarefasPrestador() {
                             <label htmlFor="prioridade">Prioridade:</label>
                             <select
                                 id="prioridade"
+                                name='prioridade'
                                 value={prioridade}
-                                onChange={(e) => setPrioridade(e.target.value)}
+                                onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
                                 <option value="alta">Alta</option>
@@ -220,33 +234,42 @@ function TarefasPrestador() {
                             <label htmlFor="status">Status:</label>
                             <select
                                 id="status"
+                                name='status'
                                 value={status}
-                                onChange={(e) => setStatus(e.target.value)}
+                                onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
-                                <option value="aberto">Aberto</option>
-                                <option value="fechado">Fechado</option>
+                                <option value="Em progresso">Em progresso</option>
+                                <option value="Aberto">Aberto</option>
+                                <option value="Fechado">Fechado</option>
                             </select>
                         </div>
                     </div>
                     <div className={styles.field}>
-                        <label htmlFor="desc">Descrição adicional:</label>
-                        <textarea
-                            id="desc"
-                            required
-                            value={desc}
-                            onChange={(e) => setDescricao(e.target.value)}
-                            rows="5"
+                        <label htmlFor="Prazo de término">Prazo de término</label>
+                        <input
+                            name='dataEntrega'
+                            type="date"
+                            id="dataEntrega"
+                            value={dataEntrega}
+                            onChange={handleChange}
                         />
                     </div>
-                    <div className={styles.button_area}>
-                        <button
-                            className={stylesPrestador.botao}
-                            type="submit"
-                            onClick={salvarChamado}>
-                            Enviar
-                        </button>
+                    <div className={styles.field}>
+                        <label htmlFor="descricao">Descrição:</label>
+                        <textarea
+                            name='desc'
+                            id="descricao"
+                            rows="4"
+                            placeholder="Descrição"
+                            value={desc}
+                            onChange={handleChange}></textarea>
                     </div>
+                    <button
+                        className={stylesPrestador.botao}
+                        onClick={salvarChamado}>
+                        Salvar
+                    </button>
                 </div>
             </Modal>
         </div>

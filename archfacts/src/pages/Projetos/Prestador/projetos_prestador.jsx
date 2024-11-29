@@ -8,6 +8,7 @@ import ProjetoComponentePrestador from "../../../components/Projeto/Prestador/pr
 import { useEffect, useState } from 'react';
 import Spinner from "../../../components/Spinner/spinner";
 import { dadosUsuarioLogado, buscarProjetosNegocio } from "../../../api";
+import { useNavigate } from "react-router-dom";
 
 
 const ProjetosPrestador = () => {
@@ -15,6 +16,7 @@ const ProjetosPrestador = () => {
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(true)
     const [projetos, setProjetos] = useState([]);
+    const navigate = useNavigate();
 
     const buscarDadosUsuarioLogado = async () => {
         try {
@@ -43,6 +45,11 @@ const ProjetosPrestador = () => {
         }
     }
 
+    const handleProjetoClick = (projeto) => {
+        console.log("clicou", projeto);
+        navigate(`/tarefas-prestador/${projeto.idProjeto}`);
+    };
+
     useEffect(() => {
         buscarDadosUsuarioLogado();
     }, []);
@@ -62,7 +69,7 @@ const ProjetosPrestador = () => {
             <SideBarColaborador></SideBarColaborador>
             <div className={styles.content_area}>
                 <div className={styles.project_name}>
-                    <ProjectName title=''></ProjectName>
+                    <ProjectName title={usuario.negocio.nome}></ProjectName>
                 </div>
                 <div className={styles.project_box}>
                     <div className={styles.detail_bar}></div>
@@ -71,11 +78,12 @@ const ProjetosPrestador = () => {
                         {projetos.length > 0 ? (
                             projetos.map((projeto, index) => (
                                 <ProjetoComponentePrestador
-                                    key={index}
+                                    key={projeto.idProjeto}
                                     projectName={`Projeto de ${projeto.nome}` || "Indisponível"}
                                     solicitanteName={projeto.destinatario.nome || "Indisponível"}
                                     data={projeto.dataEntrega}
                                     status={projeto.status}
+                                    onClick = {() => handleProjetoClick(projeto)}
                                 />
                             ))
                         ) : (
