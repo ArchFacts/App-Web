@@ -62,7 +62,7 @@ const Login = () => {
       navigate('/cadastrar-empresa')
     }
     if (usuarioLogado.negocio) {
-      navigate('/home-prestador');
+      navigate(`/home-prestador`);
     } else {
       navigate('/hub');
     };
