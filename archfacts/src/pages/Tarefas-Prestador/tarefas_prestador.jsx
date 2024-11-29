@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
 
-function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefinirParcelaClick, onFinalizarTarefaClick, onEditarTarefaClick, onEncerrarTarefaClick }) {
+function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarTarefaClick, onEditarTarefaClick, onEncerrarTarefaClick, onDefinirDespesaClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -24,7 +24,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefi
                 {status}
             </p>
             <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>
+            <button className={styles.parcelaCell} onClick={() => onDefinirDespesaClick()}>
                 {parcelaLabel}
             </button>
             <p className={styles.aberturaCell}>{abertura}</p>
@@ -84,7 +84,7 @@ function TarefasPrestador() {
     const [prioridade, setPrioridade] = useState('');
     const [status, setStatus] = useState('');
     const [desc, setDescricao] = useState('');
-
+    const [valorInput, setValorInput] = useState('');
 
     const abrirModal = (tipo, idChamado) => {
         setTipoModal(tipo);
@@ -135,8 +135,9 @@ function TarefasPrestador() {
         fecharModal();
     };
 
-    const handleDataFechamentoChange = (e) => {
-        setDataFechamento(e.target.value);
+    const confirmarCusto = () => {
+        console.log("Custo definido:", valorInput);
+        fecharModal();
     };
 
     return (
@@ -169,6 +170,7 @@ function TarefasPrestador() {
                                 onDefinirParcelaClick={() => console.log('abrirTarefa', index)}
                                 onEditarTarefaClick={() => abrirModal('editarTarefa', tarefa.id)}
                                 onEncerrarTarefaClick={() => abrirModal('excluirTarefa', tarefa.id)}
+                                onDefinirDespesaClick={() => abrirModal('definirDespesa', tarefa.id)}
                             />
                         ))}
                     </div>
@@ -372,6 +374,31 @@ function TarefasPrestador() {
                     </button>
                 </div>
             </Modal>
+            <Modal
+                isOpen={modalIsOpen && tipoModal === 'definirDespesa'}
+                onRequestClose={fecharModal}
+                contentLabel="Modal para definir a despesa"
+                className={stylesPrestador.modalParcela}
+                overlayClassName={stylesPrestador.modal_overlay}
+            >
+                <div className={stylesPrestador.modal_header}>
+                    <span className={stylesPrestador.nimbus_money}></span>
+                    <h2>Definir despesa</h2>
+                    <img className={stylesPrestador.fechar} src={fechar_icon} alt="Fechar" onClick={fecharModal} />
+                </div>
+
+                <div className={stylesPrestador.modal_content}>
+                    <div className={stylesPrestador.parcelas}>
+                        Projeto de abelhas
+                    </div>
+                    <div className={stylesPrestador.price_field}>
+                        <p> R$</p>
+                        <input onChange={(e) => setValorInput(e.target.value)} type="number" />
+                    </div>
+                    <button className={stylesPrestador.botao} onClick={confirmarCusto}>Confirmar</button>
+                </div>
+            </Modal>
+
         </div>
     );
 }
