@@ -38,6 +38,8 @@ function ChamadosEmpresa() {
     const [descricao, setDescricao] = useState('');
     const [dataAbertura, setDataAbertura] = useState('');
     const [dataFechamento, setDataFechamento] = useState(new Date().toISOString().slice(0, 10));
+    const [parcelas, setParcelas] = useState(12);
+    const [total, setTotal] = useState(0); 
 
     const tiposModal = {
         abrir_chamado: 'abrirChamado',
@@ -82,9 +84,9 @@ function ChamadosEmpresa() {
             descricao,
             abertura: dataAbertura,
             fechamento: dataFechamento,
-            status: 'Aberto', 
+            status: 'Aberto',
         };
-    
+
         const chamadosExistentes = JSON.parse(localStorage.getItem('chamados')) || [];
         chamadosExistentes.push(chamado);
         localStorage.setItem('chamados', JSON.stringify(chamadosExistentes));
@@ -97,9 +99,9 @@ function ChamadosEmpresa() {
 
     const formatarData = () => {
         const data = new Date();
-    
-        if (isNaN(data)) return 'Data não definida'; 
-    
+
+        if (isNaN(data)) return 'Data não definida';
+
         let dataFormatada = data.toLocaleString('pt-BR', {
             month: 'short',
             day: 'numeric',
@@ -107,17 +109,17 @@ function ChamadosEmpresa() {
             minute: 'numeric',
             hour12: false
         });
-    
+
         dataFormatada = dataFormatada.replace('.', '');
         return dataFormatada;
-    };    
-  
+    };
+
     const formatarDataFechamento = (data) => {
         if (!data || isNaN(new Date(data))) return 'Data não definida';
         const date = new Date(data);
-        date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); 
+        date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
         const dia = date.getDate();
-        const mes = date.toLocaleString('pt-BR', { month: 'short' }); 
+        const mes = date.toLocaleString('pt-BR', { month: 'short' });
         let dataFormatadaFechamento = `${dia} de ${mes}`;
         return dataFormatadaFechamento;
     };
@@ -126,21 +128,21 @@ function ChamadosEmpresa() {
         const novaData = e.target.value;
         setDataFechamento(novaData);
     };
-    
+
     const salvarFechamento = (chamadoId) => {
         const novosChamados = chamadosState.map(chamado => {
             if (chamado.id === chamadoId) {
                 return { ...chamado, status: 'Fechado' };
             }
-            return chamado; 
+            return chamado;
         });
-        
+
         setChamados(novosChamados);
         localStorage.setItem('chamados', JSON.stringify(novosChamados));
-        
+
         fecharModal();
     };
-    
+
     return (
         <div className={styles.container}>
             <SideBar />
@@ -194,37 +196,47 @@ function ChamadosEmpresa() {
                     <button className={stylesPrestador.botao} onClick={() => salvarFechamento(idChamado)}>Confirmar</button>
                 </div>
             </Modal>
-
             <Modal
                 isOpen={modalIsOpen && tipoModal === 'definirParcela'}
                 onRequestClose={fecharModal}
                 contentLabel="Modal para definir a parcela"
                 className={styles.modalParcela}
-                overlayClassName={styles.modal_overlay}>
-
+                overlayClassName={styles.modal_overlay}
+            >
                 <div className={styles.modal_header}>
                     <img src={division_icon} alt=""
                         width={60}
                         height={60} />
                     <h2>Definir parcelas</h2>
-                    <img src={fechar_icon} alt="Fechar"
+                    <img className={styles.img} src={fechar_icon} alt="Fechar"
                         onClick={fecharModal} />
                 </div>
 
                 <div className={styles.modal_content}>
                     <div className={styles.parcelas}>
-                        <img src={minus_icon} alt=""
+                        <img
+                            src={minus_icon}
+                            alt="Diminuir"
                             width={60}
-                            height={60} />
-                        <h2>12x</h2>
-                        <img src={plus_icon} alt=""
+                            height={60}
+                            onClick={() => setParcelas((prev) => Math.max(prev - 1, 1))}
+                        />
+                        <h2>{parcelas}x</h2>
+                        <img
+                            src={plus_icon}
+                            alt="Aumentar"
                             width={60}
-                            height={60} />
+                            height={60}
+                            onClick={() => setParcelas((prev) => Math.min(prev + 1, 12))}
+                        />
                     </div>
-                    <div className={styles.price_field}><p>de </p> <p> R$ 29,16</p></div>
+                    <div className={styles.price_field}>
+                        <p>de </p>
+                        <p>R$ {(total / parcelas).toFixed(2)}</p>
+                    </div>
                     <div className={styles.total}>
-                        Total: R$ 456
-                        <button className={stylesPrestador.botao}>Confirmar</button>
+                        Total: R$ {total}
+                        <button className={stylesPrestador.botao} onClick={fecharModal}>Confirmar</button>
                     </div>
                 </div>
             </Modal>
@@ -257,8 +269,8 @@ function ChamadosEmpresa() {
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="prazo">Prazo para o término do chamado:</label>
-                        <input type="date" id="prazo" required   value={dataFechamento} 
-    onChange={handleDataFechamentoChange} />
+                        <input type="date" id="prazo" required value={dataFechamento}
+                            onChange={handleDataFechamentoChange} />
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="desc">Descrição:</label>
