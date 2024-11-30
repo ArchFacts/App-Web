@@ -61,7 +61,7 @@ const ProjetosBeneficiario = () => {
                 </div>
                 <div className={styles.modal_content}>
                     <p>Deseja confirmar o encerramento deste projeto?</p>
-                    <button>Confirmar</button>
+                    <button className={styles.botao}>Confirmar</button>
                 </div>
             </Modal>
         </section>
