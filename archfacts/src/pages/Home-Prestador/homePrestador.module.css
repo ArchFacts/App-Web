@@ -213,3 +213,7 @@ section .content {
 .modal .modal_content .button_area .button:nth-child(2) {
     background-color: #033E8C;
 }
+
+.paragrafo{
+    color: black;
+}

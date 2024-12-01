@@ -69,7 +69,7 @@ const EmpresasParceiras = () => {
                                     />
                                 ))
                             ) : (
-                                <p>Não há empresas parceiras disponíveis</p>
+                                <p className={styles.paragrafo}>Não há empresas parceiras disponíveis</p>
                             )
                         )}
                     </div>

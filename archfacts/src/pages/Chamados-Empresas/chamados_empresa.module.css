@@ -121,6 +121,7 @@
 }
 
 .parcelaCell {
+    border: none;
     height: 2.5rem;
     background-color: #033E8C;
     font-family: 'Poppins-Medium';
@@ -218,7 +219,8 @@
     color: white;
     text-align: center;
     font-size: 2rem;
-    width: 100%;
+    width: 85%;
+    padding-left: 8%;
 }
 
 .modal .modal_header img:hover {
@@ -228,7 +230,7 @@
 
 .modal .modal_content {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -308,15 +310,16 @@
     border-radius: 8px;
     display: flex;
     justify-content: center;
+    gap: 2%;
 }
 
-
-
 .modalParcela .modal_content .price_field p:nth-child(1) {
+    font-family: 'Poppins-Medium';
     color: black;
 }
 
 .modalParcela .modal_content .price_field p:nth-child(2) {
+    font-family: 'Poppins-Medium';
     color: #F95C00;
 }
 
@@ -358,7 +361,8 @@
     color: white;
     text-align: center;
     font-size: 2rem;
-    width: 100%;
+    width: 85%;
+    padding-left: 8%;
 }
 
 .modal_chamado .modal_header img:hover {
@@ -433,4 +437,8 @@
 .modal_chamado .modal_content .button_area button {
     width: 25%;
     background-color: #033E8C;
+}
+
+.modalParcela .img{
+cursor: pointer;
 }
