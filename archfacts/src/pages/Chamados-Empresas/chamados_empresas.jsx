@@ -91,7 +91,7 @@ function ChamadosEmpresa() {
         setTipoModal(null);
     };
 
-    const salvarChamado = async (e) => {
+    const salvarChamado = async (e, idProjeto) => {
         e.preventDefault();
         const chamado = {
             nome,
@@ -101,11 +101,11 @@ function ChamadosEmpresa() {
             fechamento: formatarDataFechamento(dataFechamento),
             status: 'Aberto',
         };
-   
+    
         try {
-            const response = await api.post('/chamados', chamado);
+            const response = await api.post(`/chamados/${idProjeto}`, chamado);
             const novoChamado = response.data;
-            setChamados((prevChamados) => [...prevChamados, novoChamado]);  
+            setChamados((prevChamados) => [...prevChamados, novoChamado]);
             setNome('');
             setTitulo('');
             setDescricao('');
@@ -113,7 +113,7 @@ function ChamadosEmpresa() {
         } catch (error) {
             console.error('Erro ao salvar o chamado:', error);
         }
-    };
+    };    
 
     const formatarData = (data) => {
         const date = new Date(data);
@@ -267,7 +267,7 @@ function ChamadosEmpresa() {
                 overlayClassName={styles.modal_overlay}>
 
                 <div className={styles.modal_header}>
-                    <h2>Enviar Chamado</h2>
+                    <h2>Abrir Chamado</h2>
                     <img src={fechar_icon}
                         alt="Fechar"
                         onClick={fecharModal} />
@@ -297,7 +297,7 @@ function ChamadosEmpresa() {
                             onChange={(e) => setDescricao(e.target.value)} />
                     </div>
                     <div className={styles.button_area}>
-                        <button className={stylesPrestador.botao} type="submit" onClick={salvarChamado}>Enviar</button>
+                    <button className={stylesPrestador.botao} onClick={(e) => salvarChamado(e)}>Enviar</button>
                     </div>
                 </div>
             </Modal>
