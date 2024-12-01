@@ -89,7 +89,7 @@ function TarefasPrestador() {
     const [prioridade, setPrioridade] = useState('');
     const [status, setStatus] = useState('');
     const [desc, setDescricao] = useState('');
-    const [dataEntrega, setDataEntrega] = useState('');
+    const [dataTermino, setDataTermino] = useState('');
 
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(true)
@@ -106,11 +106,11 @@ function TarefasPrestador() {
         if (name === "prioridade") setPrioridade(value);
         if (name === "status") setStatus(value);
         if (name === "desc") setDescricao(value);
-        if (name === "dataEntrega") setDataEntrega(value);
+        if (name === "dataTermino") setDataTermino(value);
     };
 
     // if (loading) {
-    //     return <Spinner />
+    //     return <Spinner />;  
     // }
 
     const abrirModal = (tipo, idChamado) => {
@@ -130,12 +130,15 @@ function TarefasPrestador() {
     };
 
     const salvarTarefa = async () => {
+
+        const novaDataTermino = `${dataTermino}T23:59:00`;  // Adicionando a hora para poder inserir no banco
+
         const tarefa = {
             titulo,
             despesa,
             prioridade,
             status,
-            dataEntrega,
+            novaDataTermino,
             descricao: desc,
         };
 
@@ -149,7 +152,7 @@ function TarefasPrestador() {
         } catch (error) {
             console.log("Houve um erro ao enviar a sua tarefa!", error);
             toast.error("Houve um erro ao enviar a sua tarefa, por favor tente novamente");
-        } 
+        }
         finally {
             // setLoading(false);
         }
@@ -161,16 +164,17 @@ function TarefasPrestador() {
     };
 
     const buscarDadosUsuarioLogado = async () => {
+        // setLoading(true);  
         try {
             const response = await dadosUsuarioLogado();
             setUsuario(response.data);
             console.log(response.data);
         } catch (error) {
             console.error("Erro ao buscar os dados do usuário", error);
-        } 
-        // finally {
-        //     setLoading(false);
-        // }
+        }
+        finally {
+            // setLoading(false);
+        }
     };
 
     const buscarTarefas = async (idProjeto) => {
@@ -179,6 +183,7 @@ function TarefasPrestador() {
             return;
         }
 
+        // setLoading(true);
         try {
             const response = await buscarTarefasNegocio(idProjeto);
             setTarefas(response.data);
@@ -223,21 +228,21 @@ function TarefasPrestador() {
                         <p className={styles.headerFechamento}>Data de fechamento</p>
                         <p className={styles.headerFinalizar}>Editar/Excluir/Finalizar</p>
                     </div>
-                        <div className={styles.form}>
-                            {tarefas.length > 0 ? (
+                    <div className={styles.form}>
+                        {tarefas.length > 0 ? (
 
-                                tarefas.map((tarefa) => (
-                                    <TarefaInfo
-                                        key={tarefa.id}
-                                        {...tarefa}
-                                        onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
-                                        onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
-                                    />
-                                ))
-                            ) : (
-                                <p>Não há tarefas disponíveis</p>
-                            )}
-                        </div>
+                            tarefas.map((tarefa) => (
+                                <TarefaInfo
+                                    key={tarefa.id}
+                                    {...tarefa}
+                                    onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
+                                    onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
+                                />
+                            ))
+                        ) : (
+                            <p>Não há tarefas disponíveis</p>
+                        )}
+                    </div>
                 </div>
             </div>
             <Modal
@@ -327,10 +332,10 @@ function TarefasPrestador() {
                     <div className={styles.field}>
                         <label htmlFor="Prazo de término">Prazo de término</label>
                         <input
-                            name='dataEntrega'
+                            name='dataTermino'
                             type="date"
-                            id="dataEntrega"
-                            value={dataEntrega}
+                            id="dataTermino"
+                            value={dataTermino}
                             onChange={handleChange}
                         />
                     </div>
