@@ -51,47 +51,55 @@ const ProjetosPrestador = () => {
         navigate(`/tarefas-prestador/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
     };
 
-    useEffect(() => {
-        buscarDadosUsuarioLogado();
-    }, []);
+    const handleProjetoClickChamado = (projeto) => {
+        console.log("clicou", projeto);
+        console.log("ID DO PROJETO", projeto.idProjeto);
+        console.log("CLICOU")
+        navigate(`/chamados-prestador/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
+}
 
-    useEffect(() => {
-        if (usuario) {
-            buscarProjetos();
-        }
-    }, [usuario]);
+useEffect(() => {
+    buscarDadosUsuarioLogado();
+}, []);
 
-    if (loading) {
-        return <Spinner />
+useEffect(() => {
+    if (usuario) {
+        buscarProjetos();
     }
+}, [usuario]);
 
-    return (
-        <section className={styles.screen}>
-            <SideBarColaborador></SideBarColaborador>
-            <div className={styles.content_area}>
-                <div className={styles.project_name}>
-                    <ProjectName title={usuario.negocio.nome}></ProjectName>
-                </div>
-                <div className={styles.project_box}>
-                    <div className={styles.detail_bar}></div>
-                    <div className={styles.content_area}>
+if (loading) {
+    return <Spinner />
+}
 
-                        {projetos.length > 0 ? (
-                            projetos.map((projeto, index) => (
-                                <ProjetoComponentePrestador
-                                    key={projeto.idProjeto}
-                                    projectName={`Projeto de ${projeto.nome}` || "Indisponível"}
-                                    solicitanteName={projeto.destinatario.nome || "Indisponível"}
-                                    data={projeto.dataEntrega || "Indisponível"}
-                                    status={projeto.status || "Indisponível"}
-                                    onClick={() => handleProjetoClick(projeto)}
-                                />
-                            ))
-                        ) : (
-                            <p className={styles.paragrafo}>Não há projetos disponíveis.</p>
-                        )}
+return (
+    <section className={styles.screen}>
+        <SideBarColaborador></SideBarColaborador>
+        <div className={styles.content_area}>
+            <div className={styles.project_name}>
+                <ProjectName title={usuario.negocio.nome}></ProjectName>
+            </div>
+            <div className={styles.project_box}>
+                <div className={styles.detail_bar}></div>
+                <div className={styles.content_area}>
 
-                        {/* <ProjetoComponentePrestador
+                    {projetos.length > 0 ? (
+                        projetos.map((projeto, index) => (
+                            <ProjetoComponentePrestador
+                                key={projeto.idProjeto}
+                                projectName={`Projeto de ${projeto.nome}` || "Indisponível"}
+                                solicitanteName={projeto.destinatario.nome || "Indisponível"}
+                                data={projeto.dataEntrega || "Indisponível"}
+                                status={projeto.status || "Indisponível"}
+                                onClick={() => handleProjetoClick(projeto)}
+                                onClickChamados={() => handleProjetoClickChamado(projeto)}
+                            />
+                        ))
+                    ) : (
+                        <p className={styles.paragrafo}>Não há projetos disponíveis.</p>
+                    )}
+
+                    {/* <ProjetoComponentePrestador
                             projectName={'Projeto de abelhas'}
                             solicitanteName={'Júlia Campioto'}>
                         </ProjetoComponentePrestador>
@@ -106,11 +114,11 @@ const ProjetosPrestador = () => {
                             solicitanteName={'Júlia Campioto'}>
                         </ProjetoComponentePrestador> */}
 
-                    </div>
                 </div>
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);
 }
 
 export default ProjetosPrestador;
