@@ -82,8 +82,8 @@ const ProjetosPrestador = () => {
                                     key={projeto.idProjeto}
                                     projectName={`Projeto de ${projeto.nome}` || "Indisponível"}
                                     solicitanteName={projeto.destinatario.nome || "Indisponível"}
-                                    data={projeto.dataEntrega}
-                                    status={projeto.status}
+                                    data={projeto.dataEntrega || "Indisponível"}
+                                    status={projeto.status || "Indisponível"}
                                     onClick={() => handleProjetoClick(projeto)}
                                 />
                             ))

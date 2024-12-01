@@ -96,7 +96,7 @@ export const buscarTarefasNegocio = (idProjeto) => {
   return api.get(`/tarefas/${idProjeto}`, idProjeto);
 }
 
-export const cadastrarTarefa = (data, idProjeto) => {
+export const cadastrarTarefa = (idProjeto, data) => {
   return api.post(`/tarefas/${idProjeto}`, data);
 }
 

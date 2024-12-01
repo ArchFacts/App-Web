@@ -9,8 +9,10 @@ import lixeira from '../../utils/assets/lixeira.png';
 import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
-import { buscarTarefasNegocio, dadosUsuarioLogado } from '../../api';
+import { buscarTarefasNegocio, dadosUsuarioLogado, cadastrarTarefa } from '../../api';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Spinner from '../../components/Spinner/spinner';
 
 function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefinirParcelaClick, onFinalizarTarefaClick }) {
     const getStatusStyle = (status) => {
@@ -89,7 +91,6 @@ function TarefasPrestador() {
     const [desc, setDescricao] = useState('');
     const [dataEntrega, setDataEntrega] = useState('');
 
-
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(true)
 
@@ -108,6 +109,10 @@ function TarefasPrestador() {
         if (name === "dataEntrega") setDataEntrega(value);
     };
 
+    // if (loading) {
+    //     return <Spinner />
+    // }
+
     const abrirModal = (tipo, idChamado) => {
         setTipoModal(tipo);
         setModalIsOpen(true);
@@ -124,15 +129,30 @@ function TarefasPrestador() {
         fecharModal();
     };
 
-    const salvarChamado = () => {
-        console.log('Chamado salvo com:', {
-            nome,
+    const salvarTarefa = async () => {
+        const tarefa = {
             titulo,
-            dataFechamento,
-            descricao: desc,
+            despesa,
             prioridade,
             status,
-        });
+            dataEntrega,
+            descricao: desc,
+        };
+
+        try {
+            const response = await cadastrarTarefa(idProjeto, tarefa);
+            toast.success("Sua tarefa foi salva com sucesso:");
+            console.log("Tarefa salva", response);
+            setTarefas([...tarefas, response.data]); // Adiciona nova tarefa à lista
+
+            fecharModal();
+        } catch (error) {
+            console.log("Houve um erro ao enviar a sua tarefa!", error);
+            toast.error("Houve um erro ao enviar a sua tarefa, por favor tente novamente");
+        } 
+        finally {
+            // setLoading(false);
+        }
         fecharModal();
     };
 
@@ -147,9 +167,10 @@ function TarefasPrestador() {
             console.log(response.data);
         } catch (error) {
             console.error("Erro ao buscar os dados do usuário", error);
-        } finally {
-            setLoading(false);
-        }
+        } 
+        // finally {
+        //     setLoading(false);
+        // }
     };
 
     const buscarTarefas = async (idProjeto) => {
@@ -163,9 +184,13 @@ function TarefasPrestador() {
             setTarefas(response.data);
             console.log("BUSCANDO TAREFA", response.data);
         } catch (error) {
-            console.error("Erro ao buscar os projetos do negócio", error);
+            console.error("Erro ao buscar as tarefas do negócio", error);
         }
     }
+
+    // const handleCadastrarNegocio = async (idProjeto) => {
+    //     const response = await cadastrarTarefa();
+    // }
 
     useEffect(() => {
         buscarDadosUsuarioLogado();
@@ -198,16 +223,21 @@ function TarefasPrestador() {
                         <p className={styles.headerFechamento}>Data de fechamento</p>
                         <p className={styles.headerFinalizar}>Editar/Excluir/Finalizar</p>
                     </div>
-                    <div className={styles.form}>
-                        {tarefas.map((tarefa) => (
-                            <TarefaInfo
-                                key={tarefa.id}
-                                {...tarefa}
-                                onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
-                                onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
-                            />
-                        ))}
-                    </div>
+                        <div className={styles.form}>
+                            {tarefas.length > 0 ? (
+
+                                tarefas.map((tarefa) => (
+                                    <TarefaInfo
+                                        key={tarefa.id}
+                                        {...tarefa}
+                                        onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
+                                        onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
+                                    />
+                                ))
+                            ) : (
+                                <p>Não há tarefas disponíveis</p>
+                            )}
+                        </div>
                 </div>
             </div>
             <Modal
@@ -274,9 +304,9 @@ function TarefasPrestador() {
                                 onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
-                                <option value="alta">Alta</option>
-                                <option value="media">Média</option>
-                                <option value="baixa">Baixa</option>
+                                <option value="ALTA">Alta</option>
+                                <option value="MEDIA">Média</option>
+                                <option value="BAIXA">Baixa</option>
                             </select>
                         </div>
                         <div className={styles.field2}>
@@ -288,9 +318,9 @@ function TarefasPrestador() {
                                 onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
-                                <option value="Em progresso">Em progresso</option>
-                                <option value="Aberto">Aberto</option>
-                                <option value="Fechado">Fechado</option>
+                                <option value="EM PROGRESSO">Em progresso</option>
+                                <option value="ABERTO">Aberto</option>
+                                <option value="FECHADO">Fechado</option>
                             </select>
                         </div>
                     </div>
@@ -316,7 +346,7 @@ function TarefasPrestador() {
                     </div>
                     <button
                         className={stylesPrestador.botao}
-                        onClick={salvarChamado}>
+                        onClick={salvarTarefa}>
                         Salvar
                     </button>
                 </div>
