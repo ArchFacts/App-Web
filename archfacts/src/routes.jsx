@@ -73,6 +73,7 @@ function Rotas() {
                     <Route path="/perfil-funcionario" element={<PerfilFuncionario />}></Route>
                     <Route path="/perfil-prestador" element={<PerfilPrestador />} />
                     <Route path="/chamados-prestador" element={<ChamadosPrestador />} />
+                    <Route path="/tarefas-prestador/:projetoId" element={<TarefasPrestador />}></Route>
                 </Routes>
             </BrowserRouter>
         </>

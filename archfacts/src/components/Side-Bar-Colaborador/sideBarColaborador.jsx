@@ -8,7 +8,7 @@ import calendar from '../../utils/assets/calendar.png'
 import sign from '../../utils/assets/sign.png';
 import { Link } from "react-router-dom";
 
-const SideBarColaborador = ( {redirecionarPerfil} ) => {
+const SideBarColaborador = ( {redirecionarPerfil, onClickTarefa} ) => {
     return (
         <div className={styles.sideBar}>
        <Link to={"/home-prestador"}> <img className={styles.img} style={{width: '35px', height: '35px'}} src={house} alt="" /></Link>

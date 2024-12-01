@@ -92,4 +92,12 @@ export const buscarProjetosNegocio = (data) => {
   return api.get(`/projetos`, data);
 }
 
+export const buscarTarefasNegocio = (idProjeto) => {
+  return api.get(`/tarefas/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarTarefa = (idProjeto, data) => {
+  return api.post(`/tarefas/${idProjeto}`, data);
+}
+
 export default api;
