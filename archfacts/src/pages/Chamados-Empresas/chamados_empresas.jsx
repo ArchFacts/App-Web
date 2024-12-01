@@ -10,8 +10,9 @@ import division_icon from '../../utils/assets/division.svg';
 import plus_icon from '../../utils/assets/plus.svg';
 import minus_icon from '../../utils/assets/minus.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
+import api from '../../api';
 
-function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick, onAbrirChamadoClick }) {
+function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -25,7 +26,9 @@ function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, final
             <p className={styles.titleCell}>{titulo}</p>
             <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>{parcelaLabel}</button>
             <p className={styles.aberturaCell}>{abertura}</p>
-            <p className={styles.fechamentoCell}>{fechamento}</p>
+            <p className={styles.fechamentoCell}>
+                {formatarDataFechamento(fechamento)}
+            </p>
             <img src={finalizarIcone} className={styles.finalizarCell} alt="Finalizar" onClick={onFinalizarClick} />
         </div>
     );
@@ -37,9 +40,9 @@ function ChamadosEmpresa() {
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [dataAbertura, setDataAbertura] = useState('');
-    const [dataFechamento, setDataFechamento] = useState(new Date().toISOString().slice(0, 10));
+    const [dataFechamento, setDataFechamento] = useState('');
     const [parcelas, setParcelas] = useState(12);
-    const [total, setTotal] = useState(0); 
+    const total = 1000; 
 
     const tiposModal = {
         abrir_chamado: 'abrirChamado',
@@ -58,9 +61,22 @@ function ChamadosEmpresa() {
     }, []);
 
     useEffect(() => {
-        const chamadosNoStorage = JSON.parse(localStorage.getItem('chamados')) || [];
-        setChamados(chamadosNoStorage);
+        const carregarChamados = async () => {
+            try {
+                const response = await fetch(`${api}/chamados`); 
+                if (!response.ok) {
+                    throw new Error('Falha ao carregar os chamados');
+                }
+                const dadosChamados = await response.json();
+                setChamados(dadosChamados);  
+            } catch (error) {
+                console.error('Erro ao carregar os chamados:', error);
+            }
+        };
+    
+        carregarChamados();
     }, []);
+    
 
     const abrirModal = (tipo, idChamado = null) => {
         setTipoModal(tipo);
@@ -75,72 +91,75 @@ function ChamadosEmpresa() {
         setTipoModal(null);
     };
 
-    const salvarChamado = (e) => {
+    const salvarChamado = async (e) => {
         e.preventDefault();
         const chamado = {
-            id: new Date().getTime(),
             nome,
             titulo,
             descricao,
             abertura: dataAbertura,
-            fechamento: dataFechamento,
+            fechamento: formatarDataFechamento(dataFechamento),
             status: 'Aberto',
         };
-
-        const chamadosExistentes = JSON.parse(localStorage.getItem('chamados')) || [];
-        chamadosExistentes.push(chamado);
-        localStorage.setItem('chamados', JSON.stringify(chamadosExistentes));
-        setChamados(chamadosExistentes);
-        setNome('');
-        setTitulo('');
-        setDescricao('');
-        fecharModal();
+   
+        try {
+            const response = await api.post('/chamados', chamado);
+            const novoChamado = response.data;
+            setChamados((prevChamados) => [...prevChamados, novoChamado]);  
+            setNome('');
+            setTitulo('');
+            setDescricao('');
+            fecharModal();
+        } catch (error) {
+            console.error('Erro ao salvar o chamado:', error);
+        }
     };
 
-    const formatarData = () => {
-        const data = new Date();
-
-        if (isNaN(data)) return 'Data não definida';
-
-        let dataFormatada = data.toLocaleString('pt-BR', {
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: false
-        });
-
-        dataFormatada = dataFormatada.replace('.', '');
-        return dataFormatada;
-    };
+    const formatarData = (data) => {
+        const date = new Date(data);
+        const dia = String(date.getDate()).padStart(2, '0');
+        const mes = String(date.getMonth() + 1).padStart(2, '0');
+        const ano = date.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };    
 
     const formatarDataFechamento = (data) => {
         if (!data || isNaN(new Date(data))) return 'Data não definida';
         const date = new Date(data);
-        date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
         const dia = date.getDate();
         const mes = date.toLocaleString('pt-BR', { month: 'short' });
-        let dataFormatadaFechamento = `${dia} de ${mes}`;
-        return dataFormatadaFechamento;
-    };
+        return `${dia} de ${mes}`;
+    };    
 
     const handleDataFechamentoChange = (e) => {
         const novaData = e.target.value;
         setDataFechamento(novaData);
     };
 
-    const salvarFechamento = (chamadoId) => {
+    const salvarFechamento = async (chamadoId) => {
         const novosChamados = chamadosState.map(chamado => {
             if (chamado.id === chamadoId) {
                 return { ...chamado, status: 'Fechado' };
             }
             return chamado;
         });
-
-        setChamados(novosChamados);
-        localStorage.setItem('chamados', JSON.stringify(novosChamados));
-
-        fecharModal();
+    
+        try {
+            const response = await fetch(`${api}/chamados/${chamadoId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: 'Fechado' }),  
+            });
+    
+            if (!response.ok) throw new Error('Falha ao finalizar o chamado');
+    
+            setChamados(novosChamados);  
+            fecharModal();
+        } catch (error) {
+            console.error('Erro ao finalizar o chamado:', error);
+        }
     };
 
     return (
@@ -165,10 +184,10 @@ function ChamadosEmpresa() {
                         <p className={styles.headerFinalizar}>Finalizar</p>
                     </div>
                     <div className={styles.form}>
-                        {chamadosState.map((chamado, index) => (
+                        {chamadosState.map((chamado) => (
                             <ChamadoInfo
                                 finalizarIcone={finalizarIcone}
-                                key={index}
+                                key={chamado.id}
                                 status={chamado.status || 'Pendente'}
                                 titulo={chamado.titulo || 'Sem título'}
                                 parcelaLabel={chamado.parcelaLabel || 'Definir parcelas'}
