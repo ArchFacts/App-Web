@@ -112,4 +112,8 @@ export const cadastrarChamado = (idProjeto, data) => {
   return api.post(`/chamados/${idProjeto}`, data);
 }
 
+export const buscarServicosProposta = (idProposta) => {
+  return api.post(`/propostaServicos/buscar`, idProposta);
+};
+
 export default api;

@@ -9,7 +9,7 @@ import axios from 'axios';
 import api from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 import { useNavigate } from 'react-router-dom';
-import { recusarProposta, aceitarProposta, imagemGenerica } from '../../api';
+import { recusarProposta, aceitarProposta, imagemGenerica, buscarServicosProposta } from '../../api';
 import { toast } from 'react-toastify';
 
 const HomePrestador = () => {
@@ -19,13 +19,27 @@ const HomePrestador = () => {
     const [loading, setLoading] = useState(true)
     const [propostas, setPropostas] = useState([]);
     const [idPropostaSelecionada, setIdPropostaSelecionada] = useState(null);
+    const [nomeServico, setNomeServico] = useState("");
+    const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
-    const abrirModal = (propostaDaVez) => {
+    const abrirModal = async (propostaDaVez) => {
         const idProposta = propostaDaVez.idProposta;
         setIdPropostaSelecionada(idProposta);
         setPropostaSelecionada(propostaDaVez);
         setModalIsOpen(true);
+
+        try {
+            const response = await buscarServicosProposta(idProposta);
+            const proposta = response.data[0];
+            const nomeServico = proposta.servico.nome;
+            setNomeServico(nomeServico);
+            
+            console.log("DADOS DA RESP");
+            console.log(response.data);
+        } catch (error) {
+            console.log("Erro ao buscar os serviços da sua proposta", error);
+        }
     }
 
     const fecharModal = () => {
@@ -171,15 +185,15 @@ const HomePrestador = () => {
                                     <div className={styles.modal_content}>
                                         <div className={styles.field}>
                                             <p className={styles.title}>E-mail do solicitante:</p>
-                                            <p className={styles.content}>{propostaSelecionada.email}</p>
+                                            <p className={styles.content}>{propostaSelecionada.remetente.email || "Indisponível"}</p>
                                         </div>
                                         <div className={styles.field}>
                                             <p className={styles.title}>Serviços escolhidos:</p>
-                                            <p className={styles.content}>{propostaSelecionada.servicos}</p>
+                                            <p className={styles.content}>{nomeServico || "Indisponível"}</p>
                                         </div>
                                         <div className={styles.field}>
                                             <p className={styles.title}>Descrição adicional:</p>
-                                            <p className={styles.content}>{propostaSelecionada.descricao}</p>
+                                            <p className={styles.content}>{propostaSelecionada.descricao || "Indisponível"}</p>
                                         </div>
                                         <div className={styles.button_area}>
                                             <div className={styles.button}
