@@ -52,7 +52,7 @@ function CadastroUsuario() {
     autoplaySpeed: 5000
   };
 
-  // if(!formData.nome.trim()){
+  // if(!foa.normDatme.trim()){
   //     toast.error("Por favor, insira o seu nome.");
   //     return; 
   // }
@@ -63,12 +63,46 @@ function CadastroUsuario() {
 
       localStorage.setItem('beneficiarioData', JSON.stringify(formData));
       console.log(`Beneficiário registrado: ${JSON.stringify(formData)}`);
-      toast.success("Seu usuário foi criado com sucesso!");
 
-      navigate('/login?tipo=beneficiario');
+      toast.success("Seu usuário foi criado com sucesso!", {
+        position: "top-center", // Use uma posição válida
+        autoClose: 5000,       // Fecha automaticamente após 5 segundos
+        hideProgressBar: false, // Exibe a barra de progresso
+        closeOnClick: true,    // Fecha ao clicar
+        pauseOnHover: true,    // Pausa ao passar o mouse
+        draggable: true,       // Permite arrastar o toast
+        theme: "colored",      // Tema do toast 
+      });
+
+      if (tipo === 'beneficiario') {
+        navigate('/login?tipo=beneficiario');
+
+      } else if (tipo === 'prestador') {
+        navigate('/login?tipo=prestador');
+
+      }
+      else {
+        navigate('/cadastrar-funcionario');
+      }
+
 
     } catch (error) {
-      toast.error("Houve um erro ao cadastrar o usuário, por favor tente novamente!")
+      toast.error("Houve um erro ao cadastrar o usuário, por favor tente novamente!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark", 
+        style: { 
+          background: "white",  
+          color: "white",        
+          fontSize: "15px",
+          fontWeight: "regular",
+        },
+        progressStyle: { background: "#F95C00" }, 
+      });
       console.log("Erro no cadastro", error)
     }
   };
@@ -127,14 +161,7 @@ function CadastroUsuario() {
                 e.preventDefault();
                 console.log(`${tipo} registrado`);
 
-                if (tipo === 'beneficiario') {
-                  handleCadastro();
-                } else if (tipo == 'prestador') {
-                  navigate('/cadastrar-empresa')
-                }
-                else {
-                  navigate('/cadastrar-funcionario');
-                }
+                handleCadastro();
               }}
             />
           </div>

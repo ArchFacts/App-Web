@@ -1,0 +1,72 @@
+* {
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+}
+
+.content {
+    width: 350px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgOut {
+    height: 80%;
+    box-shadow: 1px -2px 20px rgba(0, 0, 0, 0.26);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.imgIn {
+    width: 300px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    border: 1px black solid;
+    display: flex;
+    background-color: black;
+}
+
+.imgIn img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.empresa {
+    background-color: black;
+    color: white;
+    font-size: 44px;
+    width: 100%;
+    height: 16%;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avaliacao {
+    display: flex;
+    height: 10%;
+    background-color: black;
+    width: 80%;
+    align-content: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 0 0 15px 15px;
+    color: white;
+}
+
+.avaliacao span {
+    color: #f95c00;
+    padding-left: 10px;
+}

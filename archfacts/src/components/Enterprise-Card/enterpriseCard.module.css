@@ -26,6 +26,9 @@
     transition: 200ms linear;
     cursor: pointer;
     margin-bottom: 10px;
+    color: white;
+    background-color: #033E8C;
+    border: none;
 }
 .cardButton:hover{
     scale: 1.1;

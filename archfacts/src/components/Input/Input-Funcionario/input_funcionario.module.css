@@ -20,6 +20,7 @@
 }
 
 .div_input input {
+  border-radius: 0;
   color: #033E8C;
   font-size: 16px;
   justify-content: center;

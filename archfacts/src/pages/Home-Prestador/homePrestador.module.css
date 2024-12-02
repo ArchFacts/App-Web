@@ -1,0 +1,219 @@
+* {
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../../utils/fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+section .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.welcome {
+    background-color: black;
+    height: 2px;
+    flex-grow: 1;
+}
+
+.capsula {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 0 0 15px;
+}
+
+.text {
+    white-space: nowrap;
+    margin-right: 5rem;
+    margin-left: 8rem;
+    font-size: 35px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.conteudo {
+    width: 100%;
+    height: 45rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.conteudo div,
+.conteudo span {
+    flex-wrap: wrap;
+}
+
+.propostas {
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 65%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.24);
+
+}
+
+.titulo {
+    background-color: black;
+    border-radius: 15px 15px 0 0;
+    font-family: 'Poppins-SemiBold';
+
+}
+
+.titulo h1 {
+    display: flex;
+    color: white;
+    font-size: 28px;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulosColunas {
+    width: 100%;
+    border-bottom: 2px solid #033e8cc5;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Poppins-SemiBold';
+    padding: 1rem;
+}
+
+.titulosColunas>span {
+    text-align: center;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #033e8c;
+    word-wrap: break-word;
+}
+
+.titulosColunas>span>p {
+    font-family: 'Poppins-SemiBold';
+    color: black;
+    font-size: 1.5rem;
+    color: #033E8C;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 65%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+}
+
+.modal .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal .modal_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.modal .modal_content .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.modal .modal_content .field .title {
+    font-family: 'Poppins-SemiBold';
+    color: #033E8C;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.modal .modal_content .field .content {
+    height: auto;
+    width: 85%;
+    font-size: 1.2rem;
+    font-family: 'Poppins-SemiBold';
+    color: black;
+    align-items: center;
+    background: #FFFFFF;
+    border: 3px solid #033E8C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.modal .modal_content .button_area {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Poppins-Medium';
+    font-size: 1.5rem;
+    height: 4rem;
+    color: white;
+}
+
+.modal .modal_content .button_area .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 35%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.modal .modal_content .button_area .button:hover {
+    width: 50%;
+}
+
+
+.modal .modal_content .button_area .button:nth-child(1) {
+    background-color: #F95C00;
+}
+
+.modal .modal_content .button_area .button:nth-child(2) {
+    background-color: #033E8C;
+}
+
+.paragrafo{
+    color: black;
+}

@@ -49,3 +49,15 @@
     width: 50%;
     height: 100%;
 }
+
+.button_area .button{
+cursor: pointer;
+border: none;
+background-color: #033E8C;
+width: 20%;
+color: white;
+}
+
+.button_area .button:hover{
+ color: black;
+    }

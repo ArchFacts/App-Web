@@ -1,0 +1,55 @@
+.container {
+    font-family: Arial, sans-serif;
+    max-width: 90%;
+    padding: 20px 50px;
+  margin: 20px 0;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.233);
+  border-radius: 30px;
+  }
+  
+  .selectorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .seletores{
+    padding: 0;
+    border: none;
+    margin: 0 10px;
+    text-align: right;
+    width: fit-content;
+  }
+  
+  .monthLabel {
+    font-size: 14px; /* Aumenta o tamanho do texto dos meses */
+  }
+  
+  .legend {
+    font-size: 12px;
+    text-anchor: start;
+  }
+  
+  .legend rect {
+    stroke-width: 2;
+  }
+  
+  .legend-gastos-gerais {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 30%;
+}
+
+.legend-item-gastos-gerais {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px; /* Reduz a intensidade do texto */
+}
+
+.legend-circle-gastos-gerais {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}

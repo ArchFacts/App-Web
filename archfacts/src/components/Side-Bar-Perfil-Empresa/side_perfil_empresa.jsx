@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './side_perfil_empresa.module.css';
+import { useNavigate } from 'react-router-dom'; 
 
 function SideBarPerfilEmpresa({ logo, titulo, atuacao, estado, email, telefone }) {
+  const navigate = useNavigate();
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
@@ -16,8 +18,8 @@ function SideBarPerfilEmpresa({ logo, titulo, atuacao, estado, email, telefone }
         <p>{email}</p>
         <p>{telefone}</p>
       </div>
-      <button className={styles.contatoEmpresa}>Entrar em contato</button>
-      <button className={styles.voltarEmpresa}>Voltar</button>
+      <button onClick={() => navigate("/")} className={styles.contatoEmpresa}>Entrar em contato</button>
+      <button onClick={() =>  navigate("/empresas-parceiras")} className={styles.voltarEmpresa}>Voltar</button>
     </div>
   );
 }

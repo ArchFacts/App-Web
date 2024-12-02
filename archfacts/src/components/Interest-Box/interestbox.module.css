@@ -41,3 +41,8 @@
     scale: 1.1;
     background-color: #05C7F2;
 }
+
+.button_div .button{
+cursor: pointer;
+border: none;
+}

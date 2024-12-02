@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../../utils/fonts/Poppins-Medium.ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+.finalizar {
+    width: 15rem;
+    height: 2.5rem;
+    background-color: #F95C00;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.finalizar p {
+    font-size: 1.5rem;
+    font-style: 'Poppins-Medium';
+    color: white;
+}
+
+.finalizar:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}

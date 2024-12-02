@@ -7,6 +7,7 @@ const ProposalMessage = ({ label, type, name, value, onChange }) => {
             <div className={stylesProposalMessage.div_input}>
                 <label>{label}</label>
                 <textarea
+                    className={stylesProposalMessage.textarea} 
                     type={type}
                     name={name}
                     value={value}
@@ -14,6 +15,7 @@ const ProposalMessage = ({ label, type, name, value, onChange }) => {
                     required
                     rows={5}
                 />
+
             </div>
         </div>
     );

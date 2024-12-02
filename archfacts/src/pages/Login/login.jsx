@@ -13,17 +13,15 @@ import imagem1 from '../../utils/assets/login1.jpg';
 import imagem2 from '../../utils/assets/login2.jpg';
 import imagem3 from '../../utils/assets/login3.jpg';
 import stylesLogin from '../Login/login.module.css';
-import api, { loginUsuario } from '../../api.jsx';
+import api, { dadosUsuarioLogado, loginUsuario } from '../../api.jsx';
 import { toast } from 'react-toastify';
 
 const Login = () => {
 
   const navigate = useNavigate();
-
   const [searchParams] = useSearchParams();
-
   const tipo = searchParams.get('tipo');
-
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
   const [formData, setFormData] = useState({
     login: '',
     senha: '',
@@ -43,25 +41,39 @@ const Login = () => {
     });
   };
 
-  const handleNavigation = () => {
-    if (tipo === 'funcionario') {
-      navigate('/cadastrar-funcionario');
-    } else if (tipo == 'prestador') {
-      navigate('/cadastrar-empresa')
-    }
-    else {
-      navigate('/cadastrar/beneficiario');
-    }
-  };
-
   const handleLogin = async () => {
     try {
-      await loginUsuario(formData);
+      const response = await loginUsuario(formData);
+
+      const token = response.data.token
+      localStorage.setItem("jwtToken", token);
+      const usuario = await obterDadosUsuarioLogado();
+      handleNavigation();
       toast.success("Usuário logado com sucesso!");
-      navigate('/empresas-parceiras');
     } catch (error) {
       toast.error("Houve um erro ao fazer login na sua conta");
       console.log("Erro", error)
+    }
+  }
+
+  const handleNavigation = () => {
+
+    if (tipo == "prestador") {
+      navigate('/cadastrar-empresa')
+    }
+    if (usuarioLogado.negocio) {
+      navigate(`/home-prestador`);
+    } else {
+      navigate('/hub');
+    };
+  }
+
+  const obterDadosUsuarioLogado = async () => {
+    try {
+      const response = await dadosUsuarioLogado();
+      setUsuarioLogado(response.data);
+    } catch (error) {
+      toast.error("Erro ao buscar o usuário", error);
     }
   }
 
