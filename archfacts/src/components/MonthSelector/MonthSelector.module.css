@@ -11,10 +11,11 @@
     font-size: 18px;
     color: black;
     cursor: pointer;
-  }
+    padding: 5px;
+    transition: color 0.3s;
+    }
   .monthButton:hover{
     background-color: white;
-    width: 100%;
     color: #ffc400;
   }
   .monthButton:disabled {
@@ -27,6 +28,18 @@
   }
   
   .currentMonth {
-    font-weight: bold;
+    font-size: 12px;
   }
-  
+  /* src/components/MonthSelector/MonthSelector.module.css */
+
+
+
+
+.disabled {
+  cursor: not-allowed;
+  color: #d3d3d3; /* Cinza claro */
+}
+
+.currentMonth {
+  margin: 0 10px;
+}

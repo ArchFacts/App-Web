@@ -3,6 +3,10 @@
     font-family: 'Poppins-Semibold';
     src: url('../utils/fonts/Poppins-SemiBold.ttf');
 }
+.conteudoTotal{
+    display: flex;
+    flex-direction: row;
+}
 .barraSuperior{
     border-radius: 20px 20px 0 0;
     background-color: #0E0C19;
@@ -92,9 +96,14 @@ flex-direction:row;
 align-items: center;
 }
 
-
-
-
+.cardGraficoFinalizadosSemana{
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.288);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 .cardGastos{
     width: 25%;

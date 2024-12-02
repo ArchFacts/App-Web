@@ -2,44 +2,95 @@ import React, { useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import styles from './RelatorioGastosChart.module.css';
 
+// Suponha que suas datas estejam neste formato
 const data = [
-  { month: "Janeiro", value: 100, type: "Lucro", company: "Empresa A" },
-  { month: "Janeiro", value: 80, type: "Despesa", company: "Empresa A" },
-  { month: "Fevereiro", value: 120, type: "Lucro", company: "Empresa A" },
-  { month: "Fevereiro", value: 90, type: "Despesa", company: "Empresa A" },
-  { month: "Janeiro", value: 150, type: "Lucro", company: "Empresa B" },
-  { month: "Janeiro", value: 100, type: "Despesa", company: "Empresa B" },
-  { month: "Fevereiro", value: 130, type: "Lucro", company: "Empresa B" },
-  { month: "Fevereiro", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Março", value: 150, type: "Lucro", company: "Empresa A" },
-  { month: "Março", value: 100, type: "Despesa", company: "Empresa A" },
-  { month: "Abril", value: 130, type: "Lucro", company: "Empresa A" },
-  { month: "Abril", value: 110, type: "Despesa", company: "Empresa A" },
-  { month: "Março", value: 150, type: "Lucro", company: "Empresa B" },
-  { month: "Março", value: 100, type: "Despesa", company: "Empresa B" },
-  { month: "Maio", value: 130, type: "Lucro", company: "Empresa B" },
-  { month: "Junho", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Julho", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Agosto", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Setembro", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Outubro", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Novembro", value: 110, type: "Despesa", company: "Empresa B" },
-  { month: "Dezembro", value: 110, type: "Lucro", company: "Empresa B" },
+  { date: "2023-01-15", value: 100, type: "Lucro", company: "Empresa A" },
+  { date: "2023-01-20", value: 80, type: "Despesa", company: "Empresa A" },
+  // Valores adicionais para expandir seu conjunto de dados
+  { date: "2023-02-10", value: 150, type: "Lucro", company: "Empresa B" },
+  { date: "2023-02-15", value: 90, type: "Despesa", company: "Empresa A" },
+  { date: "2023-03-05", value: 200, type: "Lucro", company: "Empresa A" },
+  { date: "2023-03-12", value: 50, type: "Despesa", company: "Empresa B" },
+  { date: "2023-04-20", value: 300, type: "Lucro", company: "Empresa B" },
+  { date: "2023-04-25", value: 120, type: "Despesa", company: "Empresa A" },
+  { date: "2023-05-15", value: 85, type: "Lucro", company: "Empresa A" },
+  { date: "2023-05-18", value: 60, type: "Despesa", company: "Empresa B" },
+  { date: "2023-06-10", value: 180, type: "Lucro", company: "Empresa B" },
+  { date: "2023-06-25", value: 110, type: "Despesa", company: "Empresa A" },
+  { date: "2023-07-01", value: 130, type: "Lucro", company: "Empresa A" },
+  { date: "2023-07-15", value: 75, type: "Despesa", company: "Empresa B" },
+  { date: "2023-08-05", value: 220, type: "Lucro", company: "Empresa B" },
+  { date: "2023-08-18", value: 140, type: "Despesa", company: "Empresa A" },
+  { date: "2023-09-10", value: 190, type: "Lucro", company: "Empresa A" },
+  { date: "2023-09-20", value: 90, type: "Despesa", company: "Empresa B" },
+  { date: "2023-10-15", value: 210, type: "Lucro", company: "Empresa B" },
+  { date: "2023-10-25", value: 130, type: "Despesa", company: "Empresa A" },
+  { date: "2023-11-05", value: 95, type: "Lucro", company: "Empresa A" },
+  { date: "2023-11-20", value: 70, type: "Despesa", company: "Empresa B" },
+  { date: "2023-12-10", value: 170, type: "Lucro", company: "Empresa B" },
+  { date: "2023-12-25", value: 100, type: "Despesa", company: "Empresa A" },
+  { date: "2024-01-15", value: 115, type: "Lucro", company: "Empresa A" },
+  { date: "2024-01-25", value: 85, type: "Despesa", company: "Empresa B" },
+  { date: "2024-02-10", value: 205, type: "Lucro", company: "Empresa B" },
+  { date: "2024-02-20", value: 95, type: "Despesa", company: "Empresa A" },
+  { date: "2024-03-05", value: 245, type: "Lucro", company: "Empresa A" },
+  { date: "2024-03-18", value: 55, type: "Despesa", company: "Empresa B" },
+  { date: "2024-04-10", value: 305, type: "Lucro", company: "Empresa B" },
+  { date: "2024-04-20", value: 125, type: "Despesa", company: "Empresa A" },
+  { date: "2024-05-15", value: 95, type: "Lucro", company: "Empresa A" },
+  { date: "2024-05-18", value: 65, type: "Despesa", company: "Empresa B" },
+  { date: "2024-06-10", value: 195, type: "Lucro", company: "Empresa B" },
+  { date: "2024-06-25", value: 115, type: "Despesa", company: "Empresa A" },
+  { date: "2024-07-01", value: 135, type: "Lucro", company: "Empresa A" },
+  { date: "2024-07-15", value: 80, type: "Despesa", company: "Empresa B" },
+  { date: "2024-08-05", value: 225, type: "Lucro", company: "Empresa B" },
+  { date: "2024-08-18", value: 145, type: "Despesa", company: "Empresa A" },
+  { date: "2024-09-10", value: 195, type: "Lucro", company: "Empresa A" },
+  { date: "2024-09-20", value: 95, type: "Despesa", company: "Empresa B" },
+  { date: "2024-10-15", value: 215, type: "Lucro", company: "Empresa B" },
+  { date: "2024-10-25", value: 135, type: "Despesa", company: "Empresa A" },
+  { date: "2024-11-05", value: 100, type: "Lucro", company: "Empresa A" },
+  { date: "2024-11-20", value: 75, type: "Despesa", company: "Empresa B" },
+  { date: "2024-12-10", value: 175, type: "Lucro", company: "Empresa B" },
+  { date: "2024-12-25", value: 105, type: "Despesa", company: "Empresa A" }
+  // Continue com mais dados se necessário
 ];
-
 const RelatorioGastosChart = () => {
   const [selectedCompany, setSelectedCompany] = useState(data[0].company);
+  const [selectedYear, setSelectedYear] = useState(new Date(data[0].date).getFullYear());
 
   useEffect(() => {
-    const filteredData = data.filter(d => d.company === selectedCompany);
-    drawChart(filteredData);
+    const filteredData = data.filter(d => 
+      d.company === selectedCompany && 
+      new Date(d.date).getFullYear() === selectedYear
+    );
 
-    function drawChart(filteredData) {
+    // Agrupar e somar dados por mês e ano
+    const groupedData = d3.rollup(
+      filteredData,
+      v => d3.sum(v, d => d.value),
+      d => `${new Date(d.date).getFullYear()}-${new Date(d.date).getMonth() + 1}`, // Agrupa por ano e mês
+      d => d.type
+    );
+
+    const processedData = Array.from(groupedData, ([key, typeMap]) => {
+      const [year, month] = key.split('-');
+      const monthNames = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+      return {
+        year,
+        month: monthNames[parseInt(month, 10) - 1],
+        values: Array.from(typeMap, ([type, value]) => ({ type, value }))
+      };
+    });
+
+    drawChart(processedData);
+
+    function drawChart(processedData) {
       const container = d3.select("#chart-container");
       container.selectAll("svg").remove();
 
-      if (filteredData.length === 0) {
-        container.html("<p>No data available for the selected company.</p>");
+      if (processedData.length === 0) {
+        container.html("<p>No data available for the selected company and year.</p>");
         return;
       }
 
@@ -50,13 +101,12 @@ const RelatorioGastosChart = () => {
       const marginBottom = 30;
       const marginLeft = 40;
 
-      const months = Array.from(new Set(filteredData.map(d => d.month)));
-      const types = Array.from(new Set(filteredData.map(d => d.type)));
-
       const x0 = d3.scaleBand()
-        .domain(months)
+        .domain(processedData.map(d => `${d.month} ${d.year}`))
         .range([marginLeft, width - marginRight])
         .padding(0.1);
+
+      const types = Array.from(new Set(filteredData.map(d => d.type)));
 
       const x1 = d3.scaleBand()
         .domain(types)
@@ -64,7 +114,7 @@ const RelatorioGastosChart = () => {
         .padding(0.05);
 
       const y = d3.scaleLinear()
-        .domain([0, d3.max(filteredData, d => d.value)])
+        .domain([0, d3.max(processedData.flatMap(d => d.values.map(v => v.value)))])
         .nice()
         .range([height - marginBottom, marginTop]);
 
@@ -74,15 +124,13 @@ const RelatorioGastosChart = () => {
         .attr("viewBox", [0, 0, width, height])
         .attr("style", "max-width: 100%; height: auto;");
 
-      const groupedData = d3.group(filteredData, d => d.month);
-
       svg.append("g")
         .selectAll("g")
-        .data(groupedData)
+        .data(processedData)
         .join("g")
-        .attr("transform", d => `translate(${x0(d[0])},0)`)
+        .attr("transform", d => `translate(${x0(`${d.month} ${d.year}`)},0)`)
         .selectAll("rect")
-        .data(d => d[1])
+        .data(d => d.values)
         .join("rect")
         .attr("x", d => x1(d.type))
         .attr("y", d => y(d.value))
@@ -130,9 +178,10 @@ const RelatorioGastosChart = () => {
         .text(d => d);
     }
 
-  }, [selectedCompany]);
+  }, [selectedCompany, selectedYear]);
 
   const companies = Array.from(new Set(data.map(d => d.company)));
+  const years = Array.from(new Set(data.map(d => new Date(d.date).getFullYear())));
 
   return (
     <div className={styles.container}>
@@ -151,9 +200,20 @@ const RelatorioGastosChart = () => {
           id="company-select"
           value={selectedCompany}
           onChange={(e) => setSelectedCompany(e.target.value)}
-        >
+          className={styles['seletores']}
+          >
           {companies.map(company => (
             <option key={company} value={company}>{company}</option>
+          ))}
+        </select>
+        <select 
+          id="year-select"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+          className={styles['seletores']}
+          >
+          {years.map(year => (
+            <option key={year} value={year}>{year}</option>
           ))}
         </select>
       </div>
