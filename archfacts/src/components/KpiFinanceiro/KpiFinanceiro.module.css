@@ -1,0 +1,32 @@
+.kpi{
+    width: 20%;
+    height: 85%;
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.308);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+.kpi div{
+    display: flex;
+    flex-direction: row;
+    align-items: center ;
+}
+.tituloKpi{
+font-size: 14px;
+color: rgba(0, 0, 0, 0.623);
+}
+.valorKpi{
+    font-size: 28px;
+    width: 140px;
+}
+.porcentagemKpi{
+    width: 45px;
+    height: fit-content;
+    padding: 3px 5px;
+    border-radius: 20px;
+    background-color: rgb(6, 236, 6);
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
