@@ -7,7 +7,7 @@ import fechar_icon from "../../utils/assets/modal-x.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onVerChamadoClick, onDefinirCustoClick }) {
+function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onAdicionarFilaClick, onVerChamadoClick, onDefinirCustoClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -22,11 +22,10 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
             <button className={styles.parcelaCell} onClick={onDefinirCustoClick}>{parcelaLabel}</button>
             <p className={styles.aberturaCell}>{abertura}</p>
             <p className={styles.fechamentoCell}>{fechamento}</p>
-            {/* <div className={styles.finalizarCell}> */}
             <div className={styles.div_botao}>
-                <button className={styles.chamadoCell} onClick={onVerChamadoClick}>Ver descrição</button>
+                <button className={styles.chamadoCell} onClick={onVerChamadoClick}>Descrição</button>
+                <button className={styles.chamadoCell} onClick={onAdicionarFilaClick}>Enfileirar</button>
             </div>
-            {/* </div> */}
         </div>
     );
 }
@@ -34,13 +33,15 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
 function ChamadosPrestador() {
     const chamadosPrestador = [
         {
+            id: 1,
             status: 'Em progresso',
-            titulo: 'Projeto de abelhas',
+            titulo: 'Projeto de piricopico',
             parcelaLabel: 'Definir custo',
             abertura: '28 de março, 15:35',
             fechamento: '07 de abril, 21:02',
         },
         {
+            id: 2,
             status: 'Aberto',
             titulo: 'Projeto de abelhas',
             parcelaLabel: 'Definir custo',
@@ -48,17 +49,36 @@ function ChamadosPrestador() {
             fechamento: '07 de abril, 21:02',
         },
         {
+            id: 3,
             status: 'Fechado',
-            titulo: 'Projeto de abelhas',
+            titulo: 'Projeto de julia campioto',
+            parcelaLabel: 'Definir custo',
+            abertura: '28 de março, 15:35',
+            fechamento: '07 de abril, 21:02',
+        },
+        {
+            id: 4,
+            status: 'Fechado',
+            titulo: 'Projeto de julia campioty',
+            parcelaLabel: 'Definir custo',
+            abertura: '28 de março, 15:35',
+            fechamento: '07 de abril, 21:02',
+        },
+        {
+            id: 5,
+            status: 'Fechado',
+            titulo: 'Projeto de julia campiots',
             parcelaLabel: 'Definir custo',
             abertura: '28 de março, 15:35',
             fechamento: '07 de abril, 21:02',
         },
     ];
 
+    const [filaChamados, setFilaChamados] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
     const [valorInput, setValorInput] = useState('');
+    const [descricaoChamado, setDescricaoChamado] = useState('');
 
     const abrirModal = (tipo) => {
         setTipoModal(tipo);
@@ -87,6 +107,32 @@ function ChamadosPrestador() {
         }, 1000);
     };
 
+    const adicionarAFila = (chamado) => {
+        if (!filaChamados.some((c) => c.id === chamado.id)) {
+            setFilaChamados((prevFila) => [...prevFila, chamado]);
+            toast.success(`Chamado "${chamado.titulo}" adicionado à fila!`);
+        } else {
+            toast.error(`Chamado "${chamado.titulo}" já está na fila.`);
+        }
+    };
+
+    const processarProximoChamado = () => {
+        if (filaChamados.length > 0) {
+            const [proximoChamado, ...restoFila] = filaChamados;
+            setFilaChamados(restoFila);
+            toast.success(`Chamado "${proximoChamado.titulo}" processado!`);
+        } else {
+            toast.warning('Nenhum chamado na fila para processar.');
+        }
+    };
+
+    const getStatusStyle = (status) => {
+        if (status === 'Em progresso') return { color: 'blue' };
+        if (status === 'Aberto') return { color: 'green' };
+        if (status === 'Fechado') return { color: 'red' };
+        return {};
+    };
+
     return (
         <div className={styles.container}>
             <SideBarColaborador />
@@ -105,18 +151,32 @@ function ChamadosPrestador() {
                         <p className={styles.headerParcela}>Lucro</p>
                         <p className={styles.headerAbertura}>Data de abertura</p>
                         <p className={styles.headerFechamento}>Data de fechamento</p>
-                        <p className={styles.headerFinalizar}>Descrição</p>
+                        <p className={styles.headerFinalizar}>Ações</p>
                     </div>
                     <div className={styles.form}>
-                        {chamadosPrestador.map((chamadoPrestador, index) => (
+                        {chamadosPrestador.map((chamado) => (
                             <ChamadoPrestadorInfo
-                                key={index}
-                                {...chamadoPrestador}
-                                onFinalizarClick={() => console.log('Finalizar chamadoPrestador', index)}
-                                onDefinirCustoClick={() => abrirModal(tiposModal.definirCusto)}
-                                onVerChamadoClick={() => abrirModal(tiposModal.verChamado)}
+                                key={chamado.id}
+                                {...chamado}
+                                onDefinirCustoClick={() => abrirModal('definirCusto')}
+                                onVerChamadoClick={() => abrirModal('verChamado', chamado.titulo)}
+                                onAdicionarFilaClick={() => adicionarAFila(chamado)}
+                                getStatusStyle={getStatusStyle}
                             />
                         ))}
+                    </div>
+                </div>
+                <div className={styles.filaContainer}>
+                    <div className={styles.filaContent}>
+                        <h2>Fila de chamados</h2>
+                        <ul>
+                            {filaChamados.map((chamado) => (
+                                <li key={chamado.id}>{chamado.titulo}</li>
+                            ))}
+                        </ul>
+                        <button onClick={processarProximoChamado} className={styles.botaoProcessar}>
+                            Processar próximo
+                        </button>
                     </div>
                 </div>
             </div>

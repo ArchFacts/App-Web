@@ -261,7 +261,7 @@
 }
 
 .modal .modal_header img {
-   margin-right: 2%;
+    margin-right: 2%;
 }
 
 .modal .modal_header h2 {
@@ -279,6 +279,7 @@
 
 .modal .modal_content {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;

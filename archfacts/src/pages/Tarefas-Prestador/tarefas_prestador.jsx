@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
 
-function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarTarefaClick, onEditarTarefaClick, onEncerrarTarefaClick, onDefinirDespesaClick }) {
+function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarTarefaClick, onEditarTarefaClick, onEncerrarTarefaClick, onDefinirDespesaClick, despesaDefinida, onDesfazerDespesaClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -49,6 +49,14 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
                     onClick={() => onFinalizarTarefaClick()}
                 />
             </div>
+
+            {/* {despesaDefinida && (
+                <button
+                    className={stylesPrestador.botao}
+                    onClick={() => onDesfazerDespesaClick()}>
+                    Desfazer
+                </button>
+            )} */}
         </div>
     );
 }
@@ -62,6 +70,7 @@ function TarefasPrestador() {
             parcelaLabel: 'Definir despesa',
             abertura: '28 de março, 15:35',
             fechamento: '07 de abril, 21:02',
+            despesaDefinida: false,
         },
         {
             id: '2',
@@ -70,12 +79,14 @@ function TarefasPrestador() {
             parcelaLabel: 'Definir despesa',
             abertura: '28 de março, 15:35',
             fechamento: '07 de abril, 21:02',
+            despesaDefinida: false,
         },
     ]);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
     const [idChamado, setIdChamado] = useState(null);
+    const [despesasRemovidas, setDespesasRemovidas] = useState([]);
 
     const [nome, setNome] = useState('');
     const [titulo, setTitulo] = useState('');
@@ -85,6 +96,7 @@ function TarefasPrestador() {
     const [status, setStatus] = useState('');
     const [desc, setDescricao] = useState('');
     const [valorInput, setValorInput] = useState('');
+    const [valorDespesa, setValorDespesa] = useState('');
 
     const abrirModal = (tipo, idChamado) => {
         setTipoModal(tipo);
@@ -140,6 +152,47 @@ function TarefasPrestador() {
         fecharModal();
     };
 
+    const confirmarDespesa = () => {
+        if (!valorInput || isNaN(valorInput) || valorInput < 0) {
+            alert('Por favor, insira um valor válido para a despesa.');
+            return;
+        }
+        definirDespesa(idChamado, valorInput);
+    };
+
+    const definirDespesa = (idChamado, valorDespesa) => {
+        setTarefas((prevTarefas) =>
+            prevTarefas.map((tarefa) =>
+                tarefa.id === idChamado
+                    ? {
+                        ...tarefa,
+                        parcelaLabel: valorDespesa,
+                        despesaDefinida: true,
+                    }
+                    : tarefa
+            )
+        );
+        setDespesasRemovidas((prev) => [
+            ...prev,
+            { id: idChamado, valor: valorDespesa },
+        ]);
+    };
+
+    const desfazerDespesa = (idChamado) => {
+        setTarefas((prevTarefas) =>
+            prevTarefas.map((tarefa) =>
+                tarefa.id === idChamado
+                    ? {
+                        ...tarefa,
+                        parcelaLabel: "Definir despesa",
+                        despesaDefinida: false,
+                    }
+                    : tarefa
+            )
+        );
+        setValorDespesa('');
+    };
+
     return (
         <div className={styles.container}>
             <SideBarColaborador />
@@ -167,10 +220,10 @@ function TarefasPrestador() {
                                 key={tarefa.id}
                                 {...tarefa}
                                 onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
-                                onDefinirParcelaClick={() => console.log('abrirTarefa', index)}
                                 onEditarTarefaClick={() => abrirModal('editarTarefa', tarefa.id)}
                                 onEncerrarTarefaClick={() => abrirModal('excluirTarefa', tarefa.id)}
                                 onDefinirDespesaClick={() => abrirModal('definirDespesa', tarefa.id)}
+                                onDesfazerDespesaClick={() => desfazerDespesa(tarefa.id)}
                             />
                         ))}
                     </div>
@@ -393,12 +446,35 @@ function TarefasPrestador() {
                     </div>
                     <div className={stylesPrestador.price_field}>
                         <p> R$</p>
-                        <input onChange={(e) => setValorInput(e.target.value)} type="number" />
+                        <input
+                            type="number"
+                            value={valorInput}
+                            onChange={(e) => setValorInput(e.target.value)}
+                        />
                     </div>
-                    <button className={stylesPrestador.botao} onClick={confirmarCusto}>Confirmar</button>
+                    <div className={stylesPrestador.areaConfirmar}>
+                        <button
+                            className={stylesPrestador.botao}
+                            onClick={() => {
+                                confirmarDespesa();
+                                fecharModal();
+                            }}>
+                            Confirmar
+                        </button>
+
+                        {tarefas.find((tarefa) => tarefa.id === idChamado)?.despesaDefinida && (
+                            <button
+                                className={stylesPrestador.botaoDesfazer}
+                                onClick={() => {
+                                    desfazerDespesa(idChamado);
+                                    fecharModal();
+                                }}>
+                                Desfazer
+                            </button>
+                        )}
+                    </div>
                 </div>
             </Modal>
-
         </div>
     );
 }
