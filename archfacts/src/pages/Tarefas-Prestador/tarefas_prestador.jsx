@@ -364,6 +364,7 @@ function TarefasPrestador() {
                     <button
                         className={stylesPrestador.botao}
                         onClick={salvarTarefa}>
+                        Salvar
                     </button>
                 </div>
             </Modal>

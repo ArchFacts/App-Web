@@ -5,7 +5,9 @@ import ChamadosNamePrestador from '../../components/Chamados-Name-Prestador/cham
 import Modal from 'react-modal';
 import fechar_icon from "../../utils/assets/modal-x.svg";
 import { ToastContainer, toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { buscarChamadosNegocio, dadosUsuarioLogado } from '../../api';
 
 function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamento, onVerChamadoClick, onDefinirCustoClick }) {
     const getStatusStyle = (status) => {
@@ -32,10 +34,7 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
 }
 
 function ChamadosPrestador() {
-
-    
-
-    // const chamadosPrestador = [
+    // const chamadosPrestador = ([
     //     {
     //         status: 'Em progresso',
     //         titulo: 'Projeto de abelhas',
@@ -57,11 +56,18 @@ function ChamadosPrestador() {
     //         abertura: '28 de março, 15:35',
     //         fechamento: '07 de abril, 21:02',
     //     },
-    // ];
+    const [chamados, setChamados] = useState([]);
+
+    const location = useLocation();
+    const idProjeto = location.state?.idProjeto;
+    console.log("ID DO PROJETOProjeto recebido", idProjeto);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
     const [valorInput, setValorInput] = useState('');
+
+    const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const abrirModal = (tipo) => {
         setTipoModal(tipo);
@@ -90,6 +96,46 @@ function ChamadosPrestador() {
         }, 1000);
     };
 
+    const buscarDadosUsuarioLogado = async () => {
+        // setLoading(true);  
+        try {
+            const response = await dadosUsuarioLogado();
+            setUsuario(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar os dados do usuário", error);
+        }
+        finally {
+            // setLoading(false);
+        }
+    };
+
+    const buscarChamados = async (idProjeto) => {
+        if (!usuario) {
+            console.error("Usuário não encontrado");
+            return;
+        }
+
+        // setLoading(true);
+        try {
+            const response = await buscarChamadosNegocio(idProjeto);
+            setChamados(response.data);
+            console.log("BUSCANDO Chamado", response.data);
+        } catch (error) {
+            console.error("Erro ao buscar as tarefas do negócio", error);
+        }
+    }
+
+    useEffect(() => {
+        buscarDadosUsuarioLogado();
+    }, []);
+
+    useEffect(() => {
+        if (usuario) {
+            buscarChamados(idProjeto);
+        }
+    }, [usuario]);
+
     return (
         <div className={styles.container}>
             <SideBarColaborador />
@@ -111,7 +157,7 @@ function ChamadosPrestador() {
                         <p className={styles.headerFinalizar}>Descrição</p>
                     </div>
                     <div className={styles.form}>
-                        {chamadosPrestador.map((chamadoPrestador, index) => (
+                        {chamados.map((chamadoPrestador, index) => (
                             <ChamadoPrestadorInfo
                                 key={index}
                                 {...chamadoPrestador}

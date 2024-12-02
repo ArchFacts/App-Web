@@ -172,6 +172,14 @@ const ProposalConfirmationPage4 = () => {
         return <Spinner />
     }
 
+    const formatarData = (data) => {
+        const date = new Date(data);
+        const dia = String(date.getDate()).padStart(2, '0');
+        const mes = String(date.getMonth() + 1).padStart(2, '0');
+        const ano = date.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+
 
     return (
         <>
@@ -224,7 +232,7 @@ const ProposalConfirmationPage4 = () => {
                             {/* <div className={stylesPage4.datas}> */}
                             <div className={stylesPage4.informations}>
                                 Data:
-                                <div className={stylesPage4.dado_importado}>{formData.dataEntrega || "Indisponível"}</div>
+                                <div className={stylesPage4.dado_importado}>{formatarData(formData.dataEntrega) || "Indisponível"}</div>
                             </div>
                             <h3>Serviços escolhidos:</h3>
                             <ul>
