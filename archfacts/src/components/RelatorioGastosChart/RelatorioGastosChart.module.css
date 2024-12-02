@@ -1,7 +1,7 @@
 .container {
     font-family: Arial, sans-serif;
     max-width: 90%;
-    padding: 0 50px;
+    padding: 20px 50px;
   margin: 20px 0;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.233);
   border-radius: 30px;
@@ -12,6 +12,13 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+  }
+  .seletores{
+    padding: 0;
+    border: none;
+    margin: 0 10px;
+    text-align: right;
+    width: fit-content;
   }
   
   .monthLabel {

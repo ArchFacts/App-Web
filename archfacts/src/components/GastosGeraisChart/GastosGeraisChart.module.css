@@ -84,6 +84,7 @@
     cursor: pointer;
     width: 6rem;
     color: black;
+    border: none;
 }
 
 .btn-gastos-gerais.active {

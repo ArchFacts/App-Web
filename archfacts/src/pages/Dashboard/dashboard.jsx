@@ -1,5 +1,3 @@
-// src/pages/Dashboard.js
-
 import React, { useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import styles from './dashboard.module.css';
@@ -35,20 +33,28 @@ const Dashboard = () => {
         .domain(data.map(d => d.name))
         .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), data.length).reverse());
 
-    const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-    const [mesAtual, setMesAtual] = useState(meses[0]);
-
-    const pieData = [
-        { name: "Stefanini", value: 5 },
-        { name: "Manual", value: 5 },
-        { name: "Besni", value: 6 },
-        { name: "Renner", value: 11 },
-    ];
-    const availableData = {
-        Janeiro: true,
-        Fevereiro: true,
-        // Defina quais meses têm dados disponíveis
+    // Dados mockados para o gráfico de pizza
+    const rawPieData = {
+        Janeiro: [
+            { name: "Stefanini", value: 5 },
+            { name: "Manual", value: 5 },
+            { name: "Besni", value: 6 },
+            { name: "Renner", value: 11 },
+        ],
+        Fevereiro: [
+            { name: "Stefanini", value: 3 },
+            { name: "Manual", value: 8 },
+            { name: "Besni", value: 2 },
+            { name: "Renner", value: 4 },
+        ],
+        // Adicione dados para os outros meses conforme necessário
     };
+
+    // Obter meses disponíveis a partir dos dados fornecidos
+    const mesesDisponiveis = Object.keys(rawPieData);
+    const [mesAtual, setMesAtual] = useState(mesesDisponiveis[0]);
+
+    const pieData = rawPieData[mesAtual] || [];
     const pieColors = d3.scaleOrdinal(["#007AFF", "#FFADAD", "#FFC300", "#7C4DFF"]);
 
     // Dados mockados para o gráfico de barras
@@ -93,53 +99,55 @@ const Dashboard = () => {
 
     return (
         <>
-            <SideBarColaborador />
-            <div className={styles.content}>
-                <div className={styles.capsula}>
-                    <span className={styles.text}>Financeiro</span>
-                    <div className={styles.welcome}></div>
-                </div>
-                <div className={styles.geralDashboard}>
-                    <div className={styles.kpiDashboard}>
-                        <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
-                        <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
-                        <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
-                        <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+            <div className={styles.conteudoTotal}>
+                <SideBarColaborador />
+                <div className={styles.content}>
+                    <div className={styles.capsula}>
+                        <span className={styles.text}>Financeiro</span>
+                        <div className={styles.welcome}></div>
                     </div>
-                    <div className={styles.separador}>
-                        <span className={styles.linhaHorizontal}></span>
-                    </div>
-                    <div className={styles.mainDashboard}>
-                        <div className={styles.cardGraficosMaiores}>
-                            <GastosGeraisChart />
-                            <RelatorioGastosChart />
+                    <div className={styles.geralDashboard}>
+                        <div className={styles.kpiDashboard}>
+                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
                         </div>
-                        <div className={styles.cardGraficosMenores}>
-                            <div className={styles.cardGraficoFinalizadosEmpresa}>
-                                <span>Serviços finalizados por empresa</span>
-                                <MonthSelector months={meses} onMonthChange={setMesAtual} availableData={availableData} />                                
-                                <ChartServicosFinalizadosEmpresa />
-                                <div className={styles.LegendFinalizadosEmpresa}>
-                                    <FinalizadosEmpresaLegend data={pieData} colorScale={pieColors} />
+                        <div className={styles.separador}>
+                            <span className={styles.linhaHorizontal}></span>
+                        </div>
+                        <div className={styles.mainDashboard}>
+                            <div className={styles.cardGraficosMaiores}>
+                                <GastosGeraisChart />
+                                <RelatorioGastosChart />
+                            </div>
+                            <div className={styles.cardGraficosMenores}>
+                                <div className={styles.cardGraficoFinalizadosEmpresa}>
+                                <span >Serviços finalizados por empresa</span>
+                                    <MonthSelector months={mesesDisponiveis} onMonthChange={setMesAtual} />
+                                    <ChartServicosFinalizadosEmpresa pieData={pieData} />
+                                    <div className={styles.LegendFinalizadosEmpresa}>
+                                        <FinalizadosEmpresaLegend data={pieData} colorScale={pieColors} />
+                                    </div>
+                                </div>
+                                <div className={styles.cardGraficoFinalizadosSemana}>
+                                    <span>Serviços finalizados por semana</span>
+                                    <WeekSelectorChart weeks={weeks} onWeekChange={setSemanaAtual} />
+                                    <ChartServicosFinalizadosSemana rawData={rawData.filter(d => {
+                                        const date = new Date(d.date);
+                                        return date >= semanaAtual[0] && date <= semanaAtual[1];
+                                    })} />
+                                    <WeekChartLegend />
                                 </div>
                             </div>
-                            <div className={styles.cardGraficoFinalizadosSemana}>
-                                <span>Serviços finalizados por semana</span>
-                                <WeekSelectorChart weeks={weeks} onWeekChange={setSemanaAtual} />
-                                <ChartServicosFinalizadosSemana rawData={rawData.filter(d => {
-                                    const date = new Date(d.date);
-                                    return date >= semanaAtual[0] && date <= semanaAtual[1];
-                                })} />
-                                <WeekChartLegend />
-                            </div>
-                        </div>
-                        <div className={styles.cardGastos}>
-                            <span className={styles.cardGastosTitulos}>Gastos</span>
-                            <Legend data={data} color={color} />
-                            <div className={styles.cardGraficoGastos}>
-                                <GastosChart data={data} />
-                                <span className={styles.cardGraficoGastosValor}>R$8.250</span>
-                                <span className={styles.cardGraficoGastosTexto}>Gasto total</span>
+                            <div className={styles.cardGastos}>
+                                <span className={styles.cardGastosTitulos}>Gastos</span>
+                                <Legend data={data} color={color} />
+                                <div className={styles.cardGraficoGastos}>
+                                    <GastosChart data={data} />
+                                    <span className={styles.cardGraficoGastosValor}>R$8.250</span>
+                                    <span className={styles.cardGraficoGastosTexto}>Gasto total</span>
+                                </div>
                             </div>
                         </div>
                     </div>

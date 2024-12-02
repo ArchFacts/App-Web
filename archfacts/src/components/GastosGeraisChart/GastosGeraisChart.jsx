@@ -45,9 +45,9 @@ const GastosGeraisChart = () => {
       { tipo: "chamado", valor: 400.0, fechamento: "2024-11-20T16:00:00" },
       { tipo: "tarefa", valor: 100.0, fechamento: "2024-11-19T09:00:00" },
       { tipo: "chamado", valor: 700.0, fechamento: "2024-11-22T10:00:00" },
-      { tipo: "tarefa", valor: 300.0, fechamento: "2024-11-21T14:00:00" },
-      { tipo: "chamado", valor: 500.0, fechamento: "2024-11-23T08:00:00" },
-      { tipo: "tarefa", valor: 200.0, fechamento: "2024-11-23T12:00:00" },
+      { tipo: "tarefa", valor: 300.0, fechamento: "2024-11-26T14:00:00" },
+      { tipo: "chamado", valor: 500.0, fechamento: "2024-11-27T08:00:00" },
+      { tipo: "tarefa", valor: 200.0, fechamento: "2024-11-28T12:00:00" },
     ];
 
     const getCurrentDateInBrasilia = () => {
