@@ -1,0 +1,21 @@
+legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .legendItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .legendColor {
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    border-radius: 50%;
+  }

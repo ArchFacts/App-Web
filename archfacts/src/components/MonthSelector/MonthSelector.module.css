@@ -1,0 +1,32 @@
+.monthSelectorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .monthButton {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+  }
+  .monthButton:hover{
+    background-color: white;
+    width: 100%;
+    color: #ffc400;
+  }
+  .monthButton:disabled {
+    color: #d3d3d3; /* Cinza claro para botões desabilitados */
+    cursor: default;
+  }
+  
+  .monthButton:not(:disabled):hover {
+    color: #555; /* Cinza escuro ao passar o mouse */
+  }
+  
+  .currentMonth {
+    font-weight: bold;
+  }
+  

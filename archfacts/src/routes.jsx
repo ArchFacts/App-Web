@@ -21,6 +21,7 @@ import Eventos from './pages/Eventos/eventos';
 import ProjetosBeneficiario from "./pages/Projetos/Beneficiario/projetos_beneficiario";
 import ProjetosPrestador from "./pages/Projetos/Prestador/projetos_prestador";
 import HomePrestador from './pages/Home-Prestador/homePrestador';
+import Dashboard from './pages/Dashboard/dashboard';
 import PerfilFuncionario from "./pages/Perfil-Usuario/Funcionario/perfil_funcionario";
 import TarefasPrestador from "./pages/Tarefas-Prestador/tarefas_prestador";
 import PerfilPrestador from "./pages/Perfil-Prestador/perfil_prestador";
@@ -36,6 +37,7 @@ function Rotas() {
                     <Route path="/nivel-usuario" element={<NivelUsuario />} />
                     <Route path='/cadastrar-empresa' element={<CadastroEmpresa />} />
                     <Route path='/cadastrar-funcionario' element={<CadastroFuncionario />} />
+                    <Route path="/dashboard" element={<Dashboard/>}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/hub" element={<Hub />} />
                     <Route path="/empresas-parceiras" element={<EmpresasParceiras />} />
