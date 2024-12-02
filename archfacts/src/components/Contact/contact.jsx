@@ -53,7 +53,7 @@ const Contact = () => {
                         onChange={handleChange}>
                     </Message>
                     <div className={styles.button_area}>
-                        <button>Enviar</button>
+                        <button className={styles.button}>Enviar</button>
                     </div>
                 </div>
             </div>

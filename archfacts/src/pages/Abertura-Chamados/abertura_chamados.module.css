@@ -91,7 +91,7 @@ textarea {
     justify-content: center;
 }
 
-button {
+.button {
     background-color: #004085;
     color: white;
     border: none;

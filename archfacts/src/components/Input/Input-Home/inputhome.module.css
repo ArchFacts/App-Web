@@ -1,11 +1,16 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../../utils/fonts/Poppins-Light.ttf');
+}
+
 .div_input_box {
     display: flex;
     flex-direction: column;
-    font-size: 16px;
+    font-size: 24px;
     align-items: center;
     justify-content: center;
     font-size: 2.25rem;
-    height: auto;
+    height: 6rem;
     width: 100%;
 }
 
@@ -13,23 +18,27 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    gap: 1rem;
+    gap: 0.1rem;
 }
 
 .div_input_box label {
     color: #033E8C;
     width: 75%;
+    font-family: 'Poppins-Light';
+    font-size: 24px;
 }
 
 .div_input_box input {
     color: #033E8C;
-    font-size: 1.5rem;
+    font-family: 'Poppins-Light';
+    font-size: 24px;
     justify-content: center;
-    display: flex;
     border: none;
+    display: inline-block; 
     border-bottom: 1px solid #000;
     outline: none;
     width: 100%;
+    border-radius: 0px;
 }
 
 .div_input_box input:focus {

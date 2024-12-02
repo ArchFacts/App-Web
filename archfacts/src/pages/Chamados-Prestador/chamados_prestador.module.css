@@ -1,0 +1,472 @@
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.capsula {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.capsula .chamadosPrestador {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.formContainer {
+    background-color: rgb(238, 237, 237);
+    width: 100%;
+    height: 80%;
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.barraSuperior {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    background-color: #0E0C19;
+    color: white;
+    width: 100%;
+    padding: 1%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 1%;
+    height: auto;
+}
+
+.form p {
+    color: black;
+}
+
+.infos {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    flex-direction: row;
+    padding: 2.5%;
+    cursor: pointer;
+    border: #0E0C19;
+    transition: background-color 0.3s ease;
+}
+
+.statusCell {
+    display: flex;
+    justify-content: center;
+    width: 15%;
+}
+
+.titleCell {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.parcelaCell {
+    height: 2.5rem;
+    background-color: #033E8C;
+    font-family: 'Poppins-Medium';
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    width: 14%;
+    align-items: center;
+    border: none;
+}
+
+.aberturaCell {
+    display: flex;
+    justify-content: center;
+    width: 19.5%;
+}
+
+.fechamentoCell {
+    display: flex;
+    justify-content: center;
+    width: 19%;
+}
+
+.finalizarCell {
+    display: flex;
+    justify-content: center;
+    width: 9%;
+    cursor: pointer;
+    margin-left: 3.5%;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
+
+.headerStatus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13%;
+}
+
+.headerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.headerParcela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+
+.headerAbertura {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.headerFechamento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.headerFinalizar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+
+.infos img {
+    transition: all 0.1s ease-in;
+    height: 100%;
+    width: 50%;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
+
+.modalParcela {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 40%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modalParcela .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 25%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modalParcela .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 45%;
+}
+
+.modalParcela .modal_content {
+    height: 29vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.modalParcela .modal_content .parcelas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    width: 50%;
+    font-family: 'Poppins-Medium';
+    font-size: 24px;
+}
+
+.modalParcela .modal_content .parcelas h2 {
+    color: #033E8C;
+    font-size: 3rem;
+}
+
+.modalParcela .modal_content .price_field {
+    width: 60%;
+    font-size: 2.5rem;
+    background: #FFFFFF;
+    border: 4px solid #033E8C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.price_field input{
+    color: #033E8C;
+    text-align: center;
+    width: 40%;
+    font-family: 'Poppins-Semibold';
+    font-size: 24px;
+    border: none;
+}
+
+.modalParcela .modal_content .price_field p:nth-child(1) {
+    color: #F95C00;
+}
+
+.modalParcela .modal_content .price_field p:nth-child(2) {
+    color: #033E8C;
+}
+
+.modalParcela .modal_content .total {
+    width: 60%;
+    font-size: 1.8rem;
+    text-align: center;
+    font-family: 'Poppins-Regular';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fechar{
+    cursor: pointer;
+}
+
+.botao {
+    color: white;
+    background-color: #033E8C;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    height: 2.5rem;
+    border: none;
+    transition: background-color 500ms, transform 500ms;
+    font-size: 24px;
+    width: 35%;
+}
+.botao:hover { 
+    width: 40%;
+    transform: scale(1.1);  
+    background-color: #05C7F2;
+    color: black;
+}
+
+.nimbus_money {
+    display: inline-block;
+    width: 6%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%230fa901' d='M12.32 8a3 3 0 0 0-2-.7H5.63A1.59 1.59 0 0 1 4 5.69a2 2 0 0 1 0-.25a1.59 1.59 0 0 1 1.63-1.33h4.62a1.59 1.59 0 0 1 1.57 1.33h1.5a3.08 3.08 0 0 0-3.07-2.83H8.67V.31H7.42v2.3H5.63a3.08 3.08 0 0 0-3.07 2.83a2 2 0 0 0 0 .25a3.07 3.07 0 0 0 3.07 3.07h4.74A1.59 1.59 0 0 1 12 10.35a2 2 0 0 1 0 .34a1.59 1.59 0 0 1-1.55 1.24h-4.7a1.59 1.59 0 0 1-1.55-1.24H2.69a3.08 3.08 0 0 0 3.06 2.73h1.67v2.27h1.25v-2.27h1.7a3.08 3.08 0 0 0 3.06-2.73v-.34A3.06 3.06 0 0 0 12.32 8'/%3E%3C/svg%3E");
+  }
+
+  .modal_chamado {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 85%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal_chamado .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal_chamado .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 85%;
+    padding-left: 8%;
+}
+
+.modal_chamado .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal_chamado .modal_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.modal_chamado .modal_content .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.modal_chamado .modal_content .field label {
+    width: 75%;
+    font-size: 1.5rem;
+}
+
+.modal_chamado .modal_content .field input {
+    width: 75%;
+    border: 3px solid #033E8C;
+}
+
+.modal_chamado .modal_content .field:nth-child(4) input {
+    height: 7.5rem;
+}
+
+.modal_chamado .modal_content .field .title {
+    font-family: 'Poppins-SemiBold';
+    color: #033E8C;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.modal_chamado .modal_content .button_area {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Poppins-Medium';
+    font-size: 1.5rem;
+    height: 4rem;
+    color: white;
+}
+
+.modal_chamado .modal_content .button_area .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 35%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.modal_chamado .modal_content .button_area .button:hover {
+    width: 50%;
+}
+
+
+.modal_chamado .modal_content .button_area button {
+    width: 25%;
+    background-color: #033E8C;
+}
+
+.chamadoCell {
+    height: 2.5rem;
+    background-color: #033E8C;
+    font-family: 'Poppins-Medium';
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    width: 80%;
+    align-items: center;
+    border: none;
+}
+
+.div_botao{
+    width: 11%;
+    display: flex;
+    margin-left: 1%;
+    justify-content: end;
+}
+
+.dado_beneficiario{
+    width: 75%;
+    height: 7vh;
+    font-family: 'Poppins-Medium';
+    text-align: justify;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 4px solid #033E8C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.description{
+    width: 75%;
+    height: 20vh;
+    font-family: 'Poppins-Medium';
+    text-align: justify;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 4px solid #033E8C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding-left: 1%;
+    padding-right: 1%;
+}

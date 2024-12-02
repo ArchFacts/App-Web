@@ -1,0 +1,25 @@
+.title_area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 8%;
+    margin-top: 1%;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+.title_area .generic_chamados_prestador_title {
+    color: #0E0C19;
+}
+
+.title_area .chamados_prestador_title {
+    color: #033E8C;
+}
+
+.title_area .line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: black;
+}
