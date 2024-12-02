@@ -8,7 +8,7 @@ import Finalizar from "../Finalizar/finalizar";
 import Modal from 'react-modal';
 
 
-const ProjetoComponenteBeneficiario = ({ name, onFinalizarClick, onClickChamados }) => {
+const ProjetoComponenteBeneficiario = ({ name, status, dataEntrega, onFinalizarClick, onClickChamados }) => {
     
     return (
         <div className={styles.project_box}>
@@ -17,12 +17,12 @@ const ProjetoComponenteBeneficiario = ({ name, onFinalizarClick, onClickChamados
             </div>
             <div className={styles.content_area}>
                 <div className={styles.group}>
-                    <Calendar date={'07/03/25'}></Calendar>
-                    <Status status={'EM PROGRESSO'}></Status>
+                    <Calendar date={dataEntrega}></Calendar>
+                    <Status status={status}></Status>
                 </div>
                 <div className={styles.group}>
                     <Chamados onClickChamados={onClickChamados}></Chamados>
-                    <ChamadosContagem number={25}></ChamadosContagem>
+                    {/* <ChamadosContagem number={25}></ChamadosContagem> */}
                 </div>
                 <div className={styles.group}>
                     <div onClick={() => onFinalizarClick(name)}>

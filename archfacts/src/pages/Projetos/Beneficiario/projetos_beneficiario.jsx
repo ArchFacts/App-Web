@@ -59,6 +59,11 @@ const ProjetosBeneficiario = () => {
         return <Spinner />
     }
 
+    const formatarDataBrasileira = (data) => {
+        const dataObj = new Date(data);
+        return dataObj.toLocaleDateString('pt-BR', { year: '2-digit', month: '2-digit', day: '2-digit' });
+    };
+
     return (
         <section className={styles.screen}>
             <SideBar></SideBar>
@@ -70,9 +75,12 @@ const ProjetosBeneficiario = () => {
                     <div className={styles.detail_bar}></div>
                     <div className={styles.content_area}>
                         {projetos.length > 0 ? (
-                            projetos.map((projeto, index) => (
+                            projetos.map((projeto, key) => (
                                 <ProjetoComponenteBeneficiario
+                                    key={key}
                                     name={projeto.nome || "Indisponível"}
+                                    status={projeto.status || "Indisponível"}
+                                    dataEntrega={formatarDataBrasileira(projeto.dataEntrega)}
                                     onClickChamados={() => handleProjetoClickChamado(projeto)}
                                 />
                             ))

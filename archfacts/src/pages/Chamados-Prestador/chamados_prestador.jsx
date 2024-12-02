@@ -32,29 +32,32 @@ function ChamadoPrestadorInfo({ status, titulo, parcelaLabel, abertura, fechamen
 }
 
 function ChamadosPrestador() {
-    const chamadosPrestador = [
-        {
-            status: 'Em progresso',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir custo',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-        },
-        {
-            status: 'Aberto',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir custo',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-        },
-        {
-            status: 'Fechado',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir custo',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-        },
-    ];
+
+    
+
+    // const chamadosPrestador = [
+    //     {
+    //         status: 'Em progresso',
+    //         titulo: 'Projeto de abelhas',
+    //         parcelaLabel: 'Definir custo',
+    //         abertura: '28 de março, 15:35',
+    //         fechamento: '07 de abril, 21:02',
+    //     },
+    //     {
+    //         status: 'Aberto',
+    //         titulo: 'Projeto de abelhas',
+    //         parcelaLabel: 'Definir custo',
+    //         abertura: '28 de março, 15:35',
+    //         fechamento: '07 de abril, 21:02',
+    //     },
+    //     {
+    //         status: 'Fechado',
+    //         titulo: 'Projeto de abelhas',
+    //         parcelaLabel: 'Definir custo',
+    //         abertura: '28 de março, 15:35',
+    //         fechamento: '07 de abril, 21:02',
+    //     },
+    // ];
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);

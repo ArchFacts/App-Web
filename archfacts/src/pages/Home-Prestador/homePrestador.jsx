@@ -27,6 +27,7 @@ const HomePrestador = () => {
         const idProposta = propostaDaVez.idProposta;
         setIdPropostaSelecionada(idProposta);
         setPropostaSelecionada(propostaDaVez);
+        console.log("PROPOSTA DA VEZ" ,propostaDaVez);
         setModalIsOpen(true);
 
         try {
@@ -145,7 +146,7 @@ const HomePrestador = () => {
                             </div>
                             <div className={styles.titulosColunas}>
                                 <span><p>Solicitante</p></span>
-                                <span><p>Serviço escolhidos</p></span>
+                                <span><p>Título</p></span>
                                 <span><p>Download</p></span>
                                 <span><p>Aceitar Recusar</p></span>
                             </div>
@@ -153,9 +154,8 @@ const HomePrestador = () => {
                                 propostas.map((proposta, index) => (
                                     <OpenProposal
                                         key={index}
-                                        email={proposta.email}
-                                        solicitante={proposta.solicitante}
-                                        servicos={proposta.servicos}
+                                        solicitante={proposta.remetente.nome}
+                                        titulo={proposta.titulo}
                                         onClick={() => abrirModal(proposta)}
                                     />
                                 ))
@@ -173,7 +173,7 @@ const HomePrestador = () => {
                                 <div className={styles.modal_header}>
                                     {propostaSelecionada && (
                                         <>
-                                            <h2>Proposta de {propostaSelecionada.solicitante}</h2>
+                                            <h2>Proposta de {propostaSelecionada.remetente.nome}</h2>
                                             <img src={fechar_icon}
                                                 alt="Fechar"
                                                 onClick={fecharModal} />

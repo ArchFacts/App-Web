@@ -13,6 +13,8 @@ import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css
 import api, { buscarChamadosNegocio, cadastrarChamado } from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 import { useLocation, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick }) {
     const getStatusStyle = (status) => {
@@ -37,7 +39,7 @@ function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, final
                 {abertura}
             </p>
             <p className={styles.fechamentoCell}>
-                {formatarDataFechamento(fechamento)}
+                {fechamento}
             </p>
             <img src={finalizarIcone} className={styles.finalizarCell} alt="Finalizar" onClick={onFinalizarClick} />
         </div>
@@ -121,11 +123,18 @@ function ChamadosEmpresa() {
     const salvarChamado = async (e, idProjeto) => {
         e.preventDefault();
         console.log("idProjeto no salvarChamado:", idProjeto);
+
+        let novaDataFechamento = dataFechamento;
+
+        if (novaDataFechamento) {
+            novaDataFechamento = `${novaDataFechamento}T23:59:00`;  // Adicionando a hora para poder inserir no banco
+        }
+
         const chamado = {
             titulo,
             descricao,
             abertura: dataAbertura,
-            fechamento: formatarDataFechamento(dataFechamento),
+            fechamento: novaDataFechamento,
             status: 'ABERTO',
         };
 
@@ -152,11 +161,19 @@ function ChamadosEmpresa() {
     };
 
     const formatarDataFechamento = (data) => {
-        if (!data || isNaN(new Date(data))) return 'Data não definida';
+        // if (!data || isNaN(new Date(data))) return 'Data não definida';
+        // const date = new Date(data);
+        // const dia = date.getDate();
+        // const mes = date.toLocaleString('pt-BR', { month: 'short' });
+        // return `${dia} de ${mes}`;
+
+        if (!data || isNaN(new Date(data))) {
+            return 'Data não definida';
+        }
+
         const date = new Date(data);
-        const dia = date.getDate();
-        const mes = date.toLocaleString('pt-BR', { month: 'short' });
-        return `${dia} de ${mes}`;
+        // Retornando no formato desejado 'YYYY-MM-DD 23:59:00'
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} 23:59:00`;
     };
 
     const handleDataFechamentoChange = (e) => {
@@ -218,22 +235,22 @@ function ChamadosEmpresa() {
                     <div className={styles.form}>
                         {chamados.length > 0 ? (
 
-                        chamados.map((chamado) => (
-                        <ChamadoInfo
-                            finalizarIcone={finalizarIcone}
-                            key={chamado.id}
-                            status={chamado.status || 'Pendente'}
-                            titulo={chamado.titulo || 'Sem título'}
-                            parcelaLabel={chamado.parcelaLabel || 'Definir parcelas'}
-                            abertura={formatarData(chamado.abertura)}
-                            fechamento={formatarDataFechamento(chamado.fechamento)}
-                            onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
-                            onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela)}
-                        />
-                        ))
+                            chamados.map((chamado) => (
+                                <ChamadoInfo
+                                    finalizarIcone={finalizarIcone}
+                                    key={chamado.id}
+                                    status={chamado.status || 'Pendente'}
+                                    titulo={chamado.titulo || 'Sem título'}
+                                    parcelaLabel={chamado.parcelaLabel || 'Definir parcelas'}
+                                    abertura={formatarData(chamado.abertura)}
+                                    fechamento={formatarData(chamado.fechamento)}
+                                    onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
+                                    onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela)}
+                                />
+                            ))
                         ) : (
-                        <p>Não há chamados disponíveis</p>
-                    )}
+                            <p>Não há chamados disponíveis</p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -311,12 +328,12 @@ function ChamadosEmpresa() {
                 </div>
 
                 <div className={styles.modal_content}>
-                    <div className={styles.field}>
+                    {/* <div className={styles.field}>
                         <label htmlFor="nome">Nome do solicitante:</label>
                         <input type="text" id="nome" placeholder="Digite seu nome" required value={nome}
                             onChange={(e) => setNome(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div className={styles.field}>
                         <label htmlFor="titulo">Título do chamado:</label>
                         <input type="text" id="titulo" placeholder="Digite o título" required value={titulo}

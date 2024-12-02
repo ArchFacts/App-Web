@@ -24,8 +24,8 @@ const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status
                 </div>
                 <div className={styles.group}>
                     <Chamados onClickChamados={onClickChamados}></Chamados>
-                    <ChamadosContagem number={25}></ChamadosContagem>
-                    <TarefasContagem number={13}></TarefasContagem>
+                    {/* <ChamadosContagem number={25}></ChamadosContagem> */}
+                    {/* <TarefasContagem number={13}></TarefasContagem> */}
                     <Tarefas onClick={onClick}></Tarefas>
                 </div>
                 <div className={styles.group}>

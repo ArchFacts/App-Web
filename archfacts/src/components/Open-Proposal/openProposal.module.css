@@ -40,6 +40,13 @@
     color: white;
 }
 
+.content span p {
+    color: black;
+    width: auto;
+    height: auto;
+    font-size: 1.5rem;
+}
+
 .aceitarRecusar {
     display: flex;
     flex-direction: row;

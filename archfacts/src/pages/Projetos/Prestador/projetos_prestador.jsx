@@ -56,50 +56,58 @@ const ProjetosPrestador = () => {
         console.log("ID DO PROJETO", projeto.idProjeto);
         console.log("CLICOU")
         navigate(`/chamados-prestador/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
-}
-
-useEffect(() => {
-    buscarDadosUsuarioLogado();
-}, []);
-
-useEffect(() => {
-    if (usuario) {
-        buscarProjetos();
     }
-}, [usuario]);
 
-if (loading) {
-    return <Spinner />
-}
+    const formatarData = (data) => {
+        const date = new Date(data);
+        const dia = String(date.getDate()).padStart(2, '0');
+        const mes = String(date.getMonth() + 1).padStart(2, '0');
+        const ano = date.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
 
-return (
-    <section className={styles.screen}>
-        <SideBarColaborador></SideBarColaborador>
-        <div className={styles.content_area}>
-            <div className={styles.project_name}>
-                <ProjectName title={usuario.negocio.nome}></ProjectName>
-            </div>
-            <div className={styles.project_box}>
-                <div className={styles.detail_bar}></div>
-                <div className={styles.content_area}>
+    useEffect(() => {
+        buscarDadosUsuarioLogado();
+    }, []);
 
-                    {projetos.length > 0 ? (
-                        projetos.map((projeto, index) => (
-                            <ProjetoComponentePrestador
-                                key={projeto.idProjeto}
-                                projectName={`Projeto de ${projeto.nome}` || "Indisponível"}
-                                solicitanteName={projeto.destinatario.nome || "Indisponível"}
-                                data={projeto.dataEntrega || "Indisponível"}
-                                status={projeto.status || "Indisponível"}
-                                onClick={() => handleProjetoClick(projeto)}
-                                onClickChamados={() => handleProjetoClickChamado(projeto)}
-                            />
-                        ))
-                    ) : (
-                        <p className={styles.paragrafo}>Não há projetos disponíveis.</p>
-                    )}
+    useEffect(() => {
+        if (usuario) {
+            buscarProjetos();
+        }
+    }, [usuario]);
 
-                    {/* <ProjetoComponentePrestador
+    if (loading) {
+        return <Spinner />
+    }
+
+    return (
+        <section className={styles.screen}>
+            <SideBarColaborador></SideBarColaborador>
+            <div className={styles.content_area}>
+                <div className={styles.project_name}>
+                    <ProjectName title={usuario.negocio.nome}></ProjectName>
+                </div>
+                <div className={styles.project_box}>
+                    <div className={styles.detail_bar}></div>
+                    <div className={styles.content_area}>
+
+                        {projetos.length > 0 ? (
+                            projetos.map((projeto, index) => (
+                                <ProjetoComponentePrestador
+                                    key={projeto.idProjeto}
+                                    projectName={`Projeto de ${projeto.nome}` || "Indisponível"}
+                                    solicitanteName={projeto.destinatario.nome || "Indisponível"}
+                                    data={formatarData(projeto.dataEntrega) || "Indisponível"}
+                                    status={projeto.status || "Indisponível"}
+                                    onClick={() => handleProjetoClick(projeto)}
+                                    onClickChamados={() => handleProjetoClickChamado(projeto)}
+                                />
+                            ))
+                        ) : (
+                            <p className={styles.paragrafo}>Não há projetos disponíveis.</p>
+                        )}
+
+                        {/* <ProjetoComponentePrestador
                             projectName={'Projeto de abelhas'}
                             solicitanteName={'Júlia Campioto'}>
                         </ProjetoComponentePrestador>
@@ -114,11 +122,11 @@ return (
                             solicitanteName={'Júlia Campioto'}>
                         </ProjetoComponentePrestador> */}
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
 }
 
 export default ProjetosPrestador;

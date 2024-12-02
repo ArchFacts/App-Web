@@ -132,13 +132,14 @@ function TarefasPrestador() {
     const salvarTarefa = async () => {
 
         const novaDataTermino = `${dataTermino}T23:59:00`;  // Adicionando a hora para poder inserir no banco
+        setDataTermino(novaDataTermino);
 
         const tarefa = {
             titulo,
             despesa,
             prioridade,
             status,
-            novaDataTermino,
+            dataTermino,
             descricao: desc,
         };
 
@@ -193,6 +194,14 @@ function TarefasPrestador() {
         }
     }
 
+    const formatarData = (data) => {
+        const date = new Date(data);
+        const dia = String(date.getDate()).padStart(2, '0');
+        const mes = String(date.getMonth() + 1).padStart(2, '0');
+        const ano = date.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+
     // const handleCadastrarNegocio = async (idProjeto) => {
     //     const response = await cadastrarTarefa();
     // }
@@ -231,10 +240,13 @@ function TarefasPrestador() {
                     <div className={styles.form}>
                         {tarefas.length > 0 ? (
 
-                            tarefas.map((tarefa) => (
+                            tarefas.map((tarefa, key) => (
                                 <TarefaInfo
                                     key={tarefa.id}
                                     {...tarefa}
+                                    status={tarefa.status}
+                                    fechamento={formatarData(tarefa.dataTermino)}
+                                    abertura={formatarData(tarefa.dataInicio)}
                                     onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
                                     onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
                                 />
@@ -323,7 +335,7 @@ function TarefasPrestador() {
                                 onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
-                                <option value="EM PROGRESSO">Em progresso</option>
+                                <option value="PROGRESSO">Em progresso</option>
                                 <option value="ABERTO">Aberto</option>
                                 <option value="FECHADO">Fechado</option>
                             </select>
@@ -352,7 +364,6 @@ function TarefasPrestador() {
                     <button
                         className={stylesPrestador.botao}
                         onClick={salvarTarefa}>
-                        Salvar
                     </button>
                 </div>
             </Modal>
