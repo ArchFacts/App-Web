@@ -29,7 +29,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
                 {status}
             </p>
             <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>
+            <button className={styles.parcelaCell} onClick={onDefinirDespesaClick}>
                 {parcelaLabel}
             </button>
             <p className={styles.aberturaCell}>{abertura}</p>
@@ -68,14 +68,14 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
 
 function TarefasPrestador() {
     const [tarefas, setTarefas] = useState([
-        // {
-        //     id: '1',
-        //     status: 'Em progresso',
-        //     titulo: 'Projeto de abelhas',
-        //     parcelaLabel: 'Definir despesa',
-        //     abertura: '28 de março, 15:35',
-        //     fechamento: '07 de abril, 21:02',
-        // },
+        {
+            id: '1',
+            status: 'Em progresso',
+            titulo: 'Projeto de abelhas',
+            parcelaLabel: 'Definir despesa',
+            abertura: '28 de março, 15:35',
+            fechamento: '07 de abril, 21:02',
+        },
         // {
         //     id: '2',
         //     status: 'Aberto',
@@ -383,7 +383,7 @@ function TarefasPrestador() {
                         <p> R$</p>
                         <input
                             type="number"
-                            value={valorInput}
+                            // value={valorInput}
                             onChange={(e) => setValorInput(e.target.value)}
                         />
                     </div>
