@@ -9,6 +9,10 @@ import lixeira from '../../utils/assets/lixeira.png';
 import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
+import { buscarTarefasNegocio, dadosUsuarioLogado, cadastrarTarefa } from '../../api';
+import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Spinner from '../../components/Spinner/spinner';
 
 function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarTarefaClick, onEditarTarefaClick, onEncerrarTarefaClick, onDefinirDespesaClick, despesaDefinida, onDesfazerDespesaClick }) {
     const getStatusStyle = (status) => {
@@ -18,13 +22,14 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
         return {};
     };
 
+
     return (
         <div className={styles.infos}>
             <p className={styles.statusCell} style={getStatusStyle(status)}>
                 {status}
             </p>
             <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={() => onDefinirDespesaClick()}>
+            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>
                 {parcelaLabel}
             </button>
             <p className={styles.aberturaCell}>{abertura}</p>
@@ -34,13 +39,13 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
                     src={editar}
                     alt="Editar"
                     className={styles.icon}
-                    onClick={() => onEditarTarefaClick()}
+                    onClick={() => console.log('Editar tarefa')}
                 />
                 <img
                     src={lixeira}
                     alt="Excluir"
                     className={styles.icon}
-                    onClick={() => onEncerrarTarefaClick()}
+                    onClick={() => console.log('Excluir tarefa')}
                 />
                 <img
                     src={check}
@@ -63,24 +68,22 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
 
 function TarefasPrestador() {
     const [tarefas, setTarefas] = useState([
-        {
-            id: '1',
-            status: 'Em progresso',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir despesa',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-            despesaDefinida: false,
-        },
-        {
-            id: '2',
-            status: 'Aberto',
-            titulo: 'Projeto de abelhas',
-            parcelaLabel: 'Definir despesa',
-            abertura: '28 de março, 15:35',
-            fechamento: '07 de abril, 21:02',
-            despesaDefinida: false,
-        },
+        // {
+        //     id: '1',
+        //     status: 'Em progresso',
+        //     titulo: 'Projeto de abelhas',
+        //     parcelaLabel: 'Definir despesa',
+        //     abertura: '28 de março, 15:35',
+        //     fechamento: '07 de abril, 21:02',
+        // },
+        // {
+        //     id: '2',
+        //     status: 'Aberto',
+        //     titulo: 'Projeto de abelhas',
+        //     parcelaLabel: 'Definir despesa',
+        //     abertura: '28 de março, 15:35',
+        //     fechamento: '07 de abril, 21:02',
+        // },
     ]);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -95,35 +98,35 @@ function TarefasPrestador() {
     const [prioridade, setPrioridade] = useState('');
     const [status, setStatus] = useState('');
     const [desc, setDescricao] = useState('');
-    const [valorInput, setValorInput] = useState('');
+    const [dataTermino, setDataTermino] = useState('');
+
+    const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true)
+
+    const location = useLocation();
+    const idProjeto = location.state?.idProjeto;
+
+    console.log("ID DO PROJETOProjeto recebido", idProjeto);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === "titulo") setTitulo(value);
+        if (name === "despesa") setDespesa(value);
+        if (name === "prioridade") setPrioridade(value);
+        if (name === "status") setStatus(value);
+        if (name === "desc") setDescricao(value);
+        if (name === "dataTermino") setDataTermino(value);
+    };
+
+    // if (loading) {
+    //     return <Spinner />;  
+    // }
     const [valorDespesa, setValorDespesa] = useState('');
 
     const abrirModal = (tipo, idChamado) => {
         setTipoModal(tipo);
         setModalIsOpen(true);
         setIdChamado(idChamado);
-
-        if (tipo === 'editarTarefa') {
-            const tarefa = tarefas.find((tarefa) => tarefa.id === idChamado);
-            if (tarefa) {
-                setTitulo(tarefa.titulo);
-                setDespesa(tarefa.parcelaLabel);
-                setStatus(tarefa.status);
-                setDataFechamento(tarefa.fechamento);
-                setDescricao(tarefa.descricao || '');
-            }
-        }
-    };
-
-    const salvarEdicao = () => {
-        setTarefas((prevTarefas) =>
-            prevTarefas.map((tarefa) =>
-                tarefa.id === idChamado
-                    ? { ...tarefa, titulo, parcelaLabel: despesa, status, descricao: desc }
-                    : tarefa
-            )
-        );
-        fecharModal();
     };
 
     const fecharModal = () => {
@@ -132,18 +135,37 @@ function TarefasPrestador() {
     };
 
     const salvarFechamento = (idChamado) => {
-        console.log("Finalizando chamado com id: ${idChamado}");
+        console.log(`Finalizando chamado com id: ${idChamado}`);
         fecharModal();
     };
-    const salvarChamado = () => {
-        console.log('Chamado salvo com:', {
-            nome,
+
+    const salvarTarefa = async () => {
+
+        const novaDataTermino = `${dataTermino}T23:59:00`;  // Adicionando a hora para poder inserir no banco
+
+        const tarefa = {
             titulo,
-            dataFechamento,
-            descricao,
+            despesa,
             prioridade,
             status,
-        });
+            novaDataTermino,
+            descricao: desc,
+        };
+
+        try {
+            const response = await cadastrarTarefa(idProjeto, tarefa);
+            toast.success("Sua tarefa foi salva com sucesso:");
+            console.log("Tarefa salva", response);
+            setTarefas([...tarefas, response.data]); // Adiciona nova tarefa à lista
+
+            fecharModal();
+        } catch (error) {
+            console.log("Houve um erro ao enviar a sua tarefa!", error);
+            toast.error("Houve um erro ao enviar a sua tarefa, por favor tente novamente");
+        }
+        finally {
+            // setLoading(false);
+        }
         fecharModal();
     };
 
@@ -240,7 +262,7 @@ function TarefasPrestador() {
                     <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
                 </div>
                 <div className={styles.modal_content}>
-                    <p>Deseja confirmar a finalização desta tarefa?</p>
+                    <p>Deseja confirmar o encerramento desta tarefa?</p>
                     <button
                         className={stylesPrestador.botao}
                         onClick={() => salvarFechamento(idChamado)}>
@@ -262,23 +284,25 @@ function TarefasPrestador() {
                     <div className={styles.field}>
                         <label htmlFor="titulo">Título da tarefa:</label>
                         <input
+                            name='titulo'
                             type="text"
                             id="titulo"
                             placeholder="Digite o título"
                             required
                             value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="despesa">Despesa:</label>
                         <input
+                            name='despesa'
                             type="text"
                             id="despesa"
                             placeholder="Digite a despesa"
                             required
                             value={despesa}
-                            onChange={(e) => setDespesa(e.target.value)}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className={styles.fields}>
@@ -286,144 +310,55 @@ function TarefasPrestador() {
                             <label htmlFor="prioridade">Prioridade:</label>
                             <select
                                 id="prioridade"
+                                name='prioridade'
                                 value={prioridade}
-                                onChange={(e) => setPrioridade(e.target.value)}
+                                onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
-                                <option value="alta">Alta</option>
-                                <option value="media">Média</option>
-                                <option value="baixa">Baixa</option>
+                                <option value="ALTA">Alta</option>
+                                <option value="MEDIA">Média</option>
+                                <option value="BAIXA">Baixa</option>
                             </select>
                         </div>
                         <div className={styles.field2}>
                             <label htmlFor="status">Status:</label>
                             <select
                                 id="status"
+                                name='status'
                                 value={status}
-                                onChange={(e) => setStatus(e.target.value)}
+                                onChange={handleChange}
                                 required>
                                 <option value="">Selecione</option>
-                                <option value="aberto">Aberto</option>
-                                <option value="fechado">Fechado</option>
+                                <option value="EM PROGRESSO">Em progresso</option>
+                                <option value="ABERTO">Aberto</option>
+                                <option value="FECHADO">Fechado</option>
                             </select>
                         </div>
                     </div>
                     <div className={styles.field}>
-                        <label htmlFor="desc">Descrição:</label>
-                        <textarea
-                            id="desc"
-                            required
-                            value={desc}
-                            onChange={(e) => setDescricao(e.target.value)}
-                            rows="5"
-                        />
-                    </div>
-                    <div className={styles.button_area}>
-                        <button
-                            className={stylesPrestador.botao}
-                            type="submit"
-                            onClick={salvarChamado}>
-                            Confirmar
-                        </button>
-                    </div>
-                </div>
-            </Modal>
-            <Modal
-                isOpen={modalIsOpen && tipoModal === 'editarTarefa'}
-                onRequestClose={fecharModal}
-                contentLabel="Modal para editar uma tarefa"
-                className={styles.modal_chamado}
-                overlayClassName={styles.modal_overlay}>
-                <div className={styles.modal_header}>
-                    <h2>Editar tarefa</h2>
-                    <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
-                </div>
-                <div className={styles.modal_content}>
-                    <div className={styles.field}>
-                        <label htmlFor="titulo">Título da tarefa:</label>
+                        <label htmlFor="Prazo de término">Prazo de término</label>
                         <input
-                            type="text"
-                            id="titulo"
-                            placeholder="Digite o título"
-                            required
-                            value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            name='dataTermino'
+                            type="date"
+                            id="dataTermino"
+                            value={dataTermino}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className={styles.field}>
-                        <label htmlFor="despesa">Despesa:</label>
-                        <input
-                            type="text"
-                            id="despesa"
-                            placeholder="Digite a despesa"
-                            required
-                            value={despesa}
-                            onChange={(e) => setDespesa(e.target.value)}
-                        />
-                    </div>
-                    <div className={styles.fields}>
-                        <div className={styles.field2}>
-                            <label htmlFor="prioridade">Prioridade:</label>
-                            <select
-                                id="prioridade"
-                                value={prioridade}
-                                onChange={(e) => setPrioridade(e.target.value)}
-                                required>
-                                <option value="">Selecione</option>
-                                <option value="alta">Alta</option>
-                                <option value="media">Média</option>
-                                <option value="baixa">Baixa</option>
-                            </select>
-                        </div>
-                        <div className={styles.field2}>
-                            <label htmlFor="status">Status:</label>
-                            <select
-                                id="status"
-                                value={status}
-                                onChange={(e) => setStatus(e.target.value)}
-                                required>
-                                <option value="">Selecione</option>
-                                <option value="aberto">Aberto</option>
-                                <option value="fechado">Fechado</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className={styles.field}>
-                        <label htmlFor="desc">Descrição:</label>
+                        <label htmlFor="descricao">Descrição:</label>
                         <textarea
-                            id="desc"
-                            required
+                            name='desc'
+                            id="descricao"
+                            rows="4"
+                            placeholder="Descrição"
                             value={desc}
-                            onChange={(e) => setDescricao(e.target.value)}
-                            rows="5"
-                        />
+                            onChange={handleChange}></textarea>
                     </div>
-                    <div className={styles.button_area}>
-                        <button
-                            className={stylesPrestador.botao}
-                            type="submit"
-                            onClick={salvarEdicao}>
-                            Confirmar
-                        </button>
-                    </div>
-                </div>
-            </Modal>
-            <Modal
-                isOpen={modalIsOpen && tipoModal === 'excluirTarefa'}
-                onRequestClose={fecharModal}
-                contentLabel="Modal para excluir a tarefa"
-                className={styles.modal}
-                overlayClassName={styles.modal_overlay}>
-                <div className={styles.modal_header}>
-                    <h2>Excluir tarefa</h2>
-                    <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
-                </div>
-                <div className={styles.modal_content}>
-                    <p>Deseja confirmar o encerramento desta tarefa?</p>
                     <button
                         className={stylesPrestador.botao}
-                        onClick={() => salvarFechamento(idChamado)}>
-                        Confirmar
+                        onClick={salvarTarefa}>
+                        Salvar
                     </button>
                 </div>
             </Modal>

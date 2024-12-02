@@ -73,6 +73,10 @@ function Rotas() {
                     <Route path="/perfil-funcionario" element={<PerfilFuncionario />}></Route>
                     <Route path="/perfil-prestador" element={<PerfilPrestador />} />
                     <Route path="/chamados-prestador" element={<ChamadosPrestador />} />
+                    <Route path="/tarefas-prestador/:projetoId" element={<TarefasPrestador />}></Route>
+                    <Route path="/chamados-prestador/:projetoId" element={<ChamadosPrestador />}></Route>
+                    <Route path="/projetos-beneficiario/:nomeEmpresa" element={<ProjetosBeneficiario />} />
+                    <Route path="/chamados-empresa/:projetoId" element={<ChamadosEmpresa />}></Route>
                 </Routes>
             </BrowserRouter>
         </>

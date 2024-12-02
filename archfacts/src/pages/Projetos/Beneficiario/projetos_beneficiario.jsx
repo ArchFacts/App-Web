@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import '../../../utils/global.css';
 import styles from '../Beneficiario/projetos_beneficiario.module.css'
@@ -6,10 +6,21 @@ import SideBar from "../../../components/Side-Bar/sideBar";
 import ProjectName from "../../../components/Project-Name/project_name";
 import ProjetoComponenteBeneficiario from "../../../components/Projeto/Beneficiario/projeto_componente_beneficiario";
 import fechar_icon from "../../../utils/assets/modal-x.svg"
+import { useNavigate, useLocation } from 'react-router-dom';
+import { buscarProjetosBeneficiario } from '../../../api';
+import Spinner from '../../../components/Spinner/spinner';
 
 const ProjetosBeneficiario = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [projetoSelecionado, setProjetoSelecionado] = useState(null);
+    const [projetos, setProjetos] = useState([]);
+    const location = useLocation();
+    const { email } = location.state || {};
+    const { nomeEmpresa } = location.state || {};
+    const [loading, setLoading] = useState(true)
+    const navigate = useNavigate();
+
+    console.log(email);
+    console.log("NOME DA EMPRESA", nomeEmpresa);
 
     const abrirModal = (projetoDaVez) => {
         setProjetoSelecionado(projetoDaVez);
@@ -21,28 +32,56 @@ const ProjetosBeneficiario = () => {
         setProjetoSelecionado(null);
     }
 
+    const buscarProjetos = async (email) => {
+        try {
+            const response = await buscarProjetosBeneficiario(nomeEmpresa, email);
+            setProjetos(response.data);
+            console.log("projetos", response.data);
+        } catch (error) {
+            console.error("Erro ao buscar os projetos do negócio", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handleProjetoClickChamado = (projeto) => {
+        console.log("clicou", projeto);
+        console.log("ID DO PROJETO", projeto.idProjeto);
+        console.log("CLICOU")
+        navigate(`/chamados-empresa/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
+    }
+
+    useEffect(() => {
+        buscarProjetos();
+    }, []);
+
+    if (loading) {
+        return <Spinner />
+    }
+
     return (
         <section className={styles.screen}>
             <SideBar></SideBar>
             <div className={styles.content_area}>
                 <div className={styles.project_name}>
-                    <ProjectName title='ECORP'></ProjectName>
+                    <ProjectName title={nomeEmpresa || "Indefinido"}></ProjectName>
                 </div>
                 <div className={styles.project_box}>
                     <div className={styles.detail_bar}></div>
                     <div className={styles.content_area}>
-                        <ProjetoComponenteBeneficiario name={'Projeto de Abelhas'}
+                        {projetos.length > 0 ? (
+                            projetos.map((projeto, index) => (
+                                <ProjetoComponenteBeneficiario
+                                    name={projeto.nome || "Indisponível"}
+                                    onClickChamados={() => handleProjetoClickChamado(projeto)}
+                                />
+                            ))
+                        ) : (
+                            <p> Não há projetos disponíveis.</p>
+                        )}
+                        {/* <ProjetoComponenteBeneficiario name={'Projeto de Abelhas'}
                             onFinalizarClick={abrirModal}>
-                        </ProjetoComponenteBeneficiario>
-
-                        <ProjetoComponenteBeneficiario name={'Projeto de Abelhas'}>
-                        </ProjetoComponenteBeneficiario>
-
-                        <ProjetoComponenteBeneficiario name={'Projeto de Abelhas'}>
-                        </ProjetoComponenteBeneficiario>
-
-                        <ProjetoComponenteBeneficiario name={'Projeto de Abelhas'}>
-                        </ProjetoComponenteBeneficiario>
+                        </ProjetoComponenteBeneficiario> */}
                     </div>
                 </div>
             </div>
@@ -56,8 +95,8 @@ const ProjetosBeneficiario = () => {
 
                 <div className={styles.modal_header}>
                     <h2>Finalizar projeto</h2>
-                    <img src={fechar_icon} alt="" 
-                    onClick={fecharModal}/>
+                    <img src={fechar_icon} alt=""
+                        onClick={fecharModal} />
                 </div>
                 <div className={styles.modal_content}>
                     <p>Deseja confirmar o encerramento deste projeto?</p>

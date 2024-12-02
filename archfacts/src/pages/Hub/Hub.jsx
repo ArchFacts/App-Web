@@ -3,16 +3,17 @@ import EnterpriseCard from '../../components/Enterprise-Card/enterpriseCard';
 import styles from './Hub.module.css';
 import SideBar from '../../components/Side-Bar/sideBar';
 import { useNavigate } from 'react-router-dom';
-import { buscarEmpresas, imagemGenerica } from '../../api';
+import { buscarEmpresas, imagemGenerica, dadosUsuarioLogado } from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 
 const Hub = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [negocios, setNegocios] = useState([]);
+    const [usuario, setUsuario] = useState(null);
 
-    const handleClick = (idNegocio) => {
-        navigate(`/projetos-beneficiario/${idNegocio}`);
+    const handleClick = (nomeEmpresa) => {
+        navigate(`/projetos-beneficiario/${nomeEmpresa}`, { state: { email: usuario.email, nomeEmpresa } });
     };
 
     const handleBuscarEmpresas = async () => {
@@ -26,6 +27,22 @@ const Hub = () => {
             setLoading(false); // Define o estado como carregado após a busca
         }
     };
+
+    const buscarDadosUsuarioLogado = async () => {
+        try {
+            const response = await dadosUsuarioLogado();
+            setUsuario(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar os dados do usuário", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        buscarDadosUsuarioLogado();
+    }, []);
 
     useEffect(() => {
         handleBuscarEmpresas();
@@ -52,11 +69,11 @@ const Hub = () => {
                                 <EnterpriseCard
                                     key={negocio.idNegocio}
                                     title={negocio.nome || "Indisponível"}
-                                    rating={negocio.avaliacao || "Indisponível"} 
-                                    ticketQuantity={"2"} 
-                                    img={imagemGenerica(negocio.nome || "Indisponível")} 
+                                    rating={negocio.avaliacao || "Indisponível"}
+                                    ticketQuantity={"2"}
+                                    img={imagemGenerica(negocio.nome || "Indisponível")}
                                     buttonText={"Meus Projetos"}
-                                    onClickEmpresa={() => handleClick(negocio.idNegocio)}
+                                    onClickEmpresa={() => handleClick(negocio.nome)}
                                 />
                             ))
                         ) : (

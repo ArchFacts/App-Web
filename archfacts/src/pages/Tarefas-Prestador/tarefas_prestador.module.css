@@ -309,7 +309,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 45%;
-    height: 85%;
+    height: 95%;
     border-radius: 25px;
     font-family: 'Poppins-SemiBold';
 }
@@ -358,6 +358,7 @@
     flex-direction: column;
     height: auto;
     width: 45%;
+
 }
 
 .modal_chamado .modal_content .fields .field2 label {
@@ -396,10 +397,7 @@
 .modal_chamado .modal_content .field textarea {
     width: 75%;
     border: 3px solid #033E8C;
-}
 
-.modal_chamado .modal_content .field:nth-child(4) input {
-    height: 7.5rem;
 }
 
 .modal_chamado .modal_content .field .title {
@@ -437,4 +435,18 @@
 .modal_chamado .modal_content .button_area button {
     width: 25%;
     background-color: #033E8C;
+}
+
+.inputDate {
+    border-radius: 0;
+    width: 37vh;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
 }

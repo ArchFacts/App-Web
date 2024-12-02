@@ -9,7 +9,7 @@ import Tarefas from "../Tarefas/tarefas";
 import TarefasContagem from "../../Tarefas-Contagem/tarefas_contagem";
 
 
-const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status }) => {
+const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status, onClick, onClickChamados }) => {
     return (
         <div className={styles.project_box}>
             <div className={styles.detail_bar_top}>
@@ -23,10 +23,10 @@ const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status
                     ></Financeiro>
                 </div>
                 <div className={styles.group}>
-                    <Chamados></Chamados>
+                    <Chamados onClickChamados={onClickChamados}></Chamados>
                     <ChamadosContagem number={25}></ChamadosContagem>
                     <TarefasContagem number={13}></TarefasContagem>
-                    <Tarefas></Tarefas>
+                    <Tarefas onClick={onClick}></Tarefas>
                 </div>
                 <div className={styles.group}>
                     <Calendar date={data}></Calendar>

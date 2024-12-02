@@ -92,4 +92,24 @@ export const buscarProjetosNegocio = (data) => {
   return api.get(`/projetos`, data);
 }
 
+export const buscarTarefasNegocio = (idProjeto) => {
+  return api.get(`/tarefas/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarTarefa = (idProjeto, data) => {
+  return api.post(`/tarefas/${idProjeto}`, data);
+}
+
+export const buscarProjetosBeneficiario = (nomeEmpresa, email) => {
+  return api.get(`/projetos/beneficiario/${nomeEmpresa}`, email);
+}
+
+export const buscarChamadosNegocio = (idProjeto) => {
+  return api.get(`/chamados/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarChamado = (idProjeto, data) => {
+  return api.post(`/chamados/${idProjeto}`, data);
+}
+
 export default api;
