@@ -19,6 +19,7 @@ import Teste from './pages/Aaa/Aaa';
 import ChamadosEmpresa from "./pages/Chamados-Empresas/chamados_empresas";
 import Eventos from './pages/Eventos/eventos';
 import HomePrestador from './pages/Home-Prestador/homePrestador';
+import Dashboard from './pages/Dashboard/dashboard';
 
 
 
@@ -47,6 +48,7 @@ function Rotas() {
 
                     <Route path="/eventos" element={<Eventos/>}></Route>
                     <Route path="/home-prestador" element={<HomePrestador/>}></Route>
+                    <Route path="/dashboard" element={<Dashboard/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>
