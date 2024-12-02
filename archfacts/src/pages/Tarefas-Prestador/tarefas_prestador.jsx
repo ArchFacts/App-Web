@@ -14,7 +14,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/spinner';
 
-function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefinirParcelaClick, onFinalizarTarefaClick }) {
+function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarTarefaClick, onDefinirDespesaClick, onEncerrarTarefaClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -22,14 +22,13 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefi
         return {};
     };
 
-
     return (
         <div className={styles.infos}>
             <p className={styles.statusCell} style={getStatusStyle(status)}>
                 {status}
             </p>
             <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>
+            <button className={styles.parcelaCell} onClick={() => onDefinirDespesaClick()}>
                 {parcelaLabel}
             </button>
             <p className={styles.aberturaCell}>{abertura}</p>
@@ -45,7 +44,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onDefi
                     src={lixeira}
                     alt="Excluir"
                     className={styles.icon}
-                    onClick={() => console.log('Excluir tarefa')}
+                    onClick={() => onEncerrarTarefaClick()}
                 />
                 <img
                     src={check}
@@ -216,6 +215,12 @@ function TarefasPrestador() {
         }
     }, [usuario]);
 
+    const [valorInput, setValorInput] = useState('');
+    const confirmarCusto = () => {
+        console.log("Custo definido:", valorInput);
+        fecharModal();
+    };
+
     return (
         <div className={styles.container}>
             <SideBarColaborador />
@@ -249,6 +254,8 @@ function TarefasPrestador() {
                                     abertura={formatarData(tarefa.dataInicio)}
                                     onFinalizarTarefaClick={() => abrirModal('finalizarTarefa', tarefa.id)}
                                     onDefinirParcelaClick={() => console.log('abrirTarefa', tarefa.id)}
+                                    onDefinirDespesaClick={() => abrirModal('definirDespesa', tarefa.id)}
+                                    onEncerrarTarefaClick={() => abrirModal('excluirTarefa', tarefa.id)}
                                 />
                             ))
                         ) : (
@@ -268,7 +275,7 @@ function TarefasPrestador() {
                     <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
                 </div>
                 <div className={styles.modal_content}>
-                    <p>Deseja confirmar o encerramento desta tarefa?</p>
+                <p>Deseja confirmar a finalização desta tarefa?</p>
                     <button
                         className={stylesPrestador.botao}
                         onClick={() => salvarFechamento(idChamado)}>
@@ -364,6 +371,48 @@ function TarefasPrestador() {
                     <button
                         className={stylesPrestador.botao}
                         onClick={salvarTarefa}>
+                    </button>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={modalIsOpen && tipoModal === 'definirDespesa'}
+                onRequestClose={fecharModal}
+                contentLabel="Modal para definir a despesa"
+                className={stylesPrestador.modalParcela}
+                overlayClassName={stylesPrestador.modal_overlay}
+            >
+                <div className={stylesPrestador.modal_header}>
+                    <span className={stylesPrestador.nimbus_money}></span>
+                    <h2>Definir despesa</h2>
+                    <img className={stylesPrestador.fechar} src={fechar_icon} alt="Fechar" onClick={fecharModal} />
+                </div>
+                <div className={stylesPrestador.modal_content}>
+                    <div className={stylesPrestador.parcelas}>
+                        Projeto de abelhas
+                    </div>
+                    <div className={stylesPrestador.price_field}>
+                        <p> R$</p>
+                        <input onChange={(e) => setValorInput(e.target.value)} type="number" />
+                    </div>
+                    <button className={stylesPrestador.botao} onClick={confirmarCusto}>Confirmar</button>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={modalIsOpen && tipoModal === 'excluirTarefa'}
+                onRequestClose={fecharModal}
+                contentLabel="Modal para excluir a tarefa"
+                className={styles.modal}
+                overlayClassName={styles.modal_overlay}>
+                <div className={styles.modal_header}>
+                    <h2>Excluir tarefa</h2>
+                    <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
+                </div>
+                <div className={styles.modal_content}>
+                    <p>Deseja confirmar o encerramento desta tarefa?</p>
+                    <button
+                        className={stylesPrestador.botao}
+                        onClick={() => salvarFechamento(idChamado)}>
+                        Confirmar
                     </button>
                 </div>
             </Modal>
