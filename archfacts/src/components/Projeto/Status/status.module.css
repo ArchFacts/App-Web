@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0E0C19;
+    border-radius: 25px;
+    width: 13rem;
+    height: 2.5rem;
+}
+
+.status p {
+    font-family: 'Poppins-Regular';
+    font-size: 1.5rem;
+    color: white;
+}

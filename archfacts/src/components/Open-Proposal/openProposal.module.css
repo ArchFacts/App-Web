@@ -3,26 +3,76 @@
     font-family: 'Poppins-Semibold';
     src: url('../utils/fonts/Poppins-SemiBold.ttf');
 }
-.content{
+
+.content {
     width: 100%;
     border-bottom: 2px solid #033e8cc5;
     display: flex;
     justify-content: space-around;
-    min-height:50px;
+    min-height: 50px;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
 }
-.content > span{
-    width: 20%;
+
+.content:hover {
+    min-height: 75px;
+    background-color: rgb(3, 62, 140, 0.7);
+    color: white;
+}
+
+
+.content>span {
+    width: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     word-break: break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: normal;
+    transition: all 0.4s ease-in-out;
 }
-.img{
-    width: 40px;
-    height: 40px;
+
+.content>span:hover {
+    color: white;
 }
-.aceitarRecusar img{
-    margin: 0 20px;
+
+.content span p {
+    color: black;
+    width: auto;
+    height: auto;
+    font-size: 1.5rem;
+}
+
+.aceitarRecusar {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.aceitarRecusar img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.modal {
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+}
+
+.modal .modalHeader {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 25%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
 }

@@ -52,7 +52,7 @@ function CadastroUsuario() {
     autoplaySpeed: 5000
   };
 
-  // if(!formData.nome.trim()){
+  // if(!foa.normDatme.trim()){
   //     toast.error("Por favor, insira o seu nome.");
   //     return; 
   // }

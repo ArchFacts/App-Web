@@ -1,0 +1,20 @@
+.title_area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 8%;
+}
+
+.title_area .generic_tarefas_title {
+    color: #0E0C19;
+}
+
+.title_area .tarefas_title {
+    color: #F95C00;
+}
+
+.title_area .line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: black;
+}

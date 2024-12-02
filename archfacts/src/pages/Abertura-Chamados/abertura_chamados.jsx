@@ -33,7 +33,7 @@ function AberturaChamados() {
                         <textarea placeholder="Descreva o chamado"></textarea>
 
                         <div className={styles.botao}>
-                            <button type="submit">Enviar</button>
+                            <button className={styles.button} type="submit">Enviar</button>
                         </div>
                     </form>
                 </div>

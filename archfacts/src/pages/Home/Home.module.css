@@ -92,6 +92,7 @@ body {
     display: flex;
     z-index: 0;
     overflow: hidden;
+    position: relative; 
 }
 
 .hero_div::before {
@@ -104,17 +105,17 @@ body {
     background: linear-gradient(180deg, rgba(14, 12, 25, 0.2) 77.3%, rgba(3, 62, 140, 0.9) 100%),
         url('../../utils/assets/hero-background.jpeg') bottom/cover no-repeat;
     filter: blur(3px) brightness(0.75);
-    z-index: -1;
+    z-index: -1; 
     animation: moveBackground 20s linear infinite;
 }
 
 .hero_div .content {
     margin-top: 70px;
-    /* margin-bottom: 90px; Para ficar abaixo da Nav */
     width: 100%;
     display: flex;
     flex-direction: column;
-    z-index: 1;
+    z-index: 1; 
+    position: relative;
 }
 
 .solved_problems {
@@ -138,6 +139,7 @@ body {
     filter: blur(3px);
     opacity: 0.2;
     background-position: center;
+    z-index: 0; 
     animation: pulse 15s linear infinite;
 }
 

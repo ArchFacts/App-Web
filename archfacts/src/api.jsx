@@ -32,5 +32,88 @@ export const registroEmpresa = (data) => {
   return api.post('/negocios', data);
 }
 
+export const dadosUsuarioLogado = (data) => {
+  return api.get('/perfis', data);
+}
+
+export const buscarPropostas = (data) => {
+  return api.get('/propostas', data);
+}
+
+export const buscarEmpresas = (data) => {
+  return api.get('/negocios', data);
+}
+
+export const imagemGenerica = (texto) => {
+  return `https://placehold.co/600x400/black/white?text=${encodeURIComponent(texto)}`;
+}
+
+export const imagemServicoGenerica = () => {
+  return `https://picsum.photos/300/300`;
+}
+
+export const encontrarEmpresaProposta = (codEmpresa) => {
+  return api.get(`/propostas/buscarNegocioProposta/${codEmpresa}`);
+}
+
+export const registroProposta = (data, codEmpresa, nomeNegocio) => {
+  return api.post(`propostas/${codEmpresa}/${nomeNegocio}`, data);
+}
+
+export const dadosConfirmacaoProposta = (data, codEmpresa, nomeNegocio) => {
+  return api.get(`propostas/${codEmpresa}/${nomeNegocio}`, data);
+}
+
+export const registroServico = (data) => {
+  return api.post(`/servicos`, data);
+}
+
+export const obterServicosEmpresa = (codEmpresa) => {
+  return api.get(`/servicos/${codEmpresa}`);
+}
+
+export const obterDonoNegocio = (codEmpresa) => {
+  return api.get(`/negocios/${codEmpresa}`);
+}
+
+export const cadastrarPropostaServico = (data) => {
+  return api.post(`/propostaServicos`, data);
+}
+
+export const recusarProposta = (data) => {
+  return api.post(`/propostas/recusar`, data);
+}
+
+export const aceitarProposta = (data) => {
+  return api.post(`/projetos/aceitar`, data);
+}
+
+export const buscarProjetosNegocio = (data) => {
+  return api.get(`/projetos`, data);
+}
+
+export const buscarTarefasNegocio = (idProjeto) => {
+  return api.get(`/tarefas/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarTarefa = (idProjeto, data) => {
+  return api.post(`/tarefas/${idProjeto}`, data);
+}
+
+export const buscarProjetosBeneficiario = (nomeEmpresa, email) => {
+  return api.get(`/projetos/beneficiario/${nomeEmpresa}`, email);
+}
+
+export const buscarChamadosNegocio = (idProjeto) => {
+  return api.get(`/chamados/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarChamado = (idProjeto, data) => {
+  return api.post(`/chamados/${idProjeto}`, data);
+}
+
+export const buscarServicosProposta = (idProposta) => {
+  return api.post(`/propostaServicos/buscar`, idProposta);
+};
 
 export default api;

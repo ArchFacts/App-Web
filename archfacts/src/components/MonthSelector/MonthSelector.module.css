@@ -1,0 +1,45 @@
+.monthSelectorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .monthButton {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+    }
+  .monthButton:hover{
+    background-color: white;
+    color: #ffc400;
+  }
+  .monthButton:disabled {
+    color: #d3d3d3; /* Cinza claro para botões desabilitados */
+    cursor: default;
+  }
+  
+  .monthButton:not(:disabled):hover {
+    color: #555; /* Cinza escuro ao passar o mouse */
+  }
+  
+  .currentMonth {
+    font-size: 12px;
+  }
+  /* src/components/MonthSelector/MonthSelector.module.css */
+
+
+
+
+.disabled {
+  cursor: not-allowed;
+  color: #d3d3d3; /* Cinza claro */
+}
+
+.currentMonth {
+  margin: 0 10px;
+}
