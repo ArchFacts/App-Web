@@ -4,6 +4,7 @@ import person from '../../utils/assets/person.png'
 import folder from '../../utils/assets/pasta.png'
 import house from '../../utils/assets/house.png'
 import calendar from '../../utils/assets/calendar.png'
+import clipboard from '../../utils/assets/clipboard.png'
 import sign from '../../utils/assets/sign.png';
 import { Link } from "react-router-dom";
 import { dadosUsuarioLogado } from "../../api";
