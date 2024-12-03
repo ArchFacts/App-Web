@@ -51,7 +51,7 @@ const Login = () => {
       handleNavigation();
       toast.success("Usuário logado com sucesso!");
     } catch (error) {
-      toast.error("Houve um erro ao fazer login na sua conta");
+      // toast.error("Houve um erro ao fazer login na sua conta");
       console.log("Erro", error)
     }
   }

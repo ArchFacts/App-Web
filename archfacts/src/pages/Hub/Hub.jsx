@@ -61,7 +61,7 @@ const Hub = () => {
                 </div>
                 <div className={styles.empresasContainer}>
                     <div className={styles.barraSuperior}>
-                        <p>Prestadores contratados:</p>
+                        <p>Prestadores:</p>
                     </div>
                     <div className={styles.cardsEmpresas}>
                         {negocios.length > 0 ? (

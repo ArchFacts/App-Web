@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./sideBarColaborador.module.css"
 import person from '../../utils/assets/person.png'
-import clipboard from '../../utils/assets/clipboard.png'
 import folder from '../../utils/assets/pasta.png'
 import house from '../../utils/assets/house.png'
 import calendar from '../../utils/assets/calendar.png'

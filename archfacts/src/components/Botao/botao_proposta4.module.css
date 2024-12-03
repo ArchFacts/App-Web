@@ -1,0 +1,25 @@
+.botao {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    height: 6.5rem;
+    align-items: center; 
+    margin-top: 15%;
+}
+
+.botao1 {
+    color: white;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    height: 2.7rem;
+    border: none;
+    transition: background-color 500ms, transform 500ms;
+    font-size: 24px;
+    width: 72%;
+}
+.botao1:hover { 
+    width: 80%;
+    transform: scale(1.1);  
+    background-color: #05C7F2 !important;
+    color: black;
+}
