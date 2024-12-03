@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import * as d3 from 'd3';
 import styles from './dashboard.module.css';
 import SideBarColaborador from '../../components/Side-Bar-Colaborador/sideBarColaborador';
@@ -6,15 +6,42 @@ import GastosGeraisChart from '../../components/GastosGeraisChart/GastosGeraisCh
 import GastosChart from '../../components/GastosChart/GastosChart';
 import RelatorioGastosChart from '../../components/RelatorioGastosChart/RelatorioGastosChart';
 import Kpi from '../../components/KpiFinanceiro/KpiFinanceiro';
-import Legend from '../../components/GastosLegend/GastosLegend';  
+import Legend from '../../components/GastosLegend/GastosLegend';
 import ChartServicosFinalizadosEmpresa from "../../components/ChartServicosFinalizadosEmpresa/ChartServicosFinalizadosEmpresa";
 import FinalizadosEmpresaLegend from "../../components/FinalizadosEmpresaLegend/FinalizadosEmpresaLegend";
 import MonthSelector from "../../components/MonthSelector/MonthSelector";
 import ChartServicosFinalizadosSemana from "../../components/ChartServicosFinalizadosSemana/ChartServicosFinalizadosSemana";
 import WeekChartLegend from "../../components/WeekChartLegend/WeekChartLegend";
 import WeekSelectorChart from "../../components/WeekSelectorChart/WeekSelectorChart";
+import { useUser } from '../../userContext';
+import { buscarLucros } from '../../api';
+import Spinner from '../../components/Spinner/spinner';
 
 const Dashboard = () => {
+
+    const { usuario, loading } = useUser();
+    const [dadosDashboard, setDadosDashboard] = useState(null);
+
+    useEffect(() => {
+        
+        if (!loading && usuario) {
+            const buscarDadosDash = async () => {
+                try {
+                    const response = await buscarLucros(usuario.negocio.idNegocio);
+                    setDadosDashboard(response.data); 
+                } catch (error) {
+                    console.error("Houve erro ao buscar os dados da dashboard!");
+                }
+            };
+            buscarDadosDash();
+        }
+    }, [loading, usuario]);
+
+    
+    if (loading || !usuario) {
+        console.log ("Indisponível")
+    }
+
     const data = [
         { name: 'A', value: 60 },
         { name: 'B', value: 20 },
@@ -59,20 +86,20 @@ const Dashboard = () => {
 
     // Dados mockados para o gráfico de barras
     const rawData = [
-      { date: '2023-06-12', services: 1 },
-      { date: '2023-06-13', services: 2 },
-      { date: '2023-06-14', services: 3 },
-      { date: '2023-06-15', services: 4 },
-      { date: '2023-06-16', services: 5 },
-      { date: '2023-06-17', services: 2 },
-      { date: '2023-06-18', services: 3 },
-      { date: '2023-06-20', services: 1 },
-      { date: '2023-06-21', services: 2 },
-      { date: '2023-06-22', services: 3 },
-      { date: '2023-06-23', services: 4 },
-      { date: '2023-06-24', services: 5 },
-      { date: '2023-06-25', services: 2 },
-      { date: '2023-06-26', services: 3 },
+        { date: '2023-06-12', services: 1 },
+        { date: '2023-06-13', services: 2 },
+        { date: '2023-06-14', services: 3 },
+        { date: '2023-06-15', services: 4 },
+        { date: '2023-06-16', services: 5 },
+        { date: '2023-06-17', services: 2 },
+        { date: '2023-06-18', services: 3 },
+        { date: '2023-06-20', services: 1 },
+        { date: '2023-06-21', services: 2 },
+        { date: '2023-06-22', services: 3 },
+        { date: '2023-06-23', services: 4 },
+        { date: '2023-06-24', services: 5 },
+        { date: '2023-06-25', services: 2 },
+        { date: '2023-06-26', services: 3 },
     ];
 
     // Calcular semanas disponíveis dinamicamente
@@ -108,10 +135,10 @@ const Dashboard = () => {
                     </div>
                     <div className={styles.geralDashboard}>
                         <div className={styles.kpiDashboard}>
-                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
-                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
-                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
-                            <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+                            <Kpi card="Usuário que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+                            <Kpi card="Projeto que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" />
+                            {/* <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" /> */}
+                            {/* <Kpi card="Empresa que mais deu lucro " mes="Nov" valor="4000" porcentagem="30%" empresa="Ford" /> */}
                         </div>
                         <div className={styles.separador}>
                             <span className={styles.linhaHorizontal}></span>
@@ -123,7 +150,7 @@ const Dashboard = () => {
                             </div>
                             <div className={styles.cardGraficosMenores}>
                                 <div className={styles.cardGraficoFinalizadosEmpresa}>
-                                <span >Serviços finalizados por empresa</span>
+                                    <span >Serviços finalizados por empresa</span>
                                     <MonthSelector months={mesesDisponiveis} onMonthChange={setMesAtual} />
                                     <ChartServicosFinalizadosEmpresa pieData={pieData} />
                                     <div className={styles.LegendFinalizadosEmpresa}>

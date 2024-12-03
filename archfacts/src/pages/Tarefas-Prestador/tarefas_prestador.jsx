@@ -131,14 +131,14 @@ function TarefasPrestador() {
     const salvarTarefa = async () => {
 
         const novaDataTermino = `${dataTermino}T23:59:00`;  // Adicionando a hora para poder inserir no banco
-        setDataTermino(novaDataTermino);
+        // setDataTermino(novaDataTermino);
 
         const tarefa = {
             titulo,
             despesa,
             prioridade,
             status,
-            dataTermino,
+            dataTermino: novaDataTermino,
             descricao: desc,
         };
 

@@ -1,0 +1,23 @@
+section .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border: 5px solid red;
+    width: 100vw;
+}
+
+section .content .dash_area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 60%;
+    width: 90%;
+    border-top: 5rem #0E0C19 solid;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+}
+
