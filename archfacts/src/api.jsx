@@ -116,4 +116,8 @@ export const buscarServicosProposta = (idProposta) => {
   return api.post(`/propostaServicos/buscar`, idProposta);
 };
 
+export const definirCusto = (idChamado, data) => {
+  return api.put(`/chamados`, idChamado, data);
+}
+
 export default api;

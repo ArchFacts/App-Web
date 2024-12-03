@@ -81,9 +81,9 @@
 .infos {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 18px;
     flex-direction: row;
-    padding: 2.5%;
+    padding: 1%;
     cursor: pointer;
     border: #0E0C19;
     transition: background-color 0.3s ease;
@@ -114,6 +114,18 @@
     width: 14%;
     align-items: center;
     border: none;
+    display: block;
+}
+
+.parcelaCell.hidden {
+    visibility: visible;
+}
+
+
+.lucroCell {
+    width: 13.5%;
+    text-align: center;
+    color: #033E8C !important;
 }
 
 .aberturaCell {
@@ -257,7 +269,7 @@
     justify-content: center;
 }
 
-.price_field input{
+.price_field input {
     color: #033E8C;
     text-align: center;
     width: 40%;
@@ -284,7 +296,7 @@
     align-items: center;
 }
 
-.fechar{
+.fechar {
     cursor: pointer;
 }
 
@@ -299,9 +311,10 @@
     font-size: 24px;
     width: 35%;
 }
-.botao:hover { 
+
+.botao:hover {
     width: 40%;
-    transform: scale(1.1);  
+    transform: scale(1.1);
     background-color: #05C7F2;
     color: black;
 }
@@ -313,9 +326,9 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%230fa901' d='M12.32 8a3 3 0 0 0-2-.7H5.63A1.59 1.59 0 0 1 4 5.69a2 2 0 0 1 0-.25a1.59 1.59 0 0 1 1.63-1.33h4.62a1.59 1.59 0 0 1 1.57 1.33h1.5a3.08 3.08 0 0 0-3.07-2.83H8.67V.31H7.42v2.3H5.63a3.08 3.08 0 0 0-3.07 2.83a2 2 0 0 0 0 .25a3.07 3.07 0 0 0 3.07 3.07h4.74A1.59 1.59 0 0 1 12 10.35a2 2 0 0 1 0 .34a1.59 1.59 0 0 1-1.55 1.24h-4.7a1.59 1.59 0 0 1-1.55-1.24H2.69a3.08 3.08 0 0 0 3.06 2.73h1.67v2.27h1.25v-2.27h1.7a3.08 3.08 0 0 0 3.06-2.73v-.34A3.06 3.06 0 0 0 12.32 8'/%3E%3C/svg%3E");
-  }
+}
 
-  .modal_chamado {
+.modal_chamado {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -434,14 +447,14 @@
     border: none;
 }
 
-.div_botao{
+.div_botao {
     width: 11%;
     display: flex;
     margin-left: 1%;
     justify-content: end;
 }
 
-.dado_beneficiario{
+.dado_beneficiario {
     width: 75%;
     height: 7vh;
     font-family: 'Poppins-Medium';
@@ -456,7 +469,7 @@
     padding-right: 1%;
 }
 
-.description{
+.description {
     width: 75%;
     height: 20vh;
     font-family: 'Poppins-Medium';
