@@ -58,6 +58,13 @@ const ProjetosPrestador = () => {
         navigate(`/chamados-prestador/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
     }
 
+    const handleDashClick = (projeto) => {
+        console.log("clicou", projeto);
+        console.log("ID DO PROJETO", projeto.idProjeto);
+        console.log("CLICOU")
+        navigate(`/dashboard/${projeto.idProjeto}`, { state: { idProjeto: projeto.idProjeto } });
+    }
+
     const formatarData = (data) => {
         const date = new Date(data);
         const dia = String(date.getDate()).padStart(2, '0');
@@ -101,6 +108,7 @@ const ProjetosPrestador = () => {
                                     status={projeto.status || "Indisponível"}
                                     onClick={() => handleProjetoClick(projeto)}
                                     onClickChamados={() => handleProjetoClickChamado(projeto)}
+                                    handleDashClick={() => handleDashClick(projeto)}
                                 />
                             ))
                         ) : (

@@ -120,4 +120,24 @@ export const definirCusto = (idChamado, data) => {
   return api.put(`/chamados`, idChamado, data);
 }
 
+export const definirParcela = (idProjeto, parcela) => {
+  return api.post(`/parcelas/${idProjeto}`, parcela);
+}
+
+export const buscarLucros = (idProjeto) => {
+  return api.get(`/chamados/dashboard/${idProjeto}`);
+}
+
+export const buscarResumoFinanceiroDashboard = (idProjeto) => {
+  return api.get(`/dashboards/${idProjeto}/resumo-financeiro`)
+}
+
+export const buscarTarefaMaiorDespesa = (idProjeto) => {
+  return api.get(`/kpis/${idProjeto}/tarefa-maior-despesa`)
+}
+
+export const buscarChamadoMaiorLucro = (idProjeto) => {
+  return api.get(`/kpis/${idProjeto}/chamado-maior-lucro`)
+}
+
 export default api;

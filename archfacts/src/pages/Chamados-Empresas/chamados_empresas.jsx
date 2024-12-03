@@ -10,13 +10,12 @@ import division_icon from '../../utils/assets/division.svg';
 import plus_icon from '../../utils/assets/plus.svg';
 import minus_icon from '../../utils/assets/minus.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
-import api, { buscarChamadosNegocio, cadastrarChamado } from '../../api';
+import api, { buscarChamadosNegocio, cadastrarChamado, definirParcela } from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 import { useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
-function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick }) {
+function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick, lucro }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -53,8 +52,9 @@ function ChamadosEmpresa() {
     const [descricao, setDescricao] = useState('');
     const [dataAbertura, setDataAbertura] = useState('');
     const [dataFechamento, setDataFechamento] = useState('');
+    const [lucro, setLucro] = useState('');
     const [parcelas, setParcelas] = useState(12);
-    const total = 1000;
+    const total = lucro;
 
     const tiposModal = {
         abrir_chamado: 'abrirChamado',
@@ -78,6 +78,12 @@ function ChamadosEmpresa() {
             const response = await buscarChamadosNegocio(idProjeto);
             console.log("ID PROJETO", idProjeto)
             console.log('Resposta dos chamados:', response.data);
+
+            response.data.forEach((chamado) => {
+                console.log("Lucro do chamado:", chamado.lucro);
+            });
+
+
             setChamados(response.data);
 
         } catch (error) {
@@ -104,13 +110,15 @@ function ChamadosEmpresa() {
         setDataAbertura(dataAtual);
     }, []);
 
-
-
-
-    const abrirModal = (tipo, idChamado = null) => {
+    const abrirModal = (tipo, chamado) => {
         setTipoModal(tipo);
         if (tipo === tiposModal.finalizar_chamado) {
-            setIdChamado(idChamado);
+            setIdChamado(chamado.idChamado);
+        }
+
+        if (tipo === tiposModal.definir_parcela) {
+            setLucro(chamados.find(c => c.idChamado === chamado)?.lucro || 0);
+            setIdChamado(chamado);
         }
         setModalIsOpen(true);
     };
@@ -136,6 +144,7 @@ function ChamadosEmpresa() {
             abertura: dataAbertura,
             fechamento: novaDataFechamento,
             status: 'ABERTO',
+            lucro: lucro,
         };
 
         try {
@@ -152,6 +161,34 @@ function ChamadosEmpresa() {
         fecharModal();
     };
 
+    const handleDefinirParcelas = async (idChamado) => {
+        const parcela = {
+            valor: Number(lucro),
+            dataInicio: new Date().toISOString(),
+            status: 'ABERTO',
+            qtdParcelas: Number(parcelas),
+            idChamado: idChamado,
+        }
+
+        // console.log("idProjeto:", idProjeto); // Certifique-se de que o ID está definido corretamente
+        // console.log("Payload enviado:", JSON.stringify(parcela, null, 2)); // Verifique o payload
+
+        try {
+            const response = await definirParcela(idProjeto, parcela);
+            // console.log("resp", response);
+            if (idProjeto) {
+                await carregarChamados(idProjeto);
+            }
+            // console.log("Parcela salva", response)
+            toast.success("Suas parcelas foram definidas com sucesso!");
+
+        } catch (error) {
+            // console.error("Houve um erro ao definir a parcela", error);
+            toast.error("Não foi possível definir as parcelas, por favor tente novamente!")
+        }
+        fecharModal();
+    };
+
     const formatarData = (data) => {
         const date = new Date(data);
         const dia = String(date.getDate()).padStart(2, '0');
@@ -159,7 +196,6 @@ function ChamadosEmpresa() {
         const ano = date.getFullYear();
         return `${dia}/${mes}/${ano}`;
     };
-
     const formatarDataFechamento = (data) => {
         // if (!data || isNaN(new Date(data))) return 'Data não definida';
         // const date = new Date(data);
@@ -234,7 +270,6 @@ function ChamadosEmpresa() {
                     </div>
                     <div className={styles.form}>
                         {chamados.length > 0 ? (
-
                             chamados.map((chamado) => (
                                 <ChamadoInfo
                                     finalizarIcone={finalizarIcone}
@@ -245,7 +280,8 @@ function ChamadosEmpresa() {
                                     abertura={formatarData(chamado.abertura)}
                                     fechamento={formatarData(chamado.fechamento)}
                                     onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
-                                    onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela)}
+                                    onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela, chamado.idChamado)}
+                                    lucro={chamado.lucro || 0} // Valor padrão se lucro não estiver presente
                                 />
                             ))
                         ) : (
@@ -309,7 +345,7 @@ function ChamadosEmpresa() {
                     </div>
                     <div className={styles.total}>
                         Total: R$ {total}
-                        <button className={stylesPrestador.botao} onClick={fecharModal}>Confirmar</button>
+                        <button className={stylesPrestador.botao} onClick={handleDefinirParcelas}>Confirmar</button>
                     </div>
                 </div>
             </Modal>

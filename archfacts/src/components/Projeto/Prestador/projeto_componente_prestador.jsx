@@ -7,9 +7,9 @@ import Chamados from "../Chamados/chamados";
 import ChamadosContagem from "../Chamados-Contagem/chamados_contagem";
 import Tarefas from "../Tarefas/tarefas";
 import TarefasContagem from "../../Tarefas-Contagem/tarefas_contagem";
+import dash_icon from '../../../utils/assets/dash_icon.svg';
 
-
-const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status, onClick, onClickChamados }) => {
+const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status, onClick, onClickChamados, handleDashClick }) => {
     return (
         <div className={styles.project_box}>
             <div className={styles.detail_bar_top}>
@@ -20,6 +20,7 @@ const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status
                 <div className={styles.group}>
                     <Financeiro valorPositivo={'R$+1730'}
                         valorNegativo={'R$-735'}
+                        handleDashClick={handleDashClick}
                     ></Financeiro>
                 </div>
                 <div className={styles.group}>
