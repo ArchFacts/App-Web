@@ -69,7 +69,7 @@ const ProjetosBeneficiario = () => {
             <SideBar></SideBar>
             <div className={styles.content_area}>
                 <div className={styles.project_name}>
-                    <ProjectName title={nomeEmpresa || "Indefinido"}></ProjectName>
+                    <ProjectName title={nomeEmpresa}></ProjectName>
                 </div>
                 <div className={styles.project_box}>
                     <div className={styles.detail_bar}></div>

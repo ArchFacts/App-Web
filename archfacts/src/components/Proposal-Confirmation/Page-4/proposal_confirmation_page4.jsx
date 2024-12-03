@@ -5,7 +5,7 @@ import "../../../utils/global.css";
 import styles from "../Page-1/proposal_confirmation_page1.module.css";
 import { useNavigate } from "react-router-dom";
 import stylesPage3 from "../Page-3/proposal_confirmation_page3.module.css";
-import BotaoProposta from "../../Botao/botao_proposta_3.jsx";
+import BotaoProposta4 from "../../Botao/botao_proposta_4.jsx";
 import { useLocation } from "react-router-dom";
 import stylesPage4 from './proposal_confirmation_page4.module.css';
 import { registroProposta, dadosUsuarioLogado, obterDonoNegocio, cadastrarPropostaServico, imagemServicoGenerica, imagemGenerica } from "../../../api.jsx";
@@ -184,9 +184,9 @@ const ProposalConfirmationPage4 = () => {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.container_proposta}>
+                <div className={stylesPage4.container_proposta}>
                     <div className={styles.container_itens}>
-                        <h1>Confirmação dos dados</h1>
+                        <h1 className={stylesPage4.h1}>Confirmação dos dados</h1>
                         <div className={stylesPage3.paragrafo}>
                             <p className={styles.text}>
                                 Confirme os dados antes de enviar a solicitação para {negocio.nome}
@@ -202,14 +202,14 @@ const ProposalConfirmationPage4 = () => {
                                 </div>
                             </div>
                             <div className={stylesPage4.datas}>
-                                <div className={stylesPage4.informations}>E-mail da empresa:
+                                <div className={stylesPage4.dado_emails}>E-mail da empresa:
                                     {donoNegocio ? (
                                         <div className={stylesPage4.dado_importado}>{donoNegocio.email || "Indisponível"}</div>
                                     ) : (
                                         <p>Carregando dono do negócio...</p>
                                     )}
                                 </div>
-                                <div className={stylesPage4.informations}> E-mail do solicitante:
+                                <div className={stylesPage4.dado_emails}> E-mail do solicitante:
                                     <div className={stylesPage4.dado_importado}>{usuario.email || "Indisponível"}</div>
                                 </div>
                             </div>
@@ -252,12 +252,12 @@ const ProposalConfirmationPage4 = () => {
                             </ul>
                         </div>
                         <div className={styles.buttons}>
-                            <BotaoProposta
+                            <BotaoProposta4
                                 texto="Voltar"
                                 onClick={handleVoltar}
                                 cor="#F95C00"
                             />
-                            <BotaoProposta
+                            <BotaoProposta4
                                 texto="Enviar Proposta"
                                 onClick={handleEnviarProposta}
                                 cor="#033E8C"
