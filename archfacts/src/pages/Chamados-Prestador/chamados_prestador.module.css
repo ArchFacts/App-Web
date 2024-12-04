@@ -84,7 +84,6 @@
     font-size: 18px;
     flex-direction: row;
     padding: 1%;
-    cursor: pointer;
     border: #0E0C19;
     transition: background-color 0.3s ease;
 }
