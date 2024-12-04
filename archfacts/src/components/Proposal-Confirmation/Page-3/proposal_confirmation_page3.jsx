@@ -39,7 +39,7 @@ const ProposalConfirmationPage3 = () => {
 
     const buscaCepData = async (cep) => {
         try {
-            const cepFiltrado = cep.replace(/\D/g, ''); // Remove caracteres que não são numéricos
+            const cepFiltrado = cep.replace(/\D/g, ''); 
 
             if (cepFiltrado.length === 8) {
                 const resposta = await fetch(`https://viacep.com.br/ws/${cepFiltrado}/json/`);
@@ -75,7 +75,7 @@ const ProposalConfirmationPage3 = () => {
                 state: {
                     ...formData,
                     selectedServices: selectedServices,
-                    negocio: negocio // Inclua o negocio também
+                    negocio: negocio 
                 }
             });
         }
@@ -85,7 +85,7 @@ const ProposalConfirmationPage3 = () => {
     const validateForm = () => {
         const { titulo, cep, endereco, numero, dataEntrega, descricao } = formData;
 
-        if (!titulo) {
+        if (!titulo.trim()) {
             toast.error("O campo 'Título' é obrigatório!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -98,7 +98,7 @@ const ProposalConfirmationPage3 = () => {
             return false;
         }
 
-        if (!cep) {
+        if (!cep.trim()) {
             toast.error("O campo 'CEP' é obrigatório!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -112,7 +112,7 @@ const ProposalConfirmationPage3 = () => {
         }
 
         const cepRegex = /^[0-9]{8}$/;
-        if (!cepRegex.test(cep)) {
+        if (!cepRegex.test(cep.trim())) {
             toast.error("O CEP informado é inválido!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -125,7 +125,7 @@ const ProposalConfirmationPage3 = () => {
             return false;
         }
 
-        if (!endereco) {
+        if (!endereco.trim()) {
             toast.error("O campo 'Endereço' é obrigatório!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -138,7 +138,7 @@ const ProposalConfirmationPage3 = () => {
             return false;
         }
 
-        if (!numero) {
+        if (!numero.trim()) {
             toast.error("O campo 'Número' é obrigatório!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -151,7 +151,7 @@ const ProposalConfirmationPage3 = () => {
             return false;
         }
 
-        if (!dataEntrega) {
+        if (!dataEntrega.trim()) {
             toast.error("O campo 'Data' é obrigatório!", {
                 position: "top-right",
                 autoClose: 3000,

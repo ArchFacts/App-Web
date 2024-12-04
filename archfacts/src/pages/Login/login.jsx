@@ -42,6 +42,34 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    if(formData.login.trim() === ""){
+      toast.error("O email não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.senha.trim() === ""){
+      toast.error("A senha não pode estar vazia ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
     try {
       const response = await loginUsuario(formData);
 

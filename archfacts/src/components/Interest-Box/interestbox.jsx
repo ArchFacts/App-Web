@@ -8,7 +8,7 @@ const InterestBox = ({ title, text }) => {
             <h1 className={styles.title}>{title}</h1>
             <p className={styles.text}>{text}</p>
             <div className={styles.button_div}>
-                <button className={styles.button}>Interessado? Clique aqui!</button>
+                <button className={styles.button}>Quero essa solução!</button>
             </div>
         </div>
     );

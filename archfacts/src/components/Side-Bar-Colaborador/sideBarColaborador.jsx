@@ -39,7 +39,7 @@ const SideBarColaborador = ({ redirecionarPerfil, onClickTarefa }) => {
     return (
         <div className={styles.sideBar}>
             <Link to={"/home-prestador"}> <img className={styles.img} style={{ width: '35px', height: '35px' }} src={house} alt="" /></Link>
-            <Link to={"/chamados-prestador"}><img className={styles.img} style={{ width: '35px', height: '35px' }} src={folder} alt="" /></Link>
+            <Link to={"/projetos-prestador"}><img className={styles.img} style={{ width: '35px', height: '35px' }} src={folder} alt="" /></Link>
             <Link to={"/eventos"}><img className={styles.img} style={{ width: '35px', height: '35px' }} src={calendar} alt="" /></Link>
             <Link to={"/tarefas-prestador"}> <img className={styles.img} style={{ width: '35px', height: '35px' }} src={clipboard} alt="" /></Link>
             <Link to={`/dashboard/${usuario.negocio.idNegocio}`}><img className={styles.img} style={{ width: '35px', height: '35px' }} src={sign} alt="" /></Link>

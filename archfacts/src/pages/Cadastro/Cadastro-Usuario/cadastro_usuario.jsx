@@ -52,12 +52,154 @@ function CadastroUsuario() {
     autoplaySpeed: 5000
   };
 
-  // if(!foa.normDatme.trim()){
-  //     toast.error("Por favor, insira o seu nome.");
-  //     return; 
-  // }
+  const emailValido = (email) =>{
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
 
   const handleCadastro = async () => {
+  
+    if(formData.nome.trim() === ""){
+      toast.error("O nome não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.telefone.trim() === ""){
+      toast.error("O telefone não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.email.trim() === ""){
+      toast.error("O email não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.senha.trim() === ""){
+      toast.error("A senha não pode estar vazia ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.confirmacaoSenha.trim() === ""){
+      toast.error("A confirmação de senha não pode estar vazia ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.senha != formData.confirmacaoSenha){
+      toast.error("A senha e a confirmação de senha não coincidem",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.telefone.length < 10 || formData.telefone.length > 11){
+      toast.error("O telefone não é válido!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(!emailValido(formData.email)){
+        toast.error("Insira um email válido",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+    });
+    return;
+    }
+
+    if(formData.senha.length < 6){
+      toast.error("A senha deve conter no mínimo 6 caracteres!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]|\\:;"'<>,.?/-]).{6,}$/;
+    if (!senhaRegex.test(formData.senha)) {
+      toast.error("A senha deve conter: número, caractere especial, letra maiúscula e minúscula!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        style: { color: "white" },
+      });
+      return;
+    }
+
     try {
       await registroUsuario(formData);
 
@@ -65,13 +207,13 @@ function CadastroUsuario() {
       console.log(`Beneficiário registrado: ${JSON.stringify(formData)}`);
 
       toast.success("Seu usuário foi criado com sucesso!", {
-        position: "top-center", // Use uma posição válida
-        autoClose: 5000,       // Fecha automaticamente após 5 segundos
-        hideProgressBar: false, // Exibe a barra de progresso
-        closeOnClick: true,    // Fecha ao clicar
-        pauseOnHover: true,    // Pausa ao passar o mouse
-        draggable: true,       // Permite arrastar o toast
-        theme: "colored",      // Tema do toast 
+        position: "top-center", 
+        autoClose: 5000,       
+        hideProgressBar: false, 
+        closeOnClick: true, 
+        pauseOnHover: true,    
+        draggable: true,     
+        theme: "colored",      
       });
 
       if (tipo === 'beneficiario') {
