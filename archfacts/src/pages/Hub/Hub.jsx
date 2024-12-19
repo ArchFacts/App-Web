@@ -58,10 +58,11 @@ const Hub = () => {
             <div className={styles.content}>
                 <div className={styles.capsula}>
                     <span className={styles.text}>Seja bem-vindo!</span>
+                    <div className={styles.line}></div>
                 </div>
                 <div className={styles.empresasContainer}>
                     <div className={styles.barraSuperior}>
-                        <p>Prestadores:</p>
+                        <p>Prestadores na plataforma:</p>
                     </div>
                     <div className={styles.cardsEmpresas}>
                         {negocios.length > 0 ? (

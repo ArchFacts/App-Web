@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Poppins-Medium';
     src: url('../../utils/fonts/Poppins-Medium.ttf');
-  }
+}
 
 * {
     color: black;
@@ -11,7 +11,7 @@
 
 .card {
     width: 90%;
-    height: 25rem;
+    height: 85%;
     background-color: #0E0C19;
     display: flex;
     flex-direction: column;
@@ -34,11 +34,12 @@
     padding: 0 30px;
 }
 
-.divCodigo{
+.divCodigo {
     width: 80%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
 }
 
 .divInput label {
@@ -56,7 +57,7 @@
     border-radius: 5px;
     color: white;
     font-family: 'Poppins-Medium';
-    transition: background-color 0.3s, width 0.3s;  
+    transition: background-color 0.3s, width 0.3s;
 }
 
 .botao:hover {
@@ -65,7 +66,7 @@
     width: 37%;
 }
 
-.checkbox{
+.checkbox {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -75,31 +76,33 @@
     align-items: center;
     left: auto;
 }
-.permitir{
+
+.permitir {
     width: 80%;
 }
-.inputCheck{
+
+.inputCheck {
     padding: 0;
     width: 3rem;
     height: 1rem;
 }
 
-.inputs{
+.inputs {
     display: flex;
 }
 
-.labelCodigo{
+.labelCodigo {
     color: white;
     font-size: 24px;
     font-family: 'Poppins-Medium';
 }
 
-.divCodigo input{
+.divCodigo input {
     color: #F95C00;
     font-family: 'Poppins-Medium';
 }
 
-.botaoEditar{
+.botaoEditar {
     background-color: #033E8C;
     width: 50%;
     height: 5vh;
@@ -108,7 +111,7 @@
     border-radius: 5px;
     color: white;
     font-family: 'Poppins-Medium';
-    transition: background-color 0.3s, width 0.3s;  
+    transition: background-color 0.3s, width 0.3s;
     font-size: 16px;
 }
 
@@ -118,7 +121,7 @@
     width: 55%;
 }
 
-.content_itens{
+.content_itens {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,7 +130,7 @@
     border-top-right-radius: 20px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    height: 37vh;
-    width: 50%;
+    width: 90%;
+    height: 90%;
     justify-content: center;
 }

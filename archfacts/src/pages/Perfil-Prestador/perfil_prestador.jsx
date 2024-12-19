@@ -71,7 +71,7 @@ const PerfilPrestador = () => {
         // }
 
         try {
-            console.log("Dados enviados", formData);7
+            console.log("Dados enviados", formData); 7
             toast.success("Serviço adicionado com sucesso!")
             const response = await registroServico(formData);
             console.log(response);
@@ -102,18 +102,19 @@ const PerfilPrestador = () => {
                     usuario ? (
                         <div className={stylesPerfil.perfilContainer}>
                             <div className={stylesPerfil.esquerda}>
-                                <div className={stylesPrestador.content_itens}>
-                                <img className={stylesPerfil.imagemPerfil}
-                                    src={imagemGenerica(usuario.negocio.nome) || "Nome indisponível"}
-                                    alt="Imagem de perfil" />
-                                       </div>
-                                <h2>{usuario.negocio.nome || "Nome indisponível"}</h2>
-                                <div className={stylesPerfil.avaliation}>Avaliação:
-                                    <div className={stylesPerfil.nota}>{usuario.negocio.avaliacao}</div>
-                               
+                                <div className={stylesPerfil.profile}>
+                                    <div className={stylesPrestador.content_itens}>
+                                        <img className={stylesPerfil.imagemPerfil}
+                                            src={imagemGenerica(usuario.negocio.nome) || "Nome indisponível"}
+                                            alt="Imagem de perfil" />
+                                    </div>
+                                    <h2 className={stylesPerfil.nome_negocio}>{usuario.negocio.nome || "Nome indisponível"}</h2>
+                                    <div className={stylesPerfil.avaliation}>Avaliação:
+                                        <div className={stylesPerfil.nota}> {usuario.negocio.avaliacao}</div>
+                                    </div>
+                                    <button className={stylesPerfil.botao
+                                    } onClick={() => abrirModal('encerrarSessao')}>Sair</button>
                                 </div>
-                                <button className={stylesPerfil.botao
-                                } onClick={() => abrirModal('encerrarSessao')}>Sair</button>
                             </div>
                             <div className={stylesPerfil.direita}>
                                 <ProfilePrestador

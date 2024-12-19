@@ -42,29 +42,29 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    if(formData.login.trim() === ""){
-      toast.error("O email não pode estar vazio ou conter apenas espaços!",{
+    if (formData.login.trim() === "") {
+      toast.error("O email não pode estar vazio ou conter apenas espaços!", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        theme: "colored", 
+        theme: "colored",
         style: { color: "white" },
       });
       return;
     }
 
-    if(formData.senha.trim() === ""){
-      toast.error("A senha não pode estar vazia ou conter apenas espaços!",{
+    if (formData.senha.trim() === "") {
+      toast.error("A senha não pode estar vazia ou conter apenas espaços!", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        theme: "colored", 
+        theme: "colored",
         style: { color: "white" },
       });
       return;
@@ -76,10 +76,10 @@ const Login = () => {
       const token = response.data.token
       localStorage.setItem("jwtToken", token);
       const usuario = await obterDadosUsuarioLogado();
-      handleNavigation();
       toast.success("Usuário logado com sucesso!");
+      handleNavigation();
     } catch (error) {
-      // toast.error("Houve um erro ao fazer login na sua conta");
+      toast.error("Houve um erro ao fazer login na sua conta");
       console.log("Erro", error)
     }
   }
