@@ -62,7 +62,92 @@ function CadastroEmpresa() {
     autoplaySpeed: 5000
   };
 
+  const identificarCnpjOuCpf = (valor) => {
+    const somenteNumeros = valor.replace(/\D/g, '');
+    if (somenteNumeros.length === 11) {
+      return "CPF";
+    } else if (somenteNumeros.length === 14) {
+      return "CNPJ";
+    } else {
+      return null;
+    }
+  }
+
   const handleCadastro = async () => {
+
+    const {cpfOrCnpj} = formData;
+    const tipoDocumento = identificarCnpjOuCpf(cpfOrCnpj);
+
+    if(formData.nome.trim() === ""){
+      toast.error("O nome da empresa não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.cpfOrCnpj.trim() === ""){
+      toast.error("O CPF ou CNPJ não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.cep.trim() === ""){
+      toast.error("O CEP não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.numero.trim() === ""){
+      toast.error("O número não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(!tipoDocumento){
+      toast.error(`CPF ou CNPJ inválido!`,{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
     try {
       await registroEmpresa(formData);
 
@@ -83,7 +168,7 @@ function CadastroEmpresa() {
 
   const buscaCepData = async (cep) => {
     try {
-      const cepFiltrado = cep.replace(/\D/g, ''); // Remove caracteres que não são numéricos
+      const cepFiltrado = cep.replace(/\D/g, '');
 
       if (cepFiltrado.length === 8) {
         const resposta = await fetch(`https://viacep.com.br/ws/${cepFiltrado}/json/`);

@@ -18,8 +18,8 @@ import { toast } from 'react-toastify';
 function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick, lucro }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
-        if (status === 'Aberto') return { color: 'green' };
-        if (status === 'Fechado') return { color: 'red' };
+        if (status === 'ABERTO') return { color: 'green' };
+        if (status === 'FECHADO') return { color: 'red' };
         return {};
     };
 
@@ -69,8 +69,7 @@ function ChamadosEmpresa() {
 
     const location = useLocation();
     const { idProjeto } = location.state || {};
-    console.log("idProjetoOOOOOOOO:", idProjeto);  // Verifique o valor aqui
-
+    console.log("idProjetoOOOOOOOO:", idProjeto);  
 
     const carregarChamados = async (idProjeto) => {
         try {
@@ -95,7 +94,7 @@ function ChamadosEmpresa() {
 
     useEffect(() => {
         const { idProjeto } = location.state || {};
-        console.log("idProjeto no useEffect:", idProjeto); // Verifique aqui também
+        console.log("idProjeto no useEffect:", idProjeto); 
 
         if (idProjeto) {
             carregarChamados(idProjeto);
@@ -135,7 +134,7 @@ function ChamadosEmpresa() {
         let novaDataFechamento = dataFechamento;
 
         if (novaDataFechamento) {
-            novaDataFechamento = `${novaDataFechamento}T23:59:00`;  // Adicionando a hora para poder inserir no banco
+            novaDataFechamento = `${novaDataFechamento}T23:59:00`;  
         }
 
         const chamado = {
@@ -151,12 +150,12 @@ function ChamadosEmpresa() {
             const response = await cadastrarChamado(idProjeto, chamado);
             toast.success("Seu chamado foi salvo com sucesso");
             console.log("Chamado salvo", response);
-            setTarefas([...chamados, response.data]); // Adicionando na lista de chamados
+            setTarefas([...chamados, response.data]); 
 
             fecharModal();
         } catch (error) {
             console.error('Erro ao salvar o chamado:', error);
-            toast.error("Houve um erro ao enviar o seu chamado, por favor tente novamente");
+            // toast.error("Houve um erro ao enviar o seu chamado, por favor tente novamente");
         }
         fecharModal();
     };
@@ -169,9 +168,6 @@ function ChamadosEmpresa() {
             qtdParcelas: Number(parcelas),
             idChamado: idChamado,
         }
-
-        // console.log("idProjeto:", idProjeto); // Certifique-se de que o ID está definido corretamente
-        // console.log("Payload enviado:", JSON.stringify(parcela, null, 2)); // Verifique o payload
 
         try {
             const response = await definirParcela(idProjeto, parcela);
@@ -208,7 +204,6 @@ function ChamadosEmpresa() {
         }
 
         const date = new Date(data);
-        // Retornando no formato desejado 'YYYY-MM-DD 23:59:00'
         return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} 23:59:00`;
     };
 
@@ -281,7 +276,7 @@ function ChamadosEmpresa() {
                                     fechamento={formatarData(chamado.fechamento)}
                                     onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
                                     onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela, chamado.idChamado)}
-                                    lucro={chamado.lucro || 0} // Valor padrão se lucro não estiver presente
+                                    lucro={chamado.lucro || 0} 
                                 />
                             ))
                         ) : (
