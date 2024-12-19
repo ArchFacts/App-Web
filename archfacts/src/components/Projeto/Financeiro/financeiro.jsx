@@ -8,7 +8,8 @@ import dash_icon from '../../../utils/assets/dash_icon.svg';
 const Financeiro = ({ valorPositivo, valorNegativo, handleDashClick  }) => {
     return (
         <div className={styles.financeiro} onClick={handleDashClick}>
-            <img src={rise} alt="" 
+            <h1>VER DASHBOARD</h1>
+            {/* <img src={rise} alt="" 
             width={60}
             height={60}/>
             <div className={styles.lucro}>
@@ -20,7 +21,7 @@ const Financeiro = ({ valorPositivo, valorNegativo, handleDashClick  }) => {
             </div>
             <img src={fall} alt=""
             width={60}
-            height={60} />
+            height={60} /> */}
         </div>
     )
 }

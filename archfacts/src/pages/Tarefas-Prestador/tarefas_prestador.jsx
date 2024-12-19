@@ -29,7 +29,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
             </p>
             <p className={styles.titleCell}>{titulo}</p>
             <button className={styles.parcelaCell} onClick={() => onDefinirDespesaClick()}>
-                {parcelaLabel}
+                Definir despesa
             </button>
             <p className={styles.aberturaCell}>{abertura}</p>
             <p className={styles.fechamentoCell}>{fechamento}</p>
@@ -230,7 +230,7 @@ function TarefasPrestador() {
                         <AbrirTarefa onAbrirTarefaClick={() => abrirModal('abrirTarefa')} />
                     </div>
                     <div className={styles.tarefas}>
-                        <TarefasName title={'abelhas'} />
+                        <TarefasName title={''} />
                     </div>
                 </div>
                 <div className={styles.formContainer}>
@@ -389,7 +389,7 @@ function TarefasPrestador() {
                 </div>
                 <div className={stylesPrestador.modal_content}>
                     <div className={stylesPrestador.parcelas}>
-                        Projeto de abelhas
+                        Projeto 
                     </div>
                     <div className={stylesPrestador.price_field}>
                         <p> R$</p>

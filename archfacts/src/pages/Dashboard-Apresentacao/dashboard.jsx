@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import styles from '../Dashboard-Apresentacao/dashboard.module.css'
+import styles from '../Dashboard-Apresentacao/dashboard.module.css';
 import { useUser } from "../../userContext";
 import { buscarResumoFinanceiroDashboard, buscarTarefaMaiorDespesa, buscarChamadoMaiorLucro } from "../../api";
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Spinner from "../../components/Spinner/spinner";
 import { toast } from "react-toastify";
 import GraficoFinanceiroSemanal from "../../components/Grafico-Barra/barra";
 import SideBarColaborador from "../../components/Side-Bar-Colaborador/sideBarColaborador";
 import GraficoReceitaHora from "../../components/Grafico-Receita/receita";
 
-const DashApresentacao = ({ }) => {
+const DashApresentacao = () => {
     const { usuario, loading } = useUser();
     const location = useLocation();
     const { idProjeto } = location.state || {};
@@ -17,10 +17,6 @@ const DashApresentacao = ({ }) => {
     const [dadosDashboard, setDadosDashboard] = useState(null);
     const [dadosDespesaKpi, setDadosDespesaKpi] = useState(null);
     const [dadosLucroKpi, setDadosLucroKpi] = useState(null);
-
-    console.log(dadosDashboard)
-    console.log("Despesa da KPI", dadosDespesaKpi);
-    console.log("Lucro da KPI", dadosLucroKpi);
 
     useEffect(() => {
         if (!loading && usuario && idProjeto) {
@@ -49,22 +45,31 @@ const DashApresentacao = ({ }) => {
 
     return (
         <section>
-            <SideBarColaborador></SideBarColaborador>
+            <SideBarColaborador />
             <div className={styles.content}>
                 <div className={styles.kpi_area}>
-                    <div className={styles.kpi}></div>
+                    <div className={styles.kpi}>
+                        <h3>Título da tarefa: <br />{dadosDespesaKpi ? dadosDespesaKpi.titulo : "Indisponível"}</h3>
+                        <h3>Tarefa mais cara: <br />R$ {dadosDespesaKpi ? dadosDespesaKpi.despesa : "Indisponível"}</h3>
+                        <h3>Status da tarefa: <br />{dadosDespesaKpi ? dadosDespesaKpi.status : "Indisponível"}</h3>
+                    </div>
+                    <div className={styles.kpi}>
+                        <h3>Título do chamado: <br />{dadosLucroKpi ? dadosLucroKpi.titulo : "Indisponível"}</h3>
+                        <h3>Maior lucro de chamado: <br />R$ {dadosLucroKpi ? dadosLucroKpi.lucro : "Indisponível"}</h3>
+                        <h3>Status do chamado: <br />{dadosLucroKpi ? dadosLucroKpi.status : "Indisponível"}</h3>
+                    </div>
                 </div>
                 <div className={styles.dash_area}>
                     <div className={styles.grafico_receita}>
-                        <GraficoReceitaHora dadosDashboard={dadosDashboard}></GraficoReceitaHora>
+                        <GraficoReceitaHora dadosDashboard={dadosDashboard} />
                     </div>
                     <div className={styles.grafico_financeiro}>
-                        <GraficoFinanceiroSemanal dadosDashboard={dadosDashboard}></GraficoFinanceiroSemanal>
+                        <GraficoFinanceiroSemanal dadosDashboard={dadosDashboard} />
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }
 
 export default DashApresentacao;

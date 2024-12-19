@@ -31,15 +31,17 @@ const GraficoReceitaHora = ({ dadosDashboard }) => {
         const atualizarDados = () => {
             const agora = new Date();
 
-            // Gerar intervalos de 10 em 10 minutos dentro da hora atual
+            // Gerar 6 intervalos de 30 em 30 minutos
             const intervalos = [];
             const valoresIntervalos = [];
 
+            // Começar a partir da hora atual
             const inicioHoraAtual = new Date(agora);
-            inicioHoraAtual.setMinutes(0, 0, 0); // Começo da hora
-            for (let minuto = 0; minuto < 60; minuto += 10) {
+            inicioHoraAtual.setSeconds(0, 0); // Começo da hora
+
+            for (let i = 0; i < 6; i++) {
                 const intervalo = new Date(inicioHoraAtual);
-                intervalo.setMinutes(minuto);
+                intervalo.setMinutes(inicioHoraAtual.getMinutes() + (i * 30)); // Adiciona 30 minutos para cada intervalo
                 intervalos.push(
                     intervalo.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                 );
@@ -48,17 +50,18 @@ const GraficoReceitaHora = ({ dadosDashboard }) => {
                 valoresIntervalos.push(null);
             }
 
-            // Verificar se os dados recebidos estão dentro da hora atual
+            // Verificar se os dados recebidos estão dentro das últimas 3 horas
             if (dadosDashboard?.dataCriacao) {
                 const dataCriacao = new Date(dadosDashboard.dataCriacao);
-                if (
-                    dataCriacao >= inicioHoraAtual &&
-                    dataCriacao < new Date(inicioHoraAtual.getTime() + 60 * 60 * 1000) // Fim da hora
-                ) {
+                const minutosPassados = Math.floor((agora - dataCriacao) / (1000 * 60)); // Calcular minutos passados
+
+                if (minutosPassados < 180) { // Verifica se a data de criação está dentro das últimas 3 horas
                     // Identificar o índice do intervalo correspondente
                     const minutosCriacao = dataCriacao.getMinutes();
-                    const indice = Math.floor(minutosCriacao / 10); // Encontra o intervalo de 10 minutos
-                    valoresIntervalos[indice] = dadosDashboard.receita; // Adiciona o valor ao intervalo correto
+                    const indice = Math.floor(minutosCriacao / 30); // Encontra o intervalo de 30 minutos
+                    if (indice < 6) { // Certifique-se de que o índice não exceda 5
+                        valoresIntervalos[indice] = dadosDashboard.receita; // Adiciona o valor ao intervalo correto
+                    }
                 }
             }
 
@@ -68,9 +71,9 @@ const GraficoReceitaHora = ({ dadosDashboard }) => {
             });
         };
 
-        // Atualizar dados imediatamente e a cada minuto
+        // Atualizar dados imediatamente e a cada 30 minutos
         atualizarDados();
-        const intervalId = setInterval(atualizarDados, 60 * 1000); // Atualizar a cada minuto
+        const intervalId = setInterval(atualizarDados, 30 * 60 * 1000); // Atualizar a cada 30 minutos
 
         return () => clearInterval(intervalId);
     }, [dadosDashboard]);
@@ -99,7 +102,7 @@ const GraficoReceitaHora = ({ dadosDashboard }) => {
             },
             title: {
                 display: true,
-                text: 'Receitas por Hora (Atualização de 10 em 10 minutos)'
+                text: 'Receitas a Cada 30 Minutos (Últimas 3 Horas)'
             }
         }
     };

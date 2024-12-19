@@ -1,4 +1,4 @@
-.button{
+.button {
     color: white;
     cursor: pointer;
     background-color: #033E8C;
@@ -15,11 +15,16 @@
     justify-content: center;
     display: flex;
     height: 10rem;
-    align-items: center; 
+    align-items: center;
 }
 
-.button:hover{
+.button:hover {
     background-color: #05C7F2;
     width: 12rem;
     color: black;
+}
+
+button:disabled {
+    background-color: gray !important;
+    cursor: not-allowed;
 }
