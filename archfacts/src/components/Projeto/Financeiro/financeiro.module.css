@@ -12,6 +12,15 @@
     gap: 1rem;
 }
 
+.financeiro img:nth-child(3):nth-child(3) {
+    transition: all ease 0.3s;
+}
+
+.financeiro img {
+    transform: scale(2);
+    cursor: pointer;
+}
+
 .financeiro .lucro {
     display: flex;
     align-items: center;

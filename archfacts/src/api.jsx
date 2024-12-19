@@ -80,4 +80,64 @@ export const cadastrarPropostaServico = (data) => {
   return api.post(`/propostaServicos`, data);
 }
 
+export const recusarProposta = (data) => {
+  return api.post(`/propostas/recusar`, data);
+}
+
+export const aceitarProposta = (data) => {
+  return api.post(`/projetos/aceitar`, data);
+}
+
+export const buscarProjetosNegocio = (data) => {
+  return api.get(`/projetos`, data);
+}
+
+export const buscarTarefasNegocio = (idProjeto) => {
+  return api.get(`/tarefas/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarTarefa = (idProjeto, data) => {
+  return api.post(`/tarefas/${idProjeto}`, data);
+}
+
+export const buscarProjetosBeneficiario = (nomeEmpresa, email) => {
+  return api.get(`/projetos/beneficiario/${nomeEmpresa}`, email);
+}
+
+export const buscarChamadosNegocio = (idProjeto) => {
+  return api.get(`/chamados/${idProjeto}`, idProjeto);
+}
+
+export const cadastrarChamado = (idProjeto, data) => {
+  return api.post(`/chamados/${idProjeto}`, data);
+}
+
+export const buscarServicosProposta = (idProposta) => {
+  return api.post(`/propostaServicos/buscar`, idProposta);
+};
+
+export const definirCusto = (idChamado, data) => {
+  return api.put(`/chamados`, idChamado, data);
+}
+
+export const definirParcela = (idProjeto, parcela) => {
+  return api.post(`/parcelas/${idProjeto}`, parcela);
+}
+
+export const buscarLucros = (idProjeto) => {
+  return api.get(`/chamados/dashboard/${idProjeto}`);
+}
+
+export const buscarResumoFinanceiroDashboard = (idProjeto) => {
+  return api.get(`/dashboards/${idProjeto}/resumo-financeiro`)
+}
+
+export const buscarTarefaMaiorDespesa = (idProjeto) => {
+  return api.get(`/kpis/${idProjeto}/tarefa-maior-despesa`)
+}
+
+export const buscarChamadoMaiorLucro = (idProjeto) => {
+  return api.get(`/kpis/${idProjeto}/chamado-maior-lucro`)
+}
+
 export default api;

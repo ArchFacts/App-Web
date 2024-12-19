@@ -50,6 +50,7 @@
     width: 15rem;
     font-size: 20px;
     margin-bottom: 5%;
+    cursor: pointer;
   }
   
   .voltarEmpresa {
@@ -61,5 +62,6 @@
     transition: background-color 500ms ease, transform 700ms ease;
     width: 15rem;
     font-size: 20px;
+    cursor: pointer;
   }
   

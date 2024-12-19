@@ -14,6 +14,7 @@ import imagem3 from '../../../utils/assets/fundo_cadastro_funcionario3.jpg';
 import stylesCadastroEmpresa from '../Cadastro-Empresa/cadastro_empresa.module.css';
 import stylesCadastroFuncionario from './cadastro_funcionario.module.css'
 import InputFuncionario from '../../../components/Input/Input-Funcionario/input_funcionario.jsx';
+import { toast } from 'react-toastify';
 
 function CadastroFuncionario() {
   const navigate = useNavigate();
@@ -45,7 +46,33 @@ function CadastroFuncionario() {
   };
 
   const handleFuncionario = () => {
-    navigate('/login?tipo=funcionario');
+    if(formData.codigoNegocio.trim() === ""){
+      toast.error("O código de negócio não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    } else{
+      toast.success("Cadastro realizado com sucesso! Redirecionando...",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      }),
+      setTimeout(() => {
+        navigate('/login?tipo=funcionario');
+      }, 3000);
+    }
   };
 
   return (

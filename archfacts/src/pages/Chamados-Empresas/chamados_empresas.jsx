@@ -10,34 +10,51 @@ import division_icon from '../../utils/assets/division.svg';
 import plus_icon from '../../utils/assets/plus.svg';
 import minus_icon from '../../utils/assets/minus.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
+import api, { buscarChamadosNegocio, cadastrarChamado, definirParcela } from '../../api';
+import Spinner from '../../components/Spinner/spinner';
+import { useLocation, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick, onAbrirChamadoClick }) {
+function ChamadoInfo({ status, titulo, parcelaLabel, abertura, fechamento, finalizarIcone, onFinalizarClick, onDefinirParcelaClick, lucro }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
-        if (status === 'Aberto') return { color: 'green' };
-        if (status === 'Fechado') return { color: 'red' };
+        if (status === 'ABERTO') return { color: 'green' };
+        if (status === 'FECHADO') return { color: 'red' };
         return {};
     };
 
     return (
         <div className={styles.infos}>
-            <p className={styles.statusCell} style={getStatusStyle(status)}>{status}</p>
-            <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>{parcelaLabel}</button>
-            <p className={styles.aberturaCell}>{abertura}</p>
-            <p className={styles.fechamentoCell}>{fechamento}</p>
+            <p className={styles.statusCell} style={getStatusStyle(status)}>
+                {status}
+            </p>
+            <p className={styles.titleCell}>
+                {titulo}
+            </p>
+            <button className={styles.parcelaCell} onClick={onDefinirParcelaClick}>
+                {parcelaLabel}
+            </button>
+            <p className={styles.aberturaCell}>
+                {abertura}
+            </p>
+            <p className={styles.fechamentoCell}>
+                {fechamento}
+            </p>
             <img src={finalizarIcone} className={styles.finalizarCell} alt="Finalizar" onClick={onFinalizarClick} />
         </div>
     );
 }
 
 function ChamadosEmpresa() {
-    const [chamadosState, setChamados] = useState([]);
+    const [chamados, setChamados] = useState([]);
     const [nome, setNome] = useState('');
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [dataAbertura, setDataAbertura] = useState('');
-    const [dataFechamento, setDataFechamento] = useState(new Date().toISOString().slice(0, 10));
+    const [dataFechamento, setDataFechamento] = useState('');
+    const [lucro, setLucro] = useState('');
+    const [parcelas, setParcelas] = useState(12);
+    const total = lucro;
 
     const tiposModal = {
         abrir_chamado: 'abrirChamado',
@@ -48,6 +65,43 @@ function ChamadosEmpresa() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
     const [idChamado, setIdChamado] = useState(null);
+    const [loading, setLoading] = useState(true)
+
+    const location = useLocation();
+    const { idProjeto } = location.state || {};
+    console.log("idProjetoOOOOOOOO:", idProjeto);  
+
+    const carregarChamados = async (idProjeto) => {
+        try {
+            console.log("ID PROJETO DO CARREGAR ", idProjeto)
+            const response = await buscarChamadosNegocio(idProjeto);
+            console.log("ID PROJETO", idProjeto)
+            console.log('Resposta dos chamados:', response.data);
+
+            response.data.forEach((chamado) => {
+                console.log("Lucro do chamado:", chamado.lucro);
+            });
+
+
+            setChamados(response.data);
+
+        } catch (error) {
+            console.error('Erro ao carregar os chamados:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        const { idProjeto } = location.state || {};
+        console.log("idProjeto no useEffect:", idProjeto); 
+
+        if (idProjeto) {
+            carregarChamados(idProjeto);
+        } else {
+            console.error("ID do projeto não encontrado");
+        }
+    }, [location.state]);
 
     useEffect(() => {
         const agora = new Date();
@@ -55,15 +109,15 @@ function ChamadosEmpresa() {
         setDataAbertura(dataAtual);
     }, []);
 
-    useEffect(() => {
-        const chamadosNoStorage = JSON.parse(localStorage.getItem('chamados')) || [];
-        setChamados(chamadosNoStorage);
-    }, []);
-
-    const abrirModal = (tipo, idChamado = null) => {
+    const abrirModal = (tipo, chamado) => {
         setTipoModal(tipo);
         if (tipo === tiposModal.finalizar_chamado) {
-            setIdChamado(idChamado);
+            setIdChamado(chamado.idChamado);
+        }
+
+        if (tipo === tiposModal.definir_parcela) {
+            setLucro(chamados.find(c => c.idChamado === chamado)?.lucro || 0);
+            setIdChamado(chamado);
         }
         setModalIsOpen(true);
     };
@@ -73,74 +127,121 @@ function ChamadosEmpresa() {
         setTipoModal(null);
     };
 
-    const salvarChamado = (e) => {
+    const salvarChamado = async (e, idProjeto) => {
         e.preventDefault();
+        console.log("idProjeto no salvarChamado:", idProjeto);
+
+        let novaDataFechamento = dataFechamento;
+
+        if (novaDataFechamento) {
+            novaDataFechamento = `${novaDataFechamento}T23:59:00`;  
+        }
+
         const chamado = {
-            id: new Date().getTime(),
-            nome,
             titulo,
             descricao,
             abertura: dataAbertura,
-            fechamento: dataFechamento,
-            status: 'Aberto', 
+            fechamento: novaDataFechamento,
+            status: 'ABERTO',
+            lucro: lucro,
         };
-    
-        const chamadosExistentes = JSON.parse(localStorage.getItem('chamados')) || [];
-        chamadosExistentes.push(chamado);
-        localStorage.setItem('chamados', JSON.stringify(chamadosExistentes));
-        setChamados(chamadosExistentes);
-        setNome('');
-        setTitulo('');
-        setDescricao('');
+
+        try {
+            const response = await cadastrarChamado(idProjeto, chamado);
+            toast.success("Seu chamado foi salvo com sucesso");
+            console.log("Chamado salvo", response);
+            setTarefas([...chamados, response.data]); 
+
+            fecharModal();
+        } catch (error) {
+            console.error('Erro ao salvar o chamado:', error);
+            // toast.error("Houve um erro ao enviar o seu chamado, por favor tente novamente");
+        }
         fecharModal();
     };
 
-    const formatarData = () => {
-        const data = new Date();
-    
-        if (isNaN(data)) return 'Data não definida'; 
-    
-        let dataFormatada = data.toLocaleString('pt-BR', {
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: false
-        });
-    
-        dataFormatada = dataFormatada.replace('.', '');
-        return dataFormatada;
-    };    
-  
-    const formatarDataFechamento = (data) => {
-        if (!data || isNaN(new Date(data))) return 'Data não definida';
+    const handleDefinirParcelas = async (idChamado) => {
+        const parcela = {
+            valor: Number(lucro),
+            dataInicio: new Date().toISOString(),
+            status: 'ABERTO',
+            qtdParcelas: Number(parcelas),
+            idChamado: idChamado,
+        }
+
+        try {
+            const response = await definirParcela(idProjeto, parcela);
+            // console.log("resp", response);
+            if (idProjeto) {
+                await carregarChamados(idProjeto);
+            }
+            // console.log("Parcela salva", response)
+            toast.success("Suas parcelas foram definidas com sucesso!");
+
+        } catch (error) {
+            // console.error("Houve um erro ao definir a parcela", error);
+            toast.error("Não foi possível definir as parcelas, por favor tente novamente!")
+        }
+        fecharModal();
+    };
+
+    const formatarData = (data) => {
         const date = new Date(data);
-        date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); 
-        const dia = date.getDate();
-        const mes = date.toLocaleString('pt-BR', { month: 'short' }); 
-        let dataFormatadaFechamento = `${dia} de ${mes}`;
-        return dataFormatadaFechamento;
+        const dia = String(date.getDate()).padStart(2, '0');
+        const mes = String(date.getMonth() + 1).padStart(2, '0');
+        const ano = date.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+    const formatarDataFechamento = (data) => {
+        // if (!data || isNaN(new Date(data))) return 'Data não definida';
+        // const date = new Date(data);
+        // const dia = date.getDate();
+        // const mes = date.toLocaleString('pt-BR', { month: 'short' });
+        // return `${dia} de ${mes}`;
+
+        if (!data || isNaN(new Date(data))) {
+            return 'Data não definida';
+        }
+
+        const date = new Date(data);
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} 23:59:00`;
     };
 
     const handleDataFechamentoChange = (e) => {
         const novaData = e.target.value;
         setDataFechamento(novaData);
     };
-    
-    const salvarFechamento = (chamadoId) => {
-        const novosChamados = chamadosState.map(chamado => {
+
+    const salvarFechamento = async (chamadoId) => {
+        const novosChamados = chamados.map(chamado => {
             if (chamado.id === chamadoId) {
                 return { ...chamado, status: 'Fechado' };
             }
-            return chamado; 
+            return chamado;
         });
-        
-        setChamados(novosChamados);
-        localStorage.setItem('chamados', JSON.stringify(novosChamados));
-        
-        fecharModal();
+
+        try {
+            const response = await fetch(`${api}/chamados/${chamadoId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: 'Fechado' }),
+            });
+
+            if (!response.ok) throw new Error('Falha ao finalizar o chamado');
+
+            setChamados(novosChamados);
+            fecharModal();
+        } catch (error) {
+            console.error('Erro ao finalizar o chamado:', error);
+        }
     };
-    
+
+    if (loading) {
+        return <Spinner />
+    }
+
     return (
         <div className={styles.container}>
             <SideBar />
@@ -163,19 +264,24 @@ function ChamadosEmpresa() {
                         <p className={styles.headerFinalizar}>Finalizar</p>
                     </div>
                     <div className={styles.form}>
-                        {chamadosState.map((chamado, index) => (
-                            <ChamadoInfo
-                                finalizarIcone={finalizarIcone}
-                                key={index}
-                                status={chamado.status || 'Pendente'}
-                                titulo={chamado.titulo || 'Sem título'}
-                                parcelaLabel={chamado.parcelaLabel || 'Definir parcelas'}
-                                abertura={formatarData(chamado.abertura)}
-                                fechamento={formatarDataFechamento(chamado.fechamento)}
-                                onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
-                                onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela)}
-                            />
-                        ))}
+                        {chamados.length > 0 ? (
+                            chamados.map((chamado) => (
+                                <ChamadoInfo
+                                    finalizarIcone={finalizarIcone}
+                                    key={chamado.id}
+                                    status={chamado.status || 'Pendente'}
+                                    titulo={chamado.titulo || 'Sem título'}
+                                    parcelaLabel={chamado.parcelaLabel || 'Definir parcelas'}
+                                    abertura={formatarData(chamado.abertura)}
+                                    fechamento={formatarData(chamado.fechamento)}
+                                    onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
+                                    onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela, chamado.idChamado)}
+                                    lucro={chamado.lucro || 0} 
+                                />
+                            ))
+                        ) : (
+                            <p>Não há chamados disponíveis</p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -194,37 +300,47 @@ function ChamadosEmpresa() {
                     <button className={stylesPrestador.botao} onClick={() => salvarFechamento(idChamado)}>Confirmar</button>
                 </div>
             </Modal>
-
             <Modal
                 isOpen={modalIsOpen && tipoModal === 'definirParcela'}
                 onRequestClose={fecharModal}
                 contentLabel="Modal para definir a parcela"
                 className={styles.modalParcela}
-                overlayClassName={styles.modal_overlay}>
-
+                overlayClassName={styles.modal_overlay}
+            >
                 <div className={styles.modal_header}>
                     <img src={division_icon} alt=""
                         width={60}
                         height={60} />
                     <h2>Definir parcelas</h2>
-                    <img src={fechar_icon} alt="Fechar"
+                    <img className={styles.img} src={fechar_icon} alt="Fechar"
                         onClick={fecharModal} />
                 </div>
 
                 <div className={styles.modal_content}>
                     <div className={styles.parcelas}>
-                        <img src={minus_icon} alt=""
+                        <img
+                            src={minus_icon}
+                            alt="Diminuir"
                             width={60}
-                            height={60} />
-                        <h2>12x</h2>
-                        <img src={plus_icon} alt=""
+                            height={60}
+                            onClick={() => setParcelas((prev) => Math.max(prev - 1, 1))}
+                        />
+                        <h2>{parcelas}x</h2>
+                        <img
+                            src={plus_icon}
+                            alt="Aumentar"
                             width={60}
-                            height={60} />
+                            height={60}
+                            onClick={() => setParcelas((prev) => Math.min(prev + 1, 12))}
+                        />
                     </div>
-                    <div className={styles.price_field}><p>de </p> <p> R$ 29,16</p></div>
+                    <div className={styles.price_field}>
+                        <p>de </p>
+                        <p>R$ {(total / parcelas).toFixed(2)}</p>
+                    </div>
                     <div className={styles.total}>
-                        Total: R$ 456
-                        <button className={stylesPrestador.botao}>Confirmar</button>
+                        Total: R$ {total}
+                        <button className={stylesPrestador.botao} onClick={handleDefinirParcelas}>Confirmar</button>
                     </div>
                 </div>
             </Modal>
@@ -236,19 +352,19 @@ function ChamadosEmpresa() {
                 overlayClassName={styles.modal_overlay}>
 
                 <div className={styles.modal_header}>
-                    <h2>Enviar Chamado</h2>
+                    <h2>Abrir Chamado</h2>
                     <img src={fechar_icon}
                         alt="Fechar"
                         onClick={fecharModal} />
                 </div>
 
                 <div className={styles.modal_content}>
-                    <div className={styles.field}>
+                    {/* <div className={styles.field}>
                         <label htmlFor="nome">Nome do solicitante:</label>
                         <input type="text" id="nome" placeholder="Digite seu nome" required value={nome}
                             onChange={(e) => setNome(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div className={styles.field}>
                         <label htmlFor="titulo">Título do chamado:</label>
                         <input type="text" id="titulo" placeholder="Digite o título" required value={titulo}
@@ -257,8 +373,8 @@ function ChamadosEmpresa() {
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="prazo">Prazo para o término do chamado:</label>
-                        <input type="date" id="prazo" required   value={dataFechamento} 
-    onChange={handleDataFechamentoChange} />
+                        <input type="date" id="prazo" required value={dataFechamento}
+                            onChange={handleDataFechamentoChange} />
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="desc">Descrição:</label>
@@ -266,7 +382,7 @@ function ChamadosEmpresa() {
                             onChange={(e) => setDescricao(e.target.value)} />
                     </div>
                     <div className={styles.button_area}>
-                        <button className={stylesPrestador.botao} type="submit" onClick={salvarChamado}>Enviar</button>
+                        <button className={stylesPrestador.botao} onClick={(e) => salvarChamado(e, idProjeto)}>Enviar</button>
                     </div>
                 </div>
             </Modal>

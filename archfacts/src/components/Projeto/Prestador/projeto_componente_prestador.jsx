@@ -7,9 +7,9 @@ import Chamados from "../Chamados/chamados";
 import ChamadosContagem from "../Chamados-Contagem/chamados_contagem";
 import Tarefas from "../Tarefas/tarefas";
 import TarefasContagem from "../../Tarefas-Contagem/tarefas_contagem";
+import dash_icon from '../../../utils/assets/dash_icon.svg';
 
-
-const ProjetoComponentePrestador = ({ projectName, solicitanteName }) => {
+const ProjetoComponentePrestador = ({ projectName, solicitanteName, data, status, onClick, onClickChamados, handleDashClick }) => {
     return (
         <div className={styles.project_box}>
             <div className={styles.detail_bar_top}>
@@ -20,17 +20,18 @@ const ProjetoComponentePrestador = ({ projectName, solicitanteName }) => {
                 <div className={styles.group}>
                     <Financeiro valorPositivo={'R$+1730'}
                         valorNegativo={'R$-735'}
+                        handleDashClick={handleDashClick}
                     ></Financeiro>
                 </div>
                 <div className={styles.group}>
-                    <Chamados></Chamados>
-                    <ChamadosContagem number={25}></ChamadosContagem>
-                    <TarefasContagem number={13}></TarefasContagem>
-                    <Tarefas></Tarefas>
+                    <Chamados onClickChamados={onClickChamados}></Chamados>
+                    {/* <ChamadosContagem number={25}></ChamadosContagem> */}
+                    {/* <TarefasContagem number={13}></TarefasContagem> */}
+                    <Tarefas onClick={onClick}></Tarefas>
                 </div>
                 <div className={styles.group}>
-                    <Calendar date={'07/03/25'}></Calendar>
-                    <Status status={'EM PROGRESSO'}></Status>
+                    <Calendar date={data}></Calendar>
+                    <Status status={status}></Status>
                 </div>
             </div>
             <div className={styles.detail_bar_bottom}></div>

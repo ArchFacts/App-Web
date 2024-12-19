@@ -91,7 +91,7 @@ const ServicesCarousel = ({ onSelectionChange, codEmpresa, initialSelectedServic
                 ) : (
                     <div className={styles['cards']}>
                         {services.length === 0 ? (
-                            <p>Não há serviços disponíveis</p>
+                            <p className={styles.paragrafo}>Não há serviços disponíveis</p>
                         ) : (
                             getDisplayedServices().map((service) => (
                                 <ServiceCard

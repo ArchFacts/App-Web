@@ -7,7 +7,6 @@
     font-family: 'Poppins-Medium';
     color: white;
     font-size: 32px;
-    border: solid violet;
     background-color: black;
     width: 50%;
     text-align: center;
@@ -21,11 +20,9 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: row;
-    border: solid khaki;
 }
 
 .esquerda {
-    border: solid blueviolet;
     width: 40%;
     height: 100%;
     left: 0;
@@ -36,7 +33,6 @@
 }
 
 .direita {
-    border: solid violet;
     width: 60%;
     height: 100%;
     right: 0;
@@ -46,7 +42,6 @@
 }
 
 .imagemPerfil {
-    border: solid violet;
     background-color: black;
     border-radius: 150px;
     height: 250px;
@@ -54,7 +49,6 @@
 }
 
 .avaliation {
-    border: solid violet;
     width: 40%;
     font-family: 'Poppins-Medium';
     color: white;
@@ -165,10 +159,11 @@
 }
 
 .modal_adicionar_servico .modal_header h2 {
+    padding-left: 8%;
     color: white;
     text-align: center;
     font-size: 2rem;
-    width: 100%;
+    width: 85%;
 }
 
 .modal_adicionar_servico img:hover {
@@ -178,7 +173,7 @@
 
 .modal_adicionar_servico .modal_content {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -221,8 +216,9 @@
     justify-content: space-evenly;
     font-family: 'Poppins-Medium';
     font-size: 1.5rem;
-    height: 4rem;
+    height: 2.6rem;
     color: white;
+    width: 25%;
 }
 
 .modal_adicionar_servico .modal_content .button_area .button {
@@ -230,7 +226,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    width: 35%;
+    width: 75%;
     height: 100%;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
@@ -242,6 +238,17 @@
 
 
 .modal_adicionar_servico .modal_content .button_area button {
-    width: 25%;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
     background-color: #033E8C;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    font-size: 16px;
+}
+
+.modal_adicionar_servico .modal_content .button_area button:hover{
+    background-color: #05C7F2;
+    color: black;
 }

@@ -9,6 +9,8 @@ import axios from 'axios';
 import api from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 import { useNavigate } from 'react-router-dom';
+import { recusarProposta, aceitarProposta, imagemGenerica, buscarServicosProposta } from '../../api';
+import { toast } from 'react-toastify';
 
 const HomePrestador = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -16,11 +18,29 @@ const HomePrestador = () => {
     const [usuario, setUsuario] = useState(null);
     const [loading, setLoading] = useState(true)
     const [propostas, setPropostas] = useState([]);
+    const [idPropostaSelecionada, setIdPropostaSelecionada] = useState(null);
+    const [nomeServico, setNomeServico] = useState("");
+    const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
-    const abrirModal = (propostaDaVez) => {
+    const abrirModal = async (propostaDaVez) => {
+        const idProposta = propostaDaVez.idProposta;
+        setIdPropostaSelecionada(idProposta);
         setPropostaSelecionada(propostaDaVez);
+        console.log("PROPOSTA DA VEZ" ,propostaDaVez);
         setModalIsOpen(true);
+
+        try {
+            const response = await buscarServicosProposta(idProposta);
+            const proposta = response.data[0];
+            const nomeServico = proposta.servico.nome;
+            setNomeServico(nomeServico);
+            
+            console.log("DADOS DA RESP");
+            console.log(response.data);
+        } catch (error) {
+            console.log("Erro ao buscar os serviços da sua proposta", error);
+        }
     }
 
     const fecharModal = () => {
@@ -67,11 +87,37 @@ const HomePrestador = () => {
         }
     }
 
+    const recusarPropostaSelecionada = async () => {
+        if (!propostaSelecionada || !idPropostaSelecionada) {
+            console.error("Proposta inválida ou sem ID.");
+            return; // Retorna caso não tenha os dados
+        }
+        try {
+            console.log("ID DA PROPOSTA: ", idPropostaSelecionada)
+            const response = await recusarProposta(idPropostaSelecionada);
+        } catch (error) {
+            toast.error("Não foi possível recusar essa proposta, tente novamente em breve");
+            console.log("Erro ao deletar proposta", error);
+        }
+    };
+
+    const aceitarPropostaSelecionada = async () => {
+        if (!propostaSelecionada || !idPropostaSelecionada) {
+            console.error("Proposta inválida ou sem ID.");
+            return; // Retorna caso não tenha os dados
+        }
+        try {
+            console.log("ID DA PROPOSTA: ", idPropostaSelecionada)
+            const response = await aceitarProposta(idPropostaSelecionada);
+        } catch (error) {
+            toast.error("Não foi possível aceitar essa proposta, tente novamente em breve");
+            console.log("Erro ao deletar proposta", error);
+        }
+    };
+
     useEffect(() => {
         buscarDadosUsuario();
         buscarPropostas();
-        console.log("user" + usuario);
-        console.log("propostas" + propostas);
     }, []);
 
 
@@ -81,7 +127,7 @@ const HomePrestador = () => {
                 <SideBarColaborador redirecionarPerfil={redirecionarPerfil} />
                 <div className={styles.content}>
                     <div className={styles.capsula}>
-                        <span className={styles.text}> Seja bem vindo!</span>
+                        <span className={styles.text}>{`Seja bem vindo!` || `Seja bem vindo!`}</span>
                         <div className={styles.welcome}></div>
                     </div>
                     <div className={styles.card}>
@@ -91,6 +137,7 @@ const HomePrestador = () => {
                             <EnterpriseScore
                                 empresa={usuario && usuario.negocio ? usuario.negocio.nome : "Indisponível"}
                                 avaliacao={usuario && usuario.negocio ? usuario.negocio.avaliacao : 0}
+                                imagem={imagemGenerica(usuario.negocio.nome)}
                             />
                         )}
                         <div className={styles.propostas}>
@@ -99,7 +146,7 @@ const HomePrestador = () => {
                             </div>
                             <div className={styles.titulosColunas}>
                                 <span><p>Solicitante</p></span>
-                                <span><p>Serviço escolhidos</p></span>
+                                <span><p>Título</p></span>
                                 <span><p>Download</p></span>
                                 <span><p>Aceitar Recusar</p></span>
                             </div>
@@ -107,14 +154,13 @@ const HomePrestador = () => {
                                 propostas.map((proposta, index) => (
                                     <OpenProposal
                                         key={index}
-                                        email={proposta.email}
-                                        solicitante={proposta.solicitante}
-                                        servicos={proposta.servicos}
+                                        solicitante={proposta.remetente.nome}
+                                        titulo={proposta.titulo}
                                         onClick={() => abrirModal(proposta)}
                                     />
                                 ))
                             ) : (
-                                <p>Não há propostas disponíveis.</p>
+                                <p className={styles.paragrafo}>Não há propostas disponíveis.</p>
                             )}
 
                             <Modal
@@ -127,7 +173,7 @@ const HomePrestador = () => {
                                 <div className={styles.modal_header}>
                                     {propostaSelecionada && (
                                         <>
-                                            <h2>Proposta de {propostaSelecionada.solicitante}</h2>
+                                            <h2>Proposta de {propostaSelecionada.remetente.nome}</h2>
                                             <img src={fechar_icon}
                                                 alt="Fechar"
                                                 onClick={fecharModal} />
@@ -139,19 +185,23 @@ const HomePrestador = () => {
                                     <div className={styles.modal_content}>
                                         <div className={styles.field}>
                                             <p className={styles.title}>E-mail do solicitante:</p>
-                                            <p className={styles.content}>{propostaSelecionada.email}</p>
+                                            <p className={styles.content}>{propostaSelecionada.remetente.email || "Indisponível"}</p>
                                         </div>
                                         <div className={styles.field}>
                                             <p className={styles.title}>Serviços escolhidos:</p>
-                                            <p className={styles.content}>{propostaSelecionada.servicos}</p>
+                                            <p className={styles.content}>{nomeServico || "Indisponível"}</p>
                                         </div>
                                         <div className={styles.field}>
                                             <p className={styles.title}>Descrição adicional:</p>
-                                            <p className={styles.content}>{propostaSelecionada.descricao}</p>
+                                            <p className={styles.content}>{propostaSelecionada.descricao || "Indisponível"}</p>
                                         </div>
                                         <div className={styles.button_area}>
-                                            <div className={styles.button}><p>Recusar proposta</p></div>
-                                            <div className={styles.button}><p>Aceitar Proposta</p></div>
+                                            <div className={styles.button}
+                                                onClick={() => recusarPropostaSelecionada()}>
+                                                <p>Recusar proposta</p>
+                                            </div>
+                                            <div className={styles.button}
+                                            onClick={() => aceitarPropostaSelecionada()}><p>Aceitar Proposta</p></div>
                                         </div>
                                     </div>
                                 )}

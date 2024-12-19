@@ -13,7 +13,7 @@ import stylesPrestador from '../../components/Profile-Data/profilePrestador.modu
 import Spinner from '../../components/Spinner/spinner';
 import api, { imagemGenerica, registroServico } from '../../api';
 import CadastroUsuario from '../Cadastro/Cadastro-Usuario/cadastro_usuario';
-
+import { toast } from 'react-toastify';
 
 const PerfilPrestador = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -66,8 +66,13 @@ const PerfilPrestador = () => {
     }
 
     const handleCadastro = async () => {
+        // if(){
+
+        // }
+
         try {
-            console.log("Dados enviados", formData);
+            console.log("Dados enviados", formData);7
+            toast.success("Serviço adicionado com sucesso!")
             const response = await registroServico(formData);
             console.log(response);
         } catch (error) {
@@ -97,12 +102,15 @@ const PerfilPrestador = () => {
                     usuario ? (
                         <div className={stylesPerfil.perfilContainer}>
                             <div className={stylesPerfil.esquerda}>
+                                <div className={stylesPrestador.content_itens}>
                                 <img className={stylesPerfil.imagemPerfil}
                                     src={imagemGenerica(usuario.negocio.nome) || "Nome indisponível"}
                                     alt="Imagem de perfil" />
+                                       </div>
                                 <h2>{usuario.negocio.nome || "Nome indisponível"}</h2>
                                 <div className={stylesPerfil.avaliation}>Avaliação:
                                     <div className={stylesPerfil.nota}>{usuario.negocio.avaliacao}</div>
+                               
                                 </div>
                                 <button className={stylesPerfil.botao
                                 } onClick={() => abrirModal('encerrarSessao')}>Sair</button>

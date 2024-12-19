@@ -42,6 +42,34 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    if(formData.login.trim() === ""){
+      toast.error("O email não pode estar vazio ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
+    if(formData.senha.trim() === ""){
+      toast.error("A senha não pode estar vazia ou conter apenas espaços!",{
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+        style: { color: "white" },
+      });
+      return;
+    }
+
     try {
       const response = await loginUsuario(formData);
 
@@ -51,7 +79,7 @@ const Login = () => {
       handleNavigation();
       toast.success("Usuário logado com sucesso!");
     } catch (error) {
-      toast.error("Houve um erro ao fazer login na sua conta");
+      // toast.error("Houve um erro ao fazer login na sua conta");
       console.log("Erro", error)
     }
   }
@@ -62,7 +90,7 @@ const Login = () => {
       navigate('/cadastrar-empresa')
     }
     if (usuarioLogado.negocio) {
-      navigate('/home-prestador');
+      navigate(`/home-prestador`);
     } else {
       navigate('/hub');
     };

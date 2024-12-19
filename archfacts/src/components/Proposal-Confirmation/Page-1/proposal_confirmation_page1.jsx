@@ -32,7 +32,7 @@ const ProposalConfirmationPage1 = () => {
                     <div className={styles.container_itens}>
                         <h1>Envio de proposta</h1>
                         <div className={styles.paragrafo}>
-                            <p className={styles.text}>Você está prestes a enviar uma solicitação para Ecorp</p>
+                            <p className={styles.text}>Você está prestes a enviar uma solicitação para {negocio.nome}</p>
                             <p className={styles.text}> Confirme se essa é a empresa para a qual deseja enviar a proposta</p>
                         </div>
                         <div className={styles.enterprise_area}>
@@ -42,8 +42,8 @@ const ProposalConfirmationPage1 = () => {
                             </div>
                             <div className={styles.informations}>
                                 <p className={styles.information_text}>Média de avaliações: <span className={styles.enterprise_data}>{negocio.avaliacao}</span> </p>
-                                <p className={styles.information_text}>Serviços totais prestados: <span className={styles.enterprise_data}> MOCKUP (TIRAR DEPOIS TALVEZ) </span> </p>
-                                {/* <p className={styles.information_text}> Serviço mais escolhido: <span className={styles.enterprise_data}>Carros esportivos</span></p> */}
+                                {/* <p className={styles.information_text}>Serviços totais prestados: <span className={styles.enterprise_data}> MOCKUP (TIRAR DEPOIS TALVEZ) </span> </p>
+                                <p className={styles.information_text}> Serviço mais escolhido: <span className={styles.enterprise_data}>Carros esportivos</span></p> */}
                             </div>
                         </div>
                         <div className={styles.buttons}>

@@ -18,6 +18,8 @@
 
 .project_box:hover {
     transform: scale(1.05);
+    cursor: pointer;
+    background-color: rgb(14, 12, 25, 0.3);
 }
 
 .project_box .detail_bar_top {

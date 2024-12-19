@@ -41,53 +41,50 @@ const EmpresasParceiras = () => {
         console.log("negocios" + negocios);
     }, []);
 
-
     return (
         <>
-         <div className={styles.container}>
-        <SideBar/>
-        <div className={styles.main_content}>
-            <div className={styles.upperBar}>
-                <img className={styles.logo} src={logo} alt="" />
-                <h2 className={styles.empresasText} style={{ color: '#033E8C', fontSize: '2rem' }}>Empresas parceiras</h2>
-            </div>
-            <div className={styles.principal}>
-                <input type="text" placeholder='Pesquisar...' className={styles.input} />
+            <div className={styles.container}>
+                <SideBar />
+                <div className={styles.main_content}>
+                    <div className={styles.upperBar}>
+                        <img className={styles.logo} src={logo} alt="" />
+                        <h2 className={styles.empresasText} style={{ color: '#033E8C', fontSize: '2rem' }}>Empresas parceiras</h2>
+                    </div>
+                    <div className={styles.principal}>
+                        <input type="text" placeholder='Pesquisar...' className={styles.input} />
 
-                {loading ? (
-                    <Spinner />
-                ) : (
-                    negocios.length > 0 ? (
-                        negocios.map((negocio, index) => (
-                            <EnterpriseCard
-                                key={negocio.idNegocio}
-                                title={negocio.nome}
-                                rating={negocio.avaliacao}
-                                ticketQuantity={"7"}
-                                img={imagemGenerica(negocio.nome)}
-                                buttonText={"Saber mais"}
-                                onClickEmpresa={() => handleCardClick(index)}
-                            />
-                        ))
-                    ) : (
-                        <p>Não há empresas parceiras disponíveis</p>
-                    )
-                )}
-            </div>
-            </div>
-            <div className={styles.lateralDireita}>
-                <div className={styles.divInterior}>
-                    <div>
-                        <h1 style={{ color: '#F95C00', fontSize: '3rem' }}>Conheça</h1>
-                        <h2 style={{ color: 'white', fontSize: '2rem' }}>nossas parcerias.</h2>
+                        {loading ? (
+                            <Spinner />
+                        ) : (
+                            negocios.length > 0 ? (
+                                negocios.map((negocio, index) => (
+                                    <EnterpriseCard
+                                        key={negocio.idNegocio}
+                                        title={negocio.nome}
+                                        rating={negocio.avaliacao}
+                                        ticketQuantity={"7"}
+                                        img={imagemGenerica(negocio.nome)}
+                                        buttonText={"Entrar em contato"}
+                                        onClickEmpresa={() => handleCardClick(index)}
+                                    />
+                                ))
+                            ) : (
+                                <p className={styles.paragrafo}>Não há empresas parceiras disponíveis</p>
+                            )
+                        )}
                     </div>
                 </div>
+                <div className={styles.lateralDireita}>
+                    <div className={styles.divInterior}>
+                        <div>
+                            <h1 style={{ color: '#F95C00', fontSize: '3rem' }}>Conheça</h1>
+                            <h2 style={{ color: 'white', fontSize: '2rem' }}>nossas parcerias.</h2>
+                        </div>
+                    </div>
 
-            </div>
+                </div>
             </div>
         </>
-
     )
-
 }
 export default EmpresasParceiras;

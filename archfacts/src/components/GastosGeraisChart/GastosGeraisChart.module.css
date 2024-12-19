@@ -1,0 +1,103 @@
+.chart-container {
+    width: 90%;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.26);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chart-title-gastos-gerais {
+    font-size: 28px; /* Reduz a intensidade do texto */
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-and-legend-gastos-gerais {
+    display: flex;
+    flex-direction: row;
+}
+.x-axis text,
+.y-axis text {
+  fill: #666; /* Cor cinza para suavizar o texto */
+  font-size: 12px; /* Tamanho da fonte reduzido */
+}
+
+.chart-title-gastos-gerais {
+  font-size: 20px; /* Reduz a intensidade do texto */
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333; /* Cor um pouco mais suave para o título */
+}
+
+.legend-item-gastos-gerais span {
+  color: #666; /* Cor cinza para suavizar o texto da legenda */
+}
+
+.tooltip-gastos-gerais {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  color: #333; /* Cor mais suave para o texto do tooltip */
+}
+
+.legend-gastos-gerais {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 30%;
+}
+
+.legend-item-gastos-gerais {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px; /* Reduz a intensidade do texto */
+}
+
+.legend-circle-gastos-gerais {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.btn-group-gastos-gerais {
+    text-align: center;
+    width: 70%;
+}
+
+.btn-gastos-gerais {
+    background: #ffffff;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 6rem;
+    color: black;
+    border: none;
+}
+
+.btn-gastos-gerais.active {
+    background: #e1e1e1;
+    border-color: #aaa;
+}
+
+.x-axis path.domain,
+.y-axis path.domain,
+.x-axis line,
+.y-axis line {
+  display: none;
+}
+.text{
+    color: #aaa;
+}
