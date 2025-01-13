@@ -35,16 +35,19 @@
 
 .tela .content_area .container_cadastro .registro {
   width: 50%;
-  height: 99%;
+  height: 100%;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
+  border: 5px solid rebeccapurple;
+
 }
 
-.registro_area {
+.tela .content_area .container_cadastro .registro .registro_area {
   flex-direction: column;
   display: flex;
-  flex-grow: 1;
+  border: 5px solid  red;
+  height: 100%;
 }
 
 .voltar_e_titulo {

@@ -14,8 +14,9 @@
 .botao {
     justify-content: center;
     display: flex;
-    height: 10rem;
     align-items: center;
+    height: fit-content;
+    padding: 0.5rem;
 }
 
 .button:hover {
