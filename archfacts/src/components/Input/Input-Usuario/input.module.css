@@ -39,14 +39,11 @@
   flex-direction: column;
   display: flex;
   justify-content: space-between;
-  border: 5px solid rebeccapurple;
-
 }
 
 .tela .content_area .container_cadastro .registro .registro_area {
   flex-direction: column;
   display: flex;
-  border: 5px solid  red;
   height: 100%;
 }
 

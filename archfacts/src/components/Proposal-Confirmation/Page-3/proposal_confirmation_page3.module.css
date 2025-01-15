@@ -11,19 +11,20 @@
     justify-content: center;
     display: flex;
     justify-content: space-evenly;
-    height: 14rem;
+    height: auto;
 }
 
 .inputs3{
     align-items: center;
-    height: 14rem;
+    height: 10rem;
     display: flex;
+    
 }
 
 .label_input{
     display: flex;
     flex-direction: column;
-    margin-left: 2vh;
+    margin-left: 1rem;
 }
 
 .label_input label{

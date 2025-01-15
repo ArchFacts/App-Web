@@ -56,26 +56,28 @@ const Login = () => {
         localStorage.setItem("jwtToken", jwtToken);
 
         const dadosUsuario = await dadosUsuarioLogado();
+        console.log(dadosUsuario);
 
-        toast.success("Usuário logado com sucesso!");
+        toast.success("Usuário logado com sucesso! Redirecionanado....", { theme: "colored" });
 
-        if (tipo === "prestador") {
-          navigate('/cadastrar-empresa')
-        }
-        else if (dadosUsuario.negocio) {
-          navigate(`/home-prestador`);
-        } else {
-          navigate('/hub');
-        };
-
+        setTimeout(() => {
+          if (tipo === "prestador") {
+            navigate('/cadastrar-empresa')
+          }
+          else if (dadosUsuario.negocio !== undefined) {
+            navigate(`/home-prestador`);
+            console.log("Entrou" + dadosUsuario.negocio)
+          } else {
+            navigate('/hub');
+          }
+        }, 3000);
       } catch (error) {
         const statusCode = error.response ? error.response.status : "Desconhecido";
         const errorMessage = error.response ? error.response.data.message : "Erro de rede ou erro desconhecido";
 
-        toast.error(`Houve um erro ${statusCode} ao cadastrar o usuário, ${errorMessage}`, { theme: error });
+        toast.error(`Houve um erro ${statusCode} ao fazer login do usuário, ${errorMessage}`, { theme: error });
         console.log(error);
       }
-      console.log(values);
     },
   });
 
