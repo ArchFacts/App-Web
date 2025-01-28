@@ -27,19 +27,21 @@ const PerfilBeneficiario = () => {
         <div className={styles.container}>
             <SideBar />
             <div className={styles.content}>
-                <div className={styles.capsula}>
+                <div className={stylesPerfil.content_header}>
                     <span className={styles.text}>Perfil</span>
                     <div className={styles.welcome}></div>
-
-                    <div className={stylesPerfil.perfilContainer}>
-                        <div className={stylesPerfil.esquerda}>
-                            <img className={stylesPerfil.imagemPerfil} src={ECorp} alt="Imagem de Perfil" />
-
-                            <h2>Luis Gustavo</h2>
-                            <button className={stylesPerfil.botao} onClick={() => abrirModal('sairConta')}>Sair da conta</button>
-                        </div>
-                        <div className={stylesPerfil.direita}>
-                            <ProfileData />
+                </div>
+                <div className={stylesPerfil.content_beneficiario}>
+                    <div className={styles.capsula}>
+                        <div className={stylesPerfil.perfilContainer}>
+                            <div className={stylesPerfil.esquerda}>
+                                <img className={stylesPerfil.imagemPerfil} src={ECorp} alt="Imagem de Perfil" />
+                                <h2>Luis Gustavo</h2>
+                                <button className={stylesPerfil.botao} onClick={() => abrirModal('sairConta')}>Sair da conta</button>
+                            </div>
+                            <div className={stylesPerfil.direita}>
+                                <ProfileData />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,12 +51,10 @@ const PerfilBeneficiario = () => {
                 onRequestClose={fecharModal}
                 contentLabel="Modal para finalizar o projeto"
                 className={stylesPerfil.modal}
-
                 overlayClassName={styles.modal_overlay}>
                 <div className={stylesPerfil.modal_header}>
                     <h2>Encerrar Sessão</h2>
                     <img src={fechar_icon} alt="Fechar modal" onClick={fecharModal} />
-
                 </div>
                 <div className={stylesPerfil.modal_content}>
                     <p>Deseja confirmar a saída deste perfil?</p>

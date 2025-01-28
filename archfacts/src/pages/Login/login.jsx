@@ -99,7 +99,7 @@ const Login = () => {
           <div className={stylesInput.registro}>
             <div className={stylesInput.registro_area}>
               <div className={stylesInput.voltar_e_titulo}>
-                <a onClick={navigate} className={stylesInput.voltar}>Voltar</a>
+                <a onClick={() => navigate('/')} className={stylesInput.voltar}>Voltar</a>
                 <h1 className={stylesLogin.h1_registro}>Login</h1>
               </div>
               <form onSubmit={formik.handleSubmit}>

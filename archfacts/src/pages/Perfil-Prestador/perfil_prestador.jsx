@@ -14,8 +14,10 @@ import Spinner from '../../components/Spinner/spinner';
 import api, { imagemGenerica, registroServico } from '../../api';
 import CadastroUsuario from '../Cadastro/Cadastro-Usuario/cadastro_usuario';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const PerfilPrestador = () => {
+    const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
     const [loading, setLoading] = useState(true)
@@ -65,10 +67,12 @@ const PerfilPrestador = () => {
         }
     }
 
-    const handleCadastro = async () => {
-        // if(){
+    const handleConfirmarClick = () => {
+        localStorage.removeItem("jwtToken");
+        navigate("/");
+    }
 
-        // }
+    const handleCadastro = async () => {
 
         try {
             console.log("Dados enviados", formData); 7
@@ -100,29 +104,31 @@ const PerfilPrestador = () => {
                     <Spinner />
                 ) : (
                     usuario ? (
-                        <div className={stylesPerfil.perfilContainer}>
-                            <div className={stylesPerfil.esquerda}>
-                                <div className={stylesPerfil.profile}>
-                                    <div className={stylesPrestador.content_itens}>
-                                        <img className={stylesPerfil.imagemPerfil}
-                                            src={imagemGenerica(usuario.negocio.nome) || "Nome indisponível"}
-                                            alt="Imagem de perfil" />
+                        <div className={stylesPerfil.content_perfil}>
+                            <div className={stylesPerfil.perfilContainer}>
+                                <div className={stylesPerfil.esquerda}>
+                                    <div className={stylesPerfil.profile}>
+                                        <div className={stylesPrestador.content_itens}>
+                                            <img className={stylesPerfil.imagemPerfil}
+                                                src={imagemGenerica(usuario.negocio.nome) || "Nome indisponível"}
+                                                alt="Imagem de perfil" />
+                                        </div>
+                                        <h2 className={stylesPerfil.nome_negocio}>{usuario.negocio.nome || "Nome indisponível"}</h2>
+                                        <div className={stylesPerfil.avaliation}>Avaliação:
+                                            <div className={stylesPerfil.nota}> {usuario.negocio.avaliacao}</div>
+                                        </div>
+                                        <button className={stylesPerfil.botao
+                                        } onClick={() => abrirModal('encerrarSessao')}>Sair</button>
                                     </div>
-                                    <h2 className={stylesPerfil.nome_negocio}>{usuario.negocio.nome || "Nome indisponível"}</h2>
-                                    <div className={stylesPerfil.avaliation}>Avaliação:
-                                        <div className={stylesPerfil.nota}> {usuario.negocio.avaliacao}</div>
-                                    </div>
-                                    <button className={stylesPerfil.botao
-                                    } onClick={() => abrirModal('encerrarSessao')}>Sair</button>
                                 </div>
-                            </div>
-                            <div className={stylesPerfil.direita}>
-                                <ProfilePrestador
-                                    codigoNegocio={usuario.negocio.codigo}
-                                    email={usuario.email}
-                                    cpf={usuario.negocio.cpf}
-                                    cnpj={usuario.negocio.cnpj}
-                                    telefone={usuario.telefone} />
+                                <div className={stylesPerfil.direita}>
+                                    <ProfilePrestador
+                                        codigoNegocio={usuario.negocio.codigo}
+                                        email={usuario.email}
+                                        cpf={usuario.negocio.cpf}
+                                        cnpj={usuario.negocio.cnpj}
+                                        telefone={usuario.telefone} />
+                                </div>
                             </div>
                         </div>
                     ) : (
@@ -142,7 +148,7 @@ const PerfilPrestador = () => {
                 </div>
                 <div className={stylesPerfil.modal_content}>
                     <p>Deseja confirmar a saída deste perfil?</p>
-                    <button>Confirmar</button>
+                    <button onClick={handleConfirmarClick} className={stylesPrestador.botao}>Confirmar</button>
                 </div>
             </Modal>
 
