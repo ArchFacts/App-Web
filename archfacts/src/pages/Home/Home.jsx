@@ -24,6 +24,11 @@ const Home = () => {
         text: "",
         icon: icone_seta,
     });
+
+    useEffect(() => {
+        localStorage.removeItem("jwtToken");
+    }, []);
+
     return (
         <>
             <main>
@@ -84,7 +89,7 @@ const Home = () => {
                                 benefit3="Gerencie e organize tarefas e chamados;"
                                 benefit4="Acompanhe detalhes sobre o projeto."
                                 image={imagem1}
-                                >
+                            >
                             </Profile>
                             <Profile
                                 title="CLIENTE"

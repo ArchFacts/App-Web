@@ -24,7 +24,7 @@ const Hub = () => {
         } catch (error) {
             console.error("Não foi possível buscar as empresas parceiras", error);
         } finally {
-            setLoading(false); // Define o estado como carregado após a busca
+            setLoading(false); 
         }
     };
 

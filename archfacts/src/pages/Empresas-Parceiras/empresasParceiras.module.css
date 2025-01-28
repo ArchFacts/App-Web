@@ -4,13 +4,13 @@
     src: url('../utils/fonts/Poppins-SemiBold.ttf');
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: row;
     height: 100vh;
 }
 
-.main_content{
+.main_content {
     display: flex;
     flex-direction: column;
     width: 61%;
@@ -59,18 +59,38 @@ input::placeholder {
 
 .lateralDireita {
     width: 35%;
-    height: 47rem;
+    height: 100%;
     right: 0;
     position: absolute;
     top: 0;
     display: flex;
-    background-image: url('../../utils/assets/imgEmpresasParceiras.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    overflow: hidden;
+    text-shadow: 1px 1px 1px black;
+}
+
+
+.lateralDireita::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../utils/assets/build_sky.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(4px) brightness(0.3);
+    z-index: 0;
+}
+
+
+.lateralDireita * {
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
@@ -114,6 +134,6 @@ input::placeholder {
     transform: scale(1.05);
 }
 
-.paragrafo{
+.paragrafo {
     color: black;
 }

@@ -9,16 +9,18 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .carousel-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border: 5px solid red;
 }
 
 .carousel-button {
-  transform: translateY(-50%);
   z-index: 2;
   background: black;
   border: none;

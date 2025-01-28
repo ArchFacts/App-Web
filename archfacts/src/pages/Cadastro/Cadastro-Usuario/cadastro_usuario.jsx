@@ -48,7 +48,7 @@ function CadastroUsuario() {
       telefone: Yup.string()
         .matches(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/,
           "O telefone deve ter 11 ou 12 dígitos")
-          .required("O telefone é obrigatório"),
+        .required("O telefone é obrigatório"),
       email: Yup.string()
         .email("Por favor insira um e-mail válido")
         .required("O campo de e-mail é obrigatório"),
@@ -84,7 +84,7 @@ function CadastroUsuario() {
         } else {
           navigate('/cadastrar-funcionario');
         }
-        
+
       } catch (error) {
 
         const statusCode = error.response ? error.response.status : "Desconhecido";
