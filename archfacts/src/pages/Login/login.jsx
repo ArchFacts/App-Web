@@ -64,11 +64,11 @@ const Login = () => {
           if (tipo === "prestador") {
             navigate('/cadastrar-empresa')
           }
-          else if (dadosUsuario.negocio !== undefined) {
-            navigate(`/home-prestador`);
+          else if (dadosUsuario.data.role === "USER") {
+            navigate(`/hub`);
             console.log("Entrou" + dadosUsuario.negocio)
           } else {
-            navigate('/hub');
+            navigate('/home-prestador');
           }
         }, 3000);
       } catch (error) {

@@ -32,7 +32,7 @@ const MainFooter = () => {
             </FooterItems>
 
             <div className={styles.rights}>
-                <p>© 2024 ArchFacts all rights reserved.</p>
+                <p>© 2025 ArchFacts all rights reserved.</p>
             </div>
         </div>
     )

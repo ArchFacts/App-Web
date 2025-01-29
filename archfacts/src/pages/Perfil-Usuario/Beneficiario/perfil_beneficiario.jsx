@@ -7,11 +7,19 @@ import stylesPerfil from '../Beneficiario/perfil.module.css';
 import ProfileData from "../../../components/Profile-Data/profileData";
 import fechar_icon from "../../../utils/assets/modal-x.svg"
 import ECorp from "../../../utils/assets/ECorp.webp";
+import { useNavigate } from 'react-router-dom';
 
 
 const PerfilBeneficiario = () => {
+    const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
+
+    const handleSair = () => {
+        if (modalIsOpen) {
+            navigate('/');
+        }
+    }
 
     const abrirModal = (sairConta) => {
         setTipoModal(sairConta);
@@ -22,6 +30,8 @@ const PerfilBeneficiario = () => {
         setModalIsOpen(false);
         setTipoModal(null);
     };
+
+
 
     return (
         <div className={styles.container}>
@@ -58,7 +68,7 @@ const PerfilBeneficiario = () => {
                 </div>
                 <div className={stylesPerfil.modal_content}>
                     <p>Deseja confirmar a saída deste perfil?</p>
-                    <button onClick={fecharModal}>Confirmar</button>
+                    <button onClick={handleSair} className={stylesPerfil.botao}>Confirmar</button>
                 </div>
             </Modal>
         </div>
