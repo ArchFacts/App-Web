@@ -14,7 +14,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/spinner';
 
-function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFinalizarTarefaClick, onDefinirDespesaClick, onEncerrarTarefaClick }) {
+function TarefaInfo({ status, titulo, despesa, abertura, fechamento, onFinalizarTarefaClick, onDefinirDespesaClick, onEncerrarTarefaClick }) {
     const getStatusStyle = (status) => {
         if (status === 'Em progresso') return { color: 'blue' };
         if (status === 'Aberto') return { color: 'green' };
@@ -28,9 +28,13 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
                 {status}
             </p>
             <p className={styles.titleCell}>{titulo}</p>
-            <button className={styles.parcelaCell} onClick={() => onDefinirDespesaClick()}>
-                Definir despesa
-            </button>
+            {((typeof (despesa) !== 'number') || despesa == 0) ? (
+                <button className={styles.parcelaCell} onClick={() => onDefinirDespesaClick()}>
+                    Definir despesa
+                </button>
+            ) : (
+                <p className={styles.valor_despesa}>{`R$${despesa}`}</p>
+            )}
             <p className={styles.aberturaCell}>{abertura}</p>
             <p className={styles.fechamentoCell}>{fechamento}</p>
             <div className={styles.finalizarCell}>
@@ -58,24 +62,7 @@ function TarefaInfo({ status, titulo, parcelaLabel, abertura, fechamento, onFina
 }
 
 function TarefasPrestador() {
-    const [tarefas, setTarefas] = useState([
-        // {
-        //     id: '1',
-        //     status: 'Em progresso',
-        //     titulo: 'Projeto de abelhas',
-        //     parcelaLabel: 'Definir despesa',
-        //     abertura: '28 de março, 15:35',
-        //     fechamento: '07 de abril, 21:02',
-        // },
-        // {
-        //     id: '2',
-        //     status: 'Aberto',
-        //     titulo: 'Projeto de abelhas',
-        //     parcelaLabel: 'Definir despesa',
-        //     abertura: '28 de março, 15:35',
-        //     fechamento: '07 de abril, 21:02',
-        // },
-    ]);
+    const [tarefas, setTarefas] = useState([]);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
@@ -108,10 +95,6 @@ function TarefasPrestador() {
         if (name === "dataTermino") setDataTermino(value);
     };
 
-    // if (loading) {
-    //     return <Spinner />;  
-    // }
-
     const abrirModal = (tipo, idChamado) => {
         setTipoModal(tipo);
         setModalIsOpen(true);
@@ -129,10 +112,8 @@ function TarefasPrestador() {
     };
 
     const salvarTarefa = async () => {
-
-        const novaDataTermino = `${dataTermino}T23:59:00`;  // Adicionando a hora para poder inserir no banco
-        // setDataTermino(novaDataTermino);
-
+        setLoading(true);
+        const novaDataTermino = `${dataTermino}T23:59:00`;
         const tarefa = {
             titulo,
             despesa,
@@ -154,7 +135,7 @@ function TarefasPrestador() {
             toast.error("Houve um erro ao enviar a sua tarefa, por favor tente novamente");
         }
         finally {
-            // setLoading(false);
+            setLoading(false);
         }
         fecharModal();
     };
@@ -164,7 +145,7 @@ function TarefasPrestador() {
     };
 
     const buscarDadosUsuarioLogado = async () => {
-        // setLoading(true);  
+        setLoading(true);
         try {
             const response = await dadosUsuarioLogado();
             setUsuario(response.data);
@@ -173,7 +154,7 @@ function TarefasPrestador() {
             console.error("Erro ao buscar os dados do usuário", error);
         }
         finally {
-            // setLoading(false);
+            setLoading(false);
         }
     };
 
@@ -183,7 +164,6 @@ function TarefasPrestador() {
             return;
         }
 
-        // setLoading(true);
         try {
             const response = await buscarTarefasNegocio(idProjeto);
             setTarefas(response.data);
@@ -201,10 +181,6 @@ function TarefasPrestador() {
         return `${dia}/${mes}/${ano}`;
     };
 
-    // const handleCadastrarNegocio = async (idProjeto) => {
-    //     const response = await cadastrarTarefa();
-    // }
-
     useEffect(() => {
         buscarDadosUsuarioLogado();
     }, []);
@@ -218,6 +194,7 @@ function TarefasPrestador() {
     const [valorInput, setValorInput] = useState('');
     const confirmarCusto = () => {
         console.log("Custo definido:", valorInput);
+        buscarTarefas(idProjeto);
         fecharModal();
     };
 
@@ -230,7 +207,7 @@ function TarefasPrestador() {
                         <AbrirTarefa onAbrirTarefaClick={() => abrirModal('abrirTarefa')} />
                     </div>
                     <div className={styles.tarefas}>
-                        <TarefasName title={''} />
+                        <TarefasName title={'nome do projeto'} />
                     </div>
                 </div>
                 <div className={styles.formContainer}>
@@ -244,7 +221,6 @@ function TarefasPrestador() {
                     </div>
                     <div className={styles.form}>
                         {tarefas.length > 0 ? (
-
                             tarefas.map((tarefa, key) => (
                                 <TarefaInfo
                                     key={tarefa.id}
@@ -275,7 +251,7 @@ function TarefasPrestador() {
                     <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
                 </div>
                 <div className={styles.modal_content}>
-                <p>Deseja confirmar a finalização desta tarefa?</p>
+                    <p>Deseja confirmar a finalização desta tarefa?</p>
                     <button
                         className={stylesPrestador.botao}
                         onClick={() => salvarFechamento(idChamado)}>
@@ -287,14 +263,14 @@ function TarefasPrestador() {
                 isOpen={modalIsOpen && tipoModal === 'abrirTarefa'}
                 onRequestClose={fecharModal}
                 contentLabel="Modal para abrir uma tarefa"
-                className={styles.modal_chamado}
-                overlayClassName={styles.modal_overlay}>
-                <div className={styles.modal_header}>
+                className={stylesPrestador.modal_tarefa}
+                overlayClassName={stylesPrestador.modal_overlay}>
+                <div className={stylesPrestador.modal_header}>
                     <h2>Criar tarefa</h2>
                     <img src={fechar_icon} alt="Fechar" onClick={fecharModal} />
                 </div>
-                <div className={styles.modal_content}>
-                    <div className={styles.field}>
+                <div className={stylesPrestador.modal_content}>
+                    <div className={stylesPrestador.field}>
                         <label htmlFor="titulo">Título da tarefa:</label>
                         <input
                             name='titulo'
@@ -306,7 +282,7 @@ function TarefasPrestador() {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className={styles.field}>
+                    <div className={stylesPrestador.field}>
                         <label htmlFor="despesa">Despesa:</label>
                         <input
                             name='despesa'
@@ -318,8 +294,8 @@ function TarefasPrestador() {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className={styles.fields}>
-                        <div className={styles.field2}>
+                    <div className={stylesPrestador.fields}>
+                        <div className={stylesPrestador.field2}>
                             <label htmlFor="prioridade">Prioridade:</label>
                             <select
                                 id="prioridade"
@@ -333,7 +309,7 @@ function TarefasPrestador() {
                                 <option value="BAIXA">Baixa</option>
                             </select>
                         </div>
-                        <div className={styles.field2}>
+                        <div className={stylesPrestador.field2}>
                             <label htmlFor="status">Status:</label>
                             <select
                                 id="status"
@@ -348,8 +324,8 @@ function TarefasPrestador() {
                             </select>
                         </div>
                     </div>
-                    <div className={styles.field}>
-                        <label htmlFor="Prazo de término">Prazo de término</label>
+                    <div className={stylesPrestador.field}>
+                        <label htmlFor="Prazo de término">Prazo de término:</label>
                         <input
                             name='dataTermino'
                             type="date"
@@ -358,7 +334,7 @@ function TarefasPrestador() {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className={styles.field}>
+                    <div className={stylesPrestador.field}>
                         <label htmlFor="descricao">Descrição:</label>
                         <textarea
                             name='desc'
@@ -368,11 +344,13 @@ function TarefasPrestador() {
                             value={desc}
                             onChange={handleChange}></textarea>
                     </div>
-                    <button
-                        className={stylesPrestador.botao}
-                        onClick={salvarTarefa}>
-                        Salvar
-                    </button>
+                    <div className={stylesPrestador.botao_area}>
+                        <button
+                            className={stylesPrestador.botao}
+                            onClick={salvarTarefa}>
+                            Confirmar
+                        </button>
+                    </div>
                 </div>
             </Modal>
             <Modal
@@ -389,10 +367,10 @@ function TarefasPrestador() {
                 </div>
                 <div className={stylesPrestador.modal_content}>
                     <div className={stylesPrestador.parcelas}>
-                        Projeto 
+                        Projeto
                     </div>
                     <div className={stylesPrestador.price_field}>
-                        <p> R$</p>
+                        <p> R$aaa</p>
                         <input onChange={(e) => setValorInput(e.target.value)} type="number" />
                     </div>
                     <button className={stylesPrestador.botao} onClick={confirmarCusto}>Confirmar</button>

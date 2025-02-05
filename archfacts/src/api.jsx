@@ -140,4 +140,12 @@ export const buscarChamadoMaiorLucro = (idProjeto) => {
   return api.get(`/kpis/${idProjeto}/chamado-maior-lucro`)
 }
 
+export const atualizarPerfilBeneficiario = (data) => {
+  return api.put(`/perfis`, data);
+}
+
+export const atualizarPerfilPrestador = (data) => {
+  return api.put(`/perfis/prestador`, data);
+}
+
 export default api;
