@@ -46,7 +46,7 @@ const Hub = () => {
 
     useEffect(() => {
         handleBuscarEmpresas();
-    }, []); // Executa apenas na montagem do componente
+    }, []);
 
     if (loading) {
         return <Spinner />;

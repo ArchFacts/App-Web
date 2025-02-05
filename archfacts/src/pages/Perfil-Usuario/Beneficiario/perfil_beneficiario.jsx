@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideBar from "../../../components/Side-Bar/sideBar";
 import Modal from 'react-modal';
 import '../../../utils/global.css';
@@ -8,12 +8,17 @@ import ProfileData from "../../../components/Profile-Data/profileData";
 import fechar_icon from "../../../utils/assets/modal-x.svg"
 import ECorp from "../../../utils/assets/ECorp.webp";
 import { useNavigate } from 'react-router-dom';
+import { dadosUsuarioLogado } from '../../../api';
+import Spinner from '../../../components/Spinner/spinner';
 
 
 const PerfilBeneficiario = () => {
     const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
+    const [usuario, setUsuario] = useState(null);
+    const [loading, setLoading] = useState(true);
+
 
     const handleSair = () => {
         if (modalIsOpen) {
@@ -31,7 +36,33 @@ const PerfilBeneficiario = () => {
         setTipoModal(null);
     };
 
+    const buscarDadosUsuarioLogado = async () => {
+        try {
+            const response = await dadosUsuarioLogado();
+            setUsuario(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar os dados do usuário", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    const formatarData = (data) => {
+        const date = new Date(data);
+        const dia = String(date.getDate()).padStart(2, '0');
+        const mes = String(date.getMonth() + 1).padStart(2, '0');
+        const ano = date.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+
+    useEffect(() => {
+        buscarDadosUsuarioLogado();
+    }, []);
+
+    if (loading) {
+        return <Spinner />;
+    }
 
     return (
         <div className={styles.container}>
@@ -46,11 +77,15 @@ const PerfilBeneficiario = () => {
                         <div className={stylesPerfil.perfilContainer}>
                             <div className={stylesPerfil.esquerda}>
                                 <img className={stylesPerfil.imagemPerfil} src={ECorp} alt="Imagem de Perfil" />
-                                <h2>Luis Gustavo</h2>
+                                <h2>{usuario.nome || "Indisponível"}</h2>
                                 <button className={stylesPerfil.botao} onClick={() => abrirModal('sairConta')}>Sair da conta</button>
                             </div>
                             <div className={stylesPerfil.direita}>
-                                <ProfileData />
+                                <ProfileData
+                                    email={usuario.email || "Indisponível"}
+                                    telefone={usuario.telefone || "Indisponível"}
+                                    dataRegistro={formatarData(usuario.dataRegistro) || "Indisponível"}
+                                />
                             </div>
                         </div>
                     </div>
