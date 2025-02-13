@@ -10,7 +10,7 @@ import division_icon from '../../utils/assets/division.svg';
 import plus_icon from '../../utils/assets/plus.svg';
 import minus_icon from '../../utils/assets/minus.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
-import api, { buscarChamadosNegocio, cadastrarChamado, definirParcela } from '../../api';
+import api, { buscarChamadosNegocio, cadastrarChamado, definirParcela, buscarNomeProjeto } from '../../api';
 import Spinner from '../../components/Spinner/spinner';
 import { useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -54,6 +54,7 @@ function ChamadosEmpresa() {
     const [dataFechamento, setDataFechamento] = useState('');
     const [lucro, setLucro] = useState('');
     const [parcelas, setParcelas] = useState(12);
+    const [nomeProjeto, setNomeProjeto] = useState('');
     const total = lucro;
 
     const tiposModal = {
@@ -92,12 +93,25 @@ function ChamadosEmpresa() {
         }
     };
 
+    const buscarNomeProjetoFunc = async (idProjeto) => {
+        try {
+            const response = await buscarNomeProjeto(idProjeto);
+            console.log(response.data);
+            setNomeProjeto(response.data);
+        } catch (error) {
+
+        } finally {
+
+        }
+    }
+
     useEffect(() => {
         const { idProjeto } = location.state || {};
         console.log("idProjeto no useEffect:", idProjeto);
 
         if (idProjeto) {
             carregarChamados(idProjeto);
+            buscarNomeProjetoFunc(idProjeto);
         } else {
             console.error("ID do projeto não encontrado");
         }
@@ -388,6 +402,6 @@ function ChamadosEmpresa() {
             </Modal>
         </div>
     );
-}
+};
 
 export default ChamadosEmpresa;

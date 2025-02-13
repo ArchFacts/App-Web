@@ -9,10 +9,9 @@ import lixeira from '../../utils/assets/lixeira.png';
 import Modal from 'react-modal';
 import fechar_icon from '../../utils/assets/modal-x.svg';
 import stylesPrestador from '../Chamados-Prestador/chamados_prestador.module.css';
-import { buscarTarefasNegocio, dadosUsuarioLogado, cadastrarTarefa } from '../../api';
+import { buscarTarefasNegocio, dadosUsuarioLogado, cadastrarTarefa, buscarNomeProjeto, buscarTodasTarefas } from '../../api';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Spinner from '../../components/Spinner/spinner';
 
 function TarefaInfo({ status, titulo, despesa, abertura, fechamento, onFinalizarTarefaClick, onDefinirDespesaClick, onEncerrarTarefaClick }) {
     const getStatusStyle = (status) => {
@@ -83,16 +82,28 @@ function TarefasPrestador() {
     const location = useLocation();
     const idProjeto = location.state?.idProjeto;
 
+    const [nomeProjeto, setNomeProjeto] = useState(null);
+
     console.log("ID DO PROJETOProjeto recebido", idProjeto);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "titulo") setTitulo(value);
-        if (name === "despesa") setDespesa(value);
+        if (name === "despesa") setDespesa(value.replace(/[^0-9]/g, ''));
         if (name === "prioridade") setPrioridade(value);
         if (name === "status") setStatus(value);
         if (name === "desc") setDescricao(value);
-        if (name === "dataTermino") setDataTermino(value);
+        if (name === "dataTermino") {
+            const selectedDate = new Date(value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                toast.error("A data de término não pode ser anterior ao dia de hoje.");
+                return;
+            }
+            setDataTermino(value);
+        }
     };
 
     const abrirModal = (tipo, idChamado) => {
@@ -128,7 +139,8 @@ function TarefasPrestador() {
             toast.success("Sua tarefa foi salva com sucesso:");
             console.log("Tarefa salva", response);
             setTarefas([...tarefas, response.data]); // Adiciona nova tarefa à lista
-
+            buscarTarefasNegocio(idProjeto);
+            formatarData(response.tarefa.dataInicio);
             fecharModal();
         } catch (error) {
             console.log("Houve um erro ao enviar a sua tarefa!", error);
@@ -140,9 +152,9 @@ function TarefasPrestador() {
         fecharModal();
     };
 
-    const handleDataFechamentoChange = (e) => {
-        setDataFechamento(e.target.value);
-    };
+    // const handleDataFechamentoChange = (e) => {
+    //     setDataFechamento(e.target.value);
+    // };
 
     const buscarDadosUsuarioLogado = async () => {
         setLoading(true);
@@ -165,7 +177,7 @@ function TarefasPrestador() {
         }
 
         try {
-            const response = await buscarTarefasNegocio(idProjeto);
+            const response = idProjeto ? await buscarTarefasNegocio(idProjeto) : await buscarTodasTarefas();
             setTarefas(response.data);
             console.log("BUSCANDO TAREFA", response.data);
         } catch (error) {
@@ -181,18 +193,36 @@ function TarefasPrestador() {
         return `${dia}/${mes}/${ano}`;
     };
 
+    const buscarNomeProjetoFunc = async (idProjeto) => {
+        try {
+            console.log("ENTROU NA FUNÇÃO DO PROJETO");
+            const response = await buscarNomeProjeto(idProjeto);
+            setNomeProjeto(response.data);
+            console.log("NOME DO PROJETO" + response.data);
+        } catch (error) {
+            console.error("Erro ao buscar o nome do projeto", error);
+        }
+    }
+
     useEffect(() => {
         buscarDadosUsuarioLogado();
-    }, []);
+        if (idProjeto) {
+            buscarNomeProjetoFunc(idProjeto)
+        }
+    }, [idProjeto]);
 
     useEffect(() => {
         if (usuario) {
             buscarTarefas(idProjeto);
         }
-    }, [usuario]);
+    }, [usuario, idProjeto]);
 
     const [valorInput, setValorInput] = useState('');
     const confirmarCusto = () => {
+        if (!valorInput || isNaN(valorInput)) {
+            toast.error("Por favor, insira um valor válido.");
+            return;
+        }
         console.log("Custo definido:", valorInput);
         buscarTarefas(idProjeto);
         fecharModal();
@@ -203,11 +233,13 @@ function TarefasPrestador() {
             <SideBarColaborador />
             <div className={styles.content}>
                 <div className={styles.capsula}>
-                    <div className={styles.abrir_tarefa}>
-                        <AbrirTarefa onAbrirTarefaClick={() => abrirModal('abrirTarefa')} />
-                    </div>
+                    {idProjeto && (
+                        <div className={styles.abrir_tarefa}>
+                            <AbrirTarefa onAbrirTarefaClick={() => abrirModal('abrirTarefa')} />
+                        </div>
+                    )}
                     <div className={styles.tarefas}>
-                        <TarefasName title={'nome do projeto'} />
+                        <TarefasName number={tarefas.length} title={nomeProjeto || "Todas as tarefas"} />
                     </div>
                 </div>
                 <div className={styles.formContainer}>
@@ -370,8 +402,8 @@ function TarefasPrestador() {
                         Projeto
                     </div>
                     <div className={stylesPrestador.price_field}>
-                        <p> R$aaa</p>
-                        <input onChange={(e) => setValorInput(e.target.value)} type="number" />
+                        <p> R$</p>
+                        <input onChange={(e) => setValorInput(e.target.value.replace(/[^0-9]/g, ''))} type="number" />
                     </div>
                     <button className={stylesPrestador.botao} onClick={confirmarCusto}>Confirmar</button>
                 </div>
