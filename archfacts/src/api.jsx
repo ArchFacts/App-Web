@@ -168,4 +168,8 @@ export const buscarTodosProjetosNegocio = () => {
   return api.get(`/projetos/todos/negocio`);
 }
 
+export const buscarEventos = () => {
+  return api.get(`/eventos`);
+}
+
 export default api;
