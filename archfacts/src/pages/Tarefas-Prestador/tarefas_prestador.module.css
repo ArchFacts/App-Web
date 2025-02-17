@@ -117,9 +117,9 @@
 
 .infos {
     display: flex;
-    font-size: 15px;
+    font-size: 1.5rem;
     flex-direction: row;
-    padding: 2.5%;
+    padding: 2rem;
     border: #0E0C19;
     align-items: center;
 }
@@ -127,52 +127,60 @@
 .statusCell {
     display: flex;
     justify-content: center;
-    width: 15%;
+    width: 100%;
 }
 
 .titleCell {
     display: flex;
     justify-content: center;
-    width: 20%;
+    width: 100%;
 }
 
 .parcelaCell {
     background-color: #F95C00;
     font-family: 'Poppins-Medium';
-    height: 2.5rem;
+    height: 3rem;
     border-radius: 10px;
     color: #FFFFFF;
     cursor: pointer;
     display: flex;
-    font-size: 14px;
+    font-size: 1.5rem;
     justify-content: center;
-    width: 14%;
+    width: 100%;
     align-items: center;
+    border-style: none;
+    transition: all 0.2s ease-in;
 }
 
 .parcelaCell:hover {
-    width: 14%;
+    scale: 1.1;
 }
 
 .aberturaCell {
     display: flex;
     justify-content: center;
-    width: 19.5%;
+    width: 100%;
 }
 
 .fechamentoCell {
     display: flex;
     justify-content: center;
-    width: 19%;
+    width: 100%;
 }
 
 .finalizarCell {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 9%;
+    width: 100%;
     cursor: pointer;
-    margin-left: 3.5%;
+}
+
+.valor_despesa {
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+    color: #F95C00 !important;
 }
 
 .infos img {
@@ -189,43 +197,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 13%;
+    width: 100%;
+    font-size: 1.2rem;
 }
 
 .headerTitle {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    width: 100%;
+    font-size: 1.2rem;
 }
 
 .headerParcela {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
+    width: 100%;
+    font-size: 1.2rem;
 }
 
 .headerAbertura {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    width: 100%;
+    font-size: 1.2rem;
 }
 
 .headerFechamento {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    width: 100%;
+    font-size: 1.2rem;
 }
 
 .headerFinalizar {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
-    font-size: 12px;
+    width: 100%;
+    font-size: 1.2rem;
 }
 
 .infos img {
@@ -357,7 +370,6 @@
     flex-direction: column;
     height: auto;
     width: 45%;
-
 }
 
 .modal_chamado .modal_content .fields .field2 label {

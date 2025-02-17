@@ -235,13 +235,13 @@ const ProposalConfirmationPage4 = () => {
                                 <div className={stylesPage4.dado_importado}>{formatarData(formData.dataEntrega) || "Indisponível"}</div>
                             </div>
                             <h3>Serviços escolhidos:</h3>
-                            <ul>
+                            <ul className={stylesPage4.servicos}>
                                 {selectedServices && selectedServices.length > 0 ? (
                                     selectedServices.map((service, index) => (
                                         <ServiceCard
                                             img={imagemServicoGenerica()}
-                                            key={index} // Sempre use um atributo `key` único no React
-                                            title={service.nome || "Indisponível"} // Propriedades corretas do objeto
+                                            key={index} 
+                                            title={service.nome || "Indisponível"} 
                                             text={service.descricao || "Indisponível"
                                             }
                                         />

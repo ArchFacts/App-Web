@@ -69,7 +69,7 @@ function ChamadosEmpresa() {
 
     const location = useLocation();
     const { idProjeto } = location.state || {};
-    console.log("idProjetoOOOOOOOO:", idProjeto);  
+    console.log("idProjetoOOOOOOOO:", idProjeto);
 
     const carregarChamados = async (idProjeto) => {
         try {
@@ -94,7 +94,7 @@ function ChamadosEmpresa() {
 
     useEffect(() => {
         const { idProjeto } = location.state || {};
-        console.log("idProjeto no useEffect:", idProjeto); 
+        console.log("idProjeto no useEffect:", idProjeto);
 
         if (idProjeto) {
             carregarChamados(idProjeto);
@@ -130,37 +130,39 @@ function ChamadosEmpresa() {
     const salvarChamado = async (e, idProjeto) => {
         e.preventDefault();
         console.log("idProjeto no salvarChamado:", idProjeto);
-
-        let novaDataFechamento = dataFechamento;
-
-        if (novaDataFechamento) {
-            novaDataFechamento = `${novaDataFechamento}T23:59:00`;  
+    
+        const dataAtual = new Date();
+        const dataSelecionada = new Date(dataFechamento);
+    
+        if (dataSelecionada <= dataAtual) {
+            toast.error("A data deve ser posterior à data de hoje!");
+            return;
         }
-
+    
+        let novaDataFechamento = dataFechamento ? `${dataFechamento}T23:59:00` : null;
+    
         const chamado = {
             titulo,
             descricao,
             abertura: dataAbertura,
             fechamento: novaDataFechamento,
             status: 'ABERTO',
-            lucro: lucro,
+            lucro,
         };
-
+    
         try {
             const response = await cadastrarChamado(idProjeto, chamado);
             toast.success("Seu chamado foi salvo com sucesso");
             console.log("Chamado salvo", response);
-            setTarefas([...chamados, response.data]); 
-
+            setTarefas([...chamados, response.data]);
             fecharModal();
         } catch (error) {
             console.error('Erro ao salvar o chamado:', error);
-            // toast.error("Houve um erro ao enviar o seu chamado, por favor tente novamente");
+            fecharModal();
         }
-        fecharModal();
-    };
+    };    
 
-    const handleDefinirParcelas = async (idChamado) => {
+    const handleDefinirParcelas = async () => {
         const parcela = {
             valor: Number(lucro),
             dataInicio: new Date().toISOString(),
@@ -170,17 +172,17 @@ function ChamadosEmpresa() {
         }
 
         try {
-            const response = await definirParcela(idProjeto, parcela);
-            // console.log("resp", response);
-            if (idProjeto) {
-                await carregarChamados(idProjeto);
-            }
-            // console.log("Parcela salva", response)
+            await definirParcela(idProjeto, parcela);
+            console.log("Entrou no try")
+            console.log(parcela.dataInicio + "Data Inicio das parcelas")
+            // if (idProjeto) {
+            //     await carregarChamados(idProjeto);
+            // }
             toast.success("Suas parcelas foram definidas com sucesso!");
 
         } catch (error) {
-            // console.error("Houve um erro ao definir a parcela", error);
-            toast.error("Não foi possível definir as parcelas, por favor tente novamente!")
+            console.error("Houve um erro ao definir a parcela", error);
+            toast.error("Não foi possível definir a sua parcela, por favor tente novamente");
         }
         fecharModal();
     };
@@ -276,7 +278,7 @@ function ChamadosEmpresa() {
                                     fechamento={formatarData(chamado.fechamento)}
                                     onFinalizarClick={() => abrirModal(tiposModal.finalizar_chamado, chamado.id)}
                                     onDefinirParcelaClick={() => abrirModal(tiposModal.definir_parcela, chamado.idChamado)}
-                                    lucro={chamado.lucro || 0} 
+                                    lucro={chamado.lucro || 0}
                                 />
                             ))
                         ) : (

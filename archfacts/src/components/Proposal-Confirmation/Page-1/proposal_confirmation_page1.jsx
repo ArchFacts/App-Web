@@ -14,7 +14,7 @@ const ProposalConfirmationPage1 = () => {
     const { negocio } = location.state || {};
 
     const handleEmpresasParceiras = () => {
-        navigate(`/empresas-parceiras1/${negocio.codigo}/${negocio.nome}`, { state: { negocio } });
+        navigate(`/empresas-parceiras`);
     };
 
     const handleProposta2 = () => {

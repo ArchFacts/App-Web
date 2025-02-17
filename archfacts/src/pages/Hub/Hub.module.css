@@ -7,6 +7,7 @@
 /* body {
     overflow: hidden;
 } */
+
 .container {
     display: flex;
     width: 100%;
@@ -17,7 +18,7 @@
 .empresasContainer {
     background-color: rgb(238, 237, 237);
     height: 36rem;
-    width: 55rem;
+    width: 70rem;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -26,19 +27,20 @@
 }
 
 .content {
-    flex-grow: 1;
     background-color: #f4f4f4;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .barraSuperior {
     border-radius: 20px 20px 0 0;
     background-color: #0E0C19;
     width: 100%;
-    height: 2.5rem;
+    height: 3.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,25 +48,39 @@
     font-size: 1rem;
 }
 
+.barraSuperior p {
+    font-size: 1.5rem;
+}
+
 .cardsEmpresas {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
     align-items: center;
     height: 100%;
+    background-color: #F7F7F7;
+    border-radius: 0 0 25px 25px;
 }
 
 .welcome {
     background-color: black;
     height: 2px;
-    flex-grow: 1;
+    width: 100%;
 }
 
 .capsula {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.capsula .line {
+    width: 100%;
+    height: 3px;
+    background-color: black;
 }
 
 .text {
@@ -74,6 +90,6 @@
     font-size: 35px;
 }
 
-.paragrafo{
+.paragrafo {
     color: black;
 }

@@ -27,7 +27,7 @@ const HomePrestador = () => {
         const idProposta = propostaDaVez.idProposta;
         setIdPropostaSelecionada(idProposta);
         setPropostaSelecionada(propostaDaVez);
-        console.log("PROPOSTA DA VEZ" ,propostaDaVez);
+        console.log("PROPOSTA DA VEZ", propostaDaVez);
         setModalIsOpen(true);
 
         try {
@@ -35,7 +35,7 @@ const HomePrestador = () => {
             const proposta = response.data[0];
             const nomeServico = proposta.servico.nome;
             setNomeServico(nomeServico);
-            
+
             console.log("DADOS DA RESP");
             console.log(response.data);
         } catch (error) {
@@ -95,23 +95,29 @@ const HomePrestador = () => {
         try {
             console.log("ID DA PROPOSTA: ", idPropostaSelecionada)
             const response = await recusarProposta(idPropostaSelecionada);
+            window.location.reload();
         } catch (error) {
             toast.error("Não foi possível recusar essa proposta, tente novamente em breve");
             console.log("Erro ao deletar proposta", error);
+        } finally {
+            window.location.reload();
         }
     };
 
     const aceitarPropostaSelecionada = async () => {
         if (!propostaSelecionada || !idPropostaSelecionada) {
             console.error("Proposta inválida ou sem ID.");
-            return; // Retorna caso não tenha os dados
+            return;
         }
         try {
             console.log("ID DA PROPOSTA: ", idPropostaSelecionada)
             const response = await aceitarProposta(idPropostaSelecionada);
+
         } catch (error) {
             toast.error("Não foi possível aceitar essa proposta, tente novamente em breve");
             console.log("Erro ao deletar proposta", error);
+        } finally {
+            window.location.reload();
         }
     };
 
@@ -201,7 +207,7 @@ const HomePrestador = () => {
                                                 <p>Recusar proposta</p>
                                             </div>
                                             <div className={styles.button}
-                                            onClick={() => aceitarPropostaSelecionada()}><p>Aceitar Proposta</p></div>
+                                                onClick={() => aceitarPropostaSelecionada()}><p>Aceitar Proposta</p></div>
                                         </div>
                                     </div>
                                 )}

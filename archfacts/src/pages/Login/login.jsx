@@ -16,16 +16,15 @@ import stylesLogin from '../Login/login.module.css';
 import api, { dadosUsuarioLogado, loginUsuario } from '../../api.jsx';
 import { toast } from 'react-toastify';
 
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
 const Login = () => {
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const tipo = searchParams.get('tipo');
-  const [usuarioLogado, setUsuarioLogado] = useState(null);
-  const [formData, setFormData] = useState({
-    login: '',
-    senha: '',
-  });
+  const [usuarioLogado, setUsuarioLogado] = useState();
 
   const images = [
     imagem1,
@@ -33,77 +32,55 @@ const Login = () => {
     imagem3
   ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const formik = useFormik({
+    initialValues: {
+      login: '',
+      senha: '',
+    },
+    validationSchema: Yup.object({
+      login: Yup.string().email("Insira um e-mail válido")
+        .required("O campo login é obrigatório"),
+      senha: Yup.string()
+        .min(6, "A senha deve ter pelo menos 6 caracteres")
+        .matches(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula")
+        .matches(/\d/, "A senha deve conter pelo menos um número")
+        .required("Senha é obrigatória"),
+    }),
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: async (values) => {
+      try {
+        const response = await loginUsuario(values);
 
-  const handleLogin = async () => {
-    if(formData.login.trim() === ""){
-      toast.error("O email não pode estar vazio ou conter apenas espaços!",{
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored", 
-        style: { color: "white" },
-      });
-      return;
-    }
+        const jwtToken = response.data.token
+        localStorage.setItem("jwtToken", jwtToken);
 
-    if(formData.senha.trim() === ""){
-      toast.error("A senha não pode estar vazia ou conter apenas espaços!",{
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored", 
-        style: { color: "white" },
-      });
-      return;
-    }
+        const dadosUsuario = await dadosUsuarioLogado();
+        console.log(dadosUsuario);
 
-    try {
-      const response = await loginUsuario(formData);
+        toast.success("Usuário logado com sucesso! Redirecionanado....", { theme: "colored" });
 
-      const token = response.data.token
-      localStorage.setItem("jwtToken", token);
-      const usuario = await obterDadosUsuarioLogado();
-      handleNavigation();
-      toast.success("Usuário logado com sucesso!");
-    } catch (error) {
-      // toast.error("Houve um erro ao fazer login na sua conta");
-      console.log("Erro", error)
-    }
-  }
+        setTimeout(() => {
+          if (tipo === "prestador") {
+            navigate('/cadastrar-empresa')
+          }
+          else if (dadosUsuario.data.role === "USER") {
+            navigate(`/hub`);
+            console.log("Entrou" + dadosUsuario.negocio)
+          } else {
+            navigate('/home-prestador');
+          }
+        }, 3000);
+      } catch (error) {
+        const statusCode = error.response ? error.response.status : "Desconhecido";
+        const errorMessage = error.response ? error.response.data.message : "Erro de rede ou erro desconhecido";
 
-  const handleNavigation = () => {
+        toast.error(`Houve um erro ${statusCode} ao fazer login do usuário, ${errorMessage}`, { theme: error });
+        console.log(error);
+      }
+    },
+  });
 
-    if (tipo == "prestador") {
-      navigate('/cadastrar-empresa')
-    }
-    if (usuarioLogado.negocio) {
-      navigate(`/home-prestador`);
-    } else {
-      navigate('/hub');
-    };
-  }
-
-  const obterDadosUsuarioLogado = async () => {
-    try {
-      const response = await dadosUsuarioLogado();
-      setUsuarioLogado(response.data);
-    } catch (error) {
-      toast.error("Erro ao buscar o usuário", error);
-    }
-  }
 
   const settings = {
     arrows: false,
@@ -113,62 +90,65 @@ const Login = () => {
     autoplay: true,
     autoplaySpeed: 5000
   };
-  return (
-    <>
 
-      <section className={stylesInput.tela}>
-        <SimpleHeader />
-        <div className={stylesInput.content_area}>
-          <div className={stylesInput.container_cadastro}>
-            <div className={stylesInput.registro}>
-              <div className={stylesInput.registro_area}>
-                <div className={stylesInput.voltar_e_titulo}>
-                  <a onClick={handleNavigation} className={stylesInput.voltar}>Voltar
-                  </a>
-                  <h1 className={stylesLogin.h1_registro}>Login</h1>
-                </div>
+  return (
+    <section className={stylesInput.tela}>
+      <SimpleHeader />
+      <div className={stylesInput.content_area}>
+        <div className={stylesInput.container_cadastro}>
+          <div className={stylesInput.registro}>
+            <div className={stylesInput.registro_area}>
+              <div className={stylesInput.voltar_e_titulo}>
+                <a onClick={() => navigate('/')} className={stylesInput.voltar}>Voltar</a>
+                <h1 className={stylesLogin.h1_registro}>Login</h1>
+              </div>
+              <form onSubmit={formik.handleSubmit}>
                 <div className={stylesLogin.all_inputs}>
                   <Input
                     label="Email:"
-                    type="login"
+                    type="email"
                     name="login"
-                    value={formData.login}
-                    onChange={handleChange}
+                    value={formik.values.login}
+                    onChange={formik.handleChange}
+                    error={formik.touched.login && formik.errors.login}
                   />
                   <Input
                     label="Senha:"
                     type="password"
                     name="senha"
-                    value={formData.senha}
-                    onChange={handleChange}
-                  /> </div> </div>
-              <div className={stylesLogin.button}>
-                <Botao
-                  texto='Entrar'
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log(`Entrar`);
-                    handleLogin();
-                  }}
-                /> </div>
+                    value={formik.values.senha}
+                    onChange={formik.handleChange}
+                    error={formik.touched.senha && formik.errors.senha}
+                  />
+                </div>
+                <div className={stylesLogin.button}>
+                  <Botao
+                    texto="Entrar"
+                    type="submit"
+                    disabled={!(formik.isValid && formik.dirty)}
+                    style={{
+                      backgroundColor: !(formik.isValid && formik.dirty) ? 'gray' : '#033E8C',
+                      cursor: !(formik.isValid && formik.dirty) ? 'not-allowed' : 'pointer',
+                    }}
+                  />
+                </div>
+              </form>
             </div>
-            <div className={stylesImagem.registro_imagem}>
-              <Slider {...settings}>
-                {images.map((image, index) => (
-                  <div key={index}>
-                    <img className={stylesImagem.imagem} src={image} alt={`Imagem ${index + 1}`} />
-                  </div>
-                ))}
-              </Slider>
-            </div>
-
+          </div>
+          <div className={stylesImagem.registro_imagem}>
+            <Slider {...settings}>
+              {images.map((image, index) => (
+                <div key={index}>
+                  <img className={stylesImagem.imagem} src={image} alt={`Imagem ${index + 1}`} />
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
-        <SimpleFooter />
-      </section>
-
-    </>
-  )
+      </div>
+      <SimpleFooter />
+    </section>
+  );
 }
 
 export default Login;

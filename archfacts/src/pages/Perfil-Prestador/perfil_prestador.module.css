@@ -22,6 +22,15 @@
     flex-direction: row;
 }
 
+.content_perfil {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid lime;
+}
+
 .esquerda {
     width: 40%;
     height: 100%;
@@ -41,21 +50,36 @@
     align-items: center;
 }
 
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
+    height: 75%;
+}
+
 .imagemPerfil {
     background-color: black;
-    border-radius: 150px;
-    height: 250px;
-    width: 250px;
+    border-radius: 50%;
+    height: 95%;
+    width: 95%;
+}
+
+.nome_negocio{
+    min-width: 90%;
+    border-radius: 0 0 25px 25px;
 }
 
 .avaliation {
-    width: 40%;
+    display: flex;
+    width: 75%;
+    justify-content: center;
     font-family: 'Poppins-Medium';
     color: white;
     font-size: 24px;
     background-color: black;
-    text-align: center;
-    display: flex;
+    border-radius: 0 0 25px 25px;
 }
 
 .nota {
@@ -64,8 +88,8 @@
 
 .botao {
     background-color: #F95C00;
-    width: 32%;
-    height: 4vh;
+    width: 50%;
+    height: 10%;
     margin-top: 1.5rem;
     cursor: pointer;
     border: none;
@@ -122,6 +146,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
     flex-direction: column;
     width: 100%;
     height: 100%;

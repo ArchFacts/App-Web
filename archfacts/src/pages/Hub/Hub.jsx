@@ -24,7 +24,7 @@ const Hub = () => {
         } catch (error) {
             console.error("Não foi possível buscar as empresas parceiras", error);
         } finally {
-            setLoading(false); // Define o estado como carregado após a busca
+            setLoading(false); 
         }
     };
 
@@ -46,7 +46,7 @@ const Hub = () => {
 
     useEffect(() => {
         handleBuscarEmpresas();
-    }, []); // Executa apenas na montagem do componente
+    }, []);
 
     if (loading) {
         return <Spinner />;
@@ -58,10 +58,11 @@ const Hub = () => {
             <div className={styles.content}>
                 <div className={styles.capsula}>
                     <span className={styles.text}>Seja bem-vindo!</span>
+                    <div className={styles.line}></div>
                 </div>
                 <div className={styles.empresasContainer}>
                     <div className={styles.barraSuperior}>
-                        <p>Prestadores:</p>
+                        <p>Prestadores na plataforma:</p>
                     </div>
                     <div className={styles.cardsEmpresas}>
                         {negocios.length > 0 ? (
