@@ -40,7 +40,8 @@
 }
 
 .capsula .chamados {
-    width: 100%;
+    min-width: 100vw;
+    display: flex;
     margin-bottom: 1rem;
 }
 
@@ -91,8 +92,9 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 1%;
+    border: 5px solid red;
     height: auto;
+    padding: 1%;
 }
 
 .form p {
@@ -104,8 +106,8 @@
     align-items: center;
     font-size: 15px;
     flex-direction: row;
-    padding: 2.5%;
     border: #0E0C19;
+    padding-bottom: 1rem;
 }
 
 .statusCell {
@@ -154,9 +156,9 @@
 .finalizarCell {
     display: flex;
     justify-content: center;
-    width: 4%;
+    margin-left: 3rem;
+    width: 5rem;
     cursor: pointer;
-    margin-left: 5.5%;
 }
 
 .headerStatus {

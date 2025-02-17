@@ -7,7 +7,7 @@ import fechar_icon from "../../utils/assets/modal-x.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { buscarChamadosNegocio, dadosUsuarioLogado, definirCusto } from '../../api';
+import { buscarChamadosNegocio, dadosUsuarioLogado, definirCusto, buscarTodosChamados, buscarNomeProjeto } from '../../api';
 
 function ChamadoPrestadorInfo({ status, titulo, lucro, abertura, fechamento, onVerChamadoClick, onDefinirCustoClick }) {
     const getStatusStyle = (status) => {
@@ -16,6 +16,7 @@ function ChamadoPrestadorInfo({ status, titulo, lucro, abertura, fechamento, onV
         if (status === 'FECHADO') return { color: 'red' };
         return {};
     };
+
 
     const formatarData = (data) => {
         const date = new Date(data);
@@ -38,7 +39,9 @@ function ChamadoPrestadorInfo({ status, titulo, lucro, abertura, fechamento, onV
                     Definir lucro
                 </button>
             ) : (
-                <p className={styles.lucroCell}>R$ {lucro.toFixed(2)}</p>
+                <p className={styles.lucroCell}>
+                    {lucro ? `R$ ${lucro.toFixed(2)}` : "Não definido"}
+                </p>
             )}
 
             {/* <button className={styles.parcelaCell} onClick={onDefinirCustoClick}>Definir lucro</button> */}
@@ -80,7 +83,6 @@ function ChamadosPrestador() {
 
     const location = useLocation();
     const idProjeto = location.state?.idProjeto;
-    console.log("ID DO PROJETOProjeto recebido", idProjeto);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [tipoModal, setTipoModal] = useState(null);
@@ -91,10 +93,14 @@ function ChamadosPrestador() {
 
     const [chamadoSelecionado, setChamadoSelecionado] = useState(null);
 
-    const abrirModal = (tipo, idChamado) => {
+    const [nomeProjeto, setNomeProjeto] = useState(null);
+
+
+    const abrirModal = (tipo, chamado) => {
         setTipoModal(tipo);
         setModalIsOpen(true);
-        setChamadoSelecionado(idChamado);
+        setChamadoSelecionado(chamado);
+        console.log("CHAMADO SELECIONADO", chamadoSelecionado);
     };
 
     const fecharModal = () => {
@@ -132,32 +138,30 @@ function ChamadosPrestador() {
         toast.success('Custo definido com sucesso!');
         setTimeout(() => {
             fecharModal();
+            buscarChamadosFunc();
         }, 1000);
     };
 
     const buscarDadosUsuarioLogado = async () => {
-        // setLoading(true);  
         try {
+            setLoading(true);
             const response = await dadosUsuarioLogado();
             setUsuario(response.data);
             console.log(response.data);
         } catch (error) {
             console.error("Erro ao buscar os dados do usuário", error);
-        }
-        finally {
-            // setLoading(false);
+        } finally {
+            setLoading(false);
         }
     };
 
-    const buscarChamados = async (idProjeto) => {
+    const buscarChamadosFunc = async (idProjeto = null) => {
         if (!usuario) {
             console.error("Usuário não encontrado");
             return;
         }
-
-        // setLoading(true);
         try {
-            const response = await buscarChamadosNegocio(idProjeto);
+            const response = idProjeto ? await buscarChamadosNegocio(idProjeto) : await buscarTodosChamados();
             setChamados(response.data);
             console.log("BUSCANDO Chamado", response.data);
         } catch (error) {
@@ -165,13 +169,30 @@ function ChamadosPrestador() {
         }
     }
 
-    useEffect(() => {
-        buscarDadosUsuarioLogado();
-    }, []);
+    const buscarNomeProjetoFunc = async (idProjeto) => {
+        if (!idProjeto) {
+            console.error("Id não encontrado");
+            return;
+        } try {
+            const response = await buscarNomeProjeto(idProjeto);
+            setNomeProjeto(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar o nome do projeto", error);
+        }
+    }
 
     useEffect(() => {
-        if (usuario) {
-            buscarChamados(idProjeto);
+        buscarDadosUsuarioLogado();
+        if (idProjeto) {
+            buscarNomeProjetoFunc(idProjeto);
+        }
+    }, [idProjeto]);
+
+    useEffect(() => {
+        if (usuario && idProjeto) {
+            buscarChamadosFunc(idProjeto);
+        } else {
+            buscarChamadosFunc();
         }
     }, [usuario]);
 
@@ -183,7 +204,7 @@ function ChamadosPrestador() {
                     <div className={styles.abrir_chamadoPrestador}>
                     </div>
                     <div className={styles.chamadosPrestador}>
-                        <ChamadosNamePrestador title="abelhas" />
+                        <ChamadosNamePrestador number = {chamados.length} title={idProjeto ? nomeProjeto || "Indisponível" : "Todos os chamados"} />
                     </div>
                 </div>
                 <div className={styles.formContainer}>
@@ -202,8 +223,8 @@ function ChamadosPrestador() {
                                     key={chamadoPrestador.idChamado}
                                     {...chamadoPrestador}
                                     onFinalizarClick={() => console.log('Finalizar chamadoPrestador', index)}
-                                    onDefinirCustoClick={() => abrirModal(tiposModal.definirCusto, chamadoPrestador.idChamado)}
-                                    onVerChamadoClick={() => abrirModal(tiposModal.verChamado)}
+                                    onDefinirCustoClick={() => abrirModal(tiposModal.definirCusto, chamadoPrestador)}
+                                    onVerChamadoClick={() => abrirModal(tiposModal.verChamado, chamadoPrestador)}
                                 />
                             ))
                         ) : (
@@ -232,7 +253,10 @@ function ChamadosPrestador() {
                     </div>
                     <div className={styles.price_field}>
                         <p> R$</p>
-                        <input onChange={(e) => setValorInput(e.target.value)} type="number" />
+                        <input onChange={(e) => setValorInput(e.target.value)}
+                            type="number"
+                            min="0"
+                            step="0.01" />
                     </div>
                     <button className={styles.botao} onClick={atualizarCusto}>Confirmar</button>
                 </div>
@@ -255,15 +279,20 @@ function ChamadosPrestador() {
                 <div className={styles.modal_content}>
                     <div className={styles.field}>
                         <label htmlFor="nome">Nome do solicitante:</label>
-                        <div className={styles.dado_beneficiario}>Luis Gustavo de Almeida</div>
+                        <div className={styles.dado_beneficiario}>{chamadoSelecionado?.projeto.destinatario.nome}</div>
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="nome">Projeto:</label>
+                        <div className={styles.dado_beneficiario}>{chamadoSelecionado?.projeto.nome}</div>
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="titulo">Título do chamado:</label>
-                        <div className={styles.dado_beneficiario}>Compra dos produtos de limpeza pela internet.</div>
+                        <div className={styles.dado_beneficiario}>{chamadoSelecionado?.titulo}</div>
                     </div>
                     <div className={styles.field}>
                         <label htmlFor="desc">Descrição:</label>
-                        <div className={styles.description}>Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknow n printer took a galley of   including versions of Lorem Ipsum.
+                        <div className={styles.description}>
+                            {chamadoSelecionado?.descricao}
                         </div>
                     </div>
                 </div>
