@@ -124,6 +124,16 @@ function TarefasPrestador() {
 
     const salvarTarefa = async () => {
         setLoading(true);
+    
+        const hoje = new Date();
+        const dataSelecionada = new Date(dataTermino);
+    
+        if (dataSelecionada <= hoje) {
+            toast.error("A data deve ser posterior à data de hoje!");
+            setLoading(false);
+            return;
+        }
+    
         const novaDataTermino = `${dataTermino}T23:59:00`;
         const tarefa = {
             titulo,
@@ -133,24 +143,24 @@ function TarefasPrestador() {
             dataTermino: novaDataTermino,
             descricao: desc,
         };
-
+    
         try {
             const response = await cadastrarTarefa(idProjeto, tarefa);
+            
             toast.success("Sua tarefa foi salva com sucesso:");
             console.log("Tarefa salva", response);
             setTarefas([...tarefas, response.data]); // Adiciona nova tarefa à lista
             buscarTarefasNegocio(idProjeto);
             formatarData(response.tarefa.dataInicio);
+            
             fecharModal();
         } catch (error) {
-            console.log("Houve um erro ao enviar a sua tarefa!", error);
-            toast.error("Houve um erro ao enviar a sua tarefa, por favor tente novamente");
-        }
-        finally {
+            console.error("Erro ao salvar a tarefa", error);
+            toast.error("Houve um erro ao enviar a sua tarefa. Tente novamente.");
+        } finally {
             setLoading(false);
         }
-        fecharModal();
-    };
+    };    
 
     // const handleDataFechamentoChange = (e) => {
     //     setDataFechamento(e.target.value);
