@@ -17,6 +17,7 @@ import MainFooter from '../../components/Main-Footer/mainfooter';
 import imagem1 from "../../utils/assets/empregado_home.jpg";
 import imagem2 from "../../utils/assets/cliente_home.jpg";
 import imagem3 from "../../utils/assets/prestador_home.jpg";
+import imagem4 from "../../utils/assets/ArchFacts.png"
 
 const Home = () => {
     const [infoBoxData, setInfoBoxData] = useState({
@@ -42,7 +43,7 @@ const Home = () => {
                     </div>
                 </section>
                 <section id='problemSection' className={styles.solved_problems} logo_image={logoImage} logo_text={logoText}>
-                    <h1 className={styles.main_title}>PROBLEMAS RESOLVIDOS PELA ARCHFACTS</h1>
+                    <h1 className={styles.main_title}>Problemas resolvidos pela ArchFacts</h1>
                     <div className={styles.content_area}>
                         <div className={styles.problems_box_div}>
                             <VerticalMenu setInfoBoxData={setInfoBoxData} />
@@ -56,7 +57,7 @@ const Home = () => {
                     </div>
                 </section>
                 <section id='solutionSection' className={styles.benefits}>
-                    <h1 className={styles.main_title}>POR QUE USAR A NOSSA SOLUÇÃO?</h1>
+                    <h1 className={styles.main_title}>Por que usar nossa solução?</h1>
                     <div className={styles.content_area}>
                         <div className={styles.benefit_div}>
                             <InterestBox title="Tenha uma organização interativa"
@@ -69,11 +70,11 @@ const Home = () => {
                     </div>
                 </section>
                 <section id='profileSection' className={styles.plataform_profiles}>
-                    <h1 className={styles.main_title}>CONHEÇA OS PERFIS DE NOSSA PLATAFORMA</h1>
+                    <h1 className={styles.main_title}>Conheça os perfis de nossa plataforma</h1>
                     <div className={styles.content_area}>
                         <div className={styles.profiles}>
                             <Profile
-                                title="PRESTADOR DE SERVIÇO"
+                                title="Prestador de serviço"
                                 subtitle="Acesso ao serviço de gestão de negócio como administrador"
                                 benefit1="Gerenciamento do negócio;"
                                 benefit2="Página exclusiva para seus clientes;"
@@ -82,7 +83,7 @@ const Home = () => {
                                 image={imagem3}>
                             </Profile>
                             <Profile
-                                title="EMPREGADO"
+                                title="Empregado"
                                 subtitle="Acesso em conjunto ao serviço de gestão de negócio como empregado"
                                 benefit1="Colaboração no gerenciamento;"
                                 benefit2="Acompanhe processos com eficiência;"
@@ -92,7 +93,7 @@ const Home = () => {
                             >
                             </Profile>
                             <Profile
-                                title="CLIENTE"
+                                title="Cliente"
                                 subtitle="Acesso a página de empresas"
                                 benefit1="Solicitar um serviço de uma empresa;"
                                 benefit2="Contato com prestador através de chamados;"
@@ -104,7 +105,7 @@ const Home = () => {
                     </div>
                 </section>
                 <section id='contactSection' className={styles.contact_div}>
-                    <h1 className={styles.main_title}>ENTRE EM CONTATO</h1>
+                    <h1 className={styles.main_title}>Entre em contato</h1>
                     <h1 className={styles.main_title}>Caso tenha dúvidas, preencha o formulário e entre em contato conosco!</h1>
                     <div className={styles.content_area}>
                         <Contact></Contact>
