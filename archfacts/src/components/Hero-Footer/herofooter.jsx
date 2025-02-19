@@ -10,19 +10,19 @@ const HeroFooter = () => {
             <div className={styles.points}>
                 <div className={styles.point}>
                     <div className={styles.circle}></div>
-                    <img src={icone_gestao} alt="" />
+                    <img src={icone_gestao} style={{ width: "10%" }} />
                     <p>Gestão</p>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.point}>
                     <div className={styles.circle}></div>
-                    <img src={icone_parceria} alt="" />
+                    <img src={icone_parceria} style={{ width: "12%" }} />
                     <p>Parceria</p>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.point}>
                     <div className={styles.circle}></div>
-                    <img src={icone_cliente} alt="" />
+                    <img src={icone_cliente} style={{ width: "10%" }} />
                     <p>Clientes</p>
                 </div>
             </div>

@@ -1,16 +1,16 @@
 .info_box {
-    width: 62.5rem;
-    height: 31.25rem;
-    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 55%;
+    background: #0E0C19;
     border-radius: 50px;
-    padding: 3rem;
+    padding: 6%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5%;
 }
 
 .info_box img {
-    width: 5rem;
+    width: 10%;
 }
 
 .info_box .title {
@@ -21,7 +21,7 @@
 
 .info_box .text {
     font-family: Poppins-Light;
-    font-size: 1.5rem;
+    font-size: 18px;
     text-align: justify;
     color: white;
 }
