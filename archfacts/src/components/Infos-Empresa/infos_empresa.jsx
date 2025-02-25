@@ -1,19 +1,21 @@
-import React from 'react';
-import styles from './infos_empresa.module.css';
-import bannerImage from '../../utils/assets/bannerVolks.png';
+import React, { useState } from "react";
+import styles from "./infos_empresa.module.css";
+import ServiceCard from "../Service-Card/service_card";
+import SelectBanner from "../Select-Banner/SelectBanner";
 
 function InfosEmpresa({ banner, descricaoTitulo, descricaoDetalhada, servicosTitulo }) {
+  const [bannerAtualizado, setBannerAtualizado] = useState(banner || "");
+
   return (
     <div className={styles.infosEmpresa}>
-      <div className={styles.banner}>
-        <img className={styles.bannerImage} src={bannerImage} alt="Banner da empresa" />
-      </div>
+      <SelectBanner bannerAtualizado={bannerAtualizado} setBannerAtualizado={setBannerAtualizado} />
       <div className={styles.descricao}>
         <h2>{descricaoTitulo}</h2>
-        <p>{descricaoDetalhada}</p>
+        <input type="text" src={descricaoDetalhada} />
       </div>
       <div className={styles.servicos}>
         <h2>{servicosTitulo}</h2>
+        <ServiceCard />
       </div>
     </div>
   );

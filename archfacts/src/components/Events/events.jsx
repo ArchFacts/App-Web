@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./events.module.css"
 
 
-const events = ({ name, tipo, descricao, data, encerramento, previsao, status }) => {
+const events = ({ name, tipo, descricao, data, encerramento, previsao, status, statusColor }) => {
     return (
         <>
             <div className={styles.card}>
@@ -15,7 +15,9 @@ const events = ({ name, tipo, descricao, data, encerramento, previsao, status })
                     <span className={styles.texto}><b>Data Criação:</b> {data}</span>
                     <span className={styles.texto}><b>Previsão de encerramento:</b> {encerramento}</span>
                     <span className={styles.previsao}>{previsao}</span>
-                    <span className={styles.status}><b>Status:</b> {status}</span>
+                    <span className={styles.status} style={{ backgroundColor: statusColor }}>
+                        Status: {status}
+                    </span>
                 </div>
             </div>
         </>
