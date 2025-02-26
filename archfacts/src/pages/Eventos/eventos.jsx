@@ -13,6 +13,14 @@ const Eventos = () => {
     const [usuario, setUsuario] = useState(null);
     const [eventos, setEventos] = useState([]);
 
+    const getStatusStyle = (status) => {
+        if (status === 'PENDENTE') return { color: '#F9AE00' };
+        if (status === 'ABERTO') return { color: '#00F91D' };
+        if (status === 'FECHADO') return { color: '#F90000' };
+        if (status === 'PROGRESSO') return { color: '#343C6A' };
+        return {};
+    };
+
 
     const buscarDadosUsuarioLogado = async () => {
         try {
@@ -49,7 +57,7 @@ const Eventos = () => {
     const calcularTempoRestante = (dataEncerramento) => {
         if (!dataEncerramento) return "Tempo não disponível";
 
-        const agora = new Date(); // Data atual
+        const agora = new Date();
         const encerramento = new Date(dataEncerramento);
 
         const diferencaMs = encerramento - agora;
@@ -85,13 +93,14 @@ const Eventos = () => {
                         {eventos.length > 0 ? (
                             eventos.map((evento) => (
                                 <Event
-                                    name={`${evento.nomeNegocio} (${evento.nomeProjeto}) || "Indisponível`}
+                                    name={`Projeto: ${evento.nomeProjeto || "Indisponível"}`}
                                     tipo={evento.tipo || "Indisponível"}
                                     descricao={evento.descricao || "Indisponível"}
                                     data={formatarData(evento.dataCriacao || "Indisponível")}
                                     encerramento={formatarData(evento.dataEncerramento || "Indisponível")}
-                                    previsao={calcularTempoRestante(evento.dataCriacao, evento.dataEncerramento)}
+                                    previsao={calcularTempoRestante(evento.dataEncerramento)}
                                     status={evento.status || "Indisponível"}
+                                    statusColor={getStatusStyle(evento.status).color || "black"}
                                 />
                             ))
                         ) : (

@@ -9,11 +9,12 @@ const EnterpriseCard = ({ img, title, buttonText, ticketQuantity, rating, onClic
             </div>
             <div className={styles.rightCard}>
                 <h2>{title}</h2>
+                <h3>Data de registro: xx/xx/xx </h3>
                 <h3>Avaliação: <span style={{ color: '#F95C00' }}>{rating}</span></h3>
-                <h3>Chamados com o prestador: 0</h3>
 
                 <button className={styles.cardButton}
-                    onClick={onClickEmpresa}>{buttonText}</button>
+                    onClick={onClickEmpresa}>{buttonText}
+                </button>
             </div>
 
         </div>

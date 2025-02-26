@@ -72,19 +72,19 @@ const PerfilPrestador = () => {
         navigate("/");
     }
 
-    const handleCadastro = async () => {
+    // const handleCadastro = async () => {
 
-        try {
-            console.log("Dados enviados", formData); 7
-            toast.success("Serviço adicionado com sucesso!")
-            const response = await registroServico(formData);
-            console.log(response);
-        } catch (error) {
-            console.error("Não foi possível cadastrar esse serviço", error);
-        } finally {
-            setLoading(false);
-        }
-    }
+    //     try {
+    //         console.log("Dados enviados", formData); 7
+    //         toast.success("Serviço adicionado com sucesso!")
+    //         const response = await registroServico(formData);
+    //         console.log(response);
+    //     } catch (error) {
+    //         console.error("Não foi possível cadastrar esse serviço", error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
 
     useEffect(() => {
         buscarDadosUsuario();
@@ -152,7 +152,7 @@ const PerfilPrestador = () => {
                 </div>
             </Modal>
 
-            <Modal
+            {/* <Modal
                 isOpen={modalIsOpen && tipoModal === 'criarServico'}
                 onRequestClose={fecharModal}
                 contentLabel='Modal para adicionar um serviço'
@@ -195,7 +195,7 @@ const PerfilPrestador = () => {
                             }>Enviar</button>
                     </div>
                 </div>
-            </Modal>
+            </Modal> */}
         </div>
     );
 };

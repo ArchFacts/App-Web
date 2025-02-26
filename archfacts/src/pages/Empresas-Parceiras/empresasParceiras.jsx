@@ -64,7 +64,7 @@ const EmpresasParceiras = () => {
                                         rating={negocio.avaliacao}
                                         ticketQuantity={"7"}
                                         img={imagemGenerica(negocio.nome)}
-                                        buttonText={"Entrar em contato"}
+                                        buttonText={"Saber mais"}
                                         onClickEmpresa={() => handleCardClick(index)}
                                     />
                                 ))
