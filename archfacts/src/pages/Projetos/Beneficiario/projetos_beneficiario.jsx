@@ -7,7 +7,7 @@ import ProjectName from "../../../components/Project-Name/project_name";
 import ProjetoComponenteBeneficiario from "../../../components/Projeto/Beneficiario/projeto_componente_beneficiario";
 import fechar_icon from "../../../utils/assets/modal-x.svg"
 import { useNavigate, useLocation } from 'react-router-dom';
-import { buscarProjetosBeneficiario } from '../../../api';
+import { buscarProjetosBeneficiario, buscarTodosProjetosUsuario } from '../../../api';
 import Spinner from '../../../components/Spinner/spinner';
 
 const ProjetosBeneficiario = () => {
@@ -34,7 +34,7 @@ const ProjetosBeneficiario = () => {
 
     const buscarProjetos = async (email) => {
         try {
-            const response = await buscarProjetosBeneficiario(nomeEmpresa, email);
+            const response = nomeEmpresa ? await buscarProjetosBeneficiario(nomeEmpresa, email) : await buscarTodosProjetosUsuario();
             setProjetos(response.data);
             console.log("projetos", response.data);
         } catch (error) {
@@ -52,8 +52,23 @@ const ProjetosBeneficiario = () => {
     }
 
     useEffect(() => {
-        buscarProjetos();
-    }, []);
+        const data = async () => {
+            setLoading(true);
+            try {
+                if (nomeEmpresa && email) {
+                    await buscarProjetos(email, nomeEmpresa);
+                } else {
+                    const response = await buscarTodosProjetosUsuario();
+                    setProjetos(response.data);
+                }
+            } catch (error) {
+                console.error("Erro ao buscar proejetos", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        data();
+    }, [nomeEmpresa, email]);
 
     if (loading) {
         return <Spinner />

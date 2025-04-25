@@ -22,9 +22,6 @@ const FooterItems = ({ icon1, icon2, icon3, icon4, title, item1, item2, item3, i
                     <img src={icon4} alt="" />
                     <li className={styles.item}>{item4}</li>
                 </div>
-                {/* <li className={styles.item}>{item2}</li>
-                <li className={styles.item}>{item3}</li>
-                <li className={styles.item}>{item4}</li> */}
             </ul>
         </div>
     )

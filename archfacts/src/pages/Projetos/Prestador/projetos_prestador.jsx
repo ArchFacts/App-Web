@@ -115,21 +115,6 @@ const ProjetosPrestador = () => {
                             <p className={styles.paragrafo}>Não há projetos disponíveis.</p>
                         )}
 
-                        {/* <ProjetoComponentePrestador
-                            projectName={'Projeto de abelhas'}
-                            solicitanteName={'Júlia Campioto'}>
-                        </ProjetoComponentePrestador>
-
-                        <ProjetoComponentePrestador
-                            projectName={'Projeto de abelhas'}
-                            solicitanteName={'Júlia Campioto'}>
-                        </ProjetoComponentePrestador>
-
-                        <ProjetoComponentePrestador
-                            projectName={'Projeto de abelhas'}
-                            solicitanteName={'Júlia Campioto'}>
-                        </ProjetoComponentePrestador> */}
-
                     </div>
                 </div>
             </div>

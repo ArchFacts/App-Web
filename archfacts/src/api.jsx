@@ -148,4 +148,28 @@ export const atualizarPerfilPrestador = (data) => {
   return api.put(`/perfis/prestador`, data);
 }
 
+export const buscarNomeProjeto = (idProjeto) => {
+  return api.get(`projetos/nome/${idProjeto}`);
+}
+
+export const buscarTodasTarefas = () => {
+  return api.get(`/tarefas/todos`);
+}
+
+export const buscarTodosChamados = () => {
+  return api.get(`/chamados/todos`);
+}
+
+export const buscarTodosProjetosUsuario = () => {
+  return api.get(`/projetos/todos/usuario`);
+}
+
+export const buscarTodosProjetosNegocio = () => {
+  return api.get(`/projetos/todos/negocio`);
+}
+
+export const buscarEventos = () => {
+  return api.get(`/eventos`);
+}
+
 export default api;

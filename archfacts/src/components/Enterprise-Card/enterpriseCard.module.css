@@ -20,7 +20,7 @@
 .cardButton {
     width: 13rem;
     height: 2rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     border-radius: 6px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: 200ms linear;
@@ -54,6 +54,14 @@
     flex-direction: column;
     color: black;
     padding-right: 40px;
+}
+
+.rightCard h2 {
+    font-size: 1.5rem;
+}
+
+.rightCard h3 {
+    font-size: 1rem;
 }
 
 .imagemEmpresa {

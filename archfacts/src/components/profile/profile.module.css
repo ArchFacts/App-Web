@@ -1,18 +1,17 @@
 .profile {
     display: flex;
     flex-direction: column;
-    width: 35rem;
-    height: 44rem;
+    width: 30%;
     transition: 200ms linear;
 }
 
 .profile:hover {
-    scale: 1.1;
+    scale: 1.05;
 }
 
 .profile .layer_background {
     width: 100%;
-    height: 50%;
+    height: 40%;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
@@ -21,30 +20,30 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    border-radius: 15px;
+    border-radius: 6px;
 }
 
 .profile .content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 50%;
+    height: 45%;
     justify-content: space-evenly;
-    background-color: rgb(0, 0, 0, 0.4);
+    background-color: #0E0C19;
     border-radius: 0 0 25px 25px;
-    padding: 1rem;
+    padding: 4%;
     text-shadow: 1px 1px black;
 }
 
 .profile .content .title {
     text-align: start;
-    font-size: 2.5rem;
+    font-size: 20px;
     color: #F95C00;
     font-family: Poppins-Bold;
 }
 
 .profile .content .subtitle {
-    font-size: 1.5rem;
+    font-size: 16px;
     color: white;
     font-family: Poppins-Light;
 }
@@ -55,11 +54,11 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 12.5rem;
+    height: 50%;
 }
 
 .profile .content .benefits_list .benefit {
     width: 90%;
-    font-size: 1.5rem;
+    font-size: 14px;
     color: white;
 }
