@@ -8,7 +8,6 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postinstall": "cd archfacts/ && npm install",
     "start": "npm run dev"
   },
   "dependencies": {
