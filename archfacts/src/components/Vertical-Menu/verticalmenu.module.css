@@ -1,0 +1,9 @@
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    gap: 3rem;
+}

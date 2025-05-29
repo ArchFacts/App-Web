@@ -1,0 +1,22 @@
+.title_area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 8%;
+    width: 100vw;
+    border: 5px solid red;
+}
+
+.title_area .generic_chamado_title {
+    color: #0E0C19;
+}
+
+.title_area .chamado_title {
+    color: #033E8C;
+}
+
+.title_area .line {
+    width: 80%;
+    height: 3px;
+    background-color: black;
+}

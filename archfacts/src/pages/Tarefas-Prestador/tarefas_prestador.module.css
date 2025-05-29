@@ -1,0 +1,467 @@
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.capsula {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.capsula .abrir_tarefa {
+    display: flex;
+    width: 100%;
+}
+
+.capsula .tarefas {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.modal_tarefa {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 85%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal_tarefa .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 2.5%;
+    margin-left: 5%;
+
+}
+
+.formContainer {
+    background-color: rgb(238, 237, 237);
+    width: 100%;
+    height: 76%;
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.barraSuperior {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    background-color: #0E0C19;
+    color: white;
+    width: 100%;
+    padding: 1%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 1%;
+    height: auto;
+}
+
+.form p {
+    color: black;
+}
+
+.infos {
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: row;
+    border: #0E0C19;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.statusCell {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.titleCell {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.parcelaCell {
+    background-color: #F95C00;
+    font-family: 'Poppins-Medium';
+    height: 3rem;
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    border-style: none;
+    transition: all 0.2s ease-in;
+}
+
+.parcelaCell:hover {
+    scale: 1.1;
+}
+
+.aberturaCell {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.fechamentoCell {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.finalizarCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.finalizarCell img {
+    max-width: 25%;
+}
+
+.valor_despesa {
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+    color: #F95C00 !important;
+}
+
+.infos img {
+    height: 35%;
+    width: 35%;
+    transition: all 0.1s ease-in;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
+
+.headerStatus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.headerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.headerParcela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.headerAbertura {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.headerFechamento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.headerFinalizar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.infos img {
+    transition: all 0.1s ease-in;
+}
+
+.infos img:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 40%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal .modal_header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 25%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal .modal_header img {
+    margin-right: 2%;
+}
+
+.modal .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+    padding-left: 8%;
+}
+
+.modal .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal .modal_content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.modal .modal_content p {
+    font-size: 2rem;
+    width: 75%;
+    text-align: center;
+    color: black;
+}
+
+.modal .modal_content button {
+    height: 3rem;
+    font-size: 2rem;
+    border-radius: 15px;
+}
+
+.modal_chamado {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 95%;
+    border-radius: 25px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.modal_chamado .modal_header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0E0C19;
+    height: 15%;
+    border-radius: 25px 25px 0 0;
+    transition: all 0.3s ease-in;
+}
+
+.modal_chamado .modal_header h2 {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width: 90%;
+    padding-left: 8%;
+}
+
+.modal_chamado .modal_header img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal_chamado .modal_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.modal_chamado .modal_content .fields {
+    display: flex;
+    width: 75%;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.modal_chamado .modal_content .fields .field2 {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 45%;
+}
+
+.modal_chamado .modal_content .fields .field2 label {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    font-size: 1.5rem;
+}
+
+.modal_chamado .modal_content .fields .field2 select {
+    border: 3px solid #033E8C;
+    font-family: 'Poppins-Medium';
+}
+
+.modal_chamado .modal_content .fields .field2 select option {
+    font-family: 'Poppins-Medium';
+}
+
+.modal_chamado .modal_content .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.modal_chamado .modal_content .field label {
+    width: 75%;
+    font-size: 1.5rem;
+}
+
+.modal_chamado .modal_content .field input {
+    width: 75%;
+    border: 3px solid #033E8C;
+}
+
+.modal_chamado .modal_content .field textarea {
+    width: 75%;
+    border: 3px solid #033E8C;
+
+}
+
+.modal_chamado .modal_content .field .title {
+    font-family: 'Poppins-SemiBold';
+    color: #033E8C;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.modal_chamado .modal_content .button_area {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Poppins-Medium';
+    font-size: 1.5rem;
+    height: 4rem;
+    color: white;
+}
+
+.modal_chamado .modal_content .button_area .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 35%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.modal_chamado .modal_content .button_area .button:hover {
+    width: 50%;
+}
+
+
+.modal_chamado .modal_content .button_area button {
+    width: 25%;
+    background-color: #033E8C;
+}
+
+.inputDate {
+    border-radius: 0;
+    width: 37vh;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+}

@@ -1,0 +1,46 @@
+.icon {
+    fill: #FDAD00; /* Aplica a cor desejada ao ícone */
+    width: 20px;
+    height: 20px;
+}
+
+
+.footer {
+    width: 100%;
+    background: rgba(14, 12, 25, 0.85);
+    height: 7%;
+    border-radius: 28px;
+}
+
+.footer .points {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.footer .points .line {
+    background-color: white;
+    height: 50%;
+    width: 0.3%;
+}
+
+.footer .points .point {
+    display: flex;
+    align-items: center;
+    width: 25%;
+    justify-content: space-evenly;
+}
+
+.footer .points .point .circle {
+    width: 20px;
+    height: 20px;
+    background-color: #F95C00;
+    border-radius: 50%;
+}
+
+.footer .points .point p {
+    color: white;
+    font-size: 20px;
+}

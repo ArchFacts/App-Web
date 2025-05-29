@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../utils/fonts/Poppins-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../utils/fonts/Poppins-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+.hero_info {
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+}
+
+.hero_info .title_div {
+    margin: 6%;
+    width: 95%;
+    height: 30%;
+    background: rgba(14, 12, 25, 0.8);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 18px;
+    padding: 2%;
+}
+
+
+.hero_info .title_div p {
+    color: white;
+}
+
+.hero_info .title_div p:nth-child(1) {
+    font-family: Poppins-Light;
+    font-size: 18px;
+}
+
+.hero_info .title_div p:nth-child(2) {
+    font-family: Poppins-SemiBold;
+    font-size: 36px;
+}
+
+.hero_info .title_div p:nth-child(3) {
+    font-family: Poppins-Regular;
+    font-size: 26px;
+}
+
+.hero_info .button_area {
+    width: 50rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: space-evenly;
+}
+
+.hero_info .button_area button {
+    width: 30%;
+    height: 35px;
+    font-size: 18px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    transition: 200ms linear;
+}
+
+.hero_info .button_area button:nth-child(2) {
+    background-color: #F95C00;
+}
+
+.hero_info .button_area button:hover {
+    scale: 1.2;
+}
+
+.button_area .button{
+    border: none;
+    cursor: pointer;
+    background-color: #033E8C;
+    color: white;
+}

@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('../../../utils/fonts/Poppins-Light.ttf');
+}
+
+.div_input_box {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    /* font-size: 20px; */
+    /* height: 90%; */
+    width: 100%;
+}
+
+.div_input_box .div_input {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    /* gap: 5px; */
+}
+
+.div_input_box label {
+    color: #033E8C;
+    width: 80%;
+    font-family: 'Poppins-Medium';
+    font-size: 20px;
+}
+
+.div_input_box input {
+    color: black;
+    font-family: 'Poppins-Medium';
+    font-size: 16px;
+    justify-content: center;
+    border: none;
+    display: inline-block; 
+    border-bottom: 1px solid #000;
+    outline: none;
+    width: 100%;
+    border-radius: 0px;
+}
+
+.div_input_box input:focus {
+    border-bottom: 2px solid #05C7F2;
+}

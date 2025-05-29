@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../../utils/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.financeiro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.financeiro img:nth-child(3):nth-child(3) {
+    transition: all ease 0.3s;
+}
+
+.financeiro img {
+    transform: scale(2);
+    cursor: pointer;
+}
+
+.financeiro .lucro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: 25px;
+    background-color: #0E0C19;
+}
+
+.financeiro .lucro p {
+    color: #00F91D;
+    font-family: 'Poppins-Regular';
+    font-size: 1.5rem;
+}
+
+.financeiro .gasto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: 25px;
+    background-color: #0E0C19;
+}
+
+.financeiro .gasto p {
+    color: #FF0000;
+    font-family: 'Poppins-Regular';
+    font-size: 1.5rem;
+}

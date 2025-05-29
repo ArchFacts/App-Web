@@ -1,0 +1,71 @@
+* {
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+}
+
+.card {
+    width: 28rem;
+    height: 25rem;
+    background-color: #0E0C19;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.input {
+    width: 24rem;
+}
+
+.divInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 30px;
+}
+
+.divInput label {
+    width: 100%;
+    color: white;
+}
+
+.botao {
+    background-color: #F95C00;
+    width: 15rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    color: white;
+    border-style: none;
+    transition: all 0.25s ease-in;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.botao:hover {
+    background-color: rgb(255, 179, 39);
+    color: white;
+    scale: 1.1;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    width: 22rem;
+    height: 2rem;
+    color: white;
+    align-items: center;
+    left: auto;
+}
+
+.permitir {
+    width: 8rem;
+}
+
+.inputCheck {
+    padding: 0;
+    width: 3rem;
+    height: 1rem;
+}

@@ -1,0 +1,23 @@
+.h1_registro{
+    height: 8rem;
+    color: #033E8C;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 32px;
+  font-family: Poppins-Medium;
+}
+
+.all_inputs{
+    height: 13rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.button{
+    height: 14rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

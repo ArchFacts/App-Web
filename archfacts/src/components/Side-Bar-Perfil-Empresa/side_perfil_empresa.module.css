@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'Poppins-Medium';
+  src: url('../utils/fonts/Poppins-Medium.ttf');
+}
+
+.sidebar {
+  width: 40%;
+  background-color: #0E0C19;
+  color: #ffffff;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+  gap: 2rem;
+}
+
+.imagemEmpresa {
+  width: 250px;
+  height: auto;
+  border-radius: 50%;
+}
+
+/* .title {} */
+
+.title p {
+  font-size: 2rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 35%;
+  align-items: center;
+}
+
+.info p {
+  font-size: 1.5rem;
+  /* margin-bottom: 3%; */
+  font-family: Poppins-Medium;
+}
+
+.contatoEmpresa {
+  color: white;
+  background-color: #F95C00;
+  border-radius: 0.5rem;
+  width: 75%;
+  height: 3rem;
+  border: none;
+  transition: background-color 500ms, transform 700ms ease;
+  font-size: 20px;
+  /* margin-bottom: 5%; */
+  cursor: pointer;
+}
+
+.contatoEmpresa:hover {
+  transform: scale(1.1);
+}
+
+.voltarEmpresa {
+  color: white;
+  background-color: #033E8C;
+  border-radius: 0.5rem;
+  width: 75%;
+  height: 3rem;
+  border: none;
+  transition: background-color 500ms ease, transform 700ms ease;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.voltarEmpresa:hover {
+  transform: scale(1.1);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  gap: 1rem;
+  height: 10rem;
+}

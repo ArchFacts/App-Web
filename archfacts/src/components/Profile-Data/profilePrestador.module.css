@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../../utils/fonts/Poppins-Medium.ttf');
+}
+
+* {
+    color: black;
+    font-family: 'Poppins-Semibold';
+    src: url('../utils/fonts/Poppins-SemiBold.ttf');
+}
+
+.card {
+    width: 90%;
+    height: 85%;
+    background-color: #0E0C19;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.divInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 30px;
+}
+
+.divCodigo {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divInput label {
+    width: 100%;
+    color: white;
+}
+
+.botao {
+    background-color: #F95C00;
+    width: 32%;
+    font-size: 16px;
+    height: 4vh;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Poppins-Medium';
+    transition: background-color 0.3s, width 0.3s;
+}
+
+.botao:hover {
+    color: black;
+    background-color: rgb(255, 179, 39);
+    width: 37%;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    height: 2rem;
+    color: white;
+    align-items: center;
+    left: auto;
+}
+
+.permitir {
+    width: 80%;
+}
+
+.inputCheck {
+    padding: 0;
+    width: 3rem;
+    height: 1rem;
+}
+
+.inputs {
+    display: flex;
+}
+
+.labelCodigo {
+    color: white;
+    font-size: 24px;
+    font-family: 'Poppins-Medium';
+}
+
+.divCodigo input {
+    color: #F95C00;
+    font-family: 'Poppins-Medium';
+}
+
+.botaoEditar {
+    background-color: #033E8C;
+    width: 50%;
+    height: 5vh;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Poppins-Medium';
+    transition: background-color 0.3s, width 0.3s;
+    font-size: 16px;
+}
+
+.botaoEditar:hover {
+    color: black;
+    background-color: #05C7F2;
+    width: 55%;
+}
+
+.content_itens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 90%;
+    height: 90%;
+    justify-content: center;
+}
