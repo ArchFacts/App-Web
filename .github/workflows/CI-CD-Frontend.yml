@@ -34,10 +34,10 @@ jobs:
         working-directory: ./archfacts
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-frontend
-          path: ./archfacts/dist  # ajuste conforme sua pasta de build
+          path: ./archfacts/dist 
 
   docker:
     runs-on: ubuntu-latest
