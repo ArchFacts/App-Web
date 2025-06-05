@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: test --if-present
+        run: npm test --if-present
 
       - name: Build Project
         run: npm run build
