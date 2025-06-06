@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 23
 
       - name: Install dependencies
         run: npm ci
@@ -28,16 +28,6 @@ jobs:
       - name: Run tests
         run: npm test
         working-directory: ./archfacts
-
-      - name: Build project
-        run: npm run build
-        working-directory: ./archfacts
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-frontend
-          path: ./archfacts/dist 
 
   docker:
     runs-on: ubuntu-latest
