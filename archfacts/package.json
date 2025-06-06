@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postinstall": "cd archfacts/ && npm install",
-    "start": "npm run dev"
+    "start": "npm install && npm run dev"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.0",
