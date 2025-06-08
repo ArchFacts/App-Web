@@ -15,10 +15,14 @@ RUN npm run build
 # Imagem de Nginx leve 
 FROM nginx:stable-alpine3.21 as server
 
-# Copianado os arquivos gerados no build para o diretório do Nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Instalando o envsubst para substituir variaveis de ambiente no Nginx
+RUN apk add --no-cache gettext
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copia o template do Nginx
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+
+# Copia os arquivos do frontend para o Nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 

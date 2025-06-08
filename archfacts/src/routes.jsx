@@ -7,7 +7,7 @@ import CadastroFuncionario from "./pages/Cadastro/Cadastro-Funcionario/cadastro_
 import CadastroUsuario from "./pages/Cadastro/Cadastro-Usuario/cadastro_usuario";
 import NivelUsuario from "./pages/Nivel-Usuario/nivel_usuario";
 import Login from "./pages/Login/login";
-import Hub from "./pages/Hub/hub";
+import Hub from "./pages/Hub/Hub";
 import EmpresasParceiras from "./pages/Empresas-Parceiras/empresasParceiras";
 import PerfilEmpresa from "./pages/Perfil-Empresa/perfil_empresa";
 import PerfilBeneficiario from "./pages/Perfil-Usuario/Beneficiario/perfil_beneficiario";
