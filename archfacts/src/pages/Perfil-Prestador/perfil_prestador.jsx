@@ -152,7 +152,7 @@ const PerfilPrestador = () => {
                 </div>
             </Modal>
 
-            {/* <Modal
+            <Modal
                 isOpen={modalIsOpen && tipoModal === 'criarServico'}
                 onRequestClose={fecharModal}
                 contentLabel='Modal para adicionar um serviço'
@@ -195,7 +195,7 @@ const PerfilPrestador = () => {
                             }>Enviar</button>
                     </div>
                 </div>
-            </Modal> */}
+            </Modal>
         </div>
     );
 };
