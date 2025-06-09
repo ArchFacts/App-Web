@@ -72,19 +72,19 @@ const PerfilPrestador = () => {
         navigate("/");
     }
 
-    // const handleCadastro = async () => {
+    const handleCadastro = async () => {
 
-    //     try {
-    //         console.log("Dados enviados", formData); 7
-    //         toast.success("Serviço adicionado com sucesso!")
-    //         const response = await registroServico(formData);
-    //         console.log(response);
-    //     } catch (error) {
-    //         console.error("Não foi possível cadastrar esse serviço", error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
+        try {
+            console.log("Dados enviados", formData); 7
+            toast.success("Serviço adicionado com sucesso!")
+            const response = await registroServico(formData);
+            console.log(response);
+        } catch (error) {
+            console.error("Não foi possível cadastrar esse serviço", error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     useEffect(() => {
         buscarDadosUsuario();
